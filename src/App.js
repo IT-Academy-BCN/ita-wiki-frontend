@@ -12,6 +12,8 @@ import dataScience from "./assets/data-science.svg";
 import bbdd from "./assets/logo-bbdd 1.svg";
 import close from "./assets/close.svg";
 import GItHubLogin from "./components/GItHubLogin";
+import TestComponent from "./my_compo/testComponent";
+
 
 const App = () => {
   return (
@@ -67,6 +69,7 @@ const App = () => {
       <main>
         <aside>listado techs</aside>
         <section>
+          <TestComponent />
           <h1>¡Bienvenid@ a la wiki de la IT Academy!</h1>
           <p>Registrate o haz login para poder subir y votar recursos</p>
           <div>
