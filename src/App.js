@@ -11,9 +11,7 @@ import php from "./assets/logo-php 1.svg";
 import dataScience from "./assets/data-science.svg";
 import bbdd from "./assets/logo-bbdd 1.svg";
 import close from "./assets/close.svg";
-
-
-
+import GItHubLogin from "./components/GItHubLogin";
 
 const App = () => {
   return (
@@ -69,11 +67,13 @@ const App = () => {
       <main>
         <aside>listado techs</aside>
         <section>
-          <h1 className="bg-red-500">¡Bienvenid@ a la wiki de la IT Academy!</h1>
+          <h1>¡Bienvenid@ a la wiki de la IT Academy!</h1>
           <p>Registrate o haz login para poder subir y votar recursos</p>
           <div>
-            <button type="button">Registrarme</button>
-            <button type="button">Entrar</button>
+            <GItHubLogin />
+            <label htmlFor="terms">
+              <input name="terms" type="checkbox" /> Acepto términos legales
+            </label>
           </div>
           <div>
             <div>
