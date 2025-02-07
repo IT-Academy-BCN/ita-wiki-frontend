@@ -69,7 +69,7 @@ const App = () => {
       <main>
         <aside>listado techs</aside>
         <section>
-          <h1>¡Bienvenid@ a la wiki de la IT Academy!</h1>
+          <h1 className="bg-red-500">¡Bienvenid@ a la wiki de la IT Academy!</h1>
           <p>Registrate o haz login para poder subir y votar recursos</p>
           <div>
             <button type="button">Registrarme</button>
