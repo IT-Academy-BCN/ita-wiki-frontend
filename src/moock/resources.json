@@ -1,0 +1,64 @@
+{
+  "resources": [
+    {
+      "resource_id": 1,
+      "title": "Context en 20 minutos",
+      "description": "Id aliqua sit sit aliquip tempor exercitation tempor cupidatat.",
+      "favorite": false,
+      "votes": 201,
+      "user": {
+        "photoURL": "http://photourl.jpg",
+        "displayName": "Ona Costa"
+      },
+      "create_at": "8 agosto de 2022"
+    },
+    {
+      "resource_id": 2,
+      "title": "Redux para principiantes",
+      "description": "Adipisicing qui ut elit sit proident ea.",
+      "favorite": true,
+      "votes": 123,
+      "user": {
+        "photoURL": "http://photourl.jpg",
+        "displayName": "Ona Costa"
+      },
+      "create_at": "8 agosto de 2022"
+    },
+    {
+      "resource_id": 3,
+      "title": "Redux para principiantes",
+      "description": "Adipisicing qui ut elit sit proident ea.",
+      "favorite": false,
+      "votes": 123,
+      "user": {
+        "photoURL": "http://photourl.jpg",
+        "displayName": "Ona Costa"
+      },
+      "create_at": "8 agosto de 2022"
+    },
+    {
+      "resource_id": 4,
+      "title": "Redux para principiantes",
+      "description": "Adipisicing qui ut elit sit proident ea.",
+      "favorite": true,
+      "votes": 25,
+      "user": {
+        "photoURL": "http://photourl.jpg",
+        "displayName": "Ona Costa"
+      },
+      "create_at": "8 agosto de 2022"
+    },
+    {
+      "resource_id": 5,
+      "title": "Redux para principiantes",
+      "description": "Adipisicing qui ut elit sit proident ea.",
+      "favorite": false,
+      "votes": 7,
+      "user": {
+        "photoURL": "http://photourl.jpg",
+        "displayName": "Ona Costa"
+      },
+      "create_at": "8 agosto de 2022"
+    }
+  ]
+}

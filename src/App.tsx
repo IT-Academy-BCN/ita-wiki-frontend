@@ -1,5 +1,4 @@
 import { FC } from "react";
-
 import menu from "./assets/Vector-7.svg";
 import node from "./assets/logo-node 1.svg";
 import react from "./assets/react.svg";
@@ -12,12 +11,12 @@ import bbdd from "./assets/logo-bbdd 1.svg";
 import close from "./assets/close.svg";
 import { Route, Routes } from "react-router";
 import HomePage from "./pages/HomePage";
+import ItaResources from "./components/ItaResources";
 
 const App: FC = () => {
 
   return (
     <>
-      
       <header>
         <button type="button">
           <img src={menu} alt="menu" width={29} height={19.36} />
@@ -92,9 +91,10 @@ const App: FC = () => {
           </ul>
         </nav>
       </header>
-       <Routes>
-      <Route path="/" element={<HomePage />} />
-        </Routes>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+      <ItaResources />
     </>
   );
 };
