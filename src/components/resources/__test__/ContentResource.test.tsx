@@ -9,7 +9,7 @@ describe('ContentResource Component', () => {
     </ContentResource>
     )
     const contentResource = screen.getByTestId("content-resource")
-    expect(contentResource).toHaveClass("flex flex-col flex-1 gap-2")
+    expect(contentResource).toHaveClass("w-full flex flex-col")
   })
 
 })

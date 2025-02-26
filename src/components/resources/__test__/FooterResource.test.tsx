@@ -8,7 +8,7 @@ describe('FooterResource Component', () => {
       <h1>Hola</h1>
     </FooterResource>)
     const footer = screen.getByTestId("footer-resource")
-    expect(footer).toHaveClass("flex gap-2 items-center justify-between w-full px-10 py-4")
+    expect(footer).toHaveClass("flex gap-2 items-center w-full px-12 py-4")
   })
 
 })

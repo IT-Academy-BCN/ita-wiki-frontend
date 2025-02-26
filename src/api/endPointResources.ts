@@ -1,28 +1,37 @@
-import { API_URL, END_POINTS } from "../config"
-import { IntResource } from "../types"
-import moock from "../moock/resources.json"
+import { API_URL, END_POINTS } from "../config";
+import { IntResource } from "../types";
+import moock from "../moock/resources.json";
 
 const moockResources = moock.resources.map(resource => ({
   ...resource,
   create_at: "2025-02-25 00:00:00",
   update_at: "2025-02-25 00:00:00"
-} as IntResource))
+} as IntResource));
 
-const getResources = async () => {
+const getResources = async (): Promise<IntResource[]> => {
+  const controller = new AbortController();
+  const signal = controller.signal;
+
   try {
-    const url = `${API_URL}${END_POINTS.resources.lists}`
-    const request = await fetch(url)
-    const ok = request.ok;
-    if (!ok) return moockResources
-    const data = await request.json()
-    return data
+    const url = `${API_URL}${END_POINTS.resources.lists}`;
+    const response = await fetch(url, { signal });
+
+    if (!response.ok) {
+      throw new Error(`Error ${response.status}: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    return Array.isArray(data) && data.length ? data : moockResources;
+
   } catch (error) {
-    const err = error as Error
-    throw new Error(err.message)
+    if (error instanceof DOMException && error.name === "AbortError") {
+      console.warn("Petición cancelada.");
+      return moockResources;
+    }
+    console.error("Error en getResources:", error);
+    return moockResources;
   }
+};
 
-}
-
-export {
-  getResources
-}
+export { getResources };
