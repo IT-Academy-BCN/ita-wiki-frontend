@@ -8,7 +8,8 @@ export default function HomePage() {
   const { signIn, signOut, user, error } = useCtxUser()
 
   return (
-    <main className="bg-white rounded-xl p-6 w-full max-h-[calc(100vh-90px)]">
+    <main className="bg-white rounded-xl p-6 w-full text-center h-[inherit] max-h-[calc(100vh-114px)] overflow-auto">
+      <h1>¡Bienvenid@ a la wiki de la IT Academy!</h1>
       <section>
         <article
           style={{
@@ -16,12 +17,13 @@ export default function HomePage() {
             flexDirection: "column",
             maxWidth: "375px",
             padding: "1rem",
+            margin: "40px auto 60px",
+            margin: "40px auto 60px"
           }}
         >
-          <h1>¡Bienvenid@ a la wiki de la IT Academy!</h1>
 
           {user ?
-            <article id={user.id} className="flex justify-evenly items-center gap-4 mt-4 py-2 px-4 rounded-md bg-black text-white">
+            <article id={user.id} className="flex justify-evenly items-center gap-4 mt-4 py-2 px-4 rounded-md bg-black text-white mx-auto">
               <img src={user.photoURL} alt="Avatar usuario" width={64} height={64} className="rounded-full border-2 border-white" />
               <small className="font-bold" style={{ textTransform: 'uppercase' }}>{user.displayName}</small>
               <button className="bg-white text-red-500 text-sm font-bold active:scale-95 py-1 px-4 rounded-sm border-2 border-black" type="button" onClick={signOut}>Exit</button>
@@ -49,10 +51,10 @@ export default function HomePage() {
           }
 
         </article>
-        <div className="">
+        <div >
           <div>
             <h2>Funcionalidades básicas que te ofrece esta plataforma:</h2>
-            <section>
+            <section className="w-full flex justify-between">
               <div>
                 <span>/1</span>
                 <img src={folder} alt="folder" width={100} height={100} />
