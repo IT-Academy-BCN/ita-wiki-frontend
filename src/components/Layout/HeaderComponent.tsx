@@ -31,9 +31,9 @@ const HeaderComponent = () => {
                     <ButtonComponent icon={addIcon} variant='icon' onClick={goToResourcesPage} />
                 }
                 <div className="flex justify-center items-center mx-2">
-                    <select title="lang" className="bg-white py-2 px-4 text-[#808080] rounded-lg border border-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#808080] focus:border-transparent">
-                        <option>ES</option>
-                        <option>EN</option>
+                    <select id="languages" name="languages" title="lang" className="bg-white py-2 px-4 text-[#808080] rounded-lg border border-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#808080] focus:border-transparent">
+                        <option value="es">ES</option>
+                        <option value="es">EN</option>
                     </select>
                 </div>
                 <ButtonComponent icon={settingsIcon} variant='icon' />

@@ -9,7 +9,7 @@ import ResourcesPage from "./pages/ResourcesPage";
 const App: FC = () => {
 
   return (
-    <div className="bg-[#ebebeb] p-6">
+    <div className="bg-[#ebebeb] p-6 h-screen">
       <HeaderComponent />
       <div className="flex">
         <AsideComponent />

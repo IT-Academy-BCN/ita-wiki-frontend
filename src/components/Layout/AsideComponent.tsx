@@ -20,12 +20,12 @@ const AsideComponent = () => {
         { icon: bbdd, label: 'BBDD' }]
 
     return (
-        <aside className='flex items-center p-6 pl-0 pr-[80px] max-h-[calc(100vh-90px)]'>
+        <aside className='flex items-center pr-[80px] max-h-[calc(100vh-114px)] min-h-[calc(100vh-114px)] w-[250px]'>
             <ul className="space-y-6">
                 {asideContent.map((item, index) => (
                     <li key={index} className="flex items-center space-x-3">
                         <img src={item.icon} alt={item.label} className="w-6 h-6" />
-                        <Link to={`/resources/${item.label}`}>{item.label}</Link>
+                        <Link to={`/resources/${item.label}`}> <span className=" text-[#7e7e7e] hover:text-[#1e1e1e]">{item.label}</span></Link>
                     </li>
                 ))}
             </ul>
