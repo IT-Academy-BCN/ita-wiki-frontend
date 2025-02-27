@@ -7,7 +7,7 @@ export const getUserRole = async (githubId: string): Promise<string> => {
         if (!response.ok) throw new Error("Error fetching user role");
         const data = await response.json();
         return data.role?.role || "anonymous";
-    } catch (error) {
+    } catch {
         return "anonymous";
     }
 };
