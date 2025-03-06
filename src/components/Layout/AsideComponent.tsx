@@ -29,7 +29,7 @@ const AsideComponent = () => {
   ];
 
   return (
-    <aside className="flex items-center pr-[80px] max-h-[calc(100vh-114px)] min-h-[calc(100vh-114px)] w-[280px]">
+    <aside className="flex items-center max-h-[calc(100vh-114px)] min-h-[calc(100vh-114px)] w-[280px] p-6">
       <ul className="space-y-6">
         {asideContent.map((item, index) => {
           const resources = `/resources/${item.label}`.replace(" ", "%20");

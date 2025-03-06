@@ -1,0 +1,14 @@
+{
+  "categories": [
+    "Todos",
+    "Components",
+    "UseState & useEffect",
+    "Eventos",
+    "Renderizado condicional",
+    "Listas",
+    "Estilos",
+    "Debugging",
+    "React Router"
+  ],
+  "types": ["Videos", "Cursos", "Blogs"]
+}

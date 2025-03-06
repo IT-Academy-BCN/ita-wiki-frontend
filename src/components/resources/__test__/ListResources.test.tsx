@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router";
 import { ListResources } from "../ListResources";
 import moock from "../../../moock/resources.json";
 import { IntResource, TypTechnologyResource } from "../../../types";
@@ -16,7 +17,11 @@ const tech = "React" as TypTechnologyResource;
 
 describe("ListResources Component", () => {
   it("should render the component and display the correct title", () => {
-    render(<ListResources resources={moockrResources} technology={tech} />);
+    render(
+      <MemoryRouter>
+        <ListResources resources={moockrResources} technology={tech} />
+      </MemoryRouter>,
+    );
 
     const titleElement = screen.getByText("Recursos React");
     expect(titleElement.tagName).toBe("H2");
