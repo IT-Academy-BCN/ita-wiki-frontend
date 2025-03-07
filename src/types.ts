@@ -4,7 +4,7 @@ export type TypChildren = {
   children?: ReactNode;
 };
 export interface IntUser {
-  id: number; //
+  id: number;
   displayName: string | null;
   photoURL: string | undefined;
   role?: string;

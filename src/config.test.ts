@@ -1,11 +1,9 @@
 import { API_URL, END_POINTS } from "./config";
 
-
 describe("Configuración de la API", () => {
   // Simulando la variable de entorno antes de cada test
   beforeAll(() => {
     // Mock de la variable de entorno para que VITE_API_URL tenga un valor conocido durante el test
-    import.meta.env.VITE_API_URL = "http://localhost:8000/api/";
     import.meta.env.VITE_API_URL = "http://localhost:8000/api/";
   });
 
