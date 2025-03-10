@@ -8,14 +8,15 @@ import ResourcesPage from "./pages/ResourcesPage";
 
 const App: FC = () => {
   return (
-    <div className="bg-[#ebebeb] p-6 h-screen">
+    <div className="bg-[#ebebeb] min-h-screen">
       <HeaderComponent />
-      <div className="flex">
+      <div className="mx-auto w-full grow lg:flex xl:px-2">
         <AsideComponent />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/resources/:technology" element={<ResourcesPage />} />
-          <Route path="/resource/add" element={<CreateResourcePage />} />
+          <Route path="/resources/:category" element={<ResourcesPage />} />
+          <Route path="/resources/add" element={<CreateResourcePage />} />
+          <Route path="/resources" element={<ResourcesPage />} />
         </Routes>
       </div>
     </div>

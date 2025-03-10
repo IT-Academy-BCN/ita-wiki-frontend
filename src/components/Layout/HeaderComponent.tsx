@@ -12,10 +12,10 @@ const HeaderComponent = () => {
   const navigate = useNavigate();
 
   const goToResourcesPage = () => {
-    navigate("/resource/add");
+    navigate("/resources/add");
   };
   return (
-    <header className="bg-[#ebebeb] p-6 pt-0 px-0 flex items-center justify-between">
+    <header className="bg-[#ebebeb] p-6 flex items-center justify-between">
       <Link to="/">
         <img src={logoItAcademy} alt="logo" width={"116px"} />
       </Link>
@@ -24,7 +24,7 @@ const HeaderComponent = () => {
           <input
             type="text"
             placeholder="Buscar recurso"
-            className="bg-white pl-10 pr-4 py-2 border border-white font-semibold text-base rounded-lg 
+            className="bg-white pl-10 pr-4 py-2 border border-white font-semibold text-base rounded-lg
                    focus:outline-none focus:ring-2 focus:ring-[#808080]"
           />
           <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#808080] ">
@@ -51,13 +51,11 @@ const HeaderComponent = () => {
         )}
         <div className="flex justify-center items-center mx-2">
           <select
-            id="languages"
-            name="languages"
             title="lang"
             className="bg-white py-2 px-4 text-[#808080] rounded-lg border border-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#808080] focus:border-transparent"
           >
-            <option value="es">ES</option>
-            <option value="es">EN</option>
+            <option>ES</option>
+            <option>EN</option>
           </select>
         </div>
         <ButtonComponent icon={settingsIcon} variant="icon" />

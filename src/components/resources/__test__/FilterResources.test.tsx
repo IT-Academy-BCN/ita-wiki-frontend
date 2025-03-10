@@ -1,0 +1,91 @@
+import { render, screen, fireEvent } from "@testing-library/react";
+import { MemoryRouter } from "react-router";
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { FilterResources } from "../FilterResources";
+import { themes } from "../../../data/themes";
+import { resourceTypes } from "../../../data/resourceTypes";
+
+describe("FilterResources Component", () => {
+  let selectedTheme: (typeof themes)[number];
+  let selectedResourceTypes: string[];
+
+  let setSelectedTheme: ReturnType<typeof vi.fn>;
+  let setSelectedResourceTypes: ReturnType<typeof vi.fn>;
+
+  beforeEach(() => {
+    selectedTheme = themes[0];
+    selectedResourceTypes = [];
+
+    setSelectedTheme = vi.fn((theme: (typeof themes)[number]) => {
+      selectedTheme = theme;
+    });
+
+    setSelectedResourceTypes = vi.fn((newResourceTypes: string[]) => {
+      selectedResourceTypes = newResourceTypes;
+    });
+  });
+
+  it("should render categories and types from filter.json", () => {
+    render(
+      <MemoryRouter>
+        <FilterResources
+          themes={[...themes]}
+          resourceTypes={[...resourceTypes]}
+          selectedTheme={selectedTheme}
+          setSelectedTheme={setSelectedTheme}
+          selectedResourceTypes={selectedResourceTypes}
+          setSelectedResourceTypes={setSelectedResourceTypes}
+        />
+      </MemoryRouter>,
+    );
+
+    themes.forEach((theme) => {
+      expect(screen.getByText(theme)).toBeInTheDocument();
+    });
+
+    resourceTypes.forEach((type) => {
+      expect(screen.getByText(type)).toBeInTheDocument();
+    });
+  });
+
+  it("should update selected category when clicked", () => {
+    render(
+      <MemoryRouter>
+        <FilterResources
+          themes={[...themes]}
+          resourceTypes={[...resourceTypes]}
+          selectedTheme={selectedTheme}
+          setSelectedTheme={setSelectedTheme}
+          selectedResourceTypes={selectedResourceTypes}
+          setSelectedResourceTypes={setSelectedResourceTypes}
+        />
+      </MemoryRouter>,
+    );
+
+    const eventCategory = screen.getByText("Eventos");
+    fireEvent.click(eventCategory);
+
+    expect(setSelectedTheme).toHaveBeenCalledWith("Eventos");
+  });
+
+  it("should toggle type checkboxes when clicked", () => {
+    render(
+      <MemoryRouter>
+        <FilterResources
+          themes={[...themes]}
+          resourceTypes={[...resourceTypes]}
+          selectedTheme={selectedTheme}
+          setSelectedTheme={setSelectedTheme}
+          selectedResourceTypes={selectedResourceTypes}
+          setSelectedResourceTypes={setSelectedResourceTypes}
+        />
+      </MemoryRouter>,
+    );
+
+    const videoCheckbox = screen.getByLabelText("Video") as HTMLInputElement;
+    fireEvent.click(videoCheckbox);
+
+    expect(setSelectedResourceTypes).toHaveBeenCalled();
+    expect(setSelectedResourceTypes).toHaveBeenCalledWith(["Video"]);
+  });
+});

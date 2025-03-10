@@ -1,13 +1,14 @@
 import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { IntResource, TypTechnologyResource } from "../types";
+import { IntResource } from "../types";
 import { ListResources } from "../components/resources/ListResources";
 import { getResources } from "../api/endPointResources";
+import { categories } from "../data/categories";
 
 const ResourcesPage: FC = () => {
-  const { technology } = useParams();
+  const { category } = useParams();
   const [apiResources, setApiResources] = useState<IntResource[]>([]);
-  const tech = technology as TypTechnologyResource;
+
   useEffect(() => {
     (async () => {
       const data = await getResources();
@@ -15,7 +16,12 @@ const ResourcesPage: FC = () => {
     })();
   }, []);
 
-  return <ListResources resources={apiResources} technology={tech} />;
+  return (
+    <ListResources
+      resources={apiResources}
+      category={category as keyof typeof categories | undefined}
+    />
+  );
 };
 
 export default ResourcesPage;

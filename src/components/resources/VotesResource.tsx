@@ -9,7 +9,7 @@ export const VotesResource: FC<VotesResource> = ({ votes }) => {
   return (
     <article
       data-testid="resource-votes"
-      className="flex flex-col items-center"
+      className="flex flex-col items-center "
     >
       <img src={arrowTop} alt="icon" width={16} height={16.1} />
       <span className="inline-flex text-[16px] text-[#282828]">

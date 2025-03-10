@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { UserResource } from "../UserResource";
 import { IntUser } from "../../../types";
 const userMoock = {
-  id: "124klyh542757wsd",
+  id: 5784345,
   displayName: "Usuario uno",
   photoURL: "http/asdadasd.jpg",
 } as IntUser;

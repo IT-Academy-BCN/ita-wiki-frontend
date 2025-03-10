@@ -33,7 +33,7 @@ export const Resource: FC<ResourceProps> = ({ resource }) => {
         <>
           <UserResource
             user={{
-              id: "123456",
+              id: 123456,
               displayName: "Luisvi",
               photoURL:
                 "https://media-protected.taiga.io/user/e/a/5/1/5b4f35ce88a65723e51c03d9ec16eab9fa397c4489179eec3c8cb18454ba/foto-cv-luis-vicente-2-1.jpg.300x300_q85_crop.jpg?token=Z74AuQ%3Ay4emwkV17L87H0TeHlRkVQ8ullh7ZWESpQTvvQBBn-3yet4vmvAXIWFdrh-Ugz7cF19-NBqrOAoR0_LqIIJMkw",

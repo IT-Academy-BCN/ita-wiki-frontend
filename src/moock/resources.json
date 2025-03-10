@@ -2,7 +2,7 @@
   "resources": [
     {
       "id": 25,
-      "id_github": "123456",
+      "github_id": "123456",
       "title": "Context en 20 minutos",
       "url": "http://localhost/recurso/1",
       "create_at": "2 agosto de 2022",
@@ -10,7 +10,7 @@
     },
     {
       "id": 26,
-      "id_github": "123457",
+      "github_id": 123457,
       "title": "Redux para principiantes",
       "url": "http://localhost/recurso/1",
       "create_at": "1 agosto de 2022",
@@ -18,7 +18,7 @@
     },
     {
       "id": 27,
-      "id_github": "123458",
+      "github_id": 123458,
       "title": "Redux para principiantes",
       "url": "http://localhost/recurso/1",
       "create_at": "5 febrero de 2022",
@@ -26,7 +26,7 @@
     },
     {
       "id": 28,
-      "id_github": "123459",
+      "github_id": 123459,
       "title": "El tio la vara",
       "url": "http://localhost/recurso/1",
       "create_at": "25 agosto de 2022",
@@ -34,7 +34,7 @@
     },
     {
       "id": 29,
-      "id_github": "123460",
+      "github_id": 123460,
       "title": "Y volo, y me hiso volar y yo vole de el! jajja",
       "url": "http://localhost/recurso/1",
       "create_at": "16 agosto de 2022",
