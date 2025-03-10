@@ -17,13 +17,14 @@ export default function HomePage() {
             flexDirection: "column",
             maxWidth: "375px",
             padding: "1rem",
-            margin: "40px auto 60px",
           }}
         >
+          <h1>¡Bienvenid@ a la wiki de la IT Academy!</h1>
+
           {user ? (
             <article
-              id={user.id}
-              className="flex justify-evenly items-center gap-4 mt-4 py-2 px-4 rounded-md bg-black text-white mx-auto"
+              id={String(user.id)}
+              className="flex justify-evenly items-center gap-4 mt-4 py-2 px-4 rounded-md bg-black text-white"
             >
               <img
                 src={user.photoURL}
