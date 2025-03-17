@@ -1,11 +1,11 @@
-import node from "../../assets/logo-node 1.svg";
-import react from "../../assets/react.svg";
-import angular from "../../assets/angular.svg";
-import javascript from "../../assets/javascript.svg";
-import java from "../../assets/logo-java 1.svg";
-import php from "../../assets/logo-php 1.svg";
-import dataScience from "../../assets/data-science.svg";
-import bbdd from "../../assets/logo-bbdd 1.svg";
+import node from "../assets/logo-node 1.svg";
+import react from "../assets/react.svg";
+import angular from "../assets/angular.svg";
+import javascript from "../assets/javascript.svg";
+import java from "../assets/logo-java 1.svg";
+import php from "../assets/logo-php 1.svg";
+import dataScience from "../assets/data-science.svg";
+import bbdd from "../assets/logo-bbdd 1.svg";
 import { Link } from "react-router";
 
 const AsideComponent = () => {

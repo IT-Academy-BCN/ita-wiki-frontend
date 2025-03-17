@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router";
-import logoItAcademy from "../../assets/LogoItAcademy.svg";
-import addIcon from "../../assets/add.svg";
-import settingsIcon from "../../assets/settings.svg";
-import userIcon from "../../assets/user2.svg";
-import searchIcon from "../../assets/search.svg";
+import logoItAcademy from "../assets/LogoItAcademy.svg";
+import addIcon from "../assets/add.svg";
+import settingsIcon from "../assets/settings.svg";
+import userIcon from "../assets/user2.svg";
+import searchIcon from "../assets/search.svg";
 import ButtonComponent from "../components/atoms/ButtonComponent";
 import { useCtxUser } from "../hooks/useCtxUser";
 
