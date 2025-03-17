@@ -2,8 +2,8 @@ import { FC } from "react";
 import { Route, Routes } from "react-router";
 import HomePage from "./pages/HomePage";
 import CreateResourcePage from "./pages/CreateResourcePage";
-import HeaderComponent from "./components/Layout/HeaderComponent";
-import AsideComponent from "./components/Layout/AsideComponent";
+import HeaderComponent from "./Layout/HeaderComponent";
+import AsideComponent from "./Layout/AsideComponent";
 import ResourcesPage from "./pages/ResourcesPage";
 
 const App: FC = () => {

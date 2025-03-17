@@ -4,8 +4,8 @@ import addIcon from "../../assets/add.svg";
 import settingsIcon from "../../assets/settings.svg";
 import userIcon from "../../assets/user2.svg";
 import searchIcon from "../../assets/search.svg";
-import ButtonComponent from "../atoms/ButtonComponent";
-import { useCtxUser } from "../../hooks/useCtxUser";
+import ButtonComponent from "../components/atoms/ButtonComponent";
+import { useCtxUser } from "../hooks/useCtxUser";
 
 const HeaderComponent = () => {
   const { user } = useCtxUser();
