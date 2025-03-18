@@ -8,20 +8,16 @@ import ResourcesPage from "./pages/ResourcesPage";
 
 const App: FC = () => {
   return (
-    <div className="bg-[#ebebeb] h-screen flex flex-col">
+    <>
       <HeaderComponent />
-
-      <div className="flex flex-col lg:flex-row lg:flex-grow lg:overflow-hidden">
-        <AsideComponent />
-
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/resources/:category" element={<ResourcesPage />} />
-          <Route path="/resources/add" element={<CreateResourcePage />} />
-          <Route path="/resources" element={<ResourcesPage />} />
-        </Routes>
-      </div>
-    </div>
+      <AsideComponent />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/resources/:category" element={<ResourcesPage />} />
+        <Route path="/resources/add" element={<CreateResourcePage />} />
+        <Route path="/resources" element={<ResourcesPage />} />
+      </Routes>
+    </>
   );
 };
 
