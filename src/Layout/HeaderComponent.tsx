@@ -42,7 +42,7 @@ const HeaderComponent = () => {
   };
 
   return (
-    <header className="main__header hidden lg:grid bg-[#ebebeb] justify-end items-center pr-6">
+    <header className="main__header hidden lg:grid bg-[#ebebeb] justify-end gap-8 items-center pr-6">
       <section className="flex justify-end">
         <article className="relative inline-flex cursor-pointer">
           <input
@@ -83,9 +83,7 @@ const HeaderComponent = () => {
           <option>EN</option>
         </select>
         <ButtonComponent icon={settingsIcon} variant="icon" />
-        <article className="mr-[-10px]">
-          <ButtonComponent icon={userIcon} variant="icon" onClick={openModal} />
-        </article>
+        <ButtonComponent icon={userIcon} variant="icon" onClick={openModal} />
         {
           isModalOpen && (
             <Modal closeModal={closeModal} title="Inicio sesión">
