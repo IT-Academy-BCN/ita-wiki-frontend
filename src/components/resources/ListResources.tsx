@@ -1,12 +1,7 @@
 import { FC, useState } from "react";
 import { IntResource } from "../../types";
-
-import { useCtxUser } from "../../hooks/useCtxUser";
-
 import { Resource } from "./Resource";
 import { FilterResources } from "./FilterResources";
-import { ListMyResources } from "./ListMyResources";
-
 import { categories } from "../../data/categories";
 import { themes } from "../../data/themes";
 import { resourceTypes } from "../../data/resourceTypes";
@@ -23,8 +18,6 @@ export const ListResources: FC<ListResourceProps> = ({
 }) => {
   const [showFilters, setShowFilters] = useState<boolean>(false);
 
-  const { user } = useCtxUser();
-
   const {
     filteredResources,
     selectedTheme,
@@ -38,16 +31,14 @@ export const ListResources: FC<ListResourceProps> = ({
     resourceTypes,
   });
 
-  const userCreatedResources = user
-    ? resources.filter((resource) => resource.github_id === Number(user.id))
-    : [];
+
 
   return (
     resources && (
-      <div className="mx-auto w-full grow lg:flex xl:px-2 gap-x-6 sm:bg-white lg:bg-transparent">
-        <div className="flex flex-col lg:flex-row lg:flex-grow lg:overflow-y-auto bg-white lg:rounded-xl px-4 lg:px-8 py-4 sm:py-6">
+      <section className=" lg:flex xl:px-2 gap-x-6 sm:bg-white lg:bg-transparent">
+        <article className="flex flex-col lg:flex-row lg:flex-grow lg:overflow-y-auto bg-white lg:rounded-xl px-4 lg:px-8 py-4 sm:py-6">
           {/* Sidebar Filters (Visible on larger screens, on the left) */}
-          <div className="hidden sm:block px-4 py-6 sm:px-6 lg:pr-8 lg:w-80 xl:shrink-0 xl:pr-6">
+          <section className="hidden sm:block px-4 py-6 sm:px-6 lg:pr-8 lg:w-80 xl:shrink-0 xl:pr-6">
             <h2 className="text-[26px] font-bold">Filtros</h2>
             <FilterResources
               themes={[...themes]}
@@ -58,9 +49,9 @@ export const ListResources: FC<ListResourceProps> = ({
               setSelectedResourceTypes={setSelectedResourceTypes}
               resetTheme={resetTheme}
             />
-          </div>
-          <div className="lg:flex-1 px-4 py-6 lg:pl-8 xl:pl-6">
-            <div className="flex justify-between items-center">
+          </section>
+          <section className="lg:flex-1 px-4 py-6 lg:pl-8 xl:pl-6">
+            <article className="flex justify-between items-center">
               <h2 className="text-[26px] font-bold">
                 Recursos {String(category) || ""}
               </h2>
@@ -98,10 +89,10 @@ export const ListResources: FC<ListResourceProps> = ({
                   </svg>
                 )}
               </button>
-            </div>
+            </article>
             {/* Filters - Visible on mobile when toggled */}
             {showFilters && (
-              <div className="sm:hidden mt-4 p-4 bg-gray-100 rounded-lg">
+              <article className="sm:hidden mt-4 p-4 bg-gray-100 rounded-lg">
                 <h2 className="text-2xl font-bold">Filtros</h2>
                 <FilterResources
                   themes={themes}
@@ -112,24 +103,16 @@ export const ListResources: FC<ListResourceProps> = ({
                   setSelectedResourceTypes={setSelectedResourceTypes}
                   resetTheme={resetTheme}
                 />
-              </div>
+              </article>
             )}
             <ul className="flex flex-col gap-2 py-8">
               {filteredResources.map((resource: IntResource) => (
                 <Resource key={resource.id} resource={resource} />
               ))}
             </ul>
-          </div>
-        </div>
-        <div className="shrink-0 px-4 lg:w-80 mt-6 sm:mt-0 space-y-6">
-          <div className="bg-white sm:rounded-xl px-4 py-6 sm:px-6 lg:pl-8 xl:shrink-0 xl:pl-6">
-            <h3 className="text-[22px] font-bold">Lista de lectura</h3>
-          </div>
-          {user && userCreatedResources.length > 0 && (
-            <ListMyResources myResources={userCreatedResources} />
-          )}
-        </div>
-      </div>
+          </section>
+        </article>
+      </section>
     )
   );
 };
