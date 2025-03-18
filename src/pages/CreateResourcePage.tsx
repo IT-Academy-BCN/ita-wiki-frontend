@@ -87,7 +87,9 @@ export default function CreateResourcePage() {
             </select>
             <div className="h-6">
               {errors.category && (
-                <p className="text-red-500 text-sm">{errors.category.message}</p>
+                <p className="text-red-500 text-sm">
+                  {errors.category.message}
+                </p>
               )}
             </div>
 

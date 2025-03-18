@@ -32,8 +32,6 @@ export const ListResources: FC<ListResourceProps> = ({
     resourceTypes,
   });
 
-
-
   return (
     resources && (
       <section className=" lg:flex xl:px-2 gap-x-6 sm:bg-white lg:bg-transparent">
@@ -130,7 +128,10 @@ export const ListResources: FC<ListResourceProps> = ({
                 />
               </article>
             )}
-            <ul className="flex flex-col gap-2 py-8">
+
+            <ul className="grid grid-cols-2 gap-8 py-8">
+              {" "}
+              {/* Grid, con dos columnas, gap-8, por ahora, las medidas no son correctas en Figma, no me cuadra */}
               {filteredResources.map((resource: IntResource) => (
                 <Resource key={resource.id} resource={resource} />
               ))}

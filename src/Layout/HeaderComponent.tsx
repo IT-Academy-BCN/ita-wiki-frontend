@@ -9,7 +9,6 @@ import { useCtxUser } from "../hooks/useCtxUser";
 import { useState } from "react";
 import GitHubLogin from "../components/github-login/GitHubLogin";
 
-
 const HeaderComponent = () => {
   const { user, signIn } = useCtxUser();
   const navigate = useNavigate();
@@ -84,33 +83,31 @@ const HeaderComponent = () => {
         </select>
         <ButtonComponent icon={settingsIcon} variant="icon" />
         <ButtonComponent icon={userIcon} variant="icon" onClick={openModal} />
-        {
-          isModalOpen && (
-            <Modal closeModal={closeModal} title="Inicio sesión">
-              <GitHubLogin onClick={handleSignIn} />
-              <label htmlFor="terms" className="block mt-8">
-                <input
-                  name="terms"
-                  id="terms"
-                  type="checkbox"
-                  onChange={handleCheckboxChange}
-                  checked={isChecked}
-                ></input>
-                Acepto términos legales
-              </label>
-              {loginError && (
-                <div className="text-red-500 text-sm mt-2">
-                  <div className="text-red-500 text-sm mt-2 text-center">
-                    Lo sentimos, no se ha podido iniciar sesión,
-                    <br /> contacte con el administrador.
-                  </div>
+        {isModalOpen && (
+          <Modal closeModal={closeModal} title="Inicio sesión">
+            <GitHubLogin onClick={handleSignIn} />
+            <label htmlFor="terms" className="block mt-8">
+              <input
+                name="terms"
+                id="terms"
+                type="checkbox"
+                onChange={handleCheckboxChange}
+                checked={isChecked}
+              ></input>
+              Acepto términos legales
+            </label>
+            {loginError && (
+              <div className="text-red-500 text-sm mt-2">
+                <div className="text-red-500 text-sm mt-2 text-center">
+                  Lo sentimos, no se ha podido iniciar sesión,
+                  <br /> contacte con el administrador.
                 </div>
-              )}
-            </Modal>
-          )
-        }
-      </section >
-    </header >
+              </div>
+            )}
+          </Modal>
+        )}
+      </section>
+    </header>
   );
 };
 

@@ -3,9 +3,6 @@ import { describe, it, expect } from "vitest";
 import { IntResource, IntUser } from "../../types";
 import { getPersonalResources } from "../userApi";
 
-
-
-
 const moockResources = moock.resources.map(
   (resource) =>
     ({
@@ -19,7 +16,7 @@ const moockUser = {
   displayName: "John Doe",
   photoURL: "https://via.placeholder.com/150",
   role: "user",
-} as IntUser
+} as IntUser;
 
 describe("getPersonalResources", () => {
   it("should return only the resources belonging to the logged-in user", () => {
@@ -41,7 +38,7 @@ describe("getPersonalResources", () => {
           category: expect.any(String),
           theme: expect.any(String),
           type: expect.any(String),
-        })
+        }),
       );
     });
   });

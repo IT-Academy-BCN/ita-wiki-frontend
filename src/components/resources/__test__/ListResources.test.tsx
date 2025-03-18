@@ -45,5 +45,4 @@ describe("ListResources Component", () => {
     const titleElement = screen.getByText(`Recursos ${String(category)}`);
     expect(titleElement.tagName).toBe("H2");
   });
-
 });

@@ -43,7 +43,6 @@ const getRole = async (github_id: number): Promise<IntRole> => {
 
     const data = await response.json();
 
-
     if (data && typeof data === "object" && data.role) {
       return data.role as IntRole;
     }

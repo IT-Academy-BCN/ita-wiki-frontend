@@ -13,8 +13,8 @@ const mockGithubId = 123456;
 
 describe("endPointRoles", () => {
   beforeEach(() => {
-    vi.spyOn(console, "error").mockImplementation(() => { });
-    vi.spyOn(console, "warn").mockImplementation(() => { });
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    vi.spyOn(console, "warn").mockImplementation(() => {});
   });
 
   afterEach(() => {

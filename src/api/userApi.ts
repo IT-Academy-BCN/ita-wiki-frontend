@@ -22,13 +22,17 @@ export const getUserRole = async (githubId: number): Promise<string> => {
     if (error instanceof Error) {
       throw new Error(
         error.message ||
-        "Error during fetching user role. Please, try again 👾",
+          "Error during fetching user role. Please, try again 👾",
       );
     }
     throw new Error("Something went wrong, sis. Please, try again 👾");
   }
 };
 
-export const getPersonalResources = (user: IntUser, resources: IntResource[]): IntResource[] => user
-  ? resources.filter((resource) => resource.github_id === Number(user.id))
-  : [];
+export const getPersonalResources = (
+  user: IntUser,
+  resources: IntResource[],
+): IntResource[] =>
+  user
+    ? resources.filter((resource) => resource.github_id === Number(user.id))
+    : [];

@@ -77,7 +77,9 @@ export default function HomePage() {
             </article>
           ) : (
             <article className="flex flex-col items-center gap-4">
-              <span className="text-[#7E7E7E] text-[16px]">Registrate o haz login para poder subir y votar recursos</span>
+              <span className="text-[#7E7E7E] text-[16px]">
+                Registrate o haz login para poder subir y votar recursos
+              </span>
               <div className="flex flex-col max-w-[320px] gap-4">
                 <GitHubLogin onClick={signIn} />
                 {error && (
