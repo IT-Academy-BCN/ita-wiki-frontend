@@ -10,7 +10,7 @@ import { getRole } from "../api/endPointRoles";
 import MainContent from "../Layout/MainContent";
 
 export default function HomePage() {
-  const { signOut, user } = useCtxUser();
+  const { signOut, user, signIn, error } = useCtxUser();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userRole, setUserRole] = useState<string | null>(null);
 
