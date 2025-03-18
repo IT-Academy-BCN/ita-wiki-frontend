@@ -41,7 +41,7 @@ const HeaderComponent = () => {
   };
 
   return (
-    <header className="main__header hidden lg:grid bg-[#ebebeb] justify-end gap-8 items-center pr-6">
+    <header className="main__header hidden lg:grid bg-[#ebebeb] justify-end gap-6 items-center pr-6">
       <section className="flex justify-end">
         <article className="relative inline-flex cursor-pointer">
           <input
