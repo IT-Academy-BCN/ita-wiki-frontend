@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import ButtonComponent from "./ButtonComponent";
 import { vi } from "vitest";
-import closeIcon from "../../assets/close.svg";
-import addIcon from "../../assets/add.svg";
+import closeIcon from "../../assets/svg/close.svg";
+import addIcon from "../../assets/svg/add.svg";
 
 describe("Render Button", () => {
   it("should render the button", () => {
