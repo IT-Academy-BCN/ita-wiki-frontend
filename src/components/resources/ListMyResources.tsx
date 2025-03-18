@@ -9,7 +9,7 @@ interface ListMyResourcesProps {
 
 export const ListMyResources: FC<ListMyResourcesProps> = ({ myResources }) => {
   return (
-    <div
+    <article
       data-testid="my-resources-container"
       className="bg-white overflow-y-auto lg:max-h-[calc((100vh-110px)/2)] sm:rounded-xl px-4 py-6 sm:px-6 lg:pl-8 xl:shrink-0 xl:pl-6"
     >
@@ -20,6 +20,6 @@ export const ListMyResources: FC<ListMyResourcesProps> = ({ myResources }) => {
           <MyResource key={index} resource={resource} />
         ))}
       </div>
-    </div>
+    </article>
   );
 };
