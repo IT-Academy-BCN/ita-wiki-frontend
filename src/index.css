@@ -30,6 +30,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #ebebeb;
+  overflow: hidden;
 }
 
 h1 {
@@ -37,6 +38,45 @@ h1 {
   line-height: 1.1;
   margin: 0;
   padding: 0;
+}
+
+#root {
+  display: grid;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  grid-template-columns: min(12rem) 1fr;
+  grid-template-rows: 69px 1fr;
+  min-height: inherit;
+  width: inherit;
+}
+
+.main__header {
+  grid-area: header;
+  grid-template-columns: 1fr 332px;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+}
+
+.main__content {
+  grid-area: main;
+  grid-template-columns: 1fr 332px;
+  grid-template-rows: 1fr;
+  overflow: hidden;
+}
+
+.content {
+  grid-area: content;
+  overflow: hidden auto;
+}
+
+.sidebar-right {
+  grid-area: sidebar-right;
 }
 
 /* @media (prefers-color-scheme: light) {
