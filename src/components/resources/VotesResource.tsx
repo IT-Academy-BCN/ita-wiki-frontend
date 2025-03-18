@@ -1,6 +1,6 @@
 import { FC } from "react";
-import arrowDown from "../../assets/chevron_forward_down.svg";
-import arrowTop from "../../assets/chevron_forward_top.svg";
+import arrowDown from "../../assets/svg/chevron_forward_down.svg";
+import arrowTop from "../../assets/svg/chevron_forward_top.svg";
 interface VotesResource {
   votes: number;
 }
