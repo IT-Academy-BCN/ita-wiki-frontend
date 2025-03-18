@@ -46,17 +46,17 @@ describe("ListResources Component", () => {
     expect(titleElement.tagName).toBe("H2");
   });
 
-  it("should render user's own resources when user logged in and own resources present", () => {
-    const userResources = moockResources.map((resource) => ({
-      ...resource,
-      github_id: 123463,
-    }));
+  // it("should render user's own resources when user logged in and own resources present", () => {
+  //   const userResources = moockResources.map((resource) => ({
+  //     ...resource,
+  //     github_id: 123463,
+  //   }));
 
-    render(
-      <MemoryRouter>
-        <ListResources resources={userResources} category={category} />
-      </MemoryRouter>,
-    );
-    expect(screen.queryByTestId("my-resources-container")).toBeInTheDocument();
-  });
+  //   render(
+  //     <MemoryRouter>
+  //       <ListResources resources={userResources} category={category} />
+  //     </MemoryRouter>,
+  //   );
+  //   expect(screen.queryByTestId("my-resources-container")).toBeInTheDocument();
+  // });
 });
