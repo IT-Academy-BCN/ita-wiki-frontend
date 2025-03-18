@@ -1,9 +1,11 @@
+import { IntResource, IntUser } from "../types";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const getUserRole = async (githubId: number): Promise<string> => {
   try {
     const response = await fetch(
-      `${API_URL}/users/user-signedin-as?github_id=${githubId}`,
+      `${API_URL}users/user-signedin-as?github_id=${githubId}`,
     );
 
     //TO-DO: poner AbortController()
@@ -15,3 +17,7 @@ export const getUserRole = async (githubId: number): Promise<string> => {
     return "anonymous";
   }
 };
+
+export const getPersonalResources = (user: IntUser, resources: IntResource[]): IntResource[] => user
+  ? resources.filter((resource) => resource.github_id === Number(user.id))
+  : [];
