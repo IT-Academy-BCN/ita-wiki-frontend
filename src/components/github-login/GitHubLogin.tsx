@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-const GItHubLogin: FC<{ onClick?: () => void }> = ({ onClick }) => {
+const GitHubLogin: FC<{ onClick?: () => void }> = ({ onClick }) => {
   return (
     <button
       onClick={onClick}
@@ -19,9 +19,9 @@ const GItHubLogin: FC<{ onClick?: () => void }> = ({ onClick }) => {
           ></path>
         </svg>
       </i>
-      Sign in with GItHub
+      Sign in with GitHub
     </button>
   );
 };
 
-export default GItHubLogin;
+export default GitHubLogin;

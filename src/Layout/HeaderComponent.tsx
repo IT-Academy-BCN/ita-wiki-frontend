@@ -1,19 +1,47 @@
 import { Link, useNavigate } from "react-router";
-import logoItAcademy from "../assets/LogoItAcademy.svg";
-import addIcon from "../assets/add.svg";
-import settingsIcon from "../assets/settings.svg";
-import userIcon from "../assets/user2.svg";
-import searchIcon from "../assets/search.svg";
+import logoItAcademy from "../../assets/LogoItAcademy.svg";
+import addIcon from "../../assets/add.svg";
+import settingsIcon from "../../assets/settings.svg";
+import userIcon from "../../assets/user2.svg";
+import searchIcon from "../../assets/search.svg";
 import ButtonComponent from "../components/atoms/ButtonComponent";
+import { Modal } from "../components/Modal/Modal";
 import { useCtxUser } from "../hooks/useCtxUser";
+import { useState } from "react";
+import GitHubLogin from "../components/github-login/GitHubLogin";
+
 
 const HeaderComponent = () => {
-  const { user } = useCtxUser();
+  const { user, signIn } = useCtxUser();
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const [loginError, setLoginError] = useState(false);
 
   const goToResourcesPage = () => {
     navigate("/resources/add");
   };
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  const handleSignIn = async () => {
+    if (!isChecked) {
+      setLoginError(true);
+      return;
+    }
+    try {
+      await signIn();
+      setIsModalOpen(false);
+    } catch {
+      setLoginError(true);
+    }
+  };
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+    setLoginError(false);
+  };
+
   return (
     // just temporarily hidden on mobile, to prevent horizontal overflow
     <header className="hidden lg:flex bg-[#ebebeb] p-6 items-center justify-between">
@@ -61,8 +89,31 @@ const HeaderComponent = () => {
         </div>
         <ButtonComponent icon={settingsIcon} variant="icon" />
         <div className="mr-[-10px]">
-          <ButtonComponent icon={userIcon} variant="icon" />
+          <ButtonComponent icon={userIcon} variant="icon" onClick={openModal} />
         </div>
+        {isModalOpen && (
+          <Modal closeModal={closeModal} title="Inicio sesión">
+            <GitHubLogin onClick={handleSignIn} />
+            <label htmlFor="terms" className="block mt-8">
+              <input
+                name="terms"
+                id="terms"
+                type="checkbox"
+                onChange={handleCheckboxChange}
+                checked={isChecked}
+              ></input>
+              Acepto términos legales
+            </label>
+            {loginError && (
+              <div className="text-red-500 text-sm mt-2">
+                <div className="text-red-500 text-sm mt-2 text-center">
+                  Lo sentimos, no se ha podido iniciar sesión,
+                  <br /> contacte con el administrador.
+                </div>
+              </div>
+            )}
+          </Modal>
+        )}
       </div>
     </header>
   );

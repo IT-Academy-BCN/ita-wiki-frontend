@@ -1,4 +1,4 @@
-import GItHubLogin from "../components/github-login/GItHubLogin";
+import GitHubLogin from "../components/github-login/GitHubLogin";
 import folder from "../assets/new-folder-dynamic-color.svg";
 import puzzle from "../assets/puzzle-dynamic-color.svg";
 import ok from "../assets/thumb-up-dynamic-color.svg";
@@ -83,7 +83,7 @@ export default function HomePage() {
                   maxWidth: "320px",
                 }}
               >
-                <GItHubLogin onClick={signIn} />
+                <GitHubLogin onClick={signIn} />
                 <label htmlFor="terms">
                   <input name="terms" type="checkbox" /> Acepto términos legales
                 </label>
