@@ -32,8 +32,6 @@ const getRole = async (github_id: number): Promise<IntRole> => {
   try {
     const url = `${API_URL}${END_POINTS.roles.lists}${github_id}`;
 
-    console.log("this is the query endpoint to get the role:", url);
-
     const response = await fetch(url, { signal });
 
     if (!response.ok) {
@@ -45,20 +43,18 @@ const getRole = async (github_id: number): Promise<IntRole> => {
 
     const data = await response.json();
 
-    // Succesful
+
     if (data && typeof data === "object" && data.role) {
       console.log(data.role);
 
       return data.role as IntRole;
     }
 
-    // Not found
     if (data && typeof data === "object" && data.error) {
       console.warn(`API Error: ${data.error}`);
       return mockRoles;
     }
 
-    // Other
     return mockRoles;
   } catch (error) {
     if (error instanceof DOMException && error.name === "AbortError") {
