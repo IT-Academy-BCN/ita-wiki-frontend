@@ -45,8 +45,6 @@ const getRole = async (github_id: number): Promise<IntRole> => {
 
 
     if (data && typeof data === "object" && data.role) {
-      console.log(data.role);
-
       return data.role as IntRole;
     }
 

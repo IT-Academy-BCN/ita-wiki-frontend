@@ -8,12 +8,10 @@ import type {
   RoleCreationResponse,
 } from "./../endPointRoles";
 
-// Set up mock data
 const mockRole = moock.role as IntRole;
 const mockGithubId = 123456;
 
 describe("endPointRoles", () => {
-  // Set up console spies
   beforeEach(() => {
     vi.spyOn(console, "error").mockImplementation(() => { });
     vi.spyOn(console, "warn").mockImplementation(() => { });
