@@ -48,7 +48,13 @@ const ButtonComponent: FC<ItaButtonProps> = ({
   return (
     <button type={type || "button"} onClick={onClick} className={baseClass}>
       {variant === "close" && <img src={closeIcon} alt="Close" />}
-      {variant === "icon" && <img src={icon} alt="icon" className="h-[17px]" />}
+      {variant === "icon" && (
+        <img
+          src={icon}
+          alt="icon"
+          className={`h-[17px] ${text ? "mr-3" : ""}`}
+        />
+      )}
       {text || children}
     </button>
   );

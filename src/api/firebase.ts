@@ -32,7 +32,6 @@ export const signInWithGitHub = async () => {
     newUser.role = await getUserRole(newUser.id);
 
     storage.save("user", newUser);
-    storage.save("user", newUser);
     return newUser;
   } catch (error: unknown) {
     if (error instanceof Error) {
