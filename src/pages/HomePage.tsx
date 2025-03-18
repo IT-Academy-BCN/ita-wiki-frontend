@@ -1,12 +1,13 @@
 import GitHubLogin from "../components/github-login/GitHubLogin";
-import folder from "../assets/new-folder-dynamic-color.svg";
-import puzzle from "../assets/puzzle-dynamic-color.svg";
-import ok from "../assets/thumb-up-dynamic-color.svg";
+import folder from "../assets/svg/new-folder-dynamic-color.svg";
+import puzzle from "../assets/svg/puzzle-dynamic-color.svg";
+import ok from "../assets/svg/thumb-up-dynamic-color.svg";
 import { useCtxUser } from "../hooks/useCtxUser";
 import { useState, useEffect } from "react";
 import { AddUsersModal } from "../components/resources/AddUserModal";
 import ButtonComponent from "../components/atoms/ButtonComponent";
 import { getRole } from "../api/endPointRoles";
+import MainContent from "../Layout/MainContent";
 
 export default function HomePage() {
   const { signIn, signOut, user, error } = useCtxUser();
@@ -36,17 +37,10 @@ export default function HomePage() {
     : false;
 
   return (
-    <main className="bg-white rounded-xl p-6 w-full text-center h-[inherit] max-h-[calc(100vh-114px)] overflow-auto">
-      <h1>¡Bienvenid@ a la wiki de la IT Academy!</h1>
-      <section>
-        <article
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            maxWidth: "375px",
-            padding: "1rem",
-          }}
-        >
+    <MainContent>
+      <section className="bg-white rounded-[15px] col-span-2">
+        <article className="flex flex-col gap-8 items-center justify-center min-h-96">
+          <h1 className="font-bold">¡Bienvenid@ a la wiki de la IT Academy!</h1>
           {user ? (
             <article
               id={String(user.id)}
@@ -74,24 +68,15 @@ export default function HomePage() {
               </button>
             </article>
           ) : (
-            <div>
-              <p>Registrate o haz login para poder subir y votar recursos</p>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  maxWidth: "320px",
-                }}
-              >
+            <article className="flex flex-col items-center gap-4">
+              <span className="text-[#7E7E7E] text-[16px]">Registrate o haz login para poder subir y votar recursos</span>
+              <div className="flex flex-col max-w-[320px] gap-4">
                 <GitHubLogin onClick={signIn} />
-                <label htmlFor="terms">
-                  <input name="terms" type="checkbox" /> Acepto términos legales
-                </label>
                 {error && (
                   <div className="error-message text-red-500 my-4">{error}</div>
                 )}
               </div>
-            </div>
+            </article>
           )}
 
           {hasPermission && (
@@ -100,31 +85,29 @@ export default function HomePage() {
             </ButtonComponent>
           )}
         </article>
-        <div>
-          <div>
-            <h2>Funcionalidades básicas que te ofrece esta plataforma:</h2>
-            <section className="w-full flex justify-between">
-              <div>
-                <span>/1</span>
-                <img src={folder} alt="folder" width={100} height={100} />
-                <h3>Guarda tus recursos favoritos</h3>
-                <p>Ten tus recursos bien organizados</p>
-              </div>
-              <div>
-                <span>/2</span>
-                <img src={puzzle} alt="puzzle" width={100} height={100} />
-                <h3>Colabora con tus compañer@s</h3>
-                <p>Recursos compartidos</p>
-              </div>
-              <div>
-                <span>/3</span>
-                <img src={ok} alt="ok" width={100} height={100} />
-                <h3>Vota los recursos</h3>
-                <p>La comunidad decide cuáles son más relevantes</p>
-              </div>
-            </section>
-          </div>
-        </div>
+        <article>
+          <h2>Funcionalidades básicas que te ofrece esta plataforma:</h2>
+          <section className="w-full flex justify-between">
+            <article>
+              <span>/1</span>
+              <img src={folder} alt="folder" width={100} height={100} />
+              <h3>Guarda tus recursos favoritos</h3>
+              <p>Ten tus recursos bien organizados</p>
+            </article>
+            <article>
+              <span>/2</span>
+              <img src={puzzle} alt="puzzle" width={100} height={100} />
+              <h3>Colabora con tus compañer@s</h3>
+              <p>Recursos compartidos</p>
+            </article>
+            <article>
+              <span>/3</span>
+              <img src={ok} alt="ok" width={100} height={100} />
+              <h3>Vota los recursos</h3>
+              <p>La comunidad decide cuáles son más relevantes</p>
+            </article>
+          </section>
+        </article>
       </section>
       {isModalOpen && hasPermission && (
         <AddUsersModal
@@ -133,6 +116,6 @@ export default function HomePage() {
           userID={user.id}
         />
       )}
-    </main>
+    </MainContent>
   );
 }
