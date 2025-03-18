@@ -1,12 +1,12 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { getRole, createRole } from "./endPointRoles";
-import { API_URL, END_POINTS } from "../config";
-import moock from "../moock/roles.json";
+import { getRole, createRole } from "./../endPointRoles";
+import { API_URL, END_POINTS } from "../../config";
+import moock from "../../moock/roles.json";
 import type {
   IntRole,
   RoleCreationRequest,
   RoleCreationResponse,
-} from "./endPointRoles";
+} from "./../endPointRoles";
 
 // Set up mock data
 const mockRole = moock.role as IntRole;
@@ -15,8 +15,8 @@ const mockGithubId = 123456;
 describe("endPointRoles", () => {
   // Set up console spies
   beforeEach(() => {
-    vi.spyOn(console, "error").mockImplementation(() => {});
-    vi.spyOn(console, "warn").mockImplementation(() => {});
+    vi.spyOn(console, "error").mockImplementation(() => { });
+    vi.spyOn(console, "warn").mockImplementation(() => { });
   });
 
   afterEach(() => {

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
-import { getResources } from "./endPointResources";
-import moock from "../moock/resources.json";
-import { IntResource } from "../types";
+import { getResources } from "./../endPointResources";
+import moock from "../../moock/resources.json";
+import { IntResource } from "../../types";
 
 const moockResources = moock.resources.map((resource) => ({
   ...resource,
@@ -11,8 +11,8 @@ const moockResources = moock.resources.map((resource) => ({
 
 describe("getResources", () => {
   beforeEach(() => {
-    vi.spyOn(console, "error").mockImplementation(() => {});
-    vi.spyOn(console, "warn").mockImplementation(() => {});
+    vi.spyOn(console, "error").mockImplementation(() => { });
+    vi.spyOn(console, "warn").mockImplementation(() => { });
   });
 
   afterEach(() => {
