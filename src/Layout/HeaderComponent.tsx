@@ -1,9 +1,8 @@
-import { Link, useNavigate } from "react-router";
-import logoItAcademy from "../../assets/LogoItAcademy.svg";
-import addIcon from "../../assets/add.svg";
-import settingsIcon from "../../assets/settings.svg";
-import userIcon from "../../assets/user2.svg";
-import searchIcon from "../../assets/search.svg";
+import { useNavigate } from "react-router";
+import addIcon from "../assets/svg/add.svg";
+import settingsIcon from "../assets/svg/settings.svg";
+import userIcon from "../assets/svg/user2.svg";
+import searchIcon from "../assets/svg/search.svg";
 import ButtonComponent from "../components/atoms/ButtonComponent";
 import { Modal } from "../components/Modal/Modal";
 import { useCtxUser } from "../hooks/useCtxUser";
@@ -43,20 +42,16 @@ const HeaderComponent = () => {
   };
 
   return (
-    // just temporarily hidden on mobile, to prevent horizontal overflow
-    <header className="hidden lg:flex bg-[#ebebeb] p-6 items-center justify-between">
-      <Link to="/">
-        <img src={logoItAcademy} alt="logo" width={"116px"} />
-      </Link>
-      <div className="flex">
-        <div className="relative mr-[120px] cursor-pointer">
+    <header className="main__header hidden lg:grid bg-[#ebebeb] justify-end items-center pr-6">
+      <section className="flex justify-end">
+        <article className="relative inline-flex cursor-pointer">
           <input
             type="text"
             placeholder="Buscar recurso"
             className="bg-white pl-10 pr-4 py-2 border border-white font-semibold text-base rounded-lg
                    focus:outline-none focus:ring-2 focus:ring-[#808080]"
           />
-          <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#808080] ">
+          <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#808080]">
             <svg
               xmlns={searchIcon}
               className="h-5 w-5"
@@ -70,7 +65,9 @@ const HeaderComponent = () => {
               />
             </svg>
           </div>
-        </div>
+        </article>
+      </section>
+      <section className="flex gap-4 justify-end items-center">
         {user && (
           <ButtonComponent
             icon={addIcon}
@@ -78,44 +75,44 @@ const HeaderComponent = () => {
             onClick={goToResourcesPage}
           />
         )}
-        <div className="flex justify-center items-center mx-2">
-          <select
-            title="lang"
-            className="bg-white py-2 px-4 text-[#808080] rounded-lg border border-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#808080] focus:border-transparent"
-          >
-            <option>ES</option>
-            <option>EN</option>
-          </select>
-        </div>
+        <select
+          title="lang"
+          className="bg-white py-2 px-4 text-[#808080] rounded-lg border border-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#808080] focus:border-transparent"
+        >
+          <option>ES</option>
+          <option>EN</option>
+        </select>
         <ButtonComponent icon={settingsIcon} variant="icon" />
-        <div className="mr-[-10px]">
+        <article className="mr-[-10px]">
           <ButtonComponent icon={userIcon} variant="icon" onClick={openModal} />
-        </div>
-        {isModalOpen && (
-          <Modal closeModal={closeModal} title="Inicio sesión">
-            <GitHubLogin onClick={handleSignIn} />
-            <label htmlFor="terms" className="block mt-8">
-              <input
-                name="terms"
-                id="terms"
-                type="checkbox"
-                onChange={handleCheckboxChange}
-                checked={isChecked}
-              ></input>
-              Acepto términos legales
-            </label>
-            {loginError && (
-              <div className="text-red-500 text-sm mt-2">
-                <div className="text-red-500 text-sm mt-2 text-center">
-                  Lo sentimos, no se ha podido iniciar sesión,
-                  <br /> contacte con el administrador.
+        </article>
+        {
+          isModalOpen && (
+            <Modal closeModal={closeModal} title="Inicio sesión">
+              <GitHubLogin onClick={handleSignIn} />
+              <label htmlFor="terms" className="block mt-8">
+                <input
+                  name="terms"
+                  id="terms"
+                  type="checkbox"
+                  onChange={handleCheckboxChange}
+                  checked={isChecked}
+                ></input>
+                Acepto términos legales
+              </label>
+              {loginError && (
+                <div className="text-red-500 text-sm mt-2">
+                  <div className="text-red-500 text-sm mt-2 text-center">
+                    Lo sentimos, no se ha podido iniciar sesión,
+                    <br /> contacte con el administrador.
+                  </div>
                 </div>
-              </div>
-            )}
-          </Modal>
-        )}
-      </div>
-    </header>
+              )}
+            </Modal>
+          )
+        }
+      </section >
+    </header >
   );
 };
 
