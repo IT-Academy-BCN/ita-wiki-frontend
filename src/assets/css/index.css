@@ -96,5 +96,6 @@ h1 {
     height: 100%;
     width: 100%;
     transition: left 0.3s ease-in-out;
+    z-index: 100;
   }
 }
