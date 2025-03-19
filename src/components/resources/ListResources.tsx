@@ -6,7 +6,6 @@ import { categories } from "../../data/categories";
 import { themes } from "../../data/themes";
 import { resourceTypes } from "../../data/resourceTypes";
 import { useResourceFilter } from "../../hooks/useResourceFilter";
-import searchIcon from "../../assets/svg/search.svg";
 
 interface ListResourceProps {
   resources: IntResource[];
@@ -37,7 +36,7 @@ export const ListResources: FC<ListResourceProps> = ({
       <>
         {/* Sidebar Filters (Visible on larger screens, on the left) */}
         <section className="hidden sm:block px-4 py-6 sm:px-6 lg:pr-8 lg:w-80 xl:shrink-0 xl:pr-6">
-          <h2 className="text-[26px] font-bold">Filtros</h2>
+          <h2 className="text-xl md:text-[28px] font-bold">Filtros</h2>
           <FilterResources
             themes={[...themes]}
             resourceTypes={[...resourceTypes]}
@@ -48,74 +47,51 @@ export const ListResources: FC<ListResourceProps> = ({
             resetTheme={resetTheme}
           />
         </section>
-        <section className="lg:flex-1 px-4 py-6 lg:pl-8 xl:pl-6">
-          <article className="flex justify-between items-center">
-            <header className="w-full flex items-center gap-2 justify-between">
-              <h2 className="text-[26px] font-bold">
+        <section className="w-[100dvw] md:w-full flex flex-col py-4 gap-4 ">
+          <article className="flex flex-col gap-4 md:flex-row justify-between items-center">
+            <header className="w-full flex justify-between items-center px-4">
+              <h2 className="col-start-1 col-end-4 text-xl md:text-[26px] font-bold">
                 Recursos {String(category) || ""}
               </h2>
-              <article className="relative inline-flex cursor-pointer">
-                <input
-                  type="text"
-                  placeholder="Buscar recurso"
-                  className="bg-white pl-10 pr-4 py-2 border border-white font-semibold rounded-lg
-                   focus:outline-none focus:ring-2 focus:ring-[#808080]"
-                />
-                <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#808080]">
+              <button
+                className="sm:hidden bg-[#B91879] text-white px-4 py-2 rounded-md flex items-center gap-2"
+                onClick={() => setShowFilters(!showFilters)}
+              >
+                <span>Filtrar</span>
+                {showFilters ? (
                   <svg
-                    xmlns={searchIcon}
-                    className="h-5 w-5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M12.9 14.32a8 8 0 111.42-1.42l4.83 4.83a1 1 0 01-1.42 1.42l-4.83-4.83zM8 14a6 6 0 100-12 6 6 0 000 12z"
-                      clipRule="evenodd"
-                    />
+                    <polyline points="18 15 12 9 6 15"></polyline>
                   </svg>
-                </div>
-              </article>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                )}
+              </button>
             </header>
-            {/* Filter Button (Mobile only) */}
-            <button
-              className="sm:hidden bg-[#B91879] text-white px-4 py-2 rounded-md flex items-center gap-2"
-              onClick={() => setShowFilters(!showFilters)}
-            >
-              <span>Filtrar</span>
-              {showFilters ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <polyline points="18 15 12 9 6 15"></polyline>
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              )}
-            </button>
           </article>
           {/* Filters - Visible on mobile when toggled */}
           {showFilters && (
-            <article className="sm:hidden mt-4 p-4 bg-gray-100 rounded-lg">
-              <h2 className="text-2xl font-bold">Filtros</h2>
+            <article className="sm:hidden mt-4 p-4 bg-gray-100 h-96 rounded-lg overflow-x-hidden overflow-y-auto">
+              <h2 className="text-xl md:text-[28px] font-bold">Filtros</h2>
               <FilterResources
                 themes={themes}
                 resourceTypes={resourceTypes as readonly string[]}
@@ -128,7 +104,7 @@ export const ListResources: FC<ListResourceProps> = ({
             </article>
           )}
 
-          <ul className="grid grid-cols-2 gap-8 py-8">
+          <ul className="flex flex-col px-4 gap-8 h-[75dvh] overflow-x-hidden overflow-y-auto">
             {/* Grid, con dos columnas, gap-8, por ahora, las medidas no son correctas en Figma, no me cuadra */}
             {filteredResources.map((resource: IntResource) => (
               <Resource key={resource.id} resource={resource} />
