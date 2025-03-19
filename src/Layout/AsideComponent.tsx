@@ -11,8 +11,7 @@ import logoItAcademy from "../assets/svg/LogoItAcademy.svg";
 import close from "../assets/svg/close.svg";
 import { useCtxUser } from "../hooks/useCtxUser";
 const AsideComponent = () => {
-
-  const { isTablet, isMobile, toggleMainMenu, isOpenMainMenu } = useCtxUser()
+  const { isTablet, isMobile, toggleMainMenu, isOpenMainMenu } = useCtxUser();
 
   const asideContent = [
     { icon: node, label: "Node" },
@@ -26,16 +25,22 @@ const AsideComponent = () => {
   ];
 
   return (
-    <aside className="sidebar grid grid-cols-3 bg-[#EBEBEB]" style={{
-      left: isOpenMainMenu ? "0px" : '-100%',
-    }}>
+    <aside
+      className="sidebar grid grid-cols-3 bg-[#EBEBEB]"
+      style={{
+        left: isOpenMainMenu ? "0px" : "-100%",
+      }}
+    >
       <section className="col-1 flex items-center pt-[21px] pl-[23px]">
-        {isTablet || isMobile ? <button onClick={toggleMainMenu} type="button">
-          <img src={close} alt="logo" width={"32"} height={32} />
-        </button> :
+        {isTablet || isMobile ? (
+          <button onClick={toggleMainMenu} type="button">
+            <img src={close} alt="logo" width={"32"} height={32} />
+          </button>
+        ) : (
           <Link to="/">
             <img src={logoItAcademy} alt="logo" width={"116px"} height={29} />
-          </Link>}
+          </Link>
+        )}
       </section>
       <ul className="space-y-6 pt-[21px] pl-[23px] flex flex-col justify-center">
         {asideContent.map((item, index) => (

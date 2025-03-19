@@ -40,12 +40,14 @@ const HeaderComponent = () => {
     setIsChecked(!isChecked);
     setLoginError(false);
   };
-  const { isTablet, isMobile, toggleMainMenu } = useCtxUser()
+  const { isTablet, isMobile, toggleMainMenu } = useCtxUser();
   return (
     <header className="main__header grid bg-[#ebebeb] justify-end gap-6 items-center pr-6">
-      {isTablet || isMobile ? <button onClick={toggleMainMenu} type="button">
-        <img src={menubars} alt="logo" width={"32"} height={32} />
-      </button> :
+      {isTablet || isMobile ? (
+        <button onClick={toggleMainMenu} type="button">
+          <img src={menubars} alt="logo" width={"32"} height={32} />
+        </button>
+      ) : (
         <>
           <section className="flex justify-end">
             <article className="relative inline-flex cursor-pointer">
@@ -87,7 +89,11 @@ const HeaderComponent = () => {
               <option>EN</option>
             </select>
             <ButtonComponent icon={settingsIcon} variant="icon" />
-            <ButtonComponent icon={userIcon} variant="icon" onClick={openModal} />
+            <ButtonComponent
+              icon={userIcon}
+              variant="icon"
+              onClick={openModal}
+            />
             {isModalOpen && (
               <Modal closeModal={closeModal} title="Inicio sesión">
                 <GitHubLogin onClick={handleSignIn} />
@@ -113,7 +119,7 @@ const HeaderComponent = () => {
             )}
           </section>
         </>
-      }
+      )}
     </header>
   );
 };
