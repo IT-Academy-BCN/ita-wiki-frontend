@@ -1,15 +1,13 @@
-
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";// Importamos el módulo para hacer mock
+import { describe, it, expect, vi } from "vitest"; // Importamos el módulo para hacer mock
 import { useUserCtx } from "../useUserCtx";
 import UserCtxProvider from "../../context/UserCtxProvider";
 import { useUser } from "../useUser";
 
 // Mock de useUser usando vi.mock()
 vi.mock("../useUser", async () => {
-  const actual = await vi.importActual<typeof import("../useUser")>(
-    "../useUser"
-  );
+  const actual =
+    await vi.importActual<typeof import("../useUser")>("../useUser");
   return {
     ...actual,
     useUser: vi.fn(() => ({
@@ -42,10 +40,12 @@ describe("useCtxUser hook con UserCtxProvider", () => {
     render(
       <UserCtxProvider>
         <TestComponent />
-      </UserCtxProvider>
+      </UserCtxProvider>,
     );
 
-    expect(screen.getByTestId("user-name").textContent).toBe("Usuario de Prueba");
+    expect(screen.getByTestId("user-name").textContent).toBe(
+      "Usuario de Prueba",
+    );
     expect(screen.getByTestId("user-role").textContent).toBe("Sin rol");
   });
 
@@ -62,13 +62,13 @@ describe("useCtxUser hook con UserCtxProvider", () => {
       signOut: vi.fn(),
       error: null,
       setError: vi.fn(),
-      handleSetRole: vi.fn(() => Promise.resolve())
+      handleSetRole: vi.fn(() => Promise.resolve()),
     });
 
     render(
       <UserCtxProvider>
         <TestComponent />
-      </UserCtxProvider>
+      </UserCtxProvider>,
     );
 
     expect(screen.getByTestId("user-name").textContent).toBe("Admin User");

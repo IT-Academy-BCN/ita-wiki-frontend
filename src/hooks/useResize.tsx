@@ -41,5 +41,12 @@ export const useResize = (): IUseResize => {
     };
   }, []);
 
-  return { isMobile, isTablet, isDesktop, recordMobile, recordTablet, recordDesktop };
+  return {
+    isMobile,
+    isTablet,
+    isDesktop,
+    recordMobile,
+    recordTablet,
+    recordDesktop,
+  };
 };

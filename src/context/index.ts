@@ -10,18 +10,12 @@ interface PropsContextUser {
   error: string | null;
   setError: (error: string | null) => void;
 }
-interface PropsContexGLobal extends IUseResize, IntUseMainMenu { }
+interface PropsContexGLobal extends IUseResize, IntUseMainMenu {}
 
 const CtxUser = createContext<PropsContextUser | null>(null);
 
 const CtxGLobal = createContext<PropsContexGLobal | null>(null);
 
-export {
-  CtxUser,
-  CtxGLobal,
-}
+export { CtxUser, CtxGLobal };
 
-export type {
-  PropsContextUser,
-  PropsContexGLobal
-}
+export type { PropsContextUser, PropsContexGLobal };

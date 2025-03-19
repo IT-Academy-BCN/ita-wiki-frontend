@@ -34,13 +34,13 @@ describe("useGlobalCtx hook", () => {
       render(
         <GlobalCtxProvider>
           <TestComponent />
-        </GlobalCtxProvider>
-      )
+        </GlobalCtxProvider>,
+      ),
     ).not.toThrow();
   });
 
   it("debe lanzar un error si se usa fuera de GlobalCtxProvider", () => {
-    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => { });
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
 
     expect(() => render(<TestComponent />)).toThrow("contexto no definido");
 

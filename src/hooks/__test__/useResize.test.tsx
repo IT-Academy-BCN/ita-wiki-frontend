@@ -16,7 +16,11 @@ const TestComponent = () => {
 
 describe("useResize hook (basado en Tailwind)", () => {
   it("should set initial state based on window.innerWidth (1024px - Desktop)", () => {
-    Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: 1024 });
+    Object.defineProperty(window, "innerWidth", {
+      writable: true,
+      configurable: true,
+      value: 1024,
+    });
 
     render(<TestComponent />);
     expect(screen.getByTestId("mobile").textContent).toBe("not mobile");
@@ -25,11 +29,19 @@ describe("useResize hook (basado en Tailwind)", () => {
   });
 
   it("should update state when resized to Tablet (800px)", async () => {
-    Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: 1024 });
+    Object.defineProperty(window, "innerWidth", {
+      writable: true,
+      configurable: true,
+      value: 1024,
+    });
     render(<TestComponent />);
 
     await act(async () => {
-      Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: 800 });
+      Object.defineProperty(window, "innerWidth", {
+        writable: true,
+        configurable: true,
+        value: 800,
+      });
       fireEvent(window, new Event("resize"));
     });
 
@@ -39,11 +51,19 @@ describe("useResize hook (basado en Tailwind)", () => {
   });
 
   it("should update state when resized to Mobile (500px)", async () => {
-    Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: 1024 });
+    Object.defineProperty(window, "innerWidth", {
+      writable: true,
+      configurable: true,
+      value: 1024,
+    });
     render(<TestComponent />);
 
     await act(async () => {
-      Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: 500 });
+      Object.defineProperty(window, "innerWidth", {
+        writable: true,
+        configurable: true,
+        value: 500,
+      });
       fireEvent(window, new Event("resize"));
     });
 
@@ -53,11 +73,19 @@ describe("useResize hook (basado en Tailwind)", () => {
   });
 
   it("should update state when resized back to Desktop (1200px)", async () => {
-    Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: 500 });
+    Object.defineProperty(window, "innerWidth", {
+      writable: true,
+      configurable: true,
+      value: 500,
+    });
     render(<TestComponent />);
 
     await act(async () => {
-      Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: 1200 });
+      Object.defineProperty(window, "innerWidth", {
+        writable: true,
+        configurable: true,
+        value: 1200,
+      });
       fireEvent(window, new Event("resize"));
     });
 

@@ -22,8 +22,8 @@ const ResourcesPage: FC = () => {
   const classList = {
     desktop: `flex w-full bg-white lg:rounded-2xl lg:px-4 py-6 sm:px-6 lg:pl-8 xl:shrink-0 xl:pl-6`,
     tablet: `flex w-full`,
-    mobile: `flex w-full`, // por ahora igual que tablet	
-  }
+    mobile: `flex w-full`, // por ahora igual que tablet
+  };
 
   useEffect(() => {
     if (!category) {
@@ -53,7 +53,9 @@ const ResourcesPage: FC = () => {
 
   return (
     <MainContent>
-      <section className={`${classList.desktop} ${isTablet ? classList.tablet : classList.mobile}`}>
+      <section
+        className={`${classList.desktop} ${isTablet ? classList.tablet : classList.mobile}`}
+      >
         {isLoading ? (
           <div>Obteniendo los recursos...</div>
         ) : (
