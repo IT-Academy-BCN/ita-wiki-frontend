@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { IntUser } from "../types";
-export interface PropsContext {
+import { IUseResize } from "../hooks/useResize";
+export interface PropsContext extends IUseResize {
   user: IntUser;
   saveUser: (user: IntUser) => void;
   signIn: () => void;
