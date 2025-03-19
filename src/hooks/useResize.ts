@@ -1,18 +1,25 @@
 import { useEffect, useState } from "react"
 
-export interface IUseResize { isMobile: boolean, isTablet: boolean, setIsMobile: () => void, setTablet: () => void }
+export interface IUseResize { isMobile: boolean, isTablet: boolean, recordMobile: () => void, recordTable: () => void }
 
 export const useResize = () => {
-  const [isTablet, setTablet] = useState<boolean>(window.innerWidth < 840)
-  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 768)
 
+  const [isTablet, setTablet] = useState<boolean>()
+  const [isMobile, setIsMobile] = useState<boolean>()
+
+  const recordTable = () => {
+    setTablet(window.innerWidth > 480 && window.innerWidth < 768 as boolean)
+  }
+  const recordMobile = () => {
+    setIsMobile(window.innerWidth < 512 as boolean)
+  }
   useEffect(() => {
     const resize = () => {
-      setIsMobile(window.innerWidth < 768)
-      setTablet(window.innerWidth < 980)
+      recordTable()
+      recordMobile()
     }
     window.addEventListener("resize", () => resize())
     return window.removeEventListener("resize", () => resize())
   }, [isMobile, isTablet])
-  return { isMobile, isTablet, setIsMobile, setTablet } as IUseResize
+  return { isMobile, isTablet, recordMobile, recordTable } as IUseResize
 }
