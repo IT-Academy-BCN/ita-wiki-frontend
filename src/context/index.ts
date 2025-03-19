@@ -1,7 +1,8 @@
 import { createContext } from "react";
 import { IntUser } from "../types";
 import { IUseResize } from "../hooks/useResize";
-export interface PropsContext extends IUseResize {
+import { IntUseMainMenu } from "../hooks/useMainMenu";
+export interface PropsContext extends IUseResize, IntUseMainMenu {
   user: IntUser;
   saveUser: (user: IntUser) => void;
   signIn: () => void;
