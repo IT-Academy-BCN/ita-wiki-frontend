@@ -65,7 +65,7 @@ h1 {
 
 .main__content {
   grid-area: main;
-  grid-template-columns: 1fr 332px;
+  grid-template-columns: 1fr minmax(auto, 332px);
   grid-template-rows: 1fr;
   overflow: hidden;
 }
@@ -77,6 +77,30 @@ h1 {
 
 .sidebar-right {
   grid-area: sidebar-right;
+}
+
+@media screen and (width<768px) {
+  #root {
+    grid-template-areas:
+      "header header"
+      "main main";
+  }
+
+  .main__content {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+
+  }
+
+  .sidebar {
+    position: absolute;
+    top: 0;
+
+    grid-area: initial;
+    height: 100%;
+    width: 100%;
+    transition: left 0.3s ease-in-out;
+  }
 }
 
 /* @media (prefers-color-scheme: light) {
