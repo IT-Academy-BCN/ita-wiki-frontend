@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { IntUser } from "../types";
 import { IUseResize } from "../hooks/useResize";
 import { IntUseMainMenu } from "../hooks/useMainMenu";
-export interface PropsContext extends IUseResize, IntUseMainMenu {
+interface PropsContextUser {
   user: IntUser;
   saveUser: (user: IntUser) => void;
   signIn: () => void;
@@ -10,7 +10,18 @@ export interface PropsContext extends IUseResize, IntUseMainMenu {
   error: string | null;
   setError: (error: string | null) => void;
 }
+interface PropsContexGLobal extends IUseResize, IntUseMainMenu { }
 
-const CtxUser = createContext<PropsContext | null>(null);
+const CtxUser = createContext<PropsContextUser | null>(null);
 
-export default CtxUser;
+const CtxGLobal = createContext<PropsContexGLobal | null>(null);
+
+export {
+  CtxUser,
+  CtxGLobal,
+}
+
+export type {
+  PropsContextUser,
+  PropsContexGLobal
+}
