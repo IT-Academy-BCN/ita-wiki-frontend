@@ -89,7 +89,6 @@ h1 {
   .main__content {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr auto;
-
   }
 
   .sidebar {
