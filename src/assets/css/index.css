@@ -77,7 +77,7 @@ h1 {
   grid-area: sidebar-right;
 }
 
-@media screen and (width<768px) {
+@media screen and (width<1024px) {
   #root {
     grid-template-areas:
       "header header"
