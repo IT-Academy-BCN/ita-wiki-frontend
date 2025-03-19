@@ -1,16 +1,14 @@
 import { FC, useState } from "react";
 import { IntResource } from "../../types";
-
 import { useCtxUser } from "../../hooks/useCtxUser";
-
 import { Resource } from "./Resource";
 import { FilterResources } from "./FilterResources";
 import { ListMyResources } from "./ListMyResources";
-
 import { categories } from "../../data/categories";
 import { themes } from "../../data/themes";
 import { resourceTypes } from "../../data/resourceTypes";
 import { useResourceFilter } from "../../hooks/useResourceFilter";
+import BookMarkList from "./bookmarks/BookMarkList";
 
 interface ListResourceProps {
   resources: IntResource[];
@@ -123,7 +121,7 @@ export const ListResources: FC<ListResourceProps> = ({
         </div>
         <div className="shrink-0 px-4 lg:w-80 mt-6 sm:mt-0 space-y-6">
           <div className="bg-white sm:rounded-xl px-4 py-6 sm:px-6 lg:pl-8 xl:shrink-0 xl:pl-6">
-            <h3 className="text-[22px] font-bold">Lista de lectura</h3>
+            <BookMarkList resources={resources} />
           </div>
           {user && userCreatedResources.length > 0 && (
             <ListMyResources myResources={userCreatedResources} />

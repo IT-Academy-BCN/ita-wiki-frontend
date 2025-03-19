@@ -2,10 +2,10 @@ import { FC } from "react";
 import { IntResource } from "../../types";
 import { BodyResource } from "./BodyResource";
 import { ContentResource } from "./ContentResource";
-import { FavoriteResource } from "./FavoriteResource";
 import { VotesResource } from "./VotesResource";
 import { UserResource } from "./UserResource";
 import { FooterResource } from "./FooterResource";
+import BookmarkIconComponent from "./BookmarkIconComponent";
 type ResourceProps = {
   resource: IntResource;
 };
@@ -27,7 +27,7 @@ export const Resource: FC<ResourceProps> = ({ resource }) => {
             Reprehenderit laborum cillum anim section.
           </p>
         </ContentResource>
-        <FavoriteResource favorite={false} />
+        <BookmarkIconComponent marked={false} />
       </BodyResource>
       <FooterResource>
         <>

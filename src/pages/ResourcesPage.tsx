@@ -4,6 +4,8 @@ import { IntResource } from "../types";
 import { ListResources } from "../components/resources/ListResources";
 import { getResources } from "../api/endPointResources";
 import { categories } from "../data/categories";
+// TODO: REVISAR ESTO
+// import { useBookmarks } from "../hooks/useBookmarks";
 import moock from "../moock/resources.json";
 
 const ResourcesPage: FC = () => {
@@ -23,6 +25,7 @@ const ResourcesPage: FC = () => {
       try {
         setIsLoading(true);
         const data = await getResources();
+
         setApiResources(data);
       } catch (error) {
         console.error(
@@ -37,7 +40,9 @@ const ResourcesPage: FC = () => {
 
     fetchResources();
   }, []);
-
+  // TODO: REVISAR ESTO
+  // const { updatedResources } =
+  //   useBookmarks({ resources: apiResources });
   return (
     <>
       {isLoading ? (
@@ -45,6 +50,7 @@ const ResourcesPage: FC = () => {
       ) : (
         <ListResources
           resources={apiResources}
+          // resources={updatedResources}
           category={category as keyof typeof categories | undefined}
         />
       )}
