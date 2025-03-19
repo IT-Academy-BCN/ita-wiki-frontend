@@ -3,26 +3,34 @@ import { useEffect, useState } from "react";
 export interface IUseResize {
   isMobile: boolean;
   isTablet: boolean;
+  isDesktop: boolean;
   recordMobile: () => void;
-  recordTable: () => void;
+  recordTablet: () => void;
+  recordDesktop: () => void;
 }
 
 export const useResize = (): IUseResize => {
-  const [isTablet, setTablet] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
-
-  const recordTable = () => {
-    setTablet(window.innerWidth > 512 && window.innerWidth < 1024);
-  };
+  const [isTablet, setTablet] = useState<boolean>(false);
+  const [isDesktop, setDesktop] = useState<boolean>(false);
 
   const recordMobile = () => {
-    setIsMobile(window.innerWidth < 768);
+    setIsMobile(window.innerWidth < 640); // Tailwind sm
+  };
+
+  const recordTablet = () => {
+    setTablet(window.innerWidth >= 640 && window.innerWidth < 1024); // Tailwind md
+  };
+
+  const recordDesktop = () => {
+    setDesktop(window.innerWidth >= 1024); // Tailwind lg y superior
   };
 
   useEffect(() => {
     const handleResize = () => {
-      recordTable();
       recordMobile();
+      recordTablet();
+      recordDesktop();
     };
 
     window.addEventListener("resize", handleResize);
@@ -33,5 +41,5 @@ export const useResize = (): IUseResize => {
     };
   }, []);
 
-  return { isMobile, isTablet, recordMobile, recordTable };
+  return { isMobile, isTablet, isDesktop, recordMobile, recordTablet, recordDesktop };
 };
