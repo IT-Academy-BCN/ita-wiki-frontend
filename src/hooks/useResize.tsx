@@ -12,11 +12,11 @@ export const useResize = (): IUseResize => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   const recordTable = () => {
-    setTablet(window.innerWidth > 480 && window.innerWidth < 768);
+    setTablet(window.innerWidth > 512 && window.innerWidth < 1024);
   };
 
   const recordMobile = () => {
-    setIsMobile(window.innerWidth < 512);
+    setIsMobile(window.innerWidth < 768);
   };
 
   useEffect(() => {
