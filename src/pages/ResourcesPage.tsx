@@ -7,16 +7,24 @@ import { categories } from "../data/categories";
 import moock from "../moock/resources.json";
 import MainContent from "../Layout/MainContent";
 import { getPersonalResources } from "../api/userApi";
-import { useCtxUser } from "../hooks/useCtxUser";
 import { ListMyResources } from "../components/resources/ListMyResources";
+import { useUserCtx } from "../hooks/useUserCtx";
+import { useGlobalCtx } from "../hooks/useGlobalCtx";
 
 const ResourcesPage: FC = () => {
   const { category } = useParams();
   const navigate = useNavigate();
   const [apiResources, setApiResources] = useState<IntResource[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { user } = useCtxUser();
+  const { user } = useUserCtx();
+  const { isTablet } = useGlobalCtx();
   const personalResources = getPersonalResources(user, apiResources);
+  const classList = {
+    desktop: `flex w-full bg-white lg:rounded-2xl lg:px-4 py-6 sm:px-6 lg:pl-8 xl:shrink-0 xl:pl-6`,
+    tablet: `flex w-full`,
+    mobile: `flex w-full`, // por ahora igual que tablet	
+  }
+
   useEffect(() => {
     if (!category) {
       navigate(`/resources/${categories[0]}`);
@@ -45,7 +53,7 @@ const ResourcesPage: FC = () => {
 
   return (
     <MainContent>
-      <section className="flex w-full bg-white rounded-2xl px-4 py-6 sm:px-6 lg:pl-8 xl:shrink-0 xl:pl-6">
+      <section className={`${classList.desktop} ${isTablet ? classList.tablet : classList.mobile}`}>
         {isLoading ? (
           <div>Obteniendo los recursos...</div>
         ) : (
