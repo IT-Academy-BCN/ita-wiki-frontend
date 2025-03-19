@@ -1,9 +1,7 @@
 import { FC, ReactNode } from "react";
 
 import { useUser } from "../hooks/useUser";
-import CtxUser, { PropsContext } from ".";
-import { useResize } from "../hooks/useResize";
-import { useMainMenu } from "../hooks/useMainMenu";
+import { CtxUser, PropsContextUser } from ".";
 
 interface Props {
   children: ReactNode;
@@ -11,10 +9,8 @@ interface Props {
 
 const UserCtxProvider: FC<Props> = ({ children }) => {
   const value = {
-    ...useUser(),
-    ...useResize(),
-    ...useMainMenu(),
-  } as PropsContext;
+    ...useUser()
+  } as PropsContextUser;
   return <CtxUser.Provider value={value}>{children}</CtxUser.Provider>;
 };
 
