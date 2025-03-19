@@ -1,5 +1,5 @@
 import GitHubLogin from "../github-login/GitHubLogin";
-import { useCtxUser } from "../../hooks/useCtxUser";
+import { useUserCtx } from "../../hooks/useUserCtx";
 
 interface ModalProps {
   closeModal: () => void;
@@ -7,7 +7,7 @@ interface ModalProps {
   children?: React.ReactNode;
 }
 export const Modal = ({ closeModal, title, children }: ModalProps) => {
-  const { signIn } = useCtxUser();
+  const { signIn } = useUserCtx();
 
   return (
     <>

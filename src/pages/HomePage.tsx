@@ -2,7 +2,7 @@ import GitHubLogin from "../components/github-login/GitHubLogin";
 import folder from "../assets/svg/new-folder-dynamic-color.svg";
 import puzzle from "../assets/svg/puzzle-dynamic-color.svg";
 import ok from "../assets/svg/thumb-up-dynamic-color.svg";
-import { useCtxUser } from "../hooks/useCtxUser";
+import { useUserCtx } from "../hooks/useUserCtx";
 import { useState, useEffect } from "react";
 import { AddUsersModal } from "../components/resources/AddUserModal";
 import ButtonComponent from "../components/atoms/ButtonComponent";
@@ -10,7 +10,7 @@ import { getRole } from "../api/endPointRoles";
 import MainContent from "../Layout/MainContent";
 
 export default function HomePage() {
-  const { signOut, user, signIn, error } = useCtxUser();
+  const { signOut, user, signIn, error } = useUserCtx();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userRole, setUserRole] = useState<string | null>(null);
 

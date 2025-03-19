@@ -9,9 +9,9 @@ import bbdd from "../assets/svg/logo-bbdd 1.svg";
 import { Link } from "react-router";
 import logoItAcademy from "../assets/svg/LogoItAcademy.svg";
 import close from "../assets/svg/close.svg";
-import { useCtxUser } from "../hooks/useCtxUser";
+import { useGlobalCtx } from "../hooks/useGlobalCtx";
 const AsideComponent = () => {
-  const { isTablet, isMobile, toggleMainMenu, isOpenMainMenu } = useCtxUser();
+  const { isTablet, isMobile, toggleMainMenu, isOpenMainMenu } = useGlobalCtx();
 
   const asideContent = [
     { icon: node, label: "Node" },

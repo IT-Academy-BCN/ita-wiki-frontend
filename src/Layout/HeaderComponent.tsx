@@ -5,13 +5,14 @@ import userIcon from "../assets/svg/user2.svg";
 import searchIcon from "../assets/svg/search.svg";
 import ButtonComponent from "../components/atoms/ButtonComponent";
 import { Modal } from "../components/Modal/Modal";
-import { useCtxUser } from "../hooks/useCtxUser";
+import { useUserCtx } from "../hooks/useUserCtx";
 import { useState } from "react";
 import GitHubLogin from "../components/github-login/GitHubLogin";
 import menubars from "../assets/svg/Vector-7.svg";
+import { useGlobalCtx } from "../hooks/useGlobalCtx";
 
 const HeaderComponent = () => {
-  const { user, signIn } = useCtxUser();
+  const { user, signIn } = useUserCtx();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
@@ -40,7 +41,7 @@ const HeaderComponent = () => {
     setIsChecked(!isChecked);
     setLoginError(false);
   };
-  const { isTablet, isMobile, toggleMainMenu } = useCtxUser();
+  const { isTablet, isMobile, toggleMainMenu } = useGlobalCtx();
   return (
     <header className="main__header grid bg-[#ebebeb] justify-end gap-6 items-center pr-6">
       {isTablet || isMobile ? (
