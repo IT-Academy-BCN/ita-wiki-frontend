@@ -6,12 +6,13 @@ import searchIcon from "../assets/svg/search.svg";
 import ButtonComponent from "../components/atoms/ButtonComponent";
 import { Modal } from "../components/Modal/Modal";
 import { useUserCtx } from "../hooks/useUserCtx";
-import { useState } from "react";
+import { FC, useState } from "react";
 import GitHubLogin from "../components/github-login/GitHubLogin";
 import menubars from "../assets/svg/Vector-7.svg";
 import { useGlobalCtx } from "../hooks/useGlobalCtx";
+import layoutCSS from "./css/layout.module.css"
 
-const HeaderComponent = () => {
+const MainHeader: FC = () => {
   const { user, signIn } = useUserCtx();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,7 +31,7 @@ const HeaderComponent = () => {
       return;
     }
     try {
-      await signIn();
+      signIn();
       setIsModalOpen(false);
     } catch {
       setLoginError(true);
@@ -42,8 +43,9 @@ const HeaderComponent = () => {
     setLoginError(false);
   };
   const { isTablet, isMobile, toggleMainMenu } = useGlobalCtx();
+
   return (
-    <header className="main__header grid bg-[#ebebeb] justify-end gap-6 items-center pr-6">
+    <header className={`${layoutCSS.mainHeader} grid bg-[#ebebeb] justify-end items-center pr-6 sticky top-0 px-4 z-50`}>
       {isTablet || isMobile ? (
         <button onClick={toggleMainMenu} type="button">
           <img src={menubars} alt="logo" width={"32"} height={32} />
@@ -125,4 +127,4 @@ const HeaderComponent = () => {
   );
 };
 
-export default HeaderComponent;
+export default MainHeader;
