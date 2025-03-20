@@ -15,7 +15,7 @@ export const useResourceFilter = ({
 }: UseResourceFilterProps) => {
   const { category } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-
+  const [showFilters, setShowFilters] = useState<boolean>(false);
   const initialTheme = searchParams.get("theme") || themes[0];
   const initialResourceTypes = searchParams
     .get("resourceTypes")
@@ -24,6 +24,13 @@ export const useResourceFilter = ({
   const [selectedTheme, setSelectedTheme] = useState<string>(initialTheme);
   const [selectedResourceTypes, setSelectedResourceTypes] =
     useState<string[]>(initialResourceTypes);
+
+  const toggleFilter = () => {
+    setShowFilters((prev) => !prev);
+  }
+  const closeFilter = () => {
+    setShowFilters(() => false);
+  }
 
   useEffect(() => {
     if (category) {
@@ -73,5 +80,8 @@ export const useResourceFilter = ({
     selectedResourceTypes,
     setSelectedResourceTypes,
     resetTheme,
+    showFilters,
+    toggleFilter,
+    closeFilter
   };
 };
