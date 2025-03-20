@@ -39,9 +39,8 @@ export const useUser = () => {
         const updatedUser = { ...user, role: userRole };
         setUser(updatedUser);
         storage.save("user", updatedUser);
-        console.log("Usuario actualizado:", updatedUser);
       } catch (error) {
-        console.error("Error al obtener el rol:", error);
+        throw new Error(error as string);
       }
     }
   };

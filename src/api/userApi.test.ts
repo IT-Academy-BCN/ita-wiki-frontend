@@ -23,7 +23,7 @@ describe("getUserRole", () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: "1234567", // ✅ Enviar solo el ID como string plano
+      body: JSON.stringify({ github_id: 1234567 }),
     });
 
     expect(role).toBe("admin");
