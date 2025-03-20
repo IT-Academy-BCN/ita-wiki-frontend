@@ -38,7 +38,12 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #ebebeb;
-  overflow: hidden;
+  overflow: hidden auto;
+}
+
+body::-webkit-scrollbar {
+  width: none;
+  height: none;
 }
 
 h1 {
@@ -73,6 +78,7 @@ h1 {
 
 .main__content {
   grid-area: main;
+  display: grid;
   grid-template-columns: 1fr minmax(auto, 332px);
   grid-template-rows: 1fr;
   overflow: hidden;
@@ -92,6 +98,11 @@ h1 {
     grid-template-areas:
       "header header"
       "main main";
+  }
+
+  .main__header {
+    grid-area: header;
+    grid-template-columns: 1fr;
   }
 
   .main__content {
