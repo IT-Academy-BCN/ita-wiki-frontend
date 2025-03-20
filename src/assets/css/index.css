@@ -13,6 +13,16 @@
   background-color: #ffffff;
 }
 
+::-webkit-scrollbar {
+  width: 7px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #C20087;
+  border-radius: 3.5px;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
