@@ -32,7 +32,6 @@
   height: 980px;
   overflow: hidden;
   position: relative;
-
 }
 
 .mainContent {
@@ -54,8 +53,6 @@
       "mainHeader mainHeader"
       "main main";
   }
-
-
 }
 
 @media screen and (width<1024px) {
@@ -95,5 +92,4 @@
   .main {
     grid-template-areas: "mainContent" "rightSideBar";
   }
-
 }

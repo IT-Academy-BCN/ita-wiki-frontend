@@ -41,7 +41,11 @@ const AsideComponent: FC = () => {
       </section>
       <ul className="space-y-6 pt-[21px] pl-[23px] flex flex-col justify-center">
         {asideContent.map((item, index) => (
-          <li key={index} className="flex items-center space-x-3" onClick={closeMainMenu}>
+          <li
+            key={index}
+            className="flex items-center space-x-3"
+            onClick={closeMainMenu}
+          >
             <img src={item.icon} alt={item.label} className="w-6 h-6" />
             <Link to={`/resources/${item.label}`}>{item.label}</Link>
           </li>

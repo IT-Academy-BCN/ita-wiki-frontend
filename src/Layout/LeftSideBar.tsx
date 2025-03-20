@@ -1,5 +1,5 @@
 import { useGlobalCtx } from "../hooks/useGlobalCtx";
-import layoutCSS from "./css/layout.module.css"
+import layoutCSS from "./css/layout.module.css";
 const LeftSideBar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isOpenMainMenu } = useGlobalCtx();
   return (
@@ -11,7 +11,7 @@ const LeftSideBar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     >
       {children}
     </aside>
-  )
-}
+  );
+};
 
-export default LeftSideBar
+export default LeftSideBar;

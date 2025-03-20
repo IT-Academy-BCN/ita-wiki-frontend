@@ -50,7 +50,9 @@ const ResourcesPage: FC = () => {
   return (
     <Main>
       <Content>
-        <section className={`${isDesktop && classList.desktop} ${isTablet ? classList.tablet : classList.mobile}`}>
+        <section
+          className={`${isDesktop && classList.desktop} ${isTablet ? classList.tablet : classList.mobile}`}
+        >
           {isLoading ? (
             <div>Obteniendo los recursos...</div>
           ) : (
@@ -63,7 +65,6 @@ const ResourcesPage: FC = () => {
       </Content>
 
       <RightSideBar resources={apiResources} />
-
     </Main>
   );
 };

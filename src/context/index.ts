@@ -6,5 +6,3 @@ const CtxUser = createContext<PropsContextUser | null>(null);
 const CtxGLobal = createContext<PropsContexGLobal | null>(null);
 
 export { CtxUser, CtxGLobal };
-
-

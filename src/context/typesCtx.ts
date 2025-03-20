@@ -10,4 +10,4 @@ export interface PropsContextUser {
   error: string | null;
   setError: (error: string | null) => void;
 }
-export interface PropsContexGLobal extends IUseResize, IntUseMainMenu { }
+export interface PropsContexGLobal extends IUseResize, IntUseMainMenu {}

@@ -10,7 +10,7 @@ import { FC, useState } from "react";
 import GitHubLogin from "../components/github-login/GitHubLogin";
 import menubars from "../assets/svg/Vector-7.svg";
 import { useGlobalCtx } from "../hooks/useGlobalCtx";
-import layoutCSS from "./css/layout.module.css"
+import layoutCSS from "./css/layout.module.css";
 
 const MainHeader: FC = () => {
   const { user, signIn } = useUserCtx();
@@ -45,7 +45,9 @@ const MainHeader: FC = () => {
   const { isTablet, isMobile, toggleMainMenu } = useGlobalCtx();
 
   return (
-    <header className={`${layoutCSS.mainHeader} grid bg-[#ebebeb] justify-end items-center pr-6 sticky top-0 px-4 z-50`}>
+    <header
+      className={`${layoutCSS.mainHeader} grid bg-[#ebebeb] justify-end items-center pr-6 sticky top-0 px-4 z-50`}
+    >
       {isTablet || isMobile ? (
         <button onClick={toggleMainMenu} type="button">
           <img src={menubars} alt="logo" width={"32"} height={32} />

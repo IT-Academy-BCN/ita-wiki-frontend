@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC } from "react";
 import { useUserCtx } from "../hooks/useUserCtx";
 import { getPersonalResources } from "../api/userApi";
 import layoutCSS from "./css/layout.module.css";
@@ -22,7 +22,7 @@ const RightSideBar: FC<RightSideBarProps> = ({ resources }) => {
         <ListMyResources myResources={personalResources} />
       )}
     </section>
-  )
-}
+  );
+};
 
-export default RightSideBar
+export default RightSideBar;

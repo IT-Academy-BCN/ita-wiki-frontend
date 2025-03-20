@@ -12,7 +12,7 @@ const App: FC = () => {
   return (
     <Layout>
       <MainHeader />
-      <LeftSideBar >
+      <LeftSideBar>
         <AsideComponent />
       </LeftSideBar>
       <Routes>

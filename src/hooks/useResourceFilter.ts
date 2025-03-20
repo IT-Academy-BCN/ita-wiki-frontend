@@ -27,10 +27,10 @@ export const useResourceFilter = ({
 
   const toggleFilter = () => {
     setShowFilters((prev) => !prev);
-  }
+  };
   const closeFilter = () => {
     setShowFilters(() => false);
-  }
+  };
 
   useEffect(() => {
     if (category) {
@@ -82,6 +82,6 @@ export const useResourceFilter = ({
     resetTheme,
     showFilters,
     toggleFilter,
-    closeFilter
+    closeFilter,
   };
 };

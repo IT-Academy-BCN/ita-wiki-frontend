@@ -15,7 +15,6 @@ export const ListResources: FC<ListResourceProps> = ({
   resources,
   category,
 }) => {
-
   const {
     filteredResources,
     selectedTheme,

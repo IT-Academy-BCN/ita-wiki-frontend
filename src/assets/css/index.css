@@ -30,8 +30,6 @@ h1 {
   padding: 0;
 }
 
-
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.8);
-
 }

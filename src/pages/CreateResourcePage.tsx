@@ -11,7 +11,6 @@ import { themes } from "../data/themes";
 import { useUser } from "../hooks/useUser";
 import { Main } from "../Layout/Main";
 
-
 export default function CreateResourcePage() {
   const { user } = useUser();
 

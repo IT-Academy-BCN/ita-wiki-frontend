@@ -41,4 +41,4 @@ export enum Categories {
   FullstackPHP = "Fullstack PHP",
   DataScience = "Data Science",
   BBDD = "BBDD",
-};
+}
