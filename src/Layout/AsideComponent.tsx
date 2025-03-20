@@ -1,3 +1,4 @@
+import { FC } from "react";
 import node from "../assets/svg/logo-node 1.svg";
 import react from "../assets/svg/react.svg";
 import angular from "../assets/svg/angular.svg";
@@ -10,8 +11,9 @@ import { Link } from "react-router";
 import logoItAcademy from "../assets/svg/LogoItAcademy.svg";
 import close from "../assets/svg/close.svg";
 import { useGlobalCtx } from "../hooks/useGlobalCtx";
-const AsideComponent = () => {
-  const { isTablet, isMobile, toggleMainMenu, isOpenMainMenu } = useGlobalCtx();
+
+const AsideComponent: FC = () => {
+  const { isDesktop, toggleMainMenu, closeMainMenu } = useGlobalCtx();
 
   const asideContent = [
     { icon: node, label: "Node" },
@@ -25,14 +27,9 @@ const AsideComponent = () => {
   ];
 
   return (
-    <aside
-      className="sidebar grid grid-cols-3 bg-[#EBEBEB]"
-      style={{
-        left: isOpenMainMenu ? "0px" : "-100%",
-      }}
-    >
+    <>
       <section className="col-1 flex items-center pt-[21px] pl-[23px]">
-        {isTablet || isMobile ? (
+        {!isDesktop ? (
           <button onClick={toggleMainMenu} type="button">
             <img src={close} alt="logo" width={"32"} height={32} />
           </button>
@@ -44,13 +41,13 @@ const AsideComponent = () => {
       </section>
       <ul className="space-y-6 pt-[21px] pl-[23px] flex flex-col justify-center">
         {asideContent.map((item, index) => (
-          <li key={index} className="flex items-center space-x-3">
+          <li key={index} className="flex items-center space-x-3" onClick={closeMainMenu}>
             <img src={item.icon} alt={item.label} className="w-6 h-6" />
             <Link to={`/resources/${item.label}`}>{item.label}</Link>
           </li>
         ))}
       </ul>
-    </aside>
+    </>
   );
 };
 
