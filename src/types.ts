@@ -31,13 +31,14 @@ export interface IntResource {
   type: ResourceType;
 }
 
-export type TypTechnologyResource =
-  | "All"
-  | "Node"
-  | "React"
-  | "Angular"
-  | "JavaScript"
-  | "Java"
-  | "FullStack PHP"
-  | "Data Science"
-  | "BBDD";
+export enum Categories {
+  ALL = "Todos",
+  Node = "Node",
+  React = "React",
+  NoAngulare = "Angular",
+  Javascript = "Javascript",
+  Java = "Java",
+  FullstackPHP = "Fullstack PHP",
+  DataScience = "Data Science",
+  BBDD = "BBDD",
+};
