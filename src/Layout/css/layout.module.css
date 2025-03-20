@@ -1,0 +1,99 @@
+.layout {
+  display: grid;
+  grid-template-areas:
+    "leftSideBar mainHeader"
+    "leftSideBar main";
+  grid-template-columns: min(12rem) 1fr;
+  grid-template-rows: 69px 1fr;
+  min-height: inherit;
+  width: inherit;
+  height: 100dvh;
+}
+
+.mainHeader {
+  grid-area: mainHeader;
+  grid-template-columns: 1fr 332px;
+}
+
+.leftSideBar {
+  grid-area: leftSideBar;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+}
+
+.main {
+  grid-area: main;
+  display: grid;
+  width: 100%;
+  grid-template-areas: "mainContent rightSideBar";
+  grid-template-columns: 1fr minmax(auto, 332px);
+  grid-template-rows: 1fr;
+  height: 980px;
+  overflow: hidden;
+  position: relative;
+
+}
+
+.mainContent {
+  grid-area: mainContent;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr;
+  overflow: hidden auto;
+  position: relative;
+}
+
+.rightSideBar {
+  grid-area: rightSideBar;
+}
+
+@media screen and (width<768px) {
+  .layout {
+    grid-template-areas:
+      "mainHeader mainHeader"
+      "main main";
+  }
+
+
+}
+
+@media screen and (width<1024px) {
+  .layout {
+    grid-template-areas:
+      "mainHeader mainHeader"
+      "main main";
+  }
+
+  .leftSideBar {
+    position: fixed;
+    top: 0;
+    grid-area: initial;
+    height: 100%;
+    width: 100%;
+    transition: left 0.3s ease-in-out;
+    z-index: 100;
+    overflow: hidden;
+  }
+
+  .mainHeader {
+    grid-area: mainHeader;
+    grid-template-columns: 1fr;
+  }
+
+  .main {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    height: 100%;
+  }
+
+  .leftSideBar::--webkit-scrollbar {
+    width: none;
+    height: none;
+  }
+
+  .main {
+    grid-template-areas: "mainContent" "rightSideBar";
+  }
+
+}
