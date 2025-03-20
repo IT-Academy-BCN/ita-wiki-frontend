@@ -1,22 +1,20 @@
-import { FC, useState } from "react";
-import { IntResource } from "../../types";
+import { FC } from "react";
+import { Categories, IntResource } from "../../types";
 import { Resource } from "./Resource";
 import { FilterResources } from "./FilterResources";
-import { categories } from "../../data/categories";
 import { themes } from "../../data/themes";
 import { resourceTypes } from "../../data/resourceTypes";
 import { useResourceFilter } from "../../hooks/useResourceFilter";
 
 interface ListResourceProps {
   resources: IntResource[];
-  category?: keyof typeof categories;
+  category?: Categories;
 }
 
 export const ListResources: FC<ListResourceProps> = ({
   resources,
   category,
 }) => {
-  const [showFilters, setShowFilters] = useState<boolean>(false);
 
   const {
     filteredResources,
@@ -24,7 +22,9 @@ export const ListResources: FC<ListResourceProps> = ({
     setSelectedTheme,
     selectedResourceTypes,
     setSelectedResourceTypes,
+    showFilters,
     resetTheme,
+    toggleFilter,
   } = useResourceFilter({
     resources: resources || [],
     themes,
@@ -51,11 +51,11 @@ export const ListResources: FC<ListResourceProps> = ({
           <article className="flex flex-col gap-4 md:flex-row justify-between items-center">
             <header className="w-full flex justify-between items-center px-4">
               <h2 className="col-start-1 col-end-4 text-xl md:text-[26px] font-bold">
-                Recursos {String(category) || ""}
+                Recursos {category}
               </h2>
               <button
                 className="sm:hidden bg-[#B91879] text-white px-4 py-2 rounded-md flex items-center gap-2"
-                onClick={() => setShowFilters(!showFilters)}
+                onClick={toggleFilter}
               >
                 <span>Filtrar</span>
                 {showFilters ? (
@@ -105,7 +105,6 @@ export const ListResources: FC<ListResourceProps> = ({
           )}
 
           <ul className="flex flex-col px-4 gap-8 h-[75dvh] overflow-x-hidden overflow-y-auto">
-            {/* Grid, con dos columnas, gap-8, por ahora, las medidas no son correctas en Figma, no me cuadra */}
             {filteredResources.map((resource: IntResource) => (
               <Resource key={resource.id} resource={resource} />
             ))}
