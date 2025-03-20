@@ -9,7 +9,8 @@ import ButtonComponent from "../components/atoms/ButtonComponent";
 import { categories } from "../data/categories";
 import { themes } from "../data/themes";
 import { useUser } from "../hooks/useUser";
-import MainContent from "../Layout/MainContent";
+import { Main } from "../Layout/Main";
+
 
 export default function CreateResourcePage() {
   const { user } = useUser();
@@ -43,9 +44,9 @@ export default function CreateResourcePage() {
   };
 
   return (
-    <MainContent>
-      <section className="col-span-2">
-        <h1 className="font-semibold">Nuevo recurso</h1>
+    <Main>
+      <section className="bg-white rounded-[15px] col-span-2">
+        <h2 className="text-xl font-semibold">Nuevo recurso</h2>
         <article className="flex justify-center mt-20 xl:mr-[198px]">
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -166,6 +167,6 @@ export default function CreateResourcePage() {
           </form>
         </article>
       </section>
-    </MainContent>
+    </Main>
   );
 }

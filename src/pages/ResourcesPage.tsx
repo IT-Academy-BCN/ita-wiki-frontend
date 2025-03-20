@@ -1,25 +1,21 @@
 import { FC, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
-import { IntResource } from "../types";
+import { Categories, IntResource } from "../types";
 import { ListResources } from "../components/resources/ListResources";
 import { getResources } from "../api/endPointResources";
 import { categories } from "../data/categories";
 import moock from "../moock/resources.json";
-import MainContent from "../Layout/MainContent";
-import { getPersonalResources } from "../api/userApi";
-import { ListMyResources } from "../components/resources/ListMyResources";
-import { useUserCtx } from "../hooks/useUserCtx";
 import { useGlobalCtx } from "../hooks/useGlobalCtx";
+import { Main } from "../Layout/Main";
+import Content from "../Layout/Content";
+import RightSideBar from "../Layout/RightSideBar";
 
 const ResourcesPage: FC = () => {
   const { category } = useParams();
   const navigate = useNavigate();
   const [apiResources, setApiResources] = useState<IntResource[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { user } = useUserCtx();
   const { isTablet, isDesktop } = useGlobalCtx();
-  const personalResources = getPersonalResources(user, apiResources);
-
 
   useEffect(() => {
     if (!category) {
@@ -47,33 +43,28 @@ const ResourcesPage: FC = () => {
     fetchResources();
   }, []);
   const classList = {
-    desktop: `flex w-full bg-white lg:rounded-2xl lg:px-4 py-6 lg:pl-8 xl:shrink-0 xl:pl-6`,
-    tablet: `flex w-full`,
-    mobile: `flex w-full`, // por ahora igual que tablet
+    desktop: `flex w-full bg-white lg:rounded-2xl `,
+    tablet: `flex w-full bg-white lg:rounded-2xl `,
+    mobile: `flex w-full bg-white`, // por ahora igual que tablet
   };
   return (
-    <MainContent>
-      <section
-        className={`${isDesktop && classList.desktop} ${isTablet ? classList.tablet : classList.mobile}`}
-      >
-        {isLoading ? (
-          <div>Obteniendo los recursos...</div>
-        ) : (
-          <ListResources
-            resources={apiResources}
-            category={category as keyof typeof categories | undefined}
-          />
-        )}
-      </section>
-      <section className="flex flex-col w-full">
-        <article className="bg-white sm:rounded-xl px-4 py-6 sm:px-6 lg:pl-8 xl:shrink-0 xl:pl-6">
-          <h3 className="text-[22px] font-bold">Lista de lectura</h3>
-        </article>
-        {user && personalResources.length > 0 && (
-          <ListMyResources myResources={personalResources} />
-        )}
-      </section>
-    </MainContent>
+    <Main>
+      <Content>
+        <section className={`${isDesktop && classList.desktop} ${isTablet ? classList.tablet : classList.mobile}`}>
+          {isLoading ? (
+            <div>Obteniendo los recursos...</div>
+          ) : (
+            <ListResources
+              resources={apiResources}
+              category={category as Categories}
+            />
+          )}
+        </section>
+      </Content>
+
+      <RightSideBar resources={apiResources} />
+
+    </Main>
   );
 };
 

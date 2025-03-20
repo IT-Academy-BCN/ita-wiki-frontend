@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { AddUsersModal } from "../components/resources/AddUserModal";
 import ButtonComponent from "../components/atoms/ButtonComponent";
 import { getRole } from "../api/endPointRoles";
-import MainContent from "../Layout/MainContent";
+import { Main } from "../Layout/Main";
 
 export default function HomePage() {
   const { signOut, user, signIn, error } = useUserCtx();
@@ -37,8 +37,8 @@ export default function HomePage() {
     : false;
 
   return (
-    <MainContent>
-      <section className="bg-white rounded-[15px] col-span-2">
+    <Main>
+      <section className={`bg-white lg:rounded-[15px] col-span-2 h-full`}>
         <article className="flex flex-col gap-8 items-center justify-center min-h-96">
           <h1 className="font-bold">¡Bienvenid@ a la wiki de la IT Academy!</h1>
           {user ? (
@@ -126,6 +126,6 @@ export default function HomePage() {
           userID={user.id}
         />
       )}
-    </MainContent>
+    </Main>
   );
 }
