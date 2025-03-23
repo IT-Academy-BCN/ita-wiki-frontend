@@ -19,17 +19,27 @@ const MainHeader: FC = () => {
   const { goTo } = useRedirectTo();
   return (
     <header
-      className={`${layoutCSS.mainHeader} grid bg-[#ebebeb] justify-end items-center pr-6 sticky top-0 px-4 z-50`}
+      className={`${layoutCSS.mainHeader} grid bg-[#ebebeb] justify-end items-center pr-6 sticky top-0 px-6 z-50`}
     >
       {isTablet || isMobile ? (
-        <button
-          onClick={toggleMainMenu}
-          type="button"
-          title="Open"
-          aria-label="Open"
-        >
-          <img src={menubars} alt="logo" width={"32"} height={32} />
-        </button>
+        <section className="flex justify-between items-center w-full view_mobile">
+          <article>
+            <button
+              onClick={toggleMainMenu}
+              type="button"
+              title="Open"
+              aria-label="Open"
+            >
+              <img src={menubars} alt="logo" width={"32"} height={32} />
+            </button>
+          </article>
+          <article>
+            <select title="Elige idioma" className="inline-flex justify-center pr-4 text-stone-900 focus:ring-[#808080] focus:border-transparent">
+              <option value={`ES`}  >ES</option>
+              <option value={`ES`}>EN</option>
+            </select>
+          </article>
+        </section>
       ) : (
         <>
           <section className="flex justify-end">
