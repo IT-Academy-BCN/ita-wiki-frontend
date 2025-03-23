@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
-import { Categories, IntResource } from "../types";
+import { IntResource } from "../types";
 import { ListResources } from "../components/resources/ListResources";
 import { getResources } from "../api/endPointResources";
 import { categories } from "../data/categories";
@@ -9,6 +9,7 @@ import { useGlobalCtx } from "../hooks/useGlobalCtx";
 import { Main } from "../Layout/Main";
 import Content from "../Layout/Content";
 import RightSideBar from "../Layout/RightSideBar";
+import { EnuResourcesCategories } from "../enums";
 
 const ResourcesPage: FC = () => {
   const { category } = useParams();
@@ -58,7 +59,7 @@ const ResourcesPage: FC = () => {
           ) : (
             <ListResources
               resources={apiResources}
-              category={category as Categories}
+              category={category as EnuResourcesCategories}
             />
           )}
         </section>
