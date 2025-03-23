@@ -1,96 +1,71 @@
-import { render, screen, fireEvent, act } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { renderHook, act } from "@testing-library/react";
+import { describe, it, expect, afterEach } from "vitest";
 import { useResize } from "../useResize";
 
-// Componente de prueba para exponer los valores del hook
-const TestComponent = () => {
-  const { isMobile, isTablet, isDesktop } = useResize();
-  return (
-    <div>
-      <span data-testid="mobile">{isMobile ? "mobile" : "not mobile"}</span>
-      <span data-testid="tablet">{isTablet ? "tablet" : "not tablet"}</span>
-      <span data-testid="desktop">{isDesktop ? "desktop" : "not desktop"}</span>
-    </div>
-  );
-};
+describe("useResize hook", () => {
+  const originalInnerWidth = window.innerWidth;
 
-describe("useResize hook (basado en Tailwind)", () => {
-  it("should set initial state based on window.innerWidth (1024px - Desktop)", () => {
-    Object.defineProperty(window, "innerWidth", {
-      writable: true,
-      configurable: true,
-      value: 1024,
-    });
-
-    render(<TestComponent />);
-    expect(screen.getByTestId("mobile").textContent).toBe("not mobile");
-    expect(screen.getByTestId("tablet").textContent).toBe("not tablet");
-    expect(screen.getByTestId("desktop").textContent).toBe("desktop");
+  afterEach(() => {
+    // Restaurar el valor original de window.innerWidth después de cada prueba
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: originalInnerWidth });
   });
 
-  it("should update state when resized to Tablet (800px)", async () => {
-    Object.defineProperty(window, "innerWidth", {
-      writable: true,
-      configurable: true,
-      value: 1024,
-    });
-    render(<TestComponent />);
+  it("should set mobile state when width is less than 640", () => {
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: 500 });
 
-    await act(async () => {
-      Object.defineProperty(window, "innerWidth", {
-        writable: true,
-        configurable: true,
-        value: 800,
-      });
-      fireEvent(window, new Event("resize"));
+    const { result } = renderHook(() => useResize());
+
+    act(() => {
+      window.dispatchEvent(new Event("resize"));
     });
 
-    expect(screen.getByTestId("mobile").textContent).toBe("not mobile");
-    expect(screen.getByTestId("tablet").textContent).toBe("tablet");
-    expect(screen.getByTestId("desktop").textContent).toBe("not desktop");
+    expect(result.current.isMobile).toBe(true);
+    expect(result.current.isTablet).toBe(false);
+    expect(result.current.isDesktop).toBe(false);
   });
 
-  it("should update state when resized to Mobile (500px)", async () => {
-    Object.defineProperty(window, "innerWidth", {
-      writable: true,
-      configurable: true,
-      value: 1024,
-    });
-    render(<TestComponent />);
+  it("should set tablet state when width is between 640 and 1023", () => {
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: 800 });
 
-    await act(async () => {
-      Object.defineProperty(window, "innerWidth", {
-        writable: true,
-        configurable: true,
-        value: 500,
-      });
-      fireEvent(window, new Event("resize"));
+    const { result } = renderHook(() => useResize());
+
+    act(() => {
+      window.dispatchEvent(new Event("resize"));
     });
 
-    expect(screen.getByTestId("mobile").textContent).toBe("mobile");
-    expect(screen.getByTestId("tablet").textContent).toBe("not tablet");
-    expect(screen.getByTestId("desktop").textContent).toBe("not desktop");
+    expect(result.current.isMobile).toBe(false);
+    expect(result.current.isTablet).toBe(true);
+    expect(result.current.isDesktop).toBe(false);
   });
 
-  it("should update state when resized back to Desktop (1200px)", async () => {
-    Object.defineProperty(window, "innerWidth", {
-      writable: true,
-      configurable: true,
-      value: 500,
-    });
-    render(<TestComponent />);
+  it("should set desktop state when width is 1024 or greater", () => {
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: 1200 });
 
-    await act(async () => {
-      Object.defineProperty(window, "innerWidth", {
-        writable: true,
-        configurable: true,
-        value: 1200,
-      });
-      fireEvent(window, new Event("resize"));
+    const { result } = renderHook(() => useResize());
+
+    act(() => {
+      window.dispatchEvent(new Event("resize"));
     });
 
-    expect(screen.getByTestId("mobile").textContent).toBe("not mobile");
-    expect(screen.getByTestId("tablet").textContent).toBe("not tablet");
-    expect(screen.getByTestId("desktop").textContent).toBe("desktop");
+    expect(result.current.isMobile).toBe(false);
+    expect(result.current.isTablet).toBe(false);
+    expect(result.current.isDesktop).toBe(true);
+  });
+
+  it("should update states when record functions are called manually", () => {
+    // Establecer el tamaño de pantalla a tablet para la prueba manual
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: 800 });
+
+    const { result } = renderHook(() => useResize());
+
+    act(() => {
+      result.current.recordMobile();
+      result.current.recordTablet();
+      result.current.recordDesktop();
+    });
+
+    expect(result.current.isMobile).toBe(false);
+    expect(result.current.isTablet).toBe(true);
+    expect(result.current.isDesktop).toBe(false);
   });
 });

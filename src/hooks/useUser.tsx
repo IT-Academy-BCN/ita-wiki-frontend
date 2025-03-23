@@ -45,7 +45,7 @@ export const useUser = () => {
       setUser(() => rol);
     }
     handleSetRole();
-  }, []);
+  }, [handleSetRole, rol]);
 
   return {
     user,

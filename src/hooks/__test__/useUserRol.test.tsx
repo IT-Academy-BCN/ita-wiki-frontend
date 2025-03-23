@@ -1,9 +1,8 @@
-import { renderHook } from "@testing-library/react";
-import { act } from "react";
+import { afterEach, describe, expect, Mock, test, vi } from "vitest";
+import { renderHook, act } from "@testing-library/react";
 import { getUserRole } from "../../api/userApi";
 import { storage } from "../../utils";
 import { useUserRol } from "../useUserRol";
-import { Mock, vi } from "vitest";
 
 vi.mock('../../api/userApi', () => ({
   getUserRole: vi.fn(),
@@ -22,7 +21,7 @@ describe('useUserRol', () => {
     vi.clearAllMocks();
   });
 
-  it('debería actualizar el rol y guardar el usuario actualizado en storage cuando se llama a handleSetRole', async () => {
+  test('debería actualizar el rol y guardar el usuario actualizado en storage cuando se llama a handleSetRole', async () => {
     const mockRole = 'admin';
 
     (getUserRole as Mock).mockResolvedValue(mockRole);
@@ -37,27 +36,22 @@ describe('useUserRol', () => {
     expect(storage.save).toHaveBeenCalledWith('user', { ...mockUser, role: mockRole });
   });
 
-  it('no debería actualizar el rol si el usuario es null', async () => {
+  test('no debería actualizar el rol si el usuario es null', async () => {
     const { result } = renderHook(() => useUserRol({ user: null }));
 
     await act(async () => {
-      await result.current.handleSetRole();
+      result.current.handleSetRole();
     });
 
     expect(result.current.rol).toBeUndefined();
     expect(storage.save).not.toHaveBeenCalled();
   });
 
-  it('debería lanzar un error cuando getUserRole falla', async () => {
+  test('debería lanzar un error cuando getUserRole falla', async () => {
     const errorMessage = 'Error al obtener el rol';
-    (getUserRole as Mock).mockRejectedValue(errorMessage);
-
+    (getUserRole as Mock).mockRejectedValue(new Error(errorMessage));
     const { result } = renderHook(() => useUserRol({ user: mockUser }));
 
-    await expect(
-      act(async () => {
-        await result.current.handleSetRole();
-      })
-    ).rejects.toThrow(errorMessage);
+    await expect(result.current.handleSetRole()).rejects.toThrow(errorMessage);
   });
 });

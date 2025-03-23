@@ -14,15 +14,14 @@ import { EnuModalKeys } from "../enums";
 
 const MainHeader: FC = () => {
   const { user } = useUserCtx();
-  const { isTablet, isMobile, toggleMainMenu, openModal, isModalOpen } =
-    useGlobalCtx();
+  const { isTablet, isMobile, toggleMainMenu, openModal, isModalOpen } = useGlobalCtx();
   const { goTo } = useRedirectTo();
   return (
     <header
       className={`${layoutCSS.mainHeader} grid bg-[#ebebeb] justify-end items-center pr-6 sticky top-0 px-4 z-50`}
     >
       {isTablet || isMobile ? (
-        <button onClick={toggleMainMenu} type="button">
+        <button onClick={toggleMainMenu} type="button" title="Open">
           <img src={menubars} alt="logo" width={"32"} height={32} />
         </button>
       ) : (

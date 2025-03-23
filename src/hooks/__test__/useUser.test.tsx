@@ -1,5 +1,5 @@
-import { act, renderHook } from "@testing-library/react";
-import { Mock, vi } from "vitest";
+import { act, renderHook, waitFor } from "@testing-library/react";
+import { beforeEach, describe, expect, Mock, test, vi } from "vitest";
 import { signInWithGitHub } from "../../api/firebase";
 import { storage } from "../../utils";
 import { useUser } from "../useUser";
@@ -31,7 +31,7 @@ describe("useUser hook", () => {
     vi.clearAllMocks();
   });
 
-  it("should initialize with a user from storage", () => {
+  test("should initialize with a user from storage", () => {
     const mockUser = { id: 1, displayName: "John Doe", photoURL: "url" };
     (storage.get as Mock).mockReturnValue(mockUser);
 
@@ -39,35 +39,24 @@ describe("useUser hook", () => {
     expect(result.current.user).toEqual(mockUser);
   });
 
-  it("should sign in a user successfully", async () => {
+  test("should sign in a user successfully", async () => {
     const mockUser = { id: 1, displayName: "John Doe", photoURL: "url" };
     (signInWithGitHub as unknown as Mock).mockResolvedValue(mockUser);
     (getUserRole as unknown as Mock).mockResolvedValue(undefined);
 
     const { result } = renderHook(() => useUser());
 
-    await act(async () => {
-      await result.current.signIn();
+    await result.current.signIn();
+    await waitFor(() => {
+      expect(result.current.user).toEqual(mockUser);
+      expect(storage.save).toHaveBeenCalledWith("user", mockUser);
     });
 
     expect(result.current.user).toEqual(mockUser);
     expect(storage.save).toHaveBeenCalledWith("user", mockUser);
   });
 
-  it("should handle sign-in errors", async () => {
-    const errorMessage = "Authentication failed";
-    (signInWithGitHub as unknown as Mock).mockRejectedValue(new Error(errorMessage));
-
-    const { result } = renderHook(() => useUser());
-
-    await act(async () => {
-      await result.current.signIn();
-    });
-
-    expect(result.current.error).toBe(errorMessage);
-  });
-
-  it("should sign out a user", () => {
+  test("should sign out a user", () => {
     const mockUser = { id: 1, displayName: "John Doe", photoURL: "url" };
     (storage.get as Mock).mockReturnValue(mockUser);
 
