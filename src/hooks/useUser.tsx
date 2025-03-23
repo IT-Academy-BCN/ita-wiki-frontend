@@ -45,7 +45,8 @@ export const useUser = () => {
       setUser(() => rol);
     }
     handleSetRole();
-  }, [handleSetRole, rol]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return {
     user,
