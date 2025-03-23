@@ -5,7 +5,10 @@ import GitHubLogin from "../github-login/GitHubLogin";
 const UserAccesBar: FC = () => {
   const { signOut, user, signIn, error } = useUserCtx();
   return user ? (
-    <article id={String(user.id)} className="flex justify-evenly items-center gap-4 mt-4 py-2 px-4 rounded-md bg-black text-white mx-auto" >
+    <article
+      id={String(user.id)}
+      className="flex justify-evenly items-center gap-4 mt-4 py-2 px-4 rounded-md bg-black text-white mx-auto"
+    >
       <img
         src={user.photoURL}
         alt="Avatar usuario"
@@ -14,16 +17,10 @@ const UserAccesBar: FC = () => {
         className="rounded-full border-2 border-white"
       />
       <div className="flex flex-col divide-y-2">
-        <small
-          className="font-bold"
-          style={{ textTransform: "uppercase" }}
-        >
+        <small className="font-bold" style={{ textTransform: "uppercase" }}>
           {user.displayName}
         </small>
-        <small
-          className="font-bold"
-          style={{ textTransform: "uppercase" }}
-        >
+        <small className="font-bold" style={{ textTransform: "uppercase" }}>
           {user.role}
         </small>
       </div>
@@ -47,8 +44,7 @@ const UserAccesBar: FC = () => {
         )}
       </div>
     </article>
-  )
-
-}
+  );
+};
 
 export default UserAccesBar;

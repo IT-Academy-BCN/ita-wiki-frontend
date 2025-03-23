@@ -34,8 +34,11 @@ const MainHeader: FC = () => {
             </button>
           </article>
           <article>
-            <select title="Elige idioma" className="inline-flex justify-center pr-4 text-stone-900 focus:ring-[#808080] focus:border-transparent">
-              <option value={`ES`}  >ES</option>
+            <select
+              title="Elige idioma"
+              className="inline-flex justify-center pr-4 text-stone-900 focus:ring-[#808080] focus:border-transparent"
+            >
+              <option value={`ES`}>ES</option>
               <option value={`ES`}>EN</option>
             </select>
           </article>

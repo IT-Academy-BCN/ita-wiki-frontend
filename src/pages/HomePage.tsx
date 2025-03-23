@@ -38,7 +38,9 @@ export default function HomePage() {
 
   return (
     <Main>
-      <section className={`h-full lg:rounded-[15px] col-start-1 col-end-4 overflow-x-hidden overflow-y-auto bg-white`}>
+      <section
+        className={`h-full lg:rounded-[15px] col-start-1 col-end-4 overflow-x-hidden overflow-y-auto bg-white`}
+      >
         <article className="flex flex-col gap-8 min-h-96">
           <Hero>
             <Welcome />

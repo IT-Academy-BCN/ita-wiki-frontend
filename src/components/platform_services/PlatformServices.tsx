@@ -13,7 +13,9 @@ const PlatFormServices = () => {
           <span>/1</span>
           <img src={folder} alt="folder" width={100} height={100} />
           <h3>Guarda tus recursos favoritos</h3>
-          <p className="text-xl px-6 text-center">Ten tus recursos bien organizados</p>
+          <p className="text-xl px-6 text-center">
+            Ten tus recursos bien organizados
+          </p>
         </article>
         <article className="p-4 flex flex-col items-center justify-center">
           <span>/2</span>
@@ -25,7 +27,9 @@ const PlatFormServices = () => {
           <span>/3</span>
           <img src={ok} alt="ok" width={100} height={100} />
           <h3>Vota los recursos</h3>
-          <p className="text-xl px-6 text-center">La comunidad decide cuáles son más relevantes</p>
+          <p className="text-xl px-6 text-center">
+            La comunidad decide cuáles son más relevantes
+          </p>
         </article>
       </section>
     </article>
