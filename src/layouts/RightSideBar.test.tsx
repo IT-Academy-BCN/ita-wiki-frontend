@@ -18,18 +18,20 @@ vi.mock("../components/resources/ListMyResources", () => ({
 }));
 
 describe("RightSideBar Component", () => {
-  const mockResources = [{
-    id: 1,
-    title: "Test Resource",
-    github_id: 123456,
-    description: "A test resource",
-    url: "https://example.com",
-    category: "JavaScript",
-    theme: "Todos",
-    type: "Video",
-    created_at: new Date(),
-    updated_at: new Date(),
-  }];
+  const mockResources = [
+    {
+      id: 1,
+      title: "Test Resource",
+      github_id: 123456,
+      description: "A test resource",
+      url: "https://example.com",
+      category: "JavaScript",
+      theme: "Todos",
+      type: "Video",
+      created_at: new Date(),
+      updated_at: new Date(),
+    },
+  ];
 
   afterEach(() => {
     vi.clearAllMocks();
@@ -46,12 +48,16 @@ describe("RightSideBar Component", () => {
     (useUserCtx as Mock).mockReturnValue({ user: null });
     (getPersonalResources as Mock).mockReturnValue([]);
     render(<RightSideBar resources={mockResources as IntResource[]} />);
-    expect(screen.queryByText("ListMyResources Component")).not.toBeInTheDocument();
+    expect(
+      screen.queryByText("ListMyResources Component"),
+    ).not.toBeInTheDocument();
   });
 
   test("Renderiza ListMyResources cuando hay usuario y recursos personales", () => {
     (useUserCtx as Mock).mockReturnValue({ user: { name: "Test User" } });
-    (getPersonalResources as Mock).mockReturnValue([{ id: 1, title: "Resource 1" }]);
+    (getPersonalResources as Mock).mockReturnValue([
+      { id: 1, title: "Resource 1" },
+    ]);
     render(<RightSideBar resources={mockResources as IntResource[]} />);
     expect(screen.getByText("ListMyResources Component")).toBeInTheDocument();
   });

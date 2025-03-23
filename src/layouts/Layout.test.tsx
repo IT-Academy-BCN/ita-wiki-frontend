@@ -6,7 +6,7 @@ describe("Layout Component", () => {
     render(
       <Layout>
         <div data-testid="child">Contenido de prueba</div>
-      </Layout>
+      </Layout>,
     );
     const child = screen.getByTestId("child");
     expect(child).toBeInTheDocument();

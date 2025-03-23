@@ -1,14 +1,16 @@
-import { render } from '@testing-library/react';
-import Welcome from './Welcome';
-import { vi } from 'vitest';
+import { render } from "@testing-library/react";
+import Welcome from "./Welcome";
+import { vi } from "vitest";
 
-vi.mock('../../hooks/useUser', () => ({
+vi.mock("../../hooks/useUser", () => ({
   useUser: () => ({ user: undefined }),
 }));
 
-describe('Welcome Component', () => {
-  it('debería renderizar el mensaje de bienvenida sin usuario', () => {
+describe("Welcome Component", () => {
+  it("debería renderizar el mensaje de bienvenida sin usuario", () => {
     const { getByText } = render(<Welcome />);
-    expect(getByText(/¡Bienvenido.*a la wiki de la IT Academy!/i)).toBeInTheDocument();
+    expect(
+      getByText(/¡Bienvenido.*a la wiki de la IT Academy!/i),
+    ).toBeInTheDocument();
   });
 });

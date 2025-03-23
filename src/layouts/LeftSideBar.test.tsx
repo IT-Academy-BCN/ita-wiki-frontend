@@ -13,7 +13,7 @@ describe("LeftSideBar Component", () => {
     render(
       <LeftSideBar>
         <div data-testid="child">Contenido de prueba</div>
-      </LeftSideBar>
+      </LeftSideBar>,
     );
     const aside = screen.getByRole("complementary");
     expect(aside).toHaveStyle("left: 0px");
@@ -26,7 +26,7 @@ describe("LeftSideBar Component", () => {
     render(
       <LeftSideBar>
         <div data-testid="child">Contenido de prueba</div>
-      </LeftSideBar>
+      </LeftSideBar>,
     );
     const aside = screen.getByRole("complementary");
     expect(aside).toHaveStyle("left: -100%");
