@@ -1,7 +1,8 @@
 import { FC, ReactNode } from "react";
 
 import { useUser } from "../hooks/useUser";
-import { CtxUser, PropsContextUser } from ".";
+import { CtxUser } from ".";
+import { PropsContextUser } from "./typesCtx";
 
 interface Props {
   children: ReactNode;
