@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { IntUser } from "../types";
 import { signInWithGitHub } from "../api/firebase";
 import { storage } from "../utils";
-import { getUserRole } from "../api/userApi";
-
+import { useUserRol } from "./useUserRol";
 export interface UseUserRol {
   rol: IntUser | undefined;
   handleSetRole: () => void;
@@ -30,7 +29,7 @@ export const useUser = () => {
   };
 
   const signOut = () => {
-    localStorage.removeItem("user");
+    storage.remove("user");
     setUser(null);
     setAccessError(null);
   };
@@ -46,7 +45,6 @@ export const useUser = () => {
       setUser(() => rol);
     }
     handleSetRole();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {
@@ -60,23 +58,4 @@ export const useUser = () => {
     handleSetRole,
     setAccessError,
   };
-};
-
-export const useUserRol = ({ user }: { user: IntUser | null }): UseUserRol => {
-  const [rol, setRol] = useState<IntUser>();
-
-  const handleSetRole = async () => {
-    if (user) {
-      try {
-        const userRole = await getUserRole(user.id);
-        const updatedUser = { ...user, role: userRole };
-        setRol(() => updatedUser);
-        storage.save("user", updatedUser);
-      } catch (error) {
-        throw new Error(error as string);
-      }
-    }
-  };
-
-  return { rol, handleSetRole };
 };
