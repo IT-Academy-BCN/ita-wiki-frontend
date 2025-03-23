@@ -8,6 +8,7 @@ import php from "./assets/svg/php.svg";
 import dataScience from "./assets/svg/data-science.svg";
 import bbdd from "./assets/svg/bbdd.svg";
 import close from "./assets/svg/close.svg";
+
 type EndPoints = "resources/" | "users/lists" | "roles/";
 
 const END_POINTS = {
@@ -31,4 +32,12 @@ const ICONS = {
   "Data Science": dataScience,
   "BBDD": bbdd,
 }
-export { API_URL, END_POINTS, ICONS };
+
+const ROLE_PERMISSIONS = {
+  superadmin: ["superadmin", "admin", "mentor"],
+  admin: ["superadmin", "admin"],
+  mentor: ["mentor"],
+  user: ["student", "anoymous"],
+};
+
+export { API_URL, END_POINTS, ICONS, ROLE_PERMISSIONS };
