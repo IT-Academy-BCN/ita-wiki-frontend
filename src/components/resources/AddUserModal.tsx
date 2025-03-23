@@ -2,18 +2,13 @@ import React, { useState } from "react";
 // import { useCtxUser } from "../../hooks/useCtxUser";
 import ButtonComponent from "../atoms/ButtonComponent";
 import { createRole } from "../../api/endPointRoles";
+import { ROLE_PERMISSIONS } from "../../config";
 
 interface AddUsersModalProps {
   onClose: () => void;
   userRole: string | null;
   userID: number | string;
 }
-
-const rolePermissions = {
-  superadmin: ["admin", "mentor", "student"],
-  admin: ["mentor", "student"],
-  mentor: ["student"],
-};
 
 export const AddUsersModal: React.FC<AddUsersModalProps> = ({
   onClose,
@@ -24,7 +19,7 @@ export const AddUsersModal: React.FC<AddUsersModalProps> = ({
   const [selectedRole, setSelectedRole] = useState("");
 
   const availableRoles = userRole
-    ? rolePermissions[userRole as keyof typeof rolePermissions] || []
+    ? ROLE_PERMISSIONS[userRole as keyof typeof ROLE_PERMISSIONS] || []
     : [];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -50,7 +45,7 @@ export const AddUsersModal: React.FC<AddUsersModalProps> = ({
     <div className="fixed inset-0 bg-black/20 backdrop-blur-sm flex justify-center items-center z-50 overflow-visible">
       <div className="bg-white rounded-xl p-8 w-full max-w-md shadow-xl">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">Add Users</h2>
+          <h2 className="text-xl font-bold">Add Users {userRole}</h2>
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700"
