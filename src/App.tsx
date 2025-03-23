@@ -1,12 +1,13 @@
-import { FC } from "react";
+import { FC, lazy } from "react";
 import { Route, Routes } from "react-router";
-import HomePage from "./pages/HomePage";
-import CreateResourcePage from "./pages/CreateResourcePage";
 import MainHeader from "./Layout/MainHeader";
 import AsideComponent from "./Layout/AsideComponent";
-import ResourcesPage from "./pages/ResourcesPage";
 import { Layout } from "./Layout/Layout";
 import LeftSideBar from "./Layout/LeftSideBar";
+
+const HomePage = lazy(() => import("./pages/HomePage"));
+const ResourcesPage = lazy(() => import("./pages/ResourcesPage"));
+const CreateResourcePage = lazy(() => import("./pages/CreateResourcePage"));
 
 const App: FC = () => {
   return (
