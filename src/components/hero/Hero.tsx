@@ -6,7 +6,7 @@ interface HeroProps {
 
 const Hero: FC<HeroProps> = ({ children }) => {
   return (
-    <article className="flex flex-col gap-8 items-center justify-center min-h-96">
+    <article className="flex flex-col gap-8 items-center justify-center h-96">
       {children}
     </article>
   );
