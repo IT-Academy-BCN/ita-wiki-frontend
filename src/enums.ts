@@ -1,5 +1,5 @@
 export enum EnuResourceThemes {
-  All = "Todos",
+  All = "All",
   Eventos = "Eventos",
   RenderizadoCondicional = "Renderizado condicional",
   Components = "Components",
@@ -9,23 +9,29 @@ export enum EnuResourceThemes {
   ReactRouter = "React Router",
   DataScience = "Data Science",
   Estilos = "Estilos",
+  Debugging = "Debugging",
+  PatronesDeDiseño = "Patrones de diseño",
 }
 
 export enum EnuResourceTypes {
-  ALL = "Todos",
   Video = "Video",
   Cursos = "Cursos",
   Blog = "Blog",
 }
 
 export enum EnuResourcesCategories {
-  ALL = "Todos",
+  ALL = "All",
   Node = "Node",
   React = "React",
   Angular = "Angular",
-  Javascript = "Javascript",
+  JavaScript = "JavaScript",
   Java = "Java",
   FullstackPHP = "Fullstack PHP",
   DataScience = "Data Science",
   BBDD = "BBDD",
+}
+export enum EnuModalKeys {
+  ADD_USER = "addUser",
+  ADD_RESOURCE = "addRessource",
+  ACCESS = "access",
 }
