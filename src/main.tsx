@@ -10,15 +10,15 @@ import CustomToaster from "./components/CustomToaster";
 const app = createRoot(document.getElementById("root")!)
 
 app.render(
-  <GlobalCtxProvider>
-    <UserCtxProvider>
-      <StrictMode>
+  <StrictMode>
+    <GlobalCtxProvider>
+      <UserCtxProvider>
         <BrowserRouter>
           <CustomToaster />
           <App />
           <CustomToaster />
         </BrowserRouter>
-      </StrictMode>
-    </UserCtxProvider>
-  </GlobalCtxProvider>
+      </UserCtxProvider>
+    </GlobalCtxProvider>
+  </StrictMode>
 );
