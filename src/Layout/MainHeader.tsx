@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router";
 import addIcon from "../assets/svg/add.svg";
 import settingsIcon from "../assets/svg/settings.svg";
 import userIcon from "../assets/svg/user2.svg";
@@ -6,44 +5,17 @@ import searchIcon from "../assets/svg/search.svg";
 import ButtonComponent from "../components/atoms/ButtonComponent";
 import { Modal } from "../components/Modal/Modal";
 import { useUserCtx } from "../hooks/useUserCtx";
-import { FC, useState } from "react";
-import GitHubLogin from "../components/github-login/GitHubLogin";
+import { FC } from "react";
 import menubars from "../assets/svg/Vector-7.svg";
 import { useGlobalCtx } from "../hooks/useGlobalCtx";
 import layoutCSS from "./css/layout.module.css";
+import { useRedirectTo } from "../hooks/useRedirectTo";
+import { EnuModalKeys } from "../enums";
 
 const MainHeader: FC = () => {
-  const { user, signIn } = useUserCtx();
-  const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
-  const [loginError, setLoginError] = useState(false);
-
-  const goToResourcesPage = () => {
-    navigate("/resources/add");
-  };
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
-  const handleSignIn = async () => {
-    if (!isChecked) {
-      setLoginError(true);
-      return;
-    }
-    try {
-      signIn();
-      setIsModalOpen(false);
-    } catch {
-      setLoginError(true);
-    }
-  };
-
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-    setLoginError(false);
-  };
-  const { isTablet, isMobile, toggleMainMenu } = useGlobalCtx();
-
+  const { user } = useUserCtx();
+  const { isTablet, isMobile, toggleMainMenu, openModal, isModalOpen } = useGlobalCtx();
+  const { goTo } = useRedirectTo()
   return (
     <header
       className={`${layoutCSS.mainHeader} grid bg-[#ebebeb] justify-end items-center pr-6 sticky top-0 px-4 z-50`}
@@ -83,7 +55,7 @@ const MainHeader: FC = () => {
               <ButtonComponent
                 icon={addIcon}
                 variant="icon"
-                onClick={goToResourcesPage}
+                onClick={() => goTo("/resources/add")}
               />
             )}
             <select
@@ -97,30 +69,10 @@ const MainHeader: FC = () => {
             <ButtonComponent
               icon={userIcon}
               variant="icon"
-              onClick={openModal}
+              onClick={() => openModal(EnuModalKeys.ACCESS)}
             />
-            {isModalOpen && (
-              <Modal closeModal={closeModal} title="Inicio sesión">
-                <GitHubLogin onClick={handleSignIn} />
-                <label htmlFor="terms" className="block mt-8">
-                  <input
-                    name="terms"
-                    id="terms"
-                    type="checkbox"
-                    onChange={handleCheckboxChange}
-                    checked={isChecked}
-                  ></input>
-                  Acepto términos legales
-                </label>
-                {loginError && (
-                  <div className="text-red-500 text-sm mt-2">
-                    <div className="text-red-500 text-sm mt-2 text-center">
-                      Lo sentimos, no se ha podido iniciar sesión,
-                      <br /> contacte con el administrador.
-                    </div>
-                  </div>
-                )}
-              </Modal>
+            {isModalOpen("access") && (
+              <Modal />
             )}
           </section>
         </>
