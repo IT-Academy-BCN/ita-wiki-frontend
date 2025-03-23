@@ -1,14 +1,15 @@
 import { FC } from "react";
-import { Categories, IntResource } from "../../types";
+import { IntResource } from "../../types";
 import { Resource } from "./Resource";
 import { FilterResources } from "./FilterResources";
 import { themes } from "../../data/themes";
 import { resourceTypes } from "../../data/resourceTypes";
 import { useResourceFilter } from "../../hooks/useResourceFilter";
+import { EnuResourcesCategories } from "../../enums";
 
 interface ListResourceProps {
   resources: IntResource[];
-  category?: Categories;
+  category?: EnuResourcesCategories;
 }
 
 export const ListResources: FC<ListResourceProps> = ({
