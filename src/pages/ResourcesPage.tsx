@@ -11,7 +11,6 @@ import Content from "../layouts/Content";
 import { Main } from "../layouts/Main";
 import RightSideBar from "../layouts/RightSideBar";
 
-
 const ResourcesPage: FC = () => {
   const { category } = useParams();
   const navigate = useNavigate();
