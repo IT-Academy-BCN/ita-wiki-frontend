@@ -5,7 +5,7 @@ interface AccessProps {
 }
 
 const Access: React.FC<AccessProps> = ({ children }) => {
-  return <>{children}</>;
+  return children;
 };
 
 export default Access;

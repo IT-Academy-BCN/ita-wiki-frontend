@@ -11,7 +11,8 @@ const Terms: FC = () => {
         type="checkbox"
         onChange={handleCheckboxChange}
         checked={isCheckedTerms}
-      ></input>
+        title="Acepto términos legales"
+      />
       Acepto términos legales
     </label>
   );

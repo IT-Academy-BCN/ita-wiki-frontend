@@ -3,7 +3,6 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   test: {
-    include: ["**/*.{test,spec}.?(c|m)[jt]s?(x)"],
     environment: "jsdom",
     setupFiles: "./src/setupTest.ts",
     outputFile: "json",
@@ -14,5 +13,9 @@ export default defineConfig({
       cleanOnRerun: true,
     },
     css: true,
+    include: [
+      "**/__test__/**/*.{test,spec}.{js,ts,jsx,tsx}",
+      "./src/**/*.{test,spec}.{js,ts,jsx,tsx}",
+    ],
   },
 });
