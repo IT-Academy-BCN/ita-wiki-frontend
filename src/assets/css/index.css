@@ -23,12 +23,6 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-  margin: 0;
-  padding: 0;
-}
 
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.8);
