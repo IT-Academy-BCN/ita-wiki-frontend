@@ -22,7 +22,7 @@ const MainHeader: FC = () => {
       className={`${layoutCSS.mainHeader} grid bg-[#ebebeb] justify-end items-center pr-6 sticky top-0 px-4 z-50`}
     >
       {isTablet || isMobile ? (
-        <button onClick={toggleMainMenu} type="button" title="Open">
+        <button onClick={toggleMainMenu} type="button" title="Open" aria-label="Open">
           <img src={menubars} alt="logo" width={"32"} height={32} />
         </button>
       ) : (
