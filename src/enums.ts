@@ -20,7 +20,7 @@ export enum EnuResourceTypes {
 }
 
 export enum EnuResourcesCategories {
-  ALL = "All",
+  All = "All",
   Node = "Node",
   React = "React",
   Angular = "Angular",
