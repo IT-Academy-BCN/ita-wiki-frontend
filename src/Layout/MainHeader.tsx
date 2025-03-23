@@ -14,7 +14,8 @@ import { EnuModalKeys } from "../enums";
 
 const MainHeader: FC = () => {
   const { user } = useUserCtx();
-  const { isTablet, isMobile, toggleMainMenu, openModal, isModalOpen } = useGlobalCtx();
+  const { isTablet, isMobile, toggleMainMenu, openModal, isModalOpen } =
+    useGlobalCtx();
   const { goTo } = useRedirectTo();
   return (
     <header

@@ -18,16 +18,14 @@ vi.mock("./pages/HomePage", async () => {
 
 const dummyGlobal = {
   theme: "light",
-  toggleTheme: () => { },
+  toggleTheme: () => {},
   isModalOpen: vi.fn(() => false),
   openModal: vi.fn(() => true),
 } as unknown as PropsContexGLobal;
 
 const DummyGlobalProvider = ({ children }: { children: React.ReactNode }) => {
   return (
-    <CtxGLobal.Provider value={dummyGlobal}>
-      {children}
-    </CtxGLobal.Provider>
+    <CtxGLobal.Provider value={dummyGlobal}>{children}</CtxGLobal.Provider>
   );
 };
 
@@ -40,14 +38,14 @@ describe("Lazy y Suspense con rutas", () => {
             <App />
           </MemoryRouter>
         </UserCtxProvider>
-      </DummyGlobalProvider>
+      </DummyGlobalProvider>,
     );
 
     expect(screen.getByText(/Loading/i)).toBeInTheDocument();
 
     await waitFor(() => {
       expect(
-        screen.getByText(/¡Bienvenid@ a la wiki de la IT Academy!/i)
+        screen.getByText(/¡Bienvenid@ a la wiki de la IT Academy!/i),
       ).toBeInTheDocument();
     });
   });

@@ -23,8 +23,8 @@ vi.mock("../../api/userApi", () => ({
 
 describe("useUser hook", () => {
   beforeEach(() => {
-    vi.spyOn(console, "error").mockImplementation(() => { });
-    vi.spyOn(console, "warn").mockImplementation(() => { });
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    vi.spyOn(console, "warn").mockImplementation(() => {});
   });
 
   beforeEach(() => {
@@ -69,5 +69,4 @@ describe("useUser hook", () => {
     expect(result.current.user).toBeNull();
     expect(storage.remove).toHaveBeenCalledWith("user");
   });
-
 });

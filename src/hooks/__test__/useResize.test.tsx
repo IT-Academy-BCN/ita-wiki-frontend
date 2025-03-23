@@ -7,11 +7,17 @@ describe("useResize hook", () => {
 
   afterEach(() => {
     // Restaurar el valor original de window.innerWidth después de cada prueba
-    Object.defineProperty(window, "innerWidth", { configurable: true, value: originalInnerWidth });
+    Object.defineProperty(window, "innerWidth", {
+      configurable: true,
+      value: originalInnerWidth,
+    });
   });
 
   it("should set mobile state when width is less than 640", () => {
-    Object.defineProperty(window, "innerWidth", { configurable: true, value: 500 });
+    Object.defineProperty(window, "innerWidth", {
+      configurable: true,
+      value: 500,
+    });
 
     const { result } = renderHook(() => useResize());
 
@@ -25,7 +31,10 @@ describe("useResize hook", () => {
   });
 
   it("should set tablet state when width is between 640 and 1023", () => {
-    Object.defineProperty(window, "innerWidth", { configurable: true, value: 800 });
+    Object.defineProperty(window, "innerWidth", {
+      configurable: true,
+      value: 800,
+    });
 
     const { result } = renderHook(() => useResize());
 
@@ -39,7 +48,10 @@ describe("useResize hook", () => {
   });
 
   it("should set desktop state when width is 1024 or greater", () => {
-    Object.defineProperty(window, "innerWidth", { configurable: true, value: 1200 });
+    Object.defineProperty(window, "innerWidth", {
+      configurable: true,
+      value: 1200,
+    });
 
     const { result } = renderHook(() => useResize());
 
@@ -54,7 +66,10 @@ describe("useResize hook", () => {
 
   it("should update states when record functions are called manually", () => {
     // Establecer el tamaño de pantalla a tablet para la prueba manual
-    Object.defineProperty(window, "innerWidth", { configurable: true, value: 800 });
+    Object.defineProperty(window, "innerWidth", {
+      configurable: true,
+      value: 800,
+    });
 
     const { result } = renderHook(() => useResize());
 

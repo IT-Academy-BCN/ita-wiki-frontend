@@ -1,25 +1,27 @@
-import React from 'react';
+import React from "react";
 
 const Loading: React.FC = () => {
   return (
     <div
       style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center'
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
-      <div style={{
-        width: '40px',
-        height: '40px',
-        border: '4px solid #ccc',
-        borderTop: '4px solid #333',
-        borderRadius: '50%',
-        animation: 'spin 1s linear infinite'
-      }} />
-      <p style={{ marginTop: '16px' }}>Loading...</p>
+      <div
+        style={{
+          width: "40px",
+          height: "40px",
+          border: "4px solid #ccc",
+          borderTop: "4px solid #333",
+          borderRadius: "50%",
+          animation: "spin 1s linear infinite",
+        }}
+      />
+      <p style={{ marginTop: "16px" }}>Loading...</p>
       <style>
         {`
           @keyframes spin {
