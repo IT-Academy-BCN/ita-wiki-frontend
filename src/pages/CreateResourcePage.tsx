@@ -9,7 +9,7 @@ import ButtonComponent from "../components/atoms/ButtonComponent";
 import { categories } from "../data/categories";
 import { themes } from "../data/themes";
 import { useUser } from "../hooks/useUser";
-import { Main } from "../Layout/Main";
+import { Main } from "../layouts/Main";
 
 export default function CreateResourcePage() {
   const { user } = useUser();

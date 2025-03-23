@@ -4,6 +4,7 @@ import { describe, it, expect, vi, beforeEach, Mock } from "vitest";
 import { FilterResources } from "../FilterResources";
 import { themes } from "../../../data/themes";
 import { EnuResourceThemes, EnuResourceTypes } from "../../../enums";
+
 describe("FilterResources Component", () => {
   let selectedTheme: (typeof themes)[number];
   let selectedResourceTypes: string[];
@@ -46,7 +47,7 @@ describe("FilterResources Component", () => {
       </MemoryRouter>,
     );
 
-    themes.forEach((theme) => {
+    [...Object.values(EnuResourceThemes)].forEach((theme) => {
       expect(screen.getByText(theme)).toBeInTheDocument();
     });
 
