@@ -1,12 +1,12 @@
 import { FC } from "react";
-import node from "../assets/svg/logo-node 1.svg";
+import node from "../assets/svg/node.svg";
 import react from "../assets/svg/react.svg";
 import angular from "../assets/svg/angular.svg";
 import javascript from "../assets/svg/javascript.svg";
-import java from "../assets/svg/logo-java 1.svg";
-import php from "../assets/svg/logo-php 1.svg";
+import java from "../assets/svg/java.svg";
+import php from "../assets/svg/php.svg";
 import dataScience from "../assets/svg/data-science.svg";
-import bbdd from "../assets/svg/logo-bbdd 1.svg";
+import bbdd from "../assets/svg/bbdd.svg";
 import { Link } from "react-router";
 import logoItAcademy from "../assets/svg/LogoItAcademy.svg";
 import close from "../assets/svg/close.svg";
