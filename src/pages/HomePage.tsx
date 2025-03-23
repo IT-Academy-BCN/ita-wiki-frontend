@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { AddUsersModal } from "../components/resources/AddUserModal";
 import ButtonComponent from "../components/atoms/ButtonComponent";
 import { getRole } from "../api/endPointRoles";
-import { Main } from "../Layout/Main";
+import { Main } from "../layouts/Main";
 
 export default function HomePage() {
   const { signOut, user, signIn, error } = useUserCtx();

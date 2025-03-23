@@ -1,10 +1,10 @@
 import { FC, lazy, Suspense } from "react";
 import { Route, Routes } from "react-router";
-import MainHeader from "./Layout/MainHeader";
-import AsideComponent from "./Layout/AsideComponent";
-import { Layout } from "./Layout/Layout";
-import LeftSideBar from "./Layout/LeftSideBar";
 import Loading from "./components/Loading";
+import { Layout } from "./layouts/Layout";
+import MainHeader from "./layouts/MainHeader";
+import LeftSideBar from "./layouts/LeftSideBar";
+import AsideComponent from "./layouts/AsideComponent";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const ResourcesPage = lazy(() => import("./pages/ResourcesPage"));

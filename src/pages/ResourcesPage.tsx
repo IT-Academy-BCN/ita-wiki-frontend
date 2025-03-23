@@ -6,10 +6,11 @@ import { getResources } from "../api/endPointResources";
 import { categories } from "../data/categories";
 import moock from "../moock/resources.json";
 import { useGlobalCtx } from "../hooks/useGlobalCtx";
-import { Main } from "../Layout/Main";
-import Content from "../Layout/Content";
-import RightSideBar from "../Layout/RightSideBar";
 import { EnuResourcesCategories } from "../enums";
+import Content from "../layouts/Content";
+import { Main } from "../layouts/Main";
+import RightSideBar from "../layouts/RightSideBar";
+
 
 const ResourcesPage: FC = () => {
   const { category } = useParams();

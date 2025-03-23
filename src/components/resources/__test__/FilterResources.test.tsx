@@ -3,8 +3,7 @@ import { MemoryRouter } from "react-router";
 import { describe, it, expect, vi, beforeEach, Mock } from "vitest";
 import { FilterResources } from "../FilterResources";
 import { themes } from "../../../data/themes";
-import { resourceTypes } from "../../../data/resourceTypes";
-
+import { EnuResourceThemes, EnuResourceTypes } from "../../../enums";
 describe("FilterResources Component", () => {
   let selectedTheme: (typeof themes)[number];
   let selectedResourceTypes: string[];
@@ -36,8 +35,8 @@ describe("FilterResources Component", () => {
     render(
       <MemoryRouter>
         <FilterResources
-          themes={[...themes]}
-          resourceTypes={[...resourceTypes]}
+          themes={[...Object.values(EnuResourceThemes)]}
+          resourceTypes={[...Object.values(EnuResourceTypes)]}
           selectedTheme={selectedTheme}
           setSelectedTheme={setSelectedTheme}
           selectedResourceTypes={selectedResourceTypes}
@@ -51,7 +50,7 @@ describe("FilterResources Component", () => {
       expect(screen.getByText(theme)).toBeInTheDocument();
     });
 
-    resourceTypes.forEach((type) => {
+    [...Object.values(EnuResourceTypes)].forEach((type) => {
       expect(screen.getByText(type)).toBeInTheDocument();
     });
   });
@@ -60,8 +59,8 @@ describe("FilterResources Component", () => {
     render(
       <MemoryRouter>
         <FilterResources
-          themes={[...themes]}
-          resourceTypes={[...resourceTypes]}
+          themes={[...Object.values(EnuResourceThemes)]}
+          resourceTypes={[...Object.values(EnuResourceTypes)]}
           selectedTheme={selectedTheme}
           setSelectedTheme={setSelectedTheme}
           selectedResourceTypes={selectedResourceTypes}
@@ -81,8 +80,8 @@ describe("FilterResources Component", () => {
     render(
       <MemoryRouter>
         <FilterResources
-          themes={[...themes]}
-          resourceTypes={[...resourceTypes]}
+          themes={[...Object.values(EnuResourceThemes)]}
+          resourceTypes={[...Object.values(EnuResourceTypes)]}
           selectedTheme={selectedTheme}
           setSelectedTheme={setSelectedTheme}
           selectedResourceTypes={selectedResourceTypes}
@@ -92,7 +91,7 @@ describe("FilterResources Component", () => {
       </MemoryRouter>,
     );
 
-    const videoCheckbox = screen.getByLabelText("Video") as HTMLInputElement;
+    const videoCheckbox = screen.queryByLabelText("Video") as HTMLInputElement;
     fireEvent.click(videoCheckbox);
 
     expect(setSelectedResourceTypes).toHaveBeenCalled();
