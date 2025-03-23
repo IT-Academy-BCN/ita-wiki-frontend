@@ -1,9 +1,10 @@
-import { FC, lazy } from "react";
+import { FC, lazy, Suspense } from "react";
 import { Route, Routes } from "react-router";
 import MainHeader from "./Layout/MainHeader";
 import AsideComponent from "./Layout/AsideComponent";
 import { Layout } from "./Layout/Layout";
 import LeftSideBar from "./Layout/LeftSideBar";
+import Loading from "./components/Loading";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const ResourcesPage = lazy(() => import("./pages/ResourcesPage"));
@@ -16,11 +17,13 @@ const App: FC = () => {
       <LeftSideBar>
         <AsideComponent />
       </LeftSideBar>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/resources/:category" element={<ResourcesPage />} />
-        <Route path="/resources/add" element={<CreateResourcePage />} />
-      </Routes>
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/resources/:category" element={<ResourcesPage />} />
+          <Route path="/resources/add" element={<CreateResourcePage />} />
+        </Routes>
+      </Suspense>
     </Layout>
   );
 };
