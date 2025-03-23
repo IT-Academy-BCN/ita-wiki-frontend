@@ -1,13 +1,13 @@
-import { FC, useState } from "react"
-import GitHubLogin from "../github-login/GitHubLogin"
-import Terms from "./Terms"
-import ErroroAccess from "./ErrorAccess"
-import { useGlobalCtx } from "../../hooks/useGlobalCtx"
-import { useUserCtx } from "../../hooks/useUserCtx"
+import { FC, useState } from "react";
+import GitHubLogin from "../github-login/GitHubLogin";
+import Terms from "./Terms";
+import ErroroAccess from "./ErrorAccess";
+import { useGlobalCtx } from "../../hooks/useGlobalCtx";
+import { useUserCtx } from "../../hooks/useUserCtx";
 
 const SignIn: FC = () => {
   const { signIn } = useUserCtx();
-  const { isCheckedTerms } = useGlobalCtx()
+  const { isCheckedTerms } = useGlobalCtx();
   const [loginError, setLoginError] = useState(false);
 
   const handleSignIn = async () => {
@@ -27,7 +27,7 @@ const SignIn: FC = () => {
       <Terms />
       <ErroroAccess loginError={loginError} />
     </>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;

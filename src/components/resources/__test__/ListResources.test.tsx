@@ -32,16 +32,20 @@ const moockResources = moock.resources.map(
     }) as IntResource,
 );
 
-
 describe("ListResources Component", () => {
   it("should render the component and display the correct title", () => {
     render(
       <MemoryRouter>
-        <ListResources resources={moockResources} category={EnuResourcesCategories.All} />
+        <ListResources
+          resources={moockResources}
+          category={EnuResourcesCategories.All}
+        />
       </MemoryRouter>,
     );
 
-    const titleElement = screen.getByText(`Recursos ${EnuResourcesCategories.All}`);
+    const titleElement = screen.getByText(
+      `Recursos ${EnuResourcesCategories.All}`,
+    );
     expect(titleElement.tagName).toBe("H2");
   });
 });

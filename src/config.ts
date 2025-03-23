@@ -22,16 +22,16 @@ const END_POINTS = {
   },
 };
 const ICONS = {
-  "Todos": close,
-  "Node": node,
-  "React": react,
-  "Angular": angular,
-  "Javascript": javascript,
-  "Java": java,
+  Todos: close,
+  Node: node,
+  React: react,
+  Angular: angular,
+  Javascript: javascript,
+  Java: java,
   "Fullstack PHP": php,
   "Data Science": dataScience,
-  "BBDD": bbdd,
-}
+  BBDD: bbdd,
+};
 
 const ROLE_PERMISSIONS = {
   superadmin: ["superadmin", "admin", "mentor"],

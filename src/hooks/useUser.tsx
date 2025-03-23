@@ -9,7 +9,6 @@ export interface UseUserRol {
   handleSetRole: () => void;
 }
 
-
 export const useUser = () => {
   const [user, setUser] = useState<IntUser | null>(storage.get("user"));
   const [error, setError] = useState<string | null>(null);
@@ -41,14 +40,14 @@ export const useUser = () => {
   };
   const setAccessError = (message: string | null) => {
     setError(() => message);
-  }
+  };
   useEffect(() => {
     if (rol) {
-      setUser(() => rol)
+      setUser(() => rol);
     }
-    handleSetRole()
+    handleSetRole();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   return {
     user,
@@ -59,7 +58,7 @@ export const useUser = () => {
     error,
     setError,
     handleSetRole,
-    setAccessError
+    setAccessError,
   };
 };
 
@@ -79,5 +78,5 @@ export const useUserRol = ({ user }: { user: IntUser | null }): UseUserRol => {
     }
   };
 
-  return { rol, handleSetRole }
-}
+  return { rol, handleSetRole };
+};

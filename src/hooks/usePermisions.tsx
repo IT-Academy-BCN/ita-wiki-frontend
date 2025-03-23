@@ -21,7 +21,6 @@ export const usePermissions = () => {
 
   return {
     userRole,
-    hasPermission
-
+    hasPermission,
   };
-}
+};

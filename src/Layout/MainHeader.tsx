@@ -14,8 +14,9 @@ import { EnuModalKeys } from "../enums";
 
 const MainHeader: FC = () => {
   const { user } = useUserCtx();
-  const { isTablet, isMobile, toggleMainMenu, openModal, isModalOpen } = useGlobalCtx();
-  const { goTo } = useRedirectTo()
+  const { isTablet, isMobile, toggleMainMenu, openModal, isModalOpen } =
+    useGlobalCtx();
+  const { goTo } = useRedirectTo();
   return (
     <header
       className={`${layoutCSS.mainHeader} grid bg-[#ebebeb] justify-end items-center pr-6 sticky top-0 px-4 z-50`}
@@ -71,9 +72,7 @@ const MainHeader: FC = () => {
               variant="icon"
               onClick={() => openModal(EnuModalKeys.ACCESS)}
             />
-            {isModalOpen("access") && (
-              <Modal />
-            )}
+            {isModalOpen("access") && <Modal />}
           </section>
         </>
       )}

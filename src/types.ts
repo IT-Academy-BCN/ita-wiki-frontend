@@ -7,7 +7,7 @@ export type Category = (typeof categories)[number];
 export type Theme = (typeof themes)[number];
 export type ResourceType = (typeof resourceTypes)[number];
 export type TypModalKey = "addUser" | "addResource" | "access";
-export type TypChildren = { children?: ReactNode; };
+export type TypChildren = { children?: ReactNode };
 
 export interface IntUser {
   id: number;
@@ -28,4 +28,3 @@ export interface IntResource {
   theme: Theme;
   type: ResourceType;
 }
-

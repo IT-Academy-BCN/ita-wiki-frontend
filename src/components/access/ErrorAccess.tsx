@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 const ErrorAccess: FC<{ loginError: boolean }> = ({ loginError }) => {
-
   return (
     loginError && (
       <div className="text-red-500 text-sm mt-2">
@@ -11,7 +10,7 @@ const ErrorAccess: FC<{ loginError: boolean }> = ({ loginError }) => {
         </div>
       </div>
     )
-  )
-}
+  );
+};
 
-export default ErrorAccess
+export default ErrorAccess;

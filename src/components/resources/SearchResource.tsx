@@ -1,8 +1,8 @@
-import { FC } from "react"
+import { FC } from "react";
 import searchIcon from "../../assets/svg/search.svg";
 
 interface SearchResourceProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export const SearchIcon: FC = () => {
@@ -19,8 +19,8 @@ export const SearchIcon: FC = () => {
         clipRule="evenodd"
       />
     </svg>
-  )
-}
+  );
+};
 const SearchResource: FC<SearchResourceProps> = ({ children }) => {
   return (
     <article className="relative inline-flex cursor-pointer">
@@ -34,7 +34,7 @@ const SearchResource: FC<SearchResourceProps> = ({ children }) => {
         {children}
       </div>
     </article>
-  )
-}
+  );
+};
 
-export default SearchResource
+export default SearchResource;

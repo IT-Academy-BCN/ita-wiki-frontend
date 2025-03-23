@@ -5,7 +5,9 @@ import ok from "../../assets/svg/thumb-up-dynamic-color.svg";
 const PlatFormServices = () => {
   return (
     <article className="flex flex-col gap-20">
-      <h2 className="text-stone-500 text-center">Funcionalidades básicas que te ofrece esta plataforma:</h2>
+      <h2 className="text-stone-500 text-center">
+        Funcionalidades básicas que te ofrece esta plataforma:
+      </h2>
       <section className="flex flex-col xl:grid xl:grid-cols-3 xl:items-center xl:justify-items-center gap-20 xl:px-40">
         <article className="flex flex-col items-center justify-center">
           <span>/1</span>
@@ -28,6 +30,6 @@ const PlatFormServices = () => {
       </section>
     </article>
   );
-}
+};
 
 export default PlatFormServices;

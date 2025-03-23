@@ -7,6 +7,6 @@ const ITAcademyLogo = () => {
       <img src={logoItAcademy} alt="logo" width={"116px"} height={29} />
     </Link>
   );
-}
+};
 
 export default ITAcademyLogo;

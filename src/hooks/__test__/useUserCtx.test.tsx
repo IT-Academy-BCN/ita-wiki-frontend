@@ -63,6 +63,8 @@ describe("useCtxUser hook con UserCtxProvider", () => {
       error: null,
       setError: vi.fn(),
       handleSetRole: vi.fn(() => Promise.resolve()),
+      rol: undefined,
+      setAccessError: vi.fn(() => {}),
     });
 
     render(

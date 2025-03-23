@@ -15,7 +15,5 @@ export const useAccess = () => {
     setLoginError(() => false);
   };
 
-
-
-  return { isCheckedTerms, loginError, handleCheckboxChange } as AccessProps
-}
+  return { isCheckedTerms, loginError, handleCheckboxChange } as AccessProps;
+};

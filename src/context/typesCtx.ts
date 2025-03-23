@@ -14,10 +14,9 @@ export interface PropsContextUser extends UseUserRol {
   error: string | null;
   setError: (error: string | null) => void;
 }
-export interface PropsContexGLobal extends
-  IUseResize,
-  IntUseMainMenu,
-  AccessProps,
-  AccessModalProps,
-  ModalState { }
-
+export interface PropsContexGLobal
+  extends IUseResize,
+    IntUseMainMenu,
+    AccessProps,
+    AccessModalProps,
+    ModalState {}

@@ -7,7 +7,7 @@ import UserCtxProvider from "./context/UserCtxProvider";
 import GlobalCtxProvider from "./context/GlobalCtxProvider";
 import CustomToaster from "./components/CustomToaster";
 
-const app = createRoot(document.getElementById("root")!)
+const app = createRoot(document.getElementById("root")!);
 
 app.render(
   <StrictMode>
@@ -20,5 +20,5 @@ app.render(
         </BrowserRouter>
       </UserCtxProvider>
     </GlobalCtxProvider>
-  </StrictMode>
+  </StrictMode>,
 );

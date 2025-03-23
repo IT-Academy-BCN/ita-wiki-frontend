@@ -21,7 +21,9 @@ export default function ITAcademy() {
       <Page>
         <section className={`bg-white lg:rounded-[15px] w-full p-8`}>
           <Hero>
-            <h1 className="font-bold">¡Bienvenid@ a la wiki de la IT Academy!</h1>
+            <h1 className="font-bold">
+              ¡Bienvenid@ a la wiki de la IT Academy!
+            </h1>
             <Access>
               {user ? (
                 <article
@@ -65,7 +67,9 @@ export default function ITAcademy() {
                   <div className="flex flex-col max-w-[320px] gap-4">
                     <GitHubLogin onClick={signIn} />
                     {error && (
-                      <div className="error-message text-red-500 my-4">{error}</div>
+                      <div className="error-message text-red-500 my-4">
+                        {error}
+                      </div>
                     )}
                   </div>
                 </article>
@@ -74,7 +78,10 @@ export default function ITAcademy() {
           </Hero>
           {hasPermission && (
             <div className="fixed bottom-0 left-0 right-0 bg-white p-4">
-              <ButtonComponent onClick={() => openModal(EnuModalKeys.ADD_USER)} className="mt-4">
+              <ButtonComponent
+                onClick={() => openModal(EnuModalKeys.ADD_USER)}
+                className="mt-4"
+              >
                 Añadir Usuario
               </ButtonComponent>
             </div>

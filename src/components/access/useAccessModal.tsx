@@ -17,6 +17,6 @@ export const useAccessModal = () => {
     isAccesssModal,
     openAccessModal,
     closeAccessModal,
-    toggleAccessModal
-  } as AccessModalProps
-}
+    toggleAccessModal,
+  } as AccessModalProps;
+};

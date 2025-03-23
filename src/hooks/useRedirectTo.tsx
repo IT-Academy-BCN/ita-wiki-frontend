@@ -8,4 +8,4 @@ export const useRedirectTo = () => {
   return {
     goTo,
   };
-}
+};

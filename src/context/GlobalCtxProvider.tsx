@@ -17,7 +17,7 @@ const GlobalCtxProvider: FC<Props> = ({ children }) => {
     ...useMainMenu(),
     ...useAccess(),
     ...useAccessModal(),
-    ...useModals()
+    ...useModals(),
   } as PropsContexGLobal;
 
   return <CtxGLobal.Provider value={value}>{children}</CtxGLobal.Provider>;

@@ -1,8 +1,8 @@
-import { FC } from "react"
-import { useGlobalCtx } from "../../hooks/useGlobalCtx"
+import { FC } from "react";
+import { useGlobalCtx } from "../../hooks/useGlobalCtx";
 
 const Terms: FC = () => {
-  const { isCheckedTerms, handleCheckboxChange } = useGlobalCtx()
+  const { isCheckedTerms, handleCheckboxChange } = useGlobalCtx();
   return (
     <label htmlFor="terms" className="block mt-8">
       <input
@@ -14,7 +14,7 @@ const Terms: FC = () => {
       ></input>
       Acepto términos legales
     </label>
-  )
-}
+  );
+};
 
-export default Terms
+export default Terms;

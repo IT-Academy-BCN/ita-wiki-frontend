@@ -1,5 +1,7 @@
 import { Toaster } from "sonner";
-const CustomToaster: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
+const CustomToaster: React.FC<{ children?: React.ReactNode }> = ({
+  children,
+}) => {
   return (
     <>
       <Toaster
@@ -13,7 +15,7 @@ const CustomToaster: React.FC<{ children?: React.ReactNode }> = ({ children }) =
       />
       {children}
     </>
-  )
-}
+  );
+};
 
-export default CustomToaster
+export default CustomToaster;

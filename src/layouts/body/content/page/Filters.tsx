@@ -4,6 +4,6 @@ const Filters = () => {
       <h2 className="text-lg font-bold">Filters</h2>
       {/* Add filter components here */}
     </aside>
-  )
-}
-export default Filters
+  );
+};
+export default Filters;
