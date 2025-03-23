@@ -29,7 +29,7 @@
   grid-template-areas: "mainContent rightSideBar";
   grid-template-columns: 1fr minmax(auto, 332px);
   grid-template-rows: 1fr;
-  height: 980px;
+  height: 884px;
   overflow: hidden;
   position: relative;
 }
