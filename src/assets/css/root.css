@@ -1,4 +1,5 @@
 :root {
+  font-size: 18px;
   font-family: "Poppins", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -9,6 +10,7 @@
   -moz-osx-font-smoothing: grayscale;
   color: #213547;
   background-color: #ffffff;
+
 }
 
 ::-webkit-scrollbar {
