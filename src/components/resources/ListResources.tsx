@@ -4,8 +4,8 @@ import { Resource } from "./Resource";
 import { FilterResources } from "./FilterResources";
 import { themes } from "../../data/themes";
 import { resourceTypes } from "../../data/resourceTypes";
-import { useResourceFilter } from "../../hooks/useResourceFilter";
 import { EnuResourcesCategories } from "../../enums";
+import { useResourceFilter } from "../../hooks/resources/useResourceFilter";
 
 interface ListResourceProps {
   resources: IntResource[];

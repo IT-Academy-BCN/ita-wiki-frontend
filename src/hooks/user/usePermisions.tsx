@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useUserCtx } from "./useUserCtx";
-import { ROLE_PERMISSIONS } from "../config";
+import { ROLE_PERMISSIONS } from "../../config";
 
 export const usePermissions = () => {
   const { user } = useUserCtx();

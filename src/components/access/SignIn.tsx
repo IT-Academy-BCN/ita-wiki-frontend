@@ -3,7 +3,7 @@ import GitHubLogin from "../github-login/GitHubLogin";
 import Terms from "./Terms";
 import ErroroAccess from "./ErrorAccess";
 import { useGlobalCtx } from "../../hooks/useGlobalCtx";
-import { useUserCtx } from "../../hooks/useUserCtx";
+import { useUserCtx } from "../../hooks/user/useUserCtx";
 
 const SignIn: FC = () => {
   const { signIn } = useUserCtx();

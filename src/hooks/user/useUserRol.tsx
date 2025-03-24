@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { IntUser } from "../types";
+import { getUserRole } from "../../api/userApi";
+import { IntUser } from "../../types";
+import { storage } from "../../utils";
 import { UseUserRol } from "./useUser";
-import { getUserRole } from "../api/userApi";
-import { storage } from "../utils";
 
 export const useUserRol = ({ user }: { user: IntUser | null }): UseUserRol => {
   const [rol, setRol] = useState<IntUser>();

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useUserCtx } from "../../hooks/useUserCtx";
+import { useUserCtx } from "../../hooks/user/useUserCtx";
 import GitHubLogin from "../github-login/GitHubLogin";
 
 const UserAccesBar: FC = () => {

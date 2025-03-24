@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { useGlobalCtx } from "../useGlobalCtx";
-import GlobalCtxProvider from "../../context/GlobalCtxProvider";
+import GlobalCtxProvider from "../../context/providers/GlobalCtxProvider";
 
 // Mockeamos `useResize` y `useMainMenu` ya que `useGlobalCtx` depende del contexto
 vi.mock("../hooks/useResize", () => ({
@@ -40,7 +40,7 @@ describe("useGlobalCtx hook", () => {
   });
 
   it("debe lanzar un error si se usa fuera de GlobalCtxProvider", () => {
-    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => { });
 
     expect(() => render(<TestComponent />)).toThrow("contexto no definido");
 

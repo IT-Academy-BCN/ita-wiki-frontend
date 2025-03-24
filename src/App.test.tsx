@@ -2,10 +2,10 @@ import React from "react";
 import { vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
-import UserCtxProvider from "./context/UserCtxProvider";
+import UserCtxProvider from "./context/providers/UserCtxProvider";
 import { CtxGLobal } from "./context";
 import App from "./App";
-import { PropsContexGLobal } from "./context/typesCtx";
+import { PropsContexGLobal } from "./context/types";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -18,7 +18,7 @@ vi.mock("./pages/HomePage", async () => {
 
 const dummyGlobal = {
   theme: "light",
-  toggleTheme: () => {},
+  toggleTheme: () => { },
   isModalOpen: vi.fn(() => false),
   openModal: vi.fn(() => true),
 } as unknown as PropsContexGLobal;

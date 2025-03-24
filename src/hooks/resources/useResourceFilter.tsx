@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useSearchParams, useParams } from "react-router";
-import { IntResource } from "../types";
+import { IntResource } from "../../types";
+
 
 interface UseResourceFilterProps {
   resources: IntResource[];

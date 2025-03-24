@@ -4,7 +4,7 @@ import userIcon from "../assets/svg/user2.svg";
 import searchIcon from "../assets/svg/search.svg";
 import ButtonComponent from "../components/atoms/ButtonComponent";
 import { Modal } from "../components/Modal/Modal";
-import { useUserCtx } from "../hooks/useUserCtx";
+import { useUserCtx } from "../hooks/user/useUserCtx";
 import { FC } from "react";
 import menubars from "../assets/svg/Vector-7.svg";
 import { useGlobalCtx } from "../hooks/useGlobalCtx";

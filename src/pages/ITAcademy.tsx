@@ -1,4 +1,4 @@
-import { useUserCtx } from "../hooks/useUserCtx";
+import { useUserCtx } from "../hooks/user/useUserCtx";
 import { useState, useEffect } from "react";
 import { AddUsersModal } from "../components/resources/AddUserModal";
 import ButtonComponent from "../components/atoms/ButtonComponent";
@@ -9,7 +9,7 @@ import Hero from "../components/hero/Hero";
 import Welcome from "../components/welcome/Welcome";
 import UserAccesBar from "../components/user/UserAccesBar";
 
-export default function HomePage() {
+export default function ITAcademy() {
   const { user } = useUserCtx();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userRole, setUserRole] = useState<string | null>(null);

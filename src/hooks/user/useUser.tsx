@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { IntUser } from "../types";
-import { signInWithGitHub } from "../api/firebase";
-import { storage } from "../utils";
+import { IntUser } from "../../types";
+import { signInWithGitHub } from "../../api/firebase";
+import { storage } from "../../utils";
 import { useUserRol } from "./useUserRol";
 export interface UseUserRol {
   rol: IntUser | undefined;

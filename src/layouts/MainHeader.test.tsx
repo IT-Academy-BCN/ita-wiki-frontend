@@ -17,7 +17,7 @@ vi.mock("../components/Modal/Modal", () => ({
 }));
 
 import { useGlobalCtx } from "../hooks/useGlobalCtx";
-import { useUserCtx } from "../hooks/useUserCtx";
+import { useUserCtx } from "../hooks/user/useUserCtx";
 
 describe("MainHeader Component", () => {
   test("muestra vista móvil y llama toggleMainMenu", () => {

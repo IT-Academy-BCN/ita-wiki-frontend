@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import ButtonComponent from "../components/atoms/ButtonComponent";
 import { categories } from "../data/categories";
 import { themes } from "../data/themes";
-import { useUser } from "../hooks/useUser";
+import { useUser } from "../hooks/user/useUser";
 import { Main } from "../layouts/Main";
 
 export default function CreateResourcePage() {

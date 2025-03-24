@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import RightSideBar from "./RightSideBar";
-import { useUserCtx } from "../hooks/useUserCtx";
+import { useUserCtx } from "../hooks/user/useUserCtx";
 import { getPersonalResources } from "../api/userApi";
 import { Mock, vi } from "vitest";
 import { IntResource } from "../types";

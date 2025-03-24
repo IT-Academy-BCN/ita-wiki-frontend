@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CtxUser } from "../context";
+import { CtxUser } from "../../context";
 
 export const useUserCtx = () => {
   const ctx = useContext(CtxUser);

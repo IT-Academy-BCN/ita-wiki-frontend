@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useUserCtx } from "../hooks/useUserCtx";
+import { useUserCtx } from "../hooks/user/useUserCtx";
 import { getPersonalResources } from "../api/userApi";
 import layoutCSS from "./css/layout.module.css";
 import { IntResource } from "../types";

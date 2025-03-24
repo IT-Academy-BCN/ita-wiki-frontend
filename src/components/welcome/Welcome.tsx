@@ -1,6 +1,6 @@
 import React from "react";
 import { IntUser } from "../../types";
-import { useUser } from "../../hooks/useUser";
+import { useUser } from "../../hooks/user/useUser";
 
 type WelcomeProps = {
   user?: IntUser;

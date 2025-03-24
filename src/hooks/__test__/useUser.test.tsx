@@ -2,7 +2,7 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, Mock, test, vi } from "vitest";
 import { signInWithGitHub } from "../../api/firebase";
 import { storage } from "../../utils";
-import { useUser } from "../useUser";
+import { useUser } from "../user/useUser";
 import { getUserRole } from "../../api/userApi";
 
 vi.mock("../../api/firebase", () => ({
@@ -23,8 +23,8 @@ vi.mock("../../api/userApi", () => ({
 
 describe("useUser hook", () => {
   beforeEach(() => {
-    vi.spyOn(console, "error").mockImplementation(() => {});
-    vi.spyOn(console, "warn").mockImplementation(() => {});
+    vi.spyOn(console, "error").mockImplementation(() => { });
+    vi.spyOn(console, "warn").mockImplementation(() => { });
   });
 
   beforeEach(() => {
