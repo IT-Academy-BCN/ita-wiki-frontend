@@ -1,16 +1,17 @@
 import { FC } from "react";
-import { IntResource } from "../../types";
-import { Resource } from "./Resource";
-import { useResourceCtx } from "../../hooks/resources/useResourcesCtx";
-import { FilterResources } from "./FilterResources";
+import { useResourceCtx } from "../../../hooks/resources/useResourcesCtx";
+import { FilterResources } from "../../../components/resources/FilterResources";
+import { Resource } from "../../../components/resources/Resource";
+import { IntResource } from "../../../types";
 
 
-export const ListResources: FC = () => {
+
+export const ViewResourcesCategory: FC = () => {
   const {
     filteredResources,
     toggleFilter,
     showFilters,
-    filters
+    category
   } = useResourceCtx();
 
   return (
@@ -18,14 +19,14 @@ export const ListResources: FC = () => {
       <>
         {/* Sidebar Filters (Visible on larger screens, on the left) */}
         <section className="hidden sm:block px-4 py-6 sm:px-6 lg:pr-8 lg:w-80 xl:shrink-0 xl:pr-6">
-          <h2 className="text-xl md:text-[28px] font-bold">Filtros</h2>
+          <h2 className="text-xl md:text-[28px] font-bold">Filtros asdasda</h2>
           <FilterResources />
         </section>
         <section className="w-[100dvw] md:w-full flex flex-col py-4 gap-4 ">
           <article className="flex flex-col gap-4 md:flex-row justify-between items-center">
             <header className="w-full flex justify-between items-center px-4">
               <h2 className="col-start-1 col-end-4 text-xl md:text-[26px] font-bold">
-                Recursos {filters.category}
+                Recursos {category}
               </h2>
               <button
                 className="sm:hidden bg-[#B91879] text-white px-4 py-2 rounded-md flex items-center gap-2"

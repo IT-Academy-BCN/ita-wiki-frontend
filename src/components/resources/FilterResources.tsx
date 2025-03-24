@@ -1,84 +1,30 @@
-import { FC, useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { FC } from "react";
+import { EnuResourceThemes, EnuResourceTypes } from "../../enums";
+import { useResourceCtx } from "../../hooks/resources/useResourcesCtx";
 
-interface FilterResourcesProps {
-  themes: readonly string[];
-  resourceTypes: readonly string[];
-  selectedTheme: string;
-  setSelectedTheme: (theme: string) => void;
-  selectedResourceTypes: string[];
-  setSelectedResourceTypes: (resourceTypes: string[]) => void;
-  resetTheme: () => void;
-}
-
-export const FilterResources: FC<FilterResourcesProps> = ({
-  themes,
-  resourceTypes,
-  selectedTheme,
-  setSelectedTheme,
-  selectedResourceTypes,
-  setSelectedResourceTypes,
-  resetTheme,
-}) => {
-  const toggleResourceType = (resourceType: string) => {
-    if (
-      selectedResourceTypes.length === 1 &&
-      selectedResourceTypes.includes(resourceType)
-    ) {
-      setSelectedResourceTypes([...resourceTypes]);
-    } else {
-      setSelectedResourceTypes(
-        selectedResourceTypes.includes(resourceType)
-          ? selectedResourceTypes.filter(
-              (rType: string) => rType !== resourceType,
-            )
-          : [...selectedResourceTypes, resourceType],
-      );
-    }
-  };
-  const { category } = useParams();
-  const [prevCategory, setPrevCategory] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (category !== prevCategory) {
-      setSelectedResourceTypes([...resourceTypes]);
-      setPrevCategory(category ?? null);
-      resetTheme();
-    }
-
-    if (selectedResourceTypes.length === 0) {
-      setSelectedResourceTypes([...resourceTypes]);
-    }
-  }, [
-    category,
-    prevCategory,
-    resourceTypes,
-    selectedResourceTypes,
-    setSelectedResourceTypes,
-    resetTheme,
-  ]);
-
+export const FilterResources: FC = () => {
+  const themes = [...Object.values(EnuResourceThemes)];
+  const types = [...Object.values(EnuResourceTypes)];
+  const { selectedTheme, selectedType, selectTheme, selectType } = useResourceCtx();
   return (
     <div className="mt-6 transition-all duration-300 ease-in-out">
       <div className="mb-6">
         <h3 className="text-lg md:text-[26px] font-bold mb-3">Temas</h3>
         {themes.map((theme) => (
-          <label
-            key={theme}
-            className="flex items-center gap-2 mb-2 cursor-pointer"
-          >
+          <label key={theme} className="flex items-center gap-2 mb-2 cursor-pointer" htmlFor={theme} >
             <input
               type="radio"
-              name="theme"
+              id={theme}
+              name={theme}
               value={theme}
               checked={selectedTheme === theme}
-              onChange={() => setSelectedTheme(theme)}
+              onChange={() => selectTheme(theme)}
               className="hidden"
             />
+
             <div
-              className={`w-4 h-4 border-2 rounded-full flex items-center justify-center ${
-                selectedTheme === theme ? "border-[#B91879]" : "border-gray-400"
-              }`}
+              className={`w-4 h-4 border-2 rounded-full flex items-center justify-center ${selectedTheme === theme ? "border-[#B91879]" : "border-gray-400"
+                }`}
             >
               {selectedTheme === theme && (
                 <div className="w-2.5 h-2.5 bg-[#B91879] rounded-full"></div>
@@ -91,42 +37,27 @@ export const FilterResources: FC<FilterResourcesProps> = ({
 
       <div>
         <h3 className="text-lg font-bold mb-3">Tipo de recurso</h3>
-        {resourceTypes.map((resourceType) => (
-          <label
-            key={resourceType}
-            className="flex items-center gap-2 mb-2 cursor-pointer"
-          >
+        {types.map((type) => (
+          <label key={type} className="flex items-center gap-2 mb-2 cursor-pointer" htmlFor={type} >
             <input
-              type="checkbox"
-              checked={selectedResourceTypes.includes(resourceType)}
-              onChange={() => toggleResourceType(resourceType)}
+              type="radio"
+              id={type}
+              name={type}
+              value={type}
+              checked={selectedType === type}
+              onChange={() => selectType(type)}
               className="hidden"
             />
+
             <div
-              className={`w-5 h-5 flex items-center justify-center rounded border ${
-                selectedResourceTypes.includes(resourceType)
-                  ? "bg-[#B91879] border-[#B91879]"
-                  : "border-gray-400"
-              }`}
+              className={`w-4 h-4 border-2 rounded-full flex items-center justify-center ${selectedType === type ? "border-[#B91879]" : "border-gray-400"
+                }`}
             >
-              {selectedResourceTypes.includes(resourceType) && (
-                <svg
-                  className="w-4 h-4 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
+              {selectedType === type && (
+                <div className="w-2.5 h-2.5 bg-[#B91879] rounded-full"></div>
               )}
             </div>
-            <span className="text-gray-800">{resourceType}</span>
+            <span className="text-gray-800">{type}</span>
           </label>
         ))}
       </div>

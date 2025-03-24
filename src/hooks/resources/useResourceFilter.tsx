@@ -1,30 +1,54 @@
-import { useState, useEffect, useMemo } from "react";
-import { useSearchParams, useParams } from "react-router";
-import { IntResource } from "../../types";
+import { useState, useMemo, useEffect } from "react";
+import { useGetResources } from "./useGetResources";
+import { EnuResourcesCategories, EnuResourceThemes, EnuResourceTypes } from "../../enums";
+import { PropsContextResources } from "../../context/types";
 
-
-interface UseResourceFilterProps {
-  resources: IntResource[];
-  themes: readonly string[];
-  resourceTypes: readonly string[];
-}
-
-export const useResourceFilter = ({
-  resources,
-  themes,
-  resourceTypes,
-}: UseResourceFilterProps) => {
-  const { category } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
+export const useResourceFilter = () => {
+  const { apiResources } = useGetResources();
   const [showFilters, setShowFilters] = useState<boolean>(false);
-  const initialTheme = searchParams.get("theme") || themes[0];
-  const initialResourceTypes = searchParams
-    .get("resourceTypes")
-    ?.split(",") || [resourceTypes[0]];
+  const [category, setResourceCategory] = useState<EnuResourcesCategories>(EnuResourcesCategories.All);
+  const [selectedType, setSelectedType] = useState<EnuResourceTypes>(EnuResourceTypes.All);
+  const [selectedTheme, setSelectedTheme] = useState<EnuResourceThemes>(EnuResourceThemes.All);
+  const [selectedTypes, setSelectedTypes] = useState<EnuResourceTypes[]>([]);
 
-  const [selectedTheme, setSelectedTheme] = useState<string>(initialTheme);
-  const [selectedResourceTypes, setSelectedResourceTypes] =
-    useState<string[]>(initialResourceTypes);
+  const [filters, setFilters] = useState({
+    category: [category],
+    theme: EnuResourceThemes.All,
+    type: EnuResourceTypes.Blog,
+  })
+
+  const selectTheme = (theme: EnuResourceThemes) => {
+    setFilters((prev) => ({
+      ...prev,
+      theme: theme,
+    }));
+    setSelectedTheme(theme);
+  };
+  const selectType = (type: EnuResourceTypes) => {
+    setFilters((prev) => ({
+      ...prev,
+      type: type,
+    }));
+    setSelectedType(type);
+  };
+  const selectCategory = (category: EnuResourcesCategories) => {
+    setFilters((prev) => ({
+      ...prev,
+      category: [category],
+    }));
+    setResourceCategory(category);
+  };
+
+  const selectNone = () => {
+    setFilters({
+      category: [EnuResourcesCategories.All],
+      theme: EnuResourceThemes.All,
+      type: EnuResourceTypes.Blog,
+    });
+    setSelectedTheme(EnuResourceThemes.All);
+    setSelectedType(EnuResourceTypes.Blog);
+    setResourceCategory(EnuResourcesCategories.All);
+  };
 
   const toggleFilter = () => {
     setShowFilters((prev) => !prev);
@@ -32,57 +56,90 @@ export const useResourceFilter = ({
   const closeFilter = () => {
     setShowFilters(() => false);
   };
+  const resetTheme = () => {
+    setSelectedTheme(() => EnuResourceThemes.All);
+  };
 
-  useEffect(() => {
-    if (category) {
-      setSelectedResourceTypes([...resourceTypes]);
+  const toggleResourceType = (resourceType: EnuResourceTypes) => {
+    const allResourceTypes = Object.values(EnuResourceTypes);
+    if (selectedTypes.length === 1 && selectedTypes.includes(resourceType)) {
+      setSelectedTypes(allResourceTypes);
+    } else {
+      setSelectedTypes(
+        selectedTypes.includes(resourceType)
+          ? selectedTypes.filter((rType: EnuResourceTypes) => rType !== resourceType)
+          : [...selectedTypes, resourceType]
+      );
     }
-  }, [category, resourceTypes]);
+  };
 
-  useEffect(() => {
+  const updateFilterURL = () => {
     const params = new URLSearchParams();
-    if (selectedTheme) {
-      params.set("theme", selectedTheme);
+
+    if (filters.category && filters.category.length > 0) {
+      params.set("category", filters.category.join(","));
     }
-    if (
-      selectedResourceTypes.length > 0 &&
-      selectedResourceTypes.some((type) => type.trim() !== "")
-    ) {
-      params.set("resourceTypes", selectedResourceTypes.join(","));
+
+    if (filters.theme && filters.theme !== EnuResourceThemes.All) {
+      params.set("theme", filters.theme);
     }
     const queryString = params.toString();
-    setSearchParams(queryString ? params : undefined);
-  }, [selectedTheme, selectedResourceTypes, setSearchParams]);
-
-  const resetTheme = () => {
-    setSelectedTheme(() => themes[0]);
+    const newUrl = window.location.pathname + (queryString ? "?" + queryString : "");
+    window.history.replaceState({}, "", newUrl);
   };
+
+  useEffect(() => {
+    updateFilterURL();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters, selectedTypes]);
+
   const filteredResources = useMemo(() => {
-    if (!resources || !category) return [];
-
-    return resources.filter((resource) => {
-      const categoryMatch = !category || resource.category === category;
-      const themeMatch =
-        selectedTheme === "Todos" || resource.theme === selectedTheme;
-      const typeMatch =
-        selectedResourceTypes.length === 0 ||
-        selectedResourceTypes.some(
-          (selectedType) => resource.type === selectedType,
-        );
-
-      return categoryMatch && themeMatch && typeMatch;
+    if (filters.category.length === 0 && filters.theme === EnuResourceThemes.All && selectedTypes.length === 0) {
+      return apiResources;
+    }
+    const clone = structuredClone(apiResources);
+    const categoryFilter = clone.filter((resource) => {
+      if (filters.category.includes(EnuResourcesCategories.All)) {
+        return true;
+      }
+      return filters.category.includes(resource.category as EnuResourcesCategories);
     });
-  }, [resources, category, selectedTheme, selectedResourceTypes]);
+    const themeFilter = categoryFilter.filter((resource) => {
+      if (filters.theme === EnuResourceThemes.All) {
+        return true;
+      }
+      return resource.theme === filters.theme;
+    });
+    const typeFilter = themeFilter.filter((resource) => {
+      if (filters.type === EnuResourceTypes.All) {
+        return true;
+      }
+      return resource.theme === filters.theme;
+    });
+    // 
+    const resourceTypeFilter = typeFilter.filter((resource) => {
+      if (selectedTypes.length === 0) {
+        return true;
+      }
+      return selectedTypes.includes(resource.type as EnuResourceTypes);
+    });
+    return resourceTypeFilter;
+  }, [apiResources, filters.category, filters.theme, filters.type, selectedTypes]);
 
   return {
+    showFilters,
+    filters,
     filteredResources,
     selectedTheme,
-    setSelectedTheme,
-    selectedResourceTypes,
-    setSelectedResourceTypes,
-    resetTheme,
-    showFilters,
+    selectedType,
+    selectTheme,
+    selectType,
+    selectCategory,
+    selectNone,
     toggleFilter,
     closeFilter,
-  };
+    resetTheme,
+    updateFilterURL,
+    toggleResourceType
+  } as PropsContextResources
 };

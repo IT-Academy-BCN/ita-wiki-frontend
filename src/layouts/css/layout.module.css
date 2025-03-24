@@ -39,7 +39,7 @@
   display: grid;
   width: 100%;
   grid-template-columns: 1fr;
-  overflow: hidden auto;
+  overflow: hidden;
   position: relative;
 }
 

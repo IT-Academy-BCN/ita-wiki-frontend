@@ -8,7 +8,7 @@ const LayoutResource: FC = () => {
   return (
     <ResourceCtxProvider>
       <Main>
-        <Content>
+        <Content>s
           <Outlet />
         </Content>
       </Main>

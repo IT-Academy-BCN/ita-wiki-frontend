@@ -5,6 +5,7 @@ import { AccessProps } from "../hooks/useAccess";
 import { AccessModalProps } from "../components/access/useAccessModal";
 import { UseUserRol } from "../hooks/user/useUser";
 import { ModalState } from "../hooks/useModals";
+import { EnuResourcesCategories, EnuResourceThemes, EnuResourceTypes } from "../enums";
 
 export interface PropsContextUser extends UseUserRol {
   user: IntUser;
@@ -21,9 +22,24 @@ export interface PropsContexGLobal
   AccessModalProps,
   ModalState { }
 
+
 export interface PropsContextResources {
-  isLoading: boolean;
-  apiResources: IntResource[];
-  handlerSetLaoding: (loading: boolean) => void;
-  setRources: (apiResources: IntResource[]) => void;
+  showFilters: boolean;
+  filters: {
+    category: EnuResourcesCategories[];
+    theme: EnuResourceThemes;
+    type: EnuResourceTypes;
+  };
+  filteredResources: IntResource[];
+  selectedTheme: EnuResourceThemes;
+  selectedType: EnuResourceTypes;
+  selectTheme: (theme: EnuResourceThemes) => void;
+  selectType: (type: EnuResourceTypes) => void;
+  selectCategory: (category: EnuResourcesCategories) => void;
+  selectNone: () => void;
+  toggleFilter: () => void;
+  closeFilter: () => void;
+  resetTheme: () => void;
+  updateFilterURL: () => void;
+  toggleResourceType: (resourceType: EnuResourceTypes) => void;
 }

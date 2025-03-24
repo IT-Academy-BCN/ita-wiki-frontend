@@ -10,7 +10,6 @@ interface IUseGetReources {
   setRources: (apiResources: IntResource[]) => void;
 }
 
-
 export const useGetResources = (): IUseGetReources => {
 
   const [apiResources, setApiResources] = useState<IntResource[]>([]);

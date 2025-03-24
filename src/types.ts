@@ -1,11 +1,8 @@
 import { ReactNode } from "react";
-import { categories } from "./data/categories";
-import { themes } from "./data/themes";
-import { resourceTypes } from "./data/resourceTypes";
 
-export type Category = (typeof categories)[number];
-export type Theme = (typeof themes)[number];
-export type ResourceType = (typeof resourceTypes)[number];
+import { EnuResourcesCategories, EnuResourceThemes, EnuResourceTypes } from "./enums";
+
+
 export type TypModalKey = "addUser" | "addResource" | "access";
 export type TypChildren = { children?: ReactNode };
 
@@ -24,7 +21,7 @@ export interface IntResource {
   url: string;
   create_at?: string;
   update_at?: string;
-  category: Category;
-  theme: Theme;
-  type: ResourceType;
+  category: EnuResourcesCategories;
+  theme: EnuResourceThemes;
+  type: EnuResourceTypes;
 }

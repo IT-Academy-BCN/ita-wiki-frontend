@@ -1,30 +1,15 @@
 import { FC } from "react";
-import node from "../assets/svg/node.svg";
-import react from "../assets/svg/react.svg";
-import angular from "../assets/svg/angular.svg";
-import javascript from "../assets/svg/javascript.svg";
-import java from "../assets/svg/java.svg";
-import php from "../assets/svg/php.svg";
-import dataScience from "../assets/svg/data-science.svg";
-import bbdd from "../assets/svg/bbdd.svg";
 import { Link } from "react-router";
 import logoItAcademy from "../assets/svg/LogoItAcademy.svg";
 import close from "../assets/svg/close.svg";
 import { useGlobalCtx } from "../hooks/useGlobalCtx";
+import { useResourceCtx } from "../hooks/resources/useResourcesCtx";
+import { EnuResourcesCategories } from "../enums";
+import { ICONS } from "../config";
 
 const AsideComponent: FC = () => {
   const { isDesktop, toggleMainMenu, closeMainMenu } = useGlobalCtx();
-
-  const asideContent = [
-    { icon: node, label: "Node" },
-    { icon: react, label: "React" },
-    { icon: angular, label: "Angular" },
-    { icon: javascript, label: "JavaScript" },
-    { icon: java, label: "Java" },
-    { icon: php, label: "FullStack PHP" },
-    { icon: dataScience, label: "Data Science" },
-    { icon: bbdd, label: "BBDD" },
-  ];
+  const { selectCategory } = useResourceCtx();
 
   return (
     <>
@@ -40,14 +25,15 @@ const AsideComponent: FC = () => {
         )}
       </section>
       <ul className="space-y-6 pt-[21px] pl-[23px] flex flex-col justify-center">
-        {asideContent.map((item, index) => (
+
+        {[...Object.values(EnuResourcesCategories)].map((item, index) => (
           <li
             key={index}
             className="flex items-center space-x-3"
             onClick={closeMainMenu}
           >
-            <img src={item.icon} alt={item.label} className="w-6 h-6" />
-            <Link to={`/resources/${item.label}`}>{item.label}</Link>
+            <img src={ICONS[item as keyof typeof ICONS]} alt={item as string} className="w-6 h-6" />
+            <Link onClick={() => selectCategory(item)} to={`/resources`}>{item}</Link>
           </li>
         ))}
       </ul>
