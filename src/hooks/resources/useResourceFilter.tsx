@@ -7,7 +7,7 @@ export const useResourceFilter = () => {
   const { apiResources } = useGetResources();
   const [showFilters, setShowFilters] = useState<boolean>(false);
   const [category, setResourceCategory] = useState<EnuResourcesCategories>(EnuResourcesCategories.All);
-  const [selectedType, setSelectedType] = useState<EnuResourceTypes>(EnuResourceTypes.All);
+  const [selectedType, setSelectedType] = useState<EnuResourceTypes | null>(null);
   const [selectedTheme, setSelectedTheme] = useState<EnuResourceThemes>(EnuResourceThemes.All);
   const [selectedTypes, setSelectedTypes] = useState<EnuResourceTypes[]>([]);
 
@@ -94,10 +94,11 @@ export const useResourceFilter = () => {
   }, [filters, selectedTypes]);
 
   const filteredResources = useMemo(() => {
-    if (filters.category.length === 0 && filters.theme === EnuResourceThemes.All && selectedTypes.length === 0) {
+    if (filters.category.includes(EnuResourcesCategories.All) && filters.theme === EnuResourceThemes.All && filters.type === null) {
       return apiResources;
     }
     const clone = structuredClone(apiResources);
+
     const categoryFilter = clone.filter((resource) => {
       if (filters.category.includes(EnuResourcesCategories.All)) {
         return true;
@@ -111,10 +112,10 @@ export const useResourceFilter = () => {
       return resource.theme === filters.theme;
     });
     const typeFilter = themeFilter.filter((resource) => {
-      if (filters.type === EnuResourceTypes.All) {
+      if (filters.type === null) {
         return true;
       }
-      return resource.theme === filters.theme;
+      return resource.type === filters.type;
     });
     // 
     const resourceTypeFilter = typeFilter.filter((resource) => {

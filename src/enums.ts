@@ -14,10 +14,10 @@ export enum EnuResourceThemes {
 }
 
 export enum EnuResourceTypes {
-  All = "All",
   Video = "Video",
   Cursos = "Cursos",
   Blog = "Blog",
+
 }
 
 export enum EnuResourcesCategories {
