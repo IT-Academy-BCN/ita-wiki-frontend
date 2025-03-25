@@ -2,10 +2,10 @@ import { FC } from "react";
 import { IntResource } from "../../types";
 import { BodyResource } from "./BodyResource";
 import { ContentResource } from "./ContentResource";
-import { FavoriteResource } from "./FavoriteResource";
 import { VotesResource } from "./VotesResource";
 import { UserResource } from "./UserResource";
 import { FooterResource } from "./FooterResource";
+import BookmarkIconComponent from "./BookmarkIconComponent";
 type ResourceProps = {
   resource: IntResource;
 };
@@ -18,7 +18,7 @@ export const Resource: FC<ResourceProps> = ({ resource }) => {
       data-testid="resource"
     >
       <BodyResource>
-        <VotesResource votes={52} />
+        <VotesResource votes={resource.votes ?? 0} />
         <ContentResource>
           <h3 className="px-4 text-[16px] font-extrabold text-[#282828]">
             {resource.title}
@@ -27,7 +27,7 @@ export const Resource: FC<ResourceProps> = ({ resource }) => {
             Reprehenderit laborum cillum anim section.
           </p>
         </ContentResource>
-        <FavoriteResource favorite={false} />
+        <BookmarkIconComponent marked={false} />
       </BodyResource>
       <FooterResource>
         <>
@@ -40,7 +40,11 @@ export const Resource: FC<ResourceProps> = ({ resource }) => {
             }}
           />
           {`,`}
-          <span className="text-[#808080] font-bold">{resource.create_at}</span>
+          <span className="text-[#808080] font-bold">
+            {resource.create_at instanceof Date
+              ? resource.create_at.toLocaleDateString()
+              : resource.create_at}
+          </span>{" "}
         </>
       </FooterResource>
     </li>

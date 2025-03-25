@@ -10,7 +10,8 @@
       "update_at": "5 agosto de 2022",
       "category": "React",
       "theme": "Componentes",
-      "type": "Video"
+      "type": "Video",
+      "votes": 120
     },
     {
       "id": 26,
@@ -18,11 +19,12 @@
       "title": "Redux para principiantes",
       "description": "holaaaaaa",
       "url": "http://localhost/recurso/1",
-      "create_at": "1 agosto de 2022",
-      "update_at": "3 agosto de 2022",
+      "create_at": "1 agosto de 2023",
+      "update_at": "3 agosto de 2023",
       "category": "React",
       "theme": "UseState & UseEffect",
-      "type": "Cursos"
+      "type": "Cursos",
+      "votes": 12
     },
     {
       "id": 27,
@@ -30,11 +32,12 @@
       "title": "Redux para principiantes",
       "description": "holaaaaaa",
       "url": "http://localhost/recurso/1",
-      "create_at": "5 febrero de 2022",
-      "update_at": "2 enero de 2022",
+      "create_at": "5 febrero de 2024",
+      "update_at": "2 enero de 2024",
       "category": "React",
       "theme": "UseState & UseEffect",
-      "type": "Blog"
+      "type": "Blog",
+      "votes": 11
     },
     {
       "id": 28,
@@ -42,11 +45,12 @@
       "title": "El tio la vara",
       "description": "holaaaaaa",
       "url": "http://localhost/recurso/1",
-      "create_at": "25 agosto de 2022",
-      "update_at": "10 agosto de 2022",
+      "create_at": "25 agosto de 2024",
+      "update_at": "10 agosto de 2024",
       "category": "React",
       "theme": "Renderizado condicional",
-      "type": "Video"
+      "type": "Video",
+      "votes": 1
     },
     {
       "id": 29,
@@ -58,19 +62,22 @@
       "update_at": "1 agosto de 2022",
       "category": "React",
       "theme": "React Router",
-      "type": "Cursos"
+      "type": "Cursos",
+      "votes": 23
     },
+
     {
       "id": 30,
       "github_id": 123461,
       "title": "Introducción a Node.js",
       "description": "Aprende a usar Node.js para construir aplicaciones del lado del servidor",
       "url": "http://localhost/recurso/2",
-      "create_at": "10 marzo de 2022",
-      "update_at": "15 marzo de 2022",
+      "create_at": "10 marzo de 2025",
+      "update_at": "15 marzo de 2025",
       "category": "Node",
       "theme": "Conceptos básicos",
-      "type": "Cursos"
+      "type": "Cursos",
+      "votes": 22
     },
     {
       "id": 31,
@@ -82,7 +89,8 @@
       "update_at": "20 marzo de 2022",
       "category": "React",
       "theme": "Patrones de diseño",
-      "type": "Blog"
+      "type": "Blog",
+      "votes": 21
     },
     {
       "id": 32,
@@ -90,11 +98,12 @@
       "title": "Angular: Guía para principiantes",
       "description": "Una guía completa para comenzar con Angular y sus conceptos fundamentales",
       "url": "http://localhost/recurso/4",
-      "create_at": "12 febrero de 2022",
-      "update_at": "14 febrero de 2022",
+      "create_at": "12 febrero de 2023",
+      "update_at": "14 febrero de 2023",
       "category": "Angular",
       "theme": "Fundamentos",
-      "type": "Video"
+      "type": "Video",
+      "votes": 10
     },
     {
       "id": 33,
@@ -102,11 +111,12 @@
       "title": "Componentes Avanzados en Angular",
       "description": "Aprende sobre directivas, pipes y servicios en Angular",
       "url": "http://localhost/recurso/5",
-      "create_at": "22 marzo de 2022",
-      "update_at": "25 marzo de 2022",
+      "create_at": "22 marzo de 2024",
+      "update_at": "25 marzo de 2024",
       "category": "Angular",
       "theme": "Componentes",
-      "type": "Cursos"
+      "type": "Cursos",
+      "votes": 121
     },
     {
       "id": 34,
@@ -118,7 +128,8 @@
       "update_at": "5 marzo de 2022",
       "category": "JavaScript",
       "theme": "State Management",
-      "type": "Blog"
+      "type": "Blog",
+      "votes": 15
     },
     {
       "id": 35,
@@ -130,7 +141,8 @@
       "update_at": "6 abril de 2022",
       "category": "JavaScript",
       "theme": "Backend",
-      "type": "Cursos"
+      "type": "Cursos",
+      "votes": 16
     },
     {
       "id": 36,
@@ -142,7 +154,8 @@
       "update_at": "10 mayo de 2022",
       "category": "Java",
       "theme": "Frameworks",
-      "type": "Video"
+      "type": "Video",
+      "votes": 17
     },
     {
       "id": 37,
@@ -154,7 +167,8 @@
       "update_at": "30 mayo de 2022",
       "category": "Java",
       "theme": "Patrones de diseño",
-      "type": "Blog"
+      "type": "Blog",
+      "votes": 18
     },
     {
       "id": 38,
@@ -162,11 +176,12 @@
       "title": "Desarrollo Fullstack con PHP y React",
       "description": "Desarrolla una aplicación Fullstack utilizando PHP y React",
       "url": "http://localhost/recurso/10",
-      "create_at": "1 junio de 2022",
-      "update_at": "5 junio de 2022",
+      "create_at": "1 junio de 2023",
+      "update_at": "5 junio de 2023",
       "category": "FullStack PHP",
       "theme": "FullStack",
-      "type": "Cursos"
+      "type": "Cursos",
+      "votes": 19
     },
     {
       "id": 39,
@@ -178,7 +193,8 @@
       "update_at": "12 junio de 2022",
       "category": "FullStack PHP",
       "theme": "Base de datos",
-      "type": "Blog"
+      "type": "Blog",
+      "votes": 19
     },
     {
       "id": 40,
@@ -186,11 +202,12 @@
       "title": "Introducción a Data Science",
       "description": "Un curso completo sobre las bases de la Ciencia de Datos",
       "url": "http://localhost/recurso/12",
-      "create_at": "15 junio de 2022",
-      "update_at": "18 junio de 2022",
+      "create_at": "15 junio de 2024",
+      "update_at": "18 junio de 2024",
       "category": "Data Science",
       "theme": "Fundamentos",
-      "type": "Cursos"
+      "type": "Cursos",
+      "votes": 29
     },
     {
       "id": 41,
@@ -202,7 +219,8 @@
       "update_at": "28 junio de 2022",
       "category": "Data Science",
       "theme": "Big Data",
-      "type": "Video"
+      "type": "Video",
+      "votes": 30
     },
     {
       "id": 42,
@@ -210,15 +228,16 @@
       "title": "Introducción a bases de datos relacionales",
       "description": "Aprende los conceptos básicos de las bases de datos relacionales",
       "url": "http://localhost/recurso/14",
-      "create_at": "10 julio de 2022",
-      "update_at": "12 julio de 2022",
+      "create_at": "10 febrero de 2025",
+      "update_at": "12 febrero de 2025",
       "category": "BBDD",
       "theme": "Relacionales",
-      "type": "Blog"
+      "type": "Blog",
+      "votes": 33
     },
     {
-      "id": 43,
-      "github_id": 123474,
+      "id": 6,
+      "github_id": 6729608,
       "title": "Optimización de consultas SQL",
       "description": "Aprende a optimizar consultas SQL para bases de datos grandes",
       "url": "http://localhost/recurso/15",
@@ -227,6 +246,31 @@
       "category": "BBDD",
       "theme": "Consultas",
       "type": "Cursos"
+    },
+    {
+      "id": 4,
+      "github_id": 6729608,
+      "title": "Optimización de consultas SQL",
+      "description": "Aprende a optimizar consultas SQL para bases de datos grandes",
+      "url": "http://localhost/recurso/15",
+      "create_at": "15 julio de 2022",
+      "update_at": "18 julio de 2022",
+      "category": "BBDD",
+      "theme": "Consultas",
+      "type": "Cursos"
+    },
+    {
+      "id": 9,
+      "github_id": 6729608,
+      "title": "Optimización de consultas SQL",
+      "description": "Aprende a optimizar consultas SQL para bases de datos grandes",
+      "url": "http://localhost/recurso/15",
+      "create_at": "15 julio de 2022",
+      "update_at": "18 julio de 2022",
+      "category": "BBDD",
+      "theme": "Consultas",
+      "type": "Cursos",
+      "votes": 34
     }
   ]
 }

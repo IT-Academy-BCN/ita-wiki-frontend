@@ -10,6 +10,7 @@ const moockResources = moock.resources.map(
       update_at: "2025-02-25 00:00:00",
     }) as IntResource,
 );
+
 const getResources = async (): Promise<IntResource[]> => {
   const controller = new AbortController();
   const signal = controller.signal;

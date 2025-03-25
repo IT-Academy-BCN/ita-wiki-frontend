@@ -9,12 +9,22 @@ import dataScience from "./assets/svg/data-science.svg";
 import bbdd from "./assets/svg/bbdd.svg";
 import close from "./assets/svg/close.svg";
 
-type EndPoints = "resources/" | "users/lists" | "roles/";
+type EndPoints =
+  | "resources/"
+  | "users/lists"
+  | "roles/"
+  | "bookmarks/"
+  | "bookmarks";
 
 const END_POINTS = {
   resources: {
     lists: "resources/" as EndPoints,
     post: "resources/" as EndPoints,
+  },
+  bookmarks: {
+    get: "bookmarks/" as EndPoints,
+    post: "bookmarks" as EndPoints,
+    delete: "bookmarks" as EndPoints,
   },
   roles: {
     lists: "users/user-signedin-as?github_id=" as EndPoints,
