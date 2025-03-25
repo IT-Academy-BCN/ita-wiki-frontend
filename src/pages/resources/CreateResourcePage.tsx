@@ -1,15 +1,19 @@
-import { IntResource } from "../types";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { resourceSchema } from "../validations/resourceSchema";
-import FormInput from "../components/FormInput";
-import { createResource } from "../api/endPointResources";
+
+
 import { toast } from "sonner";
-import ButtonComponent from "../components/atoms/ButtonComponent";
-import { categories } from "../data/categories";
-import { themes } from "../data/themes";
-import { useUser } from "./hooks/user/useUser";
-import { Main } from "../layouts/Main";
+import { useUser } from "../../hooks/user/useUser";
+import { IntResource } from "../../types";
+import { createResource } from "../../api/endPointResources";
+import ButtonComponent from "../../components/atoms/ButtonComponent";
+import FormInput from "../../components/FormInput";
+import { categories } from "../../data/categories";
+import { themes } from "../../data/themes";
+import { Main } from "../../layouts/Main";
+import { resourceSchema } from "../../validations/resourceSchema";
+
 
 export default function CreateResourcePage() {
   const { user } = useUser();
