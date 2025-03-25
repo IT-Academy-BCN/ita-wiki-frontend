@@ -22,9 +22,9 @@ const App: FC = () => {
         <LeftSideBar>
           <AsideComponent />
         </LeftSideBar>
-
-        <Suspense fallback={<Loading />}>
-
+      </ResourcesCtxProvider>
+      <Suspense fallback={<Loading />}>
+        <ResourcesCtxProvider>
           <Routes>
             <Route path="/" element={<ITAcademy />} />
             <Route path="/resources" element={<ResourcesPage />} >
@@ -34,9 +34,9 @@ const App: FC = () => {
             </Route>
             <Route path="*" element={<PageNotFound label={`404 - Page Not Found`} />} />
           </Routes>
+        </ResourcesCtxProvider>
+      </Suspense>
 
-        </Suspense>
-      </ResourcesCtxProvider>
     </Layout>
   );
 };

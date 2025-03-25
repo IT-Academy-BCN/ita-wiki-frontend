@@ -9,7 +9,7 @@ import { PropsContexGLobal } from "./context/types";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-vi.mock("./pages/HomePage", async () => {
+vi.mock("./pages/ITAcademy", async () => {
   await delay(150);
   return {
     default: () => <div>¡Bienvenid@ a la wiki de la IT Academy!</div>,
@@ -45,7 +45,10 @@ describe("Lazy y Suspense con rutas", () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText(/¡Bienvenid@ a la wiki de la IT Academy!/i),
+        screen.getByText((content) =>
+          // Normalizamos quitando espacios para evitar divisiones del texto
+          content.replace(/\s/g, "").includes("¡Bienvenid@")
+        ),
       ).toBeInTheDocument();
     });
   });
