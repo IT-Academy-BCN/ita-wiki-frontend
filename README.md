@@ -169,5 +169,3 @@ npm run test
 ## Contribuciones
 
 Las contribuciones son bienvenidas. Realiza un fork, crea tu rama con los cambios y envía un pull request.
-
-[URL del analisis de ChatGPT 4o](https://chatgpt.com/share/67e20c6a-21cc-8004-aebb-ae33bd543d63)
