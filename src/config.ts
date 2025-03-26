@@ -45,9 +45,9 @@ const ICONS = {
 
 const ROLE_PERMISSIONS = {
   superadmin: ["superadmin", "admin", "mentor"],
-  admin: ["superadmin", "admin"],
+  admin: ["admin", "mentor"],
   mentor: ["mentor"],
-  user: ["student", "anoymous"],
+  user: ["student", "anonymous"],
 };
 
 export { API_URL, END_POINTS, ICONS, ROLE_PERMISSIONS };

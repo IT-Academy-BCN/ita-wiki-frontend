@@ -1,10 +1,11 @@
-import { FC } from "react";
+import { FC, Suspense } from "react";
 import { ListResources } from "../../components/resources/ListResources";
 import { useGlobalCtx } from "../../hooks/useGlobalCtx";
 import Content from "../../layouts/Content";
 import { Main } from "../../layouts/Main";
 import RightSideBar from "../../layouts/RightSideBar";
 import { useGetResources } from "../../hooks/resources/useGetResources";
+import Loading from "../../components/Loading";
 
 const ResourcesPage: FC = () => {
   const { isLoading, apiResources } = useGetResources();
@@ -16,21 +17,23 @@ const ResourcesPage: FC = () => {
   };
 
   return (
-    <Main>
-      <Content>
-        <section
-          className={`${isDesktop && classList.desktop} ${isTablet ? classList.tablet : classList.mobile}`}
-        >
-          {isLoading ? (
-            <div>Obteniendo los recursos...</div>
-          ) : (
-            <ListResources />
-          )}
-        </section>
-      </Content>
+    <Suspense fallback={<Loading />}>
+      <Main>
+        <Content>
+          <section
+            className={`${isDesktop && classList.desktop} ${isTablet ? classList.tablet : classList.mobile}`}
+          >
+            {isLoading ? (
+              <div>Obteniendo los recursos...</div>
+            ) : (
+              <ListResources />
+            )}
+          </section>
+        </Content>
 
-      <RightSideBar resources={apiResources} />
-    </Main>
+        <RightSideBar resources={apiResources} />
+      </Main>
+    </Suspense>
   );
 };
 

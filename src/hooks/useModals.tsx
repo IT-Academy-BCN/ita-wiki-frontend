@@ -8,6 +8,7 @@ export interface ModalState {
   closeModal: (modal: TypModalKey) => void;
   openModal: (modal: TypModalKey) => void;
   isModalOpen: (modal: TypModalKey) => boolean;
+  resetAllModals: () => void;
 }
 
 export const useModals = () => {
@@ -33,6 +34,15 @@ export const useModals = () => {
     return modals[modal];
   };
 
+  const resetAllModals = () => {
+    setModals({
+      addUser: false,
+      addResource: false,
+      access: false,
+    });
+  };
+
+
   const isAnyModalOpen = Object.values(modals).some((modal) => modal);
 
   return {
@@ -42,5 +52,6 @@ export const useModals = () => {
     closeModal,
     openModal,
     isModalOpen,
+    resetAllModals
   } as ModalState;
 };

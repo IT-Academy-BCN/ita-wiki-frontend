@@ -9,9 +9,11 @@ interface Props {
 
 const ResourcesCtxProvider: FC<Props> = ({ children }) => {
   const value = {
-    ...useResourceFilter()
-  } as PropsContextResources
-  return <ResourcesCtx.Provider value={value}>{children}</ResourcesCtx.Provider>;
+    ...useResourceFilter(),
+  } as PropsContextResources;
+  return (
+    <ResourcesCtx.Provider value={value}>{children}</ResourcesCtx.Provider>
+  );
 };
 
 export default ResourcesCtxProvider;

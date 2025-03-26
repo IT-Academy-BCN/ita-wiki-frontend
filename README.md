@@ -5,15 +5,18 @@ Este proyecto es una aplicación web construida con React y TypeScript. Su objet
 ## Características Principales
 
 - **Autenticación y roles:**
+
   - Inicio de sesión mediante GitHub OAuth con Firebase Auth.
   - Gestión de usuarios por roles: estudiante, mentor, administrador, superadmin.
 
 - **Gestión de recursos:**
+
   - Creación, edición y visualización dinámica de recursos educativos (vídeos, cursos, blogs).
   - Filtrado por categoría, tema y tipo de recurso.
   - Panel de "Lista de Lectura" personalizada.
 
 - **Interfaz dinámica:**
+
   - Diseño adaptable (responsive) con Tailwind CSS.
   - Componentes reutilizables y hooks personalizados para una arquitectura limpia.
   - Validaciones robustas con Zod y manejo de formularios con react-hook-form.
@@ -134,7 +137,7 @@ npm install
 ```
 
 3. Configura variables de entorno:
-Copia `.env.example` a `.env` y rellena con tus credenciales:
+   Copia `.env.example` a `.env` y rellena con tus credenciales:
 
 ```bash
 VITE_API_URL=<url-backend>

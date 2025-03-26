@@ -36,10 +36,7 @@ describe("ListResources Component", () => {
   it("should render the component and display the correct title", () => {
     render(
       <MemoryRouter>
-        <ListResources
-          resources={moockResources}
-          category={EnuResourcesCategories.All}
-        />
+        <ListResources />
       </MemoryRouter>,
     );
 

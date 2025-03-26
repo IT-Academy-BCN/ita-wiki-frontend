@@ -10,6 +10,7 @@ vi.mock("react-router", () => ({
 }));
 
 import { useParams, useSearchParams } from "react-router";
+import { EnuResourcesCategories, EnuResourceThemes, EnuResourceTypes } from "../../../enums";
 
 describe("useResourceFilter", () => {
   const mockThemes = ["Todos", "Componentes", "UseState & UseEffect"] as const;
@@ -22,9 +23,9 @@ describe("useResourceFilter", () => {
       title: "React Basics",
       description: "Learn React basics",
       url: "https://example.com/react",
-      category: "React",
-      theme: "Componentes",
-      type: "Video",
+      category: "React" as EnuResourcesCategories,
+      theme: "Componentes" as EnuResourceThemes,
+      type: "Video" as EnuResourceTypes,
       votes: 10,
     },
     {
@@ -33,9 +34,9 @@ describe("useResourceFilter", () => {
       title: "Advanced Hooks",
       description: "Advanced React hooks usage",
       url: "https://example.com/hooks",
-      category: "React",
-      theme: "UseState & UseEffect",
-      type: "Blog",
+      category: "React" as EnuResourcesCategories,
+      theme: "UseState & UseEffect" as EnuResourceThemes,
+      type: "Blog" as EnuResourceTypes,
       votes: 20,
     },
     {
@@ -44,9 +45,9 @@ describe("useResourceFilter", () => {
       title: "Angular Introduction",
       description: "Intro to Angular",
       url: "https://example.com/angular",
-      category: "Angular",
-      theme: "Componentes",
-      type: "Cursos",
+      category: "Angular" as EnuResourcesCategories,
+      theme: "Componentes" as EnuResourceThemes,
+      type: "Cursos" as EnuResourceTypes,
       votes: 15,
     },
   ];

@@ -4,14 +4,9 @@ import { Resource } from "./Resource";
 import { useResourceCtx } from "../../hooks/resources/useResourcesCtx";
 import { FilterResources } from "./FilterResources";
 
-
 export const ListResources: FC = () => {
-  const {
-    filteredResources,
-    toggleFilter,
-    showFilters,
-    filters
-  } = useResourceCtx();
+  const { filteredResources, toggleFilter, showFilters, filters } =
+    useResourceCtx();
 
   return (
     filteredResources && (

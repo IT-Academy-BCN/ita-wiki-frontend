@@ -3,18 +3,14 @@ import { Main } from "../../layouts/Main";
 import Content from "../../layouts/Content";
 import { Outlet } from "react-router";
 
-import ResourceCtxProvider from "../../context/providers/ResourcesCtxProvider";
 const LayoutResource: FC = () => {
   return (
-    <ResourceCtxProvider>
-      <Main>
-        <Content>s
-          <Outlet />
-        </Content>
-      </Main>
-    </ResourceCtxProvider>
-  )
-}
-
+    <Main>
+      <Content>
+        <Outlet />
+      </Content>
+    </Main>
+  );
+};
 
 export default LayoutResource;

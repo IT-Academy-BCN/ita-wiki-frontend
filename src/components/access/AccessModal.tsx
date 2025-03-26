@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { Modal } from "../Modal/Modal";
 
 interface AccessModalProps {
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 const AccessModal: FC<AccessModalProps> = () => {
   return <Modal />;

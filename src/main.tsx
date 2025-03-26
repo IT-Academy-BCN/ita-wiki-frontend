@@ -7,6 +7,7 @@ import UserCtxProvider from "./context/providers/UserCtxProvider";
 import GlobalCtxProvider from "./context/providers/GlobalCtxProvider";
 import CustomToaster from "./components/CustomToaster";
 
+import ResourcesCtxProvider from "./context/providers/ResourcesCtxProvider";
 const app = createRoot(document.getElementById("root")!);
 
 app.render(
@@ -14,11 +15,12 @@ app.render(
     <GlobalCtxProvider>
       <UserCtxProvider>
         <BrowserRouter>
-          <CustomToaster />
-          <App />
-          <CustomToaster />
+          <ResourcesCtxProvider>
+            <App />
+          </ResourcesCtxProvider>
         </BrowserRouter>
+        <CustomToaster />
       </UserCtxProvider>
     </GlobalCtxProvider>
-  </StrictMode>,
+  </StrictMode >,
 );

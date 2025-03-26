@@ -5,7 +5,11 @@ import { AccessProps } from "../hooks/useAccess";
 import { AccessModalProps } from "../components/access/useAccessModal";
 import { UseUserRol } from "../hooks/user/useUser";
 import { ModalState } from "../hooks/useModals";
-import { EnuResourcesCategories, EnuResourceThemes, EnuResourceTypes } from "../enums";
+import {
+  EnuResourcesCategories,
+  EnuResourceThemes,
+  EnuResourceTypes,
+} from "../enums";
 
 export interface PropsContextUser extends UseUserRol {
   user: IntUser;
@@ -21,7 +25,6 @@ export interface PropsContexGLobal
   AccessProps,
   AccessModalProps,
   ModalState { }
-
 
 export interface PropsContextResources {
   showFilters: boolean;
@@ -42,4 +45,5 @@ export interface PropsContextResources {
   resetTheme: () => void;
   updateFilterURL: () => void;
   toggleResourceType: (resourceType: EnuResourceTypes) => void;
+  fetchResources: () => Promise<void>;
 }

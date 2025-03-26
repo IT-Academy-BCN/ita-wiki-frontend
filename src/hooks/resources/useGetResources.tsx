@@ -11,7 +11,6 @@ interface IUseGetReources {
 }
 
 export const useGetResources = (): IUseGetReources => {
-
   const [apiResources, setApiResources] = useState<IntResource[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -46,6 +45,6 @@ export const useGetResources = (): IUseGetReources => {
     isLoading,
     apiResources,
     setRources,
-    handlerSetLaoding
-  }
-}
+    handlerSetLaoding,
+  };
+};

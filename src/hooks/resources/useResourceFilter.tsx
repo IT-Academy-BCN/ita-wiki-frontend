@@ -1,21 +1,31 @@
 import { useState, useMemo, useEffect } from "react";
 import { useGetResources } from "./useGetResources";
-import { EnuResourcesCategories, EnuResourceThemes, EnuResourceTypes } from "../../enums";
+import {
+  EnuResourcesCategories,
+  EnuResourceThemes,
+  EnuResourceTypes,
+} from "../../enums";
 import { PropsContextResources } from "../../context/types";
 
 export const useResourceFilter = () => {
   const { apiResources } = useGetResources();
   const [showFilters, setShowFilters] = useState<boolean>(false);
-  const [category, setResourceCategory] = useState<EnuResourcesCategories>(EnuResourcesCategories.All);
-  const [selectedType, setSelectedType] = useState<EnuResourceTypes | null>(null);
-  const [selectedTheme, setSelectedTheme] = useState<EnuResourceThemes>(EnuResourceThemes.All);
+  const [category, setResourceCategory] = useState<EnuResourcesCategories>(
+    EnuResourcesCategories.All,
+  );
+  const [selectedType, setSelectedType] = useState<EnuResourceTypes | null>(
+    null,
+  );
+  const [selectedTheme, setSelectedTheme] = useState<EnuResourceThemes>(
+    EnuResourceThemes.All,
+  );
   const [selectedTypes, setSelectedTypes] = useState<EnuResourceTypes[]>([]);
 
   const [filters, setFilters] = useState({
     category: [category],
     theme: EnuResourceThemes.All,
     type: EnuResourceTypes.Blog,
-  })
+  });
 
   const selectTheme = (theme: EnuResourceThemes) => {
     setFilters((prev) => ({
@@ -67,8 +77,10 @@ export const useResourceFilter = () => {
     } else {
       setSelectedTypes(
         selectedTypes.includes(resourceType)
-          ? selectedTypes.filter((rType: EnuResourceTypes) => rType !== resourceType)
-          : [...selectedTypes, resourceType]
+          ? selectedTypes.filter(
+            (rType: EnuResourceTypes) => rType !== resourceType,
+          )
+          : [...selectedTypes, resourceType],
       );
     }
   };
@@ -84,7 +96,8 @@ export const useResourceFilter = () => {
       params.set("theme", filters.theme);
     }
     const queryString = params.toString();
-    const newUrl = window.location.pathname + (queryString ? "?" + queryString : "");
+    const newUrl =
+      window.location.pathname + (queryString ? "?" + queryString : "");
     window.history.replaceState({}, "", newUrl);
   };
 
@@ -94,7 +107,11 @@ export const useResourceFilter = () => {
   }, [filters, selectedTypes]);
 
   const filteredResources = useMemo(() => {
-    if (filters.category.includes(EnuResourcesCategories.All) && filters.theme === EnuResourceThemes.All && filters.type === null) {
+    if (
+      filters.category.includes(EnuResourcesCategories.All) &&
+      filters.theme === EnuResourceThemes.All &&
+      filters.type === null
+    ) {
       return apiResources;
     }
     const clone = structuredClone(apiResources);
@@ -103,7 +120,9 @@ export const useResourceFilter = () => {
       if (filters.category.includes(EnuResourcesCategories.All)) {
         return true;
       }
-      return filters.category.includes(resource.category as EnuResourcesCategories);
+      return filters.category.includes(
+        resource.category as EnuResourcesCategories,
+      );
     });
     const themeFilter = categoryFilter.filter((resource) => {
       if (filters.theme === EnuResourceThemes.All) {
@@ -117,7 +136,7 @@ export const useResourceFilter = () => {
       }
       return resource.type === filters.type;
     });
-    // 
+    //
     const resourceTypeFilter = typeFilter.filter((resource) => {
       if (selectedTypes.length === 0) {
         return true;
@@ -125,7 +144,13 @@ export const useResourceFilter = () => {
       return selectedTypes.includes(resource.type as EnuResourceTypes);
     });
     return resourceTypeFilter;
-  }, [apiResources, filters.category, filters.theme, filters.type, selectedTypes]);
+  }, [
+    apiResources,
+    filters.category,
+    filters.theme,
+    filters.type,
+    selectedTypes,
+  ]);
 
   return {
     showFilters,
@@ -141,6 +166,6 @@ export const useResourceFilter = () => {
     closeFilter,
     resetTheme,
     updateFilterURL,
-    toggleResourceType
-  } as PropsContextResources
+    toggleResourceType,
+  } as PropsContextResources;
 };

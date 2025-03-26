@@ -1,6 +1,7 @@
 import { renderHook, act } from "@testing-library/react";
 import { useResourceSort } from "../../../hooks/useResourceSort";
 import { IntResource } from "../../../types";
+import { EnuResourcesCategories, EnuResourceThemes, EnuResourceTypes } from "../../../enums";
 
 describe("useResourceSort hook", () => {
   const resources: IntResource[] = [
@@ -12,9 +13,9 @@ describe("useResourceSort hook", () => {
       github_id: 123456,
       description: "Description 1",
       url: "https://example.com/resource1",
-      category: "React",
-      theme: "JavaScript",
-      type: "Blog",
+      category: "React" as EnuResourcesCategories,
+      theme: "JavaScript" as EnuResourceThemes,
+      type: "Blog" as EnuResourceTypes,
     },
     {
       id: 2,
@@ -24,9 +25,9 @@ describe("useResourceSort hook", () => {
       github_id: 123457,
       description: "Description 2",
       url: "https://example.com/resource2",
-      category: "Node",
-      theme: "Backend",
-      type: "Video",
+      category: "Node" as EnuResourcesCategories,
+      theme: "Backend" as EnuResourceThemes,
+      type: "Video" as EnuResourceTypes,
     },
     {
       id: 3,
@@ -36,9 +37,9 @@ describe("useResourceSort hook", () => {
       github_id: 123458,
       description: "Description 3",
       url: "https://example.com/resource3",
-      category: "Angular",
-      theme: "Frontend",
-      type: "Blog",
+      category: "Angular" as EnuResourcesCategories,
+      theme: "Frontend" as EnuResourceThemes,
+      type: "Blog" as EnuResourceTypes,
     },
   ];
 

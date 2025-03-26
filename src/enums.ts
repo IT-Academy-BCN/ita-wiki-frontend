@@ -17,7 +17,6 @@ export enum EnuResourceTypes {
   Video = "Video",
   Cursos = "Cursos",
   Blog = "Blog",
-
 }
 
 export enum EnuResourcesCategories {
