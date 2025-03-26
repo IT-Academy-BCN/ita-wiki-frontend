@@ -1,14 +1,12 @@
 import { createContext } from "react";
-import { IntUser } from "../types";
-export interface PropsContext {
-  user: IntUser;
-  saveUser: (user: IntUser) => void;
-  signIn: () => void;
-  signOut: () => void;
-  error: string | null;
-  setError: (error: string | null) => void;
-}
+import {
+  PropsContexGLobal,
+  PropsContextUser,
+  PropsContextResources,
+} from "./types";
 
-const CtxUser = createContext<PropsContext | null>(null);
+const CtxUser = createContext<PropsContextUser | null>(null);
+const CtxGLobal = createContext<PropsContexGLobal | null>(null);
+const ResourcesCtx = createContext<PropsContextResources | null>(null);
 
-export default CtxUser;
+export { CtxUser, CtxGLobal, ResourcesCtx };

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, ChangeEvent } from "react";
 import { useState, useEffect } from "react";
 import searchIcon from "../../../assets/search.svg";
 
@@ -14,7 +14,7 @@ const SearchComponent: FC<SearchComponentProps> = ({
   resetTrigger,
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchTerm(value);
     onSearch(value);

@@ -2,9 +2,9 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import { ListResources } from "../ListResources";
 import moock from "../../../moock/resources.json";
-import { categories } from "../../../data/categories";
 import { IntResource } from "../../../types";
 import { describe, it, expect, vi } from "vitest";
+import { EnuResourcesCategories } from "../../../enums";
 
 vi.mock("../../../hooks/useResourceFilter", () => ({
   useResourceFilter: () => ({
@@ -32,31 +32,17 @@ const moockResources = moock.resources.map(
     }) as IntResource,
 );
 
-const category = Object.keys(categories)[0] as keyof typeof categories;
-
 describe("ListResources Component", () => {
   it("should render the component and display the correct title", () => {
     render(
       <MemoryRouter>
-        <ListResources resources={moockResources} category={category} />
+        <ListResources />
       </MemoryRouter>,
     );
 
-    const titleElement = screen.getByText(`Recursos ${String(category)}`);
+    const titleElement = screen.getByText(
+      `Recursos ${EnuResourcesCategories.All}`,
+    );
     expect(titleElement.tagName).toBe("H2");
-  });
-
-  it("should render user's own resources when user logged in and own resources present", () => {
-    const userResources = moockResources.map((resource) => ({
-      ...resource,
-      github_id: 123463,
-    }));
-
-    render(
-      <MemoryRouter>
-        <ListResources resources={userResources} category={category} />
-      </MemoryRouter>,
-    );
-    expect(screen.queryByTestId("my-resources-container")).toBeInTheDocument();
   });
 });

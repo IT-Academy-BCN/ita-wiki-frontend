@@ -1,3 +1,5 @@
+import { IntResource, IntUser } from "../types";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const getUserRole = async (githubId: number): Promise<string> => {
@@ -26,3 +28,11 @@ export const getUserRole = async (githubId: number): Promise<string> => {
     throw new Error("Something went wrong, sis. Please, try again 👾");
   }
 };
+
+export const getPersonalResources = (
+  user: IntUser,
+  resources: IntResource[],
+): IntResource[] =>
+  user
+    ? resources.filter((resource) => resource.github_id === Number(user.id))
+    : [];

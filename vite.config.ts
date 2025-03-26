@@ -6,18 +6,6 @@ import tailwindcss from "@tailwindcss/vite";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  test: {
-    environment: "jsdom",
-    setupFiles: "./src/setupTest.ts",
-    outputFile: "json",
-    globals: true,
-    coverage: {
-      enabled: true,
-      provider: "v8",
-      cleanOnRerun: true,
-    },
-    css: true,
-  },
   resolve: {
     alias: {
       "@": path.resolve("./src"),

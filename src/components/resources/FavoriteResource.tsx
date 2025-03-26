@@ -1,6 +1,6 @@
 import { FC } from "react";
-import heart from "../../assets/heart.svg";
-import edit from "../../assets/edit.svg";
+import heart from "../../assets/svg/heart.svg";
+import edit from "../../assets/svg/edit.svg";
 interface FavoriteResourceProps {
   favorite: boolean;
 }

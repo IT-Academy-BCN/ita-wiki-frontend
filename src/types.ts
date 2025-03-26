@@ -1,15 +1,13 @@
 import { ReactNode } from "react";
-import { categories } from "./data/categories";
-import { themes } from "./data/themes";
-import { resourceTypes } from "./data/resourceTypes";
 
-export type Category = (typeof categories)[number];
-export type Theme = (typeof themes)[number];
-export type ResourceType = (typeof resourceTypes)[number];
+import {
+  EnuResourcesCategories,
+  EnuResourceThemes,
+  EnuResourceTypes,
+} from "./enums";
 
-export type TypChildren = {
-  children?: ReactNode;
-};
+export type TypModalKey = "addUser" | "addResource" | "access";
+export type TypChildren = { children?: ReactNode };
 
 export interface IntUser {
   id: number;
@@ -25,11 +23,11 @@ export interface IntResource {
   title: string;
   description: string;
   url: string;
-  create_at?: Date | string;
-  update_at?: Date | string;
-  category: Category;
-  theme: Theme;
-  type: ResourceType;
+  create_at?: string;
+  update_at?: string;
+  category: EnuResourcesCategories;
+  theme: EnuResourceThemes;
+  type: EnuResourceTypes;
 }
 
 export type TypTechnologyResource =
@@ -44,6 +42,25 @@ export type TypTechnologyResource =
   | "BBDD";
 
 export type SortOption = "recent" | "oldest" | "year" | "votes";
+
+export interface Bookmark {
+  id: number;
+  github_id: number;
+  resource_id: number;
+  created_at: string;
+  updated_at: string;
+}
+export interface Message {
+  message: string;
+}
+
+export interface IntBookmarkElement {
+  id: number;
+  github_id: number;
+  title: string;
+  description: string;
+  url: string;
+}
 
 export interface Bookmark {
   id: number;
