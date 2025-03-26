@@ -5,7 +5,11 @@ import { IntResource, IntBookmarkElement } from "../../../types";
 import { useGetBookmarksList } from "../../../hooks/useBookmarks";
 import { describe, it, expect, vi } from "vitest";
 import { Mock } from "vitest";
-import { EnuResourcesCategories, EnuResourceThemes, EnuResourceTypes } from "../../../enums";
+import {
+  EnuResourcesCategories,
+  EnuResourceThemes,
+  EnuResourceTypes,
+} from "../../../enums";
 
 // Mock del hook useGetBookmarksList
 vi.mock("../../../hooks/useBookmarks", () => ({
@@ -44,7 +48,6 @@ describe("BookMarkList Component", () => {
       category: "React" as EnuResourcesCategories,
       theme: "All" as EnuResourceThemes,
       type: "Cursos" as EnuResourceTypes,
-
     },
   ];
 

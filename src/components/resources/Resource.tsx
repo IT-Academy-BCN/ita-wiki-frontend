@@ -41,9 +41,7 @@ export const Resource: FC<ResourceProps> = ({ resource }) => {
           />
           {`,`}
           <span className="text-[#808080] font-bold">
-            {resource.create_at
-              ? resource.create_at
-              : resource.create_at}
+            {resource.create_at ? resource.create_at : resource.create_at}
           </span>{" "}
         </>
       </FooterResource>

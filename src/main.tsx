@@ -22,5 +22,5 @@ app.render(
         <CustomToaster />
       </UserCtxProvider>
     </GlobalCtxProvider>
-  </StrictMode >,
+  </StrictMode>,
 );

@@ -21,10 +21,10 @@ export interface PropsContextUser extends UseUserRol {
 }
 export interface PropsContexGLobal
   extends IUseResize,
-  IntUseMainMenu,
-  AccessProps,
-  AccessModalProps,
-  ModalState { }
+    IntUseMainMenu,
+    AccessProps,
+    AccessModalProps,
+    ModalState {}
 
 export interface PropsContextResources {
   showFilters: boolean;

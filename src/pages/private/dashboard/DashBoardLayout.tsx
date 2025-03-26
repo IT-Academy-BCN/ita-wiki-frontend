@@ -56,5 +56,5 @@ const DashBoard: FC = () => {
       </div>
     </Suspense>
   );
-}
+};
 export default DashBoard;

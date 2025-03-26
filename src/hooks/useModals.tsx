@@ -42,7 +42,6 @@ export const useModals = () => {
     });
   };
 
-
   const isAnyModalOpen = Object.values(modals).some((modal) => modal);
 
   return {
@@ -52,6 +51,6 @@ export const useModals = () => {
     closeModal,
     openModal,
     isModalOpen,
-    resetAllModals
+    resetAllModals,
   } as ModalState;
 };

@@ -78,8 +78,8 @@ export const useResourceFilter = () => {
       setSelectedTypes(
         selectedTypes.includes(resourceType)
           ? selectedTypes.filter(
-            (rType: EnuResourceTypes) => rType !== resourceType,
-          )
+              (rType: EnuResourceTypes) => rType !== resourceType,
+            )
           : [...selectedTypes, resourceType],
       );
     }

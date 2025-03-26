@@ -10,7 +10,11 @@ vi.mock("react-router", () => ({
 }));
 
 import { useParams, useSearchParams } from "react-router";
-import { EnuResourcesCategories, EnuResourceThemes, EnuResourceTypes } from "../../../enums";
+import {
+  EnuResourcesCategories,
+  EnuResourceThemes,
+  EnuResourceTypes,
+} from "../../../enums";
 
 describe("useResourceFilter", () => {
   const mockThemes = ["Todos", "Componentes", "UseState & UseEffect"] as const;

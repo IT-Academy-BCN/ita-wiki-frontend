@@ -32,7 +32,7 @@ vi.mock("./pages/resources/CreateResourcePage", async () => {
 
 const dummyGlobal = {
   theme: "light",
-  toggleTheme: () => { },
+  toggleTheme: () => {},
   isModalOpen: vi.fn(() => false),
   openModal: vi.fn(() => true),
 } as unknown as PropsContexGLobal;
@@ -59,7 +59,9 @@ describe("Lazy y Suspense con rutas", () => {
     // Se comprueba que el fallback Loading se muestre inicialmente.
     expect(screen.getByText(/Loading/i)).toBeInTheDocument();
     // Se espera que el contenido lazy se renderice posteriormente.
-    const bienvenida = await screen.findByText(/¡Bienvenid@ a la wiki de la IT Academy!/i);
+    const bienvenida = await screen.findByText(
+      /¡Bienvenid@ a la wiki de la IT Academy!/i,
+    );
     expect(bienvenida).toBeInTheDocument();
   });
 
@@ -90,7 +92,7 @@ describe("Lazy y Suspense con rutas", () => {
             <App />
           </MemoryRouter>
         </UserCtxProvider>
-      </DummyGlobalProvider>
+      </DummyGlobalProvider>,
     );
     expect(screen.getByText(/Loading/i)).toBeInTheDocument();
     const resources = await screen.findByText(/Página de Resources/i);
@@ -106,10 +108,12 @@ describe("Lazy y Suspense con rutas", () => {
             <App />
           </MemoryRouter>
         </UserCtxProvider>
-      </DummyGlobalProvider>
+      </DummyGlobalProvider>,
     );
     expect(screen.getByText(/Loading/i)).toBeInTheDocument();
-    const createResource = await screen.findByText(/Página de creación de recurso/i);
+    const createResource = await screen.findByText(
+      /Página de creación de recurso/i,
+    );
     expect(createResource).toBeInTheDocument();
   });
 
@@ -122,10 +126,12 @@ describe("Lazy y Suspense con rutas", () => {
             <App />
           </MemoryRouter>
         </UserCtxProvider>
-      </DummyGlobalProvider>
+      </DummyGlobalProvider>,
     );
     expect(screen.getByText(/Loading/i)).toBeInTheDocument();
-    const resourceNotFound = await screen.findByText(/Upps! Recurso no encotrado, etc .../i);
+    const resourceNotFound = await screen.findByText(
+      /Upps! Recurso no encotrado, etc .../i,
+    );
     expect(resourceNotFound).toBeInTheDocument();
   });
 });

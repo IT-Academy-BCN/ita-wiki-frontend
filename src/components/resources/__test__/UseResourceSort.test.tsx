@@ -1,7 +1,11 @@
 import { renderHook, act } from "@testing-library/react";
 import { useResourceSort } from "../../../hooks/useResourceSort";
 import { IntResource } from "../../../types";
-import { EnuResourcesCategories, EnuResourceThemes, EnuResourceTypes } from "../../../enums";
+import {
+  EnuResourcesCategories,
+  EnuResourceThemes,
+  EnuResourceTypes,
+} from "../../../enums";
 
 describe("useResourceSort hook", () => {
   const resources: IntResource[] = [

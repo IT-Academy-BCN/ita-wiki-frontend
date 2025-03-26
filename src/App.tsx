@@ -39,8 +39,6 @@ const App: FC = () => {
           element={<PageNotFound label={`404 - Page Not Found`} />}
         />
       </Routes>
-
-
     </Layout>
   );
 };
