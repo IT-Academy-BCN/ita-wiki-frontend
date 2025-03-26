@@ -3,17 +3,14 @@ import { getRole } from "../../../api/endPointRoles";
 import { useUserCtx } from "../../../hooks/user/useUserCtx";
 import ButtonComponent from "../../../components/atoms/ButtonComponent";
 import { AddUsersModal } from "../../../components/resources/AddUserModal";
-import { useRedirectTo } from "../../../hooks/useRedirectTo";
 import Loading from "../../../components/Loading";
+import { useNavigate } from "react-router";
 
 const DashBoard: FC = () => {
-  const { goTo } = useRedirectTo();
+  const goTo = useNavigate();
   const { user } = useUserCtx();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userRole, setUserRole] = useState<string | null>(null);
-  const hasPermission = userRole
-    ? ["superadmin", "admin", "mentor"].includes(userRole)
-    : false;
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -34,7 +31,12 @@ const DashBoard: FC = () => {
     if (user.role! !== "admin") {
       goTo("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
+
+  const hasPermission = userRole
+    ? ["superadmin", "admin", "mentor"].includes(userRole)
+    : false;
 
   return (
     <Suspense fallback={<Loading />}>
