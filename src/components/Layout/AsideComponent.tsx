@@ -30,7 +30,7 @@ const AsideComponent = () => {
           <li key={index} className="flex items-center space-x-3">
             <img src={item.icon} alt={item.label} className="w-6 h-6" />
             <Link to={`/resources/${item.label}`}>
-              {currentPath === `/resources/${item.label}`
+              {currentPath === `/resources/${encodeURIComponent(item.label)}`
                 ? `• ${item.label}`
                 : item.label}
             </Link>
