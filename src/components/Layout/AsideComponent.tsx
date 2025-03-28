@@ -6,7 +6,7 @@ import java from "../../assets/logo-java 1.svg";
 import php from "../../assets/logo-php 1.svg";
 import dataScience from "../../assets/data-science.svg";
 import bbdd from "../../assets/logo-bbdd 1.svg";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 
 const AsideComponent = () => {
   const asideContent = [
@@ -20,13 +20,20 @@ const AsideComponent = () => {
     { icon: bbdd, label: "BBDD" },
   ];
 
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <aside className="flex p-6 items-center justify-center lg:block lg:w-80 lg:h-screen lg:max-h-[calc(100vh-90px)] lg:mt-36">
       <ul className="space-y-6">
         {asideContent.map((item, index) => (
           <li key={index} className="flex items-center space-x-3">
             <img src={item.icon} alt={item.label} className="w-6 h-6" />
-            <Link to={`/resources/${item.label}`}>{item.label}</Link>
+            <Link to={`/resources/${item.label}`}>
+              {currentPath === `/resources/${encodeURIComponent(item.label)}`
+                ? `• ${item.label}`
+                : item.label}
+            </Link>
           </li>
         ))}
       </ul>
