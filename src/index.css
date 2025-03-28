@@ -23,11 +23,12 @@
 
 a {
   font-weight: 500;
+  color: #1e1e1e;
   text-decoration: inherit;
 }
 
-a.opacity-hover:hover {
-  opacity: 0.7;
+a:hover {
+  color: #b91879;
 }
 
 body {
