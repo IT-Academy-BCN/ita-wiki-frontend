@@ -6,8 +6,11 @@ import { useState, useEffect } from "react";
 import { AddUsersModal } from "../components/resources/AddUserModal";
 import ButtonComponent from "../components/atoms/ButtonComponent";
 import { getUserRole } from "../api/userApi";
+import Card from "../components/ui/Card";
+import { useNavigate } from "react-router";
 
 export default function HomePage() {
+  const navigate = useNavigate();
   const { signOut, user } = useCtxUser();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userRole, setUserRole] = useState<string | null>(null);
@@ -34,19 +37,18 @@ export default function HomePage() {
     ? ["superadmin", "admin", "mentor"].includes(userRole)
     : false;
 
+  const handleNavigate = () => {
+    navigate("/resources/React");
+  };
+
   return (
-    <main className="bg-white rounded-xl p-6 w-full text-center h-[inherit] max-h-[calc(100vh-114px)] overflow-auto">
-      <h1>¡Bienvenid@ a la wiki de la IT Academy!</h1>
+    <main className="bg-white rounded-xl flex flex-col items-center justify-center w-full mx-6 p-10 md:p-6 mb-6 text-center overflow-auto">
+      <h1 className="font-bold text-3xl">
+        ¡Bienvenid@ a la wiki de la IT Academy!
+      </h1>
       <section>
-        <article
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            maxWidth: "375px",
-            padding: "1rem",
-          }}
-        >
-          {user ? (
+        <article className="flex flex-col p-1 my-3">
+          {user && (
             <article
               id={String(user.id)}
               className="flex justify-evenly items-center gap-4 mt-4 py-2 px-4 rounded-md bg-black text-white mx-auto"
@@ -59,18 +61,10 @@ export default function HomePage() {
                 className="rounded-full border-2 border-white"
               />
               <div className="flex flex-col divide-y-2">
-                <small
-                  className="font-bold"
-                  style={{ textTransform: "uppercase" }}
-                >
+                <small className="font-bold uppercase">
                   {user.displayName}
                 </small>
-                <small
-                  className="font-bold"
-                  style={{ textTransform: "uppercase" }}
-                >
-                  {user.role}
-                </small>
+                <small className="font-bold uppercase">{user.role}</small>
               </div>
               <button
                 className="bg-white text-red-500 text-sm font-bold active:scale-95 py-1 px-4 rounded-sm border-2 border-black"
@@ -80,8 +74,6 @@ export default function HomePage() {
                 Exit
               </button>
             </article>
-          ) : (
-            <div></div>
           )}
 
           {hasPermission && (
@@ -91,27 +83,37 @@ export default function HomePage() {
           )}
         </article>
         <div>
-          <div>
-            <h2>Funcionalidades básicas que te ofrece esta plataforma:</h2>
-            <section className="w-full flex justify-between">
-              <div>
-                <span>/1</span>
-                <img src={folder} alt="folder" width={100} height={100} />
-                <h3>Guarda tus recursos favoritos</h3>
-                <p>Ten tus recursos bien organizados</p>
-              </div>
-              <div>
-                <span>/2</span>
-                <img src={puzzle} alt="puzzle" width={100} height={100} />
-                <h3>Colabora con tus compañer@s</h3>
-                <p>Recursos compartidos</p>
-              </div>
-              <div>
-                <span>/3</span>
-                <img src={ok} alt="ok" width={100} height={100} />
-                <h3>Vota los recursos</h3>
-                <p>La comunidad decide cuáles son más relevantes</p>
-              </div>
+          <div className="w-full flex flex-col items-center justify-center gap-6">
+            <div className="w-42">
+              <ButtonComponent onClick={handleNavigate}>
+                Ver Recursos
+              </ButtonComponent>
+            </div>
+            <h2 className="font-bold">
+              Funcionalidades básicas que te ofrece esta plataforma:
+            </h2>
+            <section className="flex flex-col gap-8 items-center md:items-stretch md:flex-row">
+              <Card
+                number={1}
+                imageSource={folder}
+                imageAlt="folder"
+                title="Guarda tus recursos favoritos"
+                text="Ten tus recursos bien organizados"
+              />
+              <Card
+                number={2}
+                imageSource={puzzle}
+                imageAlt="puzzle"
+                title="Colabora con tus compañer@s"
+                text="Recursos compartidos"
+              />
+              <Card
+                number={3}
+                imageSource={ok}
+                imageAlt="ok"
+                title="Vota los recursos"
+                text="La comunidad decide cuáles son más relevantes"
+              />
             </section>
           </div>
         </div>

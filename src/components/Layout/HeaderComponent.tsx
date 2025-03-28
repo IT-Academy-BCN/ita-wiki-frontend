@@ -1,7 +1,6 @@
 import { Link, useNavigate, useLocation, useSearchParams } from "react-router";
 import logoItAcademy from "../../assets/LogoItAcademy.svg";
 import addIcon from "../../assets/add.svg";
-import settingsIcon from "../../assets/settings.svg";
 import userIcon from "../../assets/user2.svg";
 import ButtonComponent from "../atoms/ButtonComponent";
 import { useCtxUser } from "../../hooks/useCtxUser";
@@ -66,11 +65,11 @@ const HeaderComponent = () => {
   };
 
   return (
-    <header className="hidden lg:flex bg-[#ebebeb] p-6 items-center justify-between">
+    <header className="hidden lg:flex py-4 px-6 items-center justify-between">
       <Link to="/">
         <img src={logoItAcademy} alt="logo" width={"116px"} />
       </Link>
-      <div className="flex">
+      <div className="flex gap-2 items-center">
         <SearchComponent
           onSearch={handleSearch}
           disabled={isSearchDisabled}
@@ -83,17 +82,16 @@ const HeaderComponent = () => {
             onClick={goToResourcesPage}
           />
         )}
-        <div className="flex justify-center items-center mx-2">
+        <div className="flex justify-center items-center">
           <select
             title="lang"
-            className="bg-white py-2 px-4 text-[#808080] rounded-lg border border-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#808080] focus:border-transparent"
+            className="bg-white p-2 text-[#808080] rounded-lg border border-white focus:outline-none focus:ring-2 focus:ring-[#808080] focus:border-transparent"
           >
             <option>ES</option>
             <option>EN</option>
           </select>
         </div>
-        <ButtonComponent icon={settingsIcon} variant="icon" />
-        <div className="mr-[-10px]">
+        <div>
           <ButtonComponent
             icon={userIcon}
             variant="icon"
