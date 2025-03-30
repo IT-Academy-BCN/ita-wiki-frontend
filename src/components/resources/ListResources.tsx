@@ -7,14 +7,14 @@ import { useResourceSort } from "../../hooks/useResourceSort";
 import { Resource } from "./Resource";
 import { FilterResources } from "./FilterResources";
 import { ListMyResources } from "./ListMyResources";
-import SortButton from "./SortButton";
+// import SortButton from "./SortButton";
 
 import { categories } from "../../data/categories";
 import { themes } from "../../data/themes";
 import { resourceTypes } from "../../data/resourceTypes";
 import BookMarkList from "./bookmarks/BookMarkList";
 import SearchComponent from "../Layout/header/SearchComponent";
-import FilterButton from "./FilterButton";
+// import FilterButton from "./FilterButton";
 
 interface ListResourceProps {
   resources: IntResource[];
@@ -28,6 +28,7 @@ export const ListResources: FC<ListResourceProps> = ({
   const [showFilters, setShowFilters] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState("");
   const { user } = useCtxUser();
+  const [showSearch, setShowSearch] = useState(false);
 
   const {
     filteredResources,
@@ -62,6 +63,10 @@ export const ListResources: FC<ListResourceProps> = ({
     resource.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleToggleFilter = () => {
+    setShowSearch((prev) => !prev);
+  };
+
   return (
     resources && (
       <div className="mx-auto w-full grow lg:flex xl:px-2 gap-x-6 sm:bg-white lg:bg-transparent">
@@ -85,15 +90,15 @@ export const ListResources: FC<ListResourceProps> = ({
               <h2 className="text-[26px] font-bold">
                 Recursos {String(category) || ""}
               </h2>
-              <p>🔍 Buscar recurso</p>
+              <button onClick={handleToggleFilter}>🔍 Buscar recurso</button>
 
               {/* Campo de búsqueda de recursos */}
-              <div className="hidden">
+              {showSearch && (
                 <SearchComponent
                   onSearch={(query) => setSearchTerm(query)}
                   disabled={false}
                 />
-              </div>
+              )}
               {/* <SortButton
                 setSortOption={setSortOption}
                 setSelectedYear={setSelectedYear}
