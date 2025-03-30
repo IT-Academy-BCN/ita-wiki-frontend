@@ -13,6 +13,7 @@ import { categories } from "../../data/categories";
 import { themes } from "../../data/themes";
 import { resourceTypes } from "../../data/resourceTypes";
 import BookMarkList from "./bookmarks/BookMarkList";
+import SearchComponent from "../Layout/header/SearchComponent";
 
 interface ListResourceProps {
   resources: IntResource[];
@@ -24,7 +25,7 @@ export const ListResources: FC<ListResourceProps> = ({
   category,
 }) => {
   const [showFilters, setShowFilters] = useState<boolean>(false);
-
+  const [searchTerm, setSearchTerm] = useState("");
   const { user } = useCtxUser();
 
   const {
@@ -56,6 +57,10 @@ export const ListResources: FC<ListResourceProps> = ({
 
   useEffect(() => {}, [sortedResources]);
 
+  const visibleResources = sortedResources.filter((resource) =>
+    resource.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     resources && (
       <div className="mx-auto w-full grow lg:flex xl:px-2 gap-x-6 sm:bg-white lg:bg-transparent">
@@ -79,6 +84,12 @@ export const ListResources: FC<ListResourceProps> = ({
               <h2 className="text-[26px] font-bold">
                 Recursos {String(category) || ""}
               </h2>
+
+              {/* Campo de búsqueda de recursos */}
+              <SearchComponent
+                onSearch={(query) => setSearchTerm(query)}
+                disabled={false}
+              />
               <SortButton
                 setSortOption={setSortOption}
                 setSelectedYear={setSelectedYear}
@@ -137,7 +148,7 @@ export const ListResources: FC<ListResourceProps> = ({
             )}
 
             <ul className="flex flex-col gap-2 py-8">
-              {sortedResources.map((resource: IntResource) => (
+              {visibleResources.map((resource: IntResource) => (
                 <Resource key={resource.id} resource={resource} />
               ))}
             </ul>

@@ -5,7 +5,7 @@ import searchIcon from "../../../assets/search.svg";
 interface SearchComponentProps {
   onSearch: (query: string) => void;
   disabled: boolean;
-  resetTrigger: string;
+  resetTrigger?: string;
 }
 
 const SearchComponent: FC<SearchComponentProps> = ({
