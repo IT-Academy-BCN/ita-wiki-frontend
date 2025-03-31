@@ -6,15 +6,20 @@ import { useState, useEffect, useCallback } from "react";
 import { AddUsersModal } from "../components/resources/AddUserModal";
 import ButtonComponent from "../components/atoms/ButtonComponent";
 import { getUserRole } from "../api/userApi";
-import Card from "../components/ui/Card";
 import { useNavigate } from "react-router";
-import PageTitle from "../components/ui/PageTitle";
 
 export default function HomePage() {
   const navigate = useNavigate();
   const { signOut, user } = useCtxUser();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userRole, setUserRole] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/resources");
+    }
+  }, [user, navigate]);
 
   useEffect(() => {
     if (user && user.id) {
