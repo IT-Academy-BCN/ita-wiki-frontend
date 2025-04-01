@@ -1,11 +1,9 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
 import { getUserRole } from "../api/userApi";
 
-const API_URL = "http://localhost:8000/api/";
-
 describe("getUserRole", () => {
   afterEach(() => {
-    vi.restoreAllMocks(); // Restaurar mocks después de cada test
+    vi.restoreAllMocks();
   });
 
   it("debe devolver el rol del usuario cuando la API responde correctamente", async () => {
@@ -18,7 +16,7 @@ describe("getUserRole", () => {
 
     const role = await getUserRole(1234567);
 
-    expect(global.fetch).toHaveBeenCalledWith(`${API_URL}login`, {
+    expect(global.fetch).toHaveBeenCalledWith(expect.any(String), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

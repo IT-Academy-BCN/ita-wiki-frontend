@@ -12,7 +12,7 @@ export const useGetBookmarksList = (resources: IntResource[]) => {
   >([]);
 
   useEffect(() => {
-    if (!user || user.role === "anonymous") {
+    if (!user) {
       setFilteredResources([]);
       return;
     }
@@ -40,6 +40,11 @@ export const useGetBookmarksList = (resources: IntResource[]) => {
               title: resource.title,
               description: resource.description,
               url: resource.url,
+              created_at: resource.created_at
+                ? resource.created_at instanceof Date
+                  ? resource.created_at.toISOString()
+                  : resource.created_at
+                : "",
             };
           });
 

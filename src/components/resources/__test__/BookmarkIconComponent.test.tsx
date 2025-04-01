@@ -26,7 +26,7 @@ describe("BookmarkIconComponent", () => {
     expect(screen.getByAltText("Bookmark is marked")).toBeInTheDocument();
     expect(screen.getByAltText("Bookmark is marked")).toHaveAttribute(
       "src",
-      bookmarkFull
+      bookmarkFull,
     );
   });
 
@@ -35,14 +35,14 @@ describe("BookmarkIconComponent", () => {
     expect(screen.getByAltText("Bookmark is not marked")).toBeInTheDocument();
     expect(screen.getByAltText("Bookmark is not marked")).toHaveAttribute(
       "src",
-      bookmarkEmpty
+      bookmarkEmpty,
     );
   });
 
   it("renders a div with correct class names", () => {
     render(<BookmarkIconComponent marked={true} />);
     expect(screen.getByRole("img").closest("div")).toHaveClass(
-      "flex items-center justify-start gap-2 max-h-12"
+      "flex items-center justify-start gap-2 max-h-12",
     );
   });
 
@@ -50,7 +50,7 @@ describe("BookmarkIconComponent", () => {
     render(<BookmarkIconComponent marked={true} />);
     expect(screen.getByAltText("Bookmark is marked")).toHaveAttribute(
       "height",
-      "16"
+      "16",
     );
   });
 });

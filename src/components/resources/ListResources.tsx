@@ -1,27 +1,32 @@
 import { FC, useState, useEffect } from "react";
 import { IntResource } from "../../types";
 import { useCtxUser } from "../../hooks/useCtxUser";
+import { IntBookmarkElement } from "../../types";
 import { useResourceFilter } from "../../hooks/useResourceFilter";
 import { useResourceSort } from "../../hooks/useResourceSort";
-
 import { Resource } from "./Resource";
 import { FilterResources } from "./FilterResources";
-import { ListMyResources } from "./ListMyResources";
+import { ListMyResources } from "../my-resources/MyResourcesList";
 import SortButton from "./SortButton";
-
 import { categories } from "../../data/categories";
 import { themes } from "../../data/themes";
 import { resourceTypes } from "../../data/resourceTypes";
 import BookMarkList from "./bookmarks/BookMarkList";
 
-interface ListResourceProps {
+export interface ListResourceProps {
   resources: IntResource[];
-  category?: keyof typeof categories;
+  bookmarkedResources: IntBookmarkElement[];
+  toggleBookmark: (resource: IntResource) => void;
+  category: keyof typeof categories | undefined;
+  loadingBookmarks?: boolean;
 }
 
 export const ListResources: FC<ListResourceProps> = ({
   resources,
   category,
+  bookmarkedResources,
+  toggleBookmark,
+  loadingBookmarks = false,
 }) => {
   const [showFilters, setShowFilters] = useState<boolean>(false);
 
@@ -53,6 +58,10 @@ export const ListResources: FC<ListResourceProps> = ({
   const userCreatedResources = user
     ? resources.filter((resource) => resource.github_id === Number(user.id))
     : [];
+
+  const isBookmarked = (resource: IntResource) => {
+    return bookmarkedResources.some((bookmark) => bookmark.id === resource.id);
+  };
 
   useEffect(() => {}, [sortedResources]);
 
@@ -120,13 +129,13 @@ export const ListResources: FC<ListResourceProps> = ({
                 )}
               </button>
             </div>
-            {/* Filters - Visible on mobile when toggled */}
+
+            {/* Mobile filters (only shown when toggled) */}
             {showFilters && (
-              <div className="sm:hidden mt-4 p-4 bg-gray-100 rounded-lg">
-                <h2 className="text-2xl font-bold">Filtros</h2>
+              <div className="sm:hidden mt-4">
                 <FilterResources
-                  themes={themes}
-                  resourceTypes={resourceTypes}
+                  themes={[...themes]}
+                  resourceTypes={[...resourceTypes]}
                   selectedTheme={selectedTheme}
                   setSelectedTheme={setSelectedTheme}
                   selectedResourceTypes={selectedResourceTypes}
@@ -138,19 +147,27 @@ export const ListResources: FC<ListResourceProps> = ({
 
             <ul className="flex flex-col gap-2 py-8">
               {sortedResources.map((resource: IntResource) => (
-                <Resource key={resource.id} resource={resource} />
+                <Resource
+                  key={resource.id}
+                  resource={resource}
+                  isBookmarked={isBookmarked(resource)}
+                  toggleBookmark={() => toggleBookmark(resource)}
+                />
               ))}
             </ul>
           </div>
         </div>
 
-        <div className="shrink-0 px-4 lg:w-80 mt-6 sm:mt-0 space-y-6">
-          <div className="bg-white sm:rounded-xl px-4 py-6 sm:px-6 lg:pl-8 xl:shrink-0 xl:pl-6">
-            <BookMarkList resources={resources} />
-          </div>
-          {user && userCreatedResources.length > 0 && (
-            <ListMyResources myResources={userCreatedResources} />
-          )}
+        <div className="flex flex-col shrink-0 px-4 lg:w-80 mt-6 sm:mt-0 space-y-6">
+          <BookMarkList
+            bookmarks={bookmarkedResources}
+            isLoading={loadingBookmarks}
+          />
+
+          <ListMyResources
+            myResources={userCreatedResources}
+            isLoading={loadingBookmarks}
+          />
         </div>
       </div>
     )

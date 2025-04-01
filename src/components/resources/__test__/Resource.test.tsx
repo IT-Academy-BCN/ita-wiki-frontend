@@ -7,8 +7,8 @@ const moockrResources = moock.resources.map(
   (resource) =>
     ({
       ...resource,
-      create_at: "2025-02-25 00:00:00",
-      update_at: "2025-02-25 00:00:00",
+      created_at: "2025-02-25 00:00:00",
+      updated_at: "2025-02-25 00:00:00",
     }) as IntResource,
 );
 

@@ -23,12 +23,60 @@ vi.mock("../../../hooks/useCtxUser", () => ({
   }),
 }));
 
+vi.mock("../../../hooks/useResourceSort", () => ({
+  useResourceSort: () => ({
+    sortedResources: moockResources,
+    setSortOption: vi.fn(),
+    setSelectedYear: vi.fn(),
+    availableYears: [2022, 2023],
+    sortOption: "newest",
+  }),
+}));
+
+vi.mock("../FilterResources", () => ({
+  FilterResources: () => (
+    <div data-testid="filter-resources">Filter Resources Component</div>
+  ),
+}));
+
+vi.mock("../Resource", () => ({
+  Resource: ({ resource }: { resource: IntResource }) => (
+    <li data-testid={`resource-${resource.id}`}>{resource.title}</li>
+  ),
+}));
+
+vi.mock("../SortButton", () => ({
+  default: () => <button data-testid="sort-button">Sort</button>,
+}));
+
+vi.mock("../bookmarks/BookMarkList", () => ({
+  default: ({
+    bookmarks,
+    isLoading,
+  }: {
+    bookmarks: { id: string; title: string }[];
+    isLoading: boolean;
+  }) => (
+    <div data-testid="bookmark-list">
+      {isLoading ? "Loading..." : `Bookmarks: ${bookmarks?.length || 0}`}
+    </div>
+  ),
+}));
+
+vi.mock("../../my-resources/MyResourcesList", () => ({
+  ListMyResources: ({ myResources }: { myResources: IntResource[] }) => (
+    <div data-testid="my-resources-container">
+      {`My Resources: ${myResources?.length || 0}`}
+    </div>
+  ),
+}));
+
 const moockResources = moock.resources.map(
   (resource) =>
     ({
       ...resource,
-      create_at: "2025-02-25 00:00:00",
-      update_at: "2025-02-25 00:00:00",
+      created_at: "2025-02-25 00:00:00",
+      updated_at: "2025-02-25 00:00:00",
     }) as IntResource,
 );
 
@@ -38,7 +86,12 @@ describe("ListResources Component", () => {
   it("should render the component and display the correct title", () => {
     render(
       <MemoryRouter>
-        <ListResources resources={moockResources} category={category} />
+        <ListResources
+          resources={moockResources}
+          category={category}
+          bookmarkedResources={[]}
+          toggleBookmark={() => {}}
+        />
       </MemoryRouter>,
     );
 
@@ -54,7 +107,12 @@ describe("ListResources Component", () => {
 
     render(
       <MemoryRouter>
-        <ListResources resources={userResources} category={category} />
+        <ListResources
+          resources={userResources}
+          category={category}
+          bookmarkedResources={[]}
+          toggleBookmark={() => {}}
+        />
       </MemoryRouter>,
     );
     expect(screen.queryByTestId("my-resources-container")).toBeInTheDocument();

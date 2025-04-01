@@ -8,7 +8,7 @@ interface BookmarkProps {
 }
 const BookmarkComponent: FC<BookmarkProps> = ({ title, description, url }) => {
   return (
-    <article className="flex  items-start mb-6">
+    <article className="flex items-start mb-6">
       <div className="w-full">
         <a
           href={url}

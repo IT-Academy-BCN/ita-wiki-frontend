@@ -7,7 +7,7 @@ describe("useResourceSort hook", () => {
     {
       id: 1,
       title: "Resource 1",
-      create_at: "2022-01-01",
+      created_at: "2022-01-01",
       votes: 10,
       github_id: 123456,
       description: "Description 1",
@@ -19,7 +19,7 @@ describe("useResourceSort hook", () => {
     {
       id: 2,
       title: "Resource 2",
-      create_at: "2021-01-01",
+      created_at: "2021-01-01",
       votes: 20,
       github_id: 123457,
       description: "Description 2",
@@ -31,7 +31,7 @@ describe("useResourceSort hook", () => {
     {
       id: 3,
       title: "Resource 3",
-      create_at: "2023-01-01",
+      created_at: "2023-01-01",
       votes: 5,
       github_id: 123458,
       description: "Description 3",
