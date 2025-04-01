@@ -14,8 +14,8 @@ import { themes } from "../../data/themes";
 import { resourceTypes } from "../../data/resourceTypes";
 import BookMarkList from "./bookmarks/BookMarkList";
 import SearchComponent from "../Layout/header/SearchComponent";
-// import FilterButton from "./FilterButton";
-
+import FilterButton from "./FilterButton";
+import searchIcon from "../../assets/search.svg";
 interface ListResourceProps {
   resources: IntResource[];
   category?: keyof typeof categories;
@@ -90,15 +90,19 @@ export const ListResources: FC<ListResourceProps> = ({
               <h2 className="text-[26px] font-bold">
                 Recursos {String(category) || ""}
               </h2>
-              <button onClick={handleToggleFilter}>🔍 Buscar recurso</button>
+              <h2 className="text-[26px] font-bold hidden">
+                Buscar recurso {String(category) || ""}
+              </h2>
+              <button onClick={handleToggleFilter}>
+                <img
+                  src={searchIcon}
+                  alt="Buscar"
+                  className="h-5 w-5 text-gray-500"
+                />
+              </button>
 
               {/* Campo de búsqueda de recursos */}
-              {showSearch && (
-                <SearchComponent
-                  onSearch={(query) => setSearchTerm(query)}
-                  disabled={false}
-                />
-              )}
+
               {/* <SortButton
                 setSortOption={setSortOption}
                 setSelectedYear={setSelectedYear}
@@ -106,11 +110,20 @@ export const ListResources: FC<ListResourceProps> = ({
                 sortOption={sortOption}
               /> */}
               {/* Filter Button (Mobile only) */}
-              {/* <FilterButton
+              <FilterButton
                 setShowFilters={setShowFilters}
                 showFilters={showFilters}
-              /> */}
+              />
             </div>
+            {/* Searchbar - Toggled visible */}
+            {showSearch && (
+              <div className="pt-3">
+                <SearchComponent
+                  onSearch={(query) => setSearchTerm(query)}
+                  disabled={false}
+                />
+              </div>
+            )}
             {/* Filters - Visible on mobile when toggled */}
             {showFilters && (
               <div className="sm:hidden mt-4 p-4 bg-gray-100 rounded-lg">
