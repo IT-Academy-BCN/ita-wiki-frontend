@@ -5,7 +5,7 @@ import { ContentResource } from "./ContentResource";
 import { VotesResource } from "./VotesResource";
 import { UserResource } from "./UserResource";
 import { FooterResource } from "./FooterResource";
-import BookmarkIconComponent from "./BookmarkIconComponent";
+import BookmarkIconComponent from "./bookmarks/BookmarkIconComponent";
 type ResourceProps = {
   resource: IntResource;
 };

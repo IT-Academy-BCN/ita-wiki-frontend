@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter } from "react-router";
-import BookMarkList from "./BookMarkList"; // Asegúrate de que la ruta es correcta
+import BookMarkList from "../bookmarks/BookMarkList";
 import { IntResource, IntBookmarkElement } from "../../../types";
 import { useGetBookmarksList } from "../../../hooks/useBookmarks";
 import { describe, it, expect, vi } from "vitest";
@@ -58,7 +58,7 @@ describe("BookMarkList Component", () => {
     render(
       <BrowserRouter>
         <BookMarkList resources={mockResources} />
-      </BrowserRouter>,
+      </BrowserRouter>
     );
 
     const titleElement = screen.getByText("Lista de lectura");
@@ -71,11 +71,11 @@ describe("BookMarkList Component", () => {
     render(
       <BrowserRouter>
         <BookMarkList resources={mockResources} />
-      </BrowserRouter>,
+      </BrowserRouter>
     );
 
     expect(
-      screen.getByText("No hay lista de recursos disponible"),
+      screen.getByText("No hay lista de recursos disponible")
     ).toBeInTheDocument();
   });
 
@@ -85,7 +85,7 @@ describe("BookMarkList Component", () => {
     render(
       <BrowserRouter>
         <BookMarkList resources={mockResources} />
-      </BrowserRouter>,
+      </BrowserRouter>
     );
 
     await waitFor(() => {
@@ -103,7 +103,7 @@ describe("BookMarkList Component", () => {
     render(
       <BrowserRouter>
         <BookMarkList resources={mockResources} />
-      </BrowserRouter>,
+      </BrowserRouter>
     );
 
     await waitFor(() => {

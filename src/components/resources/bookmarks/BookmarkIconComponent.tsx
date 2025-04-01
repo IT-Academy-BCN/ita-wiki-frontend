@@ -1,6 +1,6 @@
 import { FC } from "react";
-import bookmarkFull from "../../assets/bookmark_full.svg";
-import bookmarkEmpty from "../../assets/bookmark_empty.svg";
+import bookmarkFull from "../../../assets/bookmark_full.svg";
+import bookmarkEmpty from "../../../assets/bookmark_empty.svg";
 
 interface BookmarkComponentProps {
   marked: boolean;

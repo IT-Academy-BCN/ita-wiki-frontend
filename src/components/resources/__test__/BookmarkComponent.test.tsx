@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import BookmarkComponent from "./BookmarkComponent";
+import BookmarkComponent from "../bookmarks/BookmarkComponent";
 import { vi } from "vitest";
 
 // Mock del archivo SVG
@@ -14,7 +14,7 @@ describe("BookmarkComponent", () => {
 
   test("renders the title, description, and link correctly", () => {
     render(
-      <BookmarkComponent title={title} description={description} url={url} />,
+      <BookmarkComponent title={title} description={description} url={url} />
     );
 
     expect(screen.getByRole("heading", { level: 4 })).toHaveTextContent(title);
@@ -24,7 +24,7 @@ describe("BookmarkComponent", () => {
 
   test("displays the edit icon", () => {
     render(
-      <BookmarkComponent title={title} description={description} url={url} />,
+      <BookmarkComponent title={title} description={description} url={url} />
     );
 
     const editImage = screen.getByAltText("edit");

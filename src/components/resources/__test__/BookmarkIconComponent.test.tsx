@@ -1,8 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
-import BookmarkIconComponent from "../BookmarkIconComponent";
+import BookmarkIconComponent from "../bookmarks/BookmarkIconComponent";
 import bookmarkFull from "../../../assets/bookmark_full.svg";
 import bookmarkEmpty from "../../../assets/bookmark_empty.svg";
+
 import { vi } from "vitest";
 
 vi.mock("/assets/bookmark_full.svg", () => ({
@@ -25,7 +26,7 @@ describe("BookmarkIconComponent", () => {
     expect(screen.getByAltText("Bookmark is marked")).toBeInTheDocument();
     expect(screen.getByAltText("Bookmark is marked")).toHaveAttribute(
       "src",
-      bookmarkFull,
+      bookmarkFull
     );
   });
 
@@ -34,14 +35,14 @@ describe("BookmarkIconComponent", () => {
     expect(screen.getByAltText("Bookmark is not marked")).toBeInTheDocument();
     expect(screen.getByAltText("Bookmark is not marked")).toHaveAttribute(
       "src",
-      bookmarkEmpty,
+      bookmarkEmpty
     );
   });
 
   it("renders a div with correct class names", () => {
     render(<BookmarkIconComponent marked={true} />);
     expect(screen.getByRole("img").closest("div")).toHaveClass(
-      "flex items-center justify-start gap-2 max-h-12",
+      "flex items-center justify-start gap-2 max-h-12"
     );
   });
 
@@ -49,7 +50,7 @@ describe("BookmarkIconComponent", () => {
     render(<BookmarkIconComponent marked={true} />);
     expect(screen.getByAltText("Bookmark is marked")).toHaveAttribute(
       "height",
-      "16",
+      "16"
     );
   });
 });
