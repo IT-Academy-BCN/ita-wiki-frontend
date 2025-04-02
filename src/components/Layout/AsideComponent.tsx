@@ -1,5 +1,7 @@
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate, useSearchParams } from "react-router";
 import classNames from "classnames";
+import SearchComponent from "./header/SearchComponent";
+import { useState } from "react";
 
 type AsideItem = {
   icon: string;
@@ -13,9 +15,27 @@ type AsideComponentProps = {
 const AsideComponent: React.FC<AsideComponentProps> = ({ asideContent }) => {
   const location = useLocation();
   const currentPath = location.pathname;
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const [resource] = useState("");
+  const isSearchDisabled = location.pathname === "/";
+
+  const handleSearch = (query: string) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("search", query);
+    navigate(`?${params.toString()}`);
+  };
 
   return (
-    <aside className="flex p-6 items-center justify-center lg:block lg:w-55 lg:h-screen lg:max-h-[calc(100vh-90px)] lg:mt-36">
+    <aside className="flex p-6 items-center justify-center lg:block lg:w-80 lg:h-screen lg:max-h-[calc(100vh-90px)]">
+      <div className="space-y-6 py-6">
+        <SearchComponent
+          onSearch={handleSearch}
+          disabled={isSearchDisabled}
+          resetTrigger={resource}
+        />
+      </div>
+      <p className="space-y-6 py-6 font-bold text-lg">Categorias</p>
       <ul className="space-y-6">
         {asideContent.map((item, index) => {
           const path = `/resources/${item.label}`;
@@ -23,7 +43,7 @@ const AsideComponent: React.FC<AsideComponentProps> = ({ asideContent }) => {
             currentPath === `/resources/${encodeURIComponent(item.label)}`;
 
           return (
-            <li key={index} className="flex items-center space-x-3">
+            <li key={index} className="flex items-center space-x-3 text-lg">
               <img src={item.icon} alt={item.label} className="w-6 h-6" />
               <Link
                 to={path}

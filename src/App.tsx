@@ -5,7 +5,7 @@ import CreateResourcePage from "./pages/CreateResourcePage";
 import HeaderComponent from "./components/Layout/HeaderComponent";
 import AsideComponent from "./components/Layout/AsideComponent";
 import ResourcesPage from "./pages/ResourcesPage";
-import { asideContent } from "./components/Layout/asideContent";
+import { asideContent } from "./components/Layout/header/aside/asideContent";
 
 const App: FC = () => {
   return (
