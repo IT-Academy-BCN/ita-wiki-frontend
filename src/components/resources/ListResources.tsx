@@ -12,7 +12,7 @@ import { ListMyResources } from "./ListMyResources";
 import { categories } from "../../data/categories";
 import { themes } from "../../data/themes";
 import { resourceTypes } from "../../data/resourceTypes";
-import BookMarkList from "./bookmarks/BookMarkList";
+// import BookMarkList from "./bookmarks/BookMarkList";
 // import SearchComponent from "../Layout/header/SearchComponent";
 import FilterButton from "./FilterButton";
 import { useSearchParams } from "react-router";
@@ -153,9 +153,9 @@ export const ListResources: FC<ListResourceProps> = ({
         </div>
 
         <div className="shrink-0 px-4 lg:w-80 mt-6 sm:mt-0 space-y-6">
-          <div className="bg-white sm:rounded-xl px-4 py-6 sm:px-6 lg:pl-8 xl:shrink-0 xl:pl-6">
+          {/* <div className="bg-white sm:rounded-xl px-4 py-6 sm:px-6 lg:pl-8 xl:shrink-0 xl:pl-6">
             <BookMarkList resources={resources} />
-          </div>
+          </div> */}
           {user && userCreatedResources.length > 0 && (
             <ListMyResources myResources={userCreatedResources} />
           )}

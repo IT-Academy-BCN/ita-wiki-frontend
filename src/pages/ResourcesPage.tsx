@@ -1,17 +1,13 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
-import { IntResource } from "../types";
-import { ListResources } from "../components/resources/ListResources";
-import { getResources } from "../api/endPointResources";
 import { categories } from "../data/categories";
-import moock from "../moock/resources.json";
-import PageTitle from "../components/ui/PageTitle";
+import { ListResources } from "../components/resources/ListResources";
+import { useResources } from "../context/ResourcesContext";
 
 const ResourcesPage: FC = () => {
+  const { resources, isLoading } = useResources();
   const { category } = useParams();
   const navigate = useNavigate();
-  const [apiResources, setApiResources] = useState<IntResource[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!category) {
@@ -19,42 +15,13 @@ const ResourcesPage: FC = () => {
     }
   }, [category, navigate]);
 
-  useEffect(() => {
-    const fetchResources = async () => {
-      try {
-        setIsLoading(true);
-        const data = await getResources();
-
-        setApiResources(data);
-      } catch (error) {
-        console.error(
-          "No se han podido obtener los recursos. Se cargan los recursos de moock.",
-          error,
-        );
-        setApiResources(moock.resources as IntResource[]);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchResources();
-  }, []);
-  // TODO: REVISAR ESTO
-  // const { updatedResources } =
-  //   useBookmarks({ resources: apiResources });
-  return (
-    <>
-      <PageTitle title={`${category}`} />
-      {isLoading ? (
-        <div>Obteniendo los recursos...</div>
-      ) : (
-        <ListResources
-          resources={apiResources}
-          // resources={updatedResources}
-          category={category as keyof typeof categories | undefined}
-        />
-      )}
-    </>
+  return isLoading ? (
+    <div>Obteniendo los recursos...</div>
+  ) : (
+    <ListResources
+      resources={resources}
+      category={category as keyof typeof categories | undefined}
+    />
   );
 };
 

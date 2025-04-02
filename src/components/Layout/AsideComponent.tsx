@@ -2,6 +2,8 @@ import { Link, useLocation, useNavigate, useSearchParams } from "react-router";
 import classNames from "classnames";
 import SearchComponent from "./header/SearchComponent";
 import { useState } from "react";
+import BookMarkList from "../resources/bookmarks/BookMarkList";
+import { useResources } from "../../context/ResourcesContext";
 
 type AsideItem = {
   icon: string;
@@ -19,6 +21,7 @@ const AsideComponent: React.FC<AsideComponentProps> = ({ asideContent }) => {
   const navigate = useNavigate();
   const [resource] = useState("");
   const isSearchDisabled = location.pathname === "/";
+  const { resources } = useResources();
 
   const handleSearch = (query: string) => {
     const params = new URLSearchParams(searchParams);
@@ -35,29 +38,37 @@ const AsideComponent: React.FC<AsideComponentProps> = ({ asideContent }) => {
           resetTrigger={resource}
         />
       </div>
-      <p className="space-y-6 py-6 font-bold text-lg">Categorias</p>
-      <ul className="space-y-6">
-        {asideContent.map((item, index) => {
-          const path = `/resources/${item.label}`;
-          const isActive =
-            currentPath === `/resources/${encodeURIComponent(item.label)}`;
+      <section>
+        <p className="space-y-6 py-6 font-bold text-lg">Categorias</p>
+        <ul className="space-y-6">
+          {asideContent.map((item, index) => {
+            const path = `/resources/${item.label}`;
+            const isActive =
+              currentPath === `/resources/${encodeURIComponent(item.label)}`;
 
-          return (
-            <li key={index} className="flex items-center space-x-3 text-lg">
-              <img src={item.icon} alt={item.label} className="w-6 h-6" />
-              <Link
-                to={path}
-                className={classNames("transition-colors", {
-                  "!text-[#b91879] !font-bold": isActive,
-                  "text-gray-700 ": !isActive,
-                })}
-              >
-                {item.label}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+            return (
+              <li key={index} className="flex items-center space-x-3 text-lg">
+                <img src={item.icon} alt={item.label} className="w-6 h-6" />
+                <Link
+                  to={path}
+                  className={classNames("transition-colors", {
+                    "!text-[#b91879] !font-bold": isActive,
+                    "text-gray-700 ": !isActive,
+                  })}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+      <section>
+        <p className="space-y-6 py-6 font-bold text-lg">Mis recursos</p>
+        <p className="space-y-6 py-6 text-lg">Guardados</p>
+        <p className="space-y-6 py-6  text-lg">Creados</p>
+        <BookMarkList resources={resources} />
+      </section>
     </aside>
   );
 };
