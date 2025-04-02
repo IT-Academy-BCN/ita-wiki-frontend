@@ -13,7 +13,7 @@ const App: FC = () => {
       <HeaderComponent />
 
       <div className="flex flex-col lg:flex-row lg:flex-grow lg:overflow-hidden">
-        <AsideComponent asideContent={asideContent} />;
+        <AsideComponent asideContent={asideContent} />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/resources/:category" element={<ResourcesPage />} />

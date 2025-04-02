@@ -13,9 +13,10 @@ import { categories } from "../../data/categories";
 import { themes } from "../../data/themes";
 import { resourceTypes } from "../../data/resourceTypes";
 import BookMarkList from "./bookmarks/BookMarkList";
-import SearchComponent from "../Layout/header/SearchComponent";
+// import SearchComponent from "../Layout/header/SearchComponent";
 import FilterButton from "./FilterButton";
-import searchIcon from "../../assets/search.svg";
+import { useSearchParams } from "react-router";
+// import searchIcon from "../../assets/search.svg";
 interface ListResourceProps {
   resources: IntResource[];
   category?: keyof typeof categories;
@@ -26,9 +27,12 @@ export const ListResources: FC<ListResourceProps> = ({
   category,
 }) => {
   const [showFilters, setShowFilters] = useState<boolean>(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  // const [searchTerm, setSearchTerm] = useState("");
   const { user } = useCtxUser();
-  const [showSearch, setShowSearch] = useState(false);
+  // const [showSearch, setShowSearch] = useState(false);
+
+  const [searchParams] = useSearchParams();
+  const searchTerm = searchParams.get("search") || "";
 
   const {
     filteredResources,
@@ -60,12 +64,12 @@ export const ListResources: FC<ListResourceProps> = ({
   useEffect(() => {}, [sortedResources]);
 
   const visibleResources = sortedResources.filter((resource) =>
-    resource.title.toLowerCase().includes(searchTerm.toLowerCase()),
+    resource.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleToggleFilter = () => {
-    setShowSearch((prev) => !prev);
-  };
+  // const handleToggleFilter = () => {
+  //   setShowSearch((prev) => !prev);
+  // };
 
   return (
     resources && (
@@ -90,7 +94,7 @@ export const ListResources: FC<ListResourceProps> = ({
               <h2 className="text-[26px] font-bold">
                 Recursos {String(category) || ""}
               </h2>
-              <h2 className="text-[26px] font-bold hidden">
+              {/* <h2 className="text-[26px] font-bold hidden">
                 Buscar recurso {String(category) || ""}
               </h2>
               <button onClick={handleToggleFilter}>
@@ -99,7 +103,7 @@ export const ListResources: FC<ListResourceProps> = ({
                   alt="Buscar"
                   className="h-5 w-5 text-gray-500"
                 />
-              </button>
+              </button> */}
 
               {/* Campo de búsqueda de recursos */}
 
@@ -116,14 +120,14 @@ export const ListResources: FC<ListResourceProps> = ({
               />
             </div>
             {/* Searchbar - Toggled visible */}
-            {showSearch && (
+            {/* {showSearch && (
               <div className="pt-3">
                 <SearchComponent
                   onSearch={(query) => setSearchTerm(query)}
                   disabled={false}
                 />
               </div>
-            )}
+            )} */}
             {/* Filters - Visible on mobile when toggled */}
             {showFilters && (
               <div className="sm:hidden mt-4 p-4 bg-gray-100 rounded-lg">

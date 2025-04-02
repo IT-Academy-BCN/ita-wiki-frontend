@@ -12,7 +12,7 @@ const BookMarkList: FC<BookMarkListProps> = ({ resources }) => {
 
   return (
     <div className="h-[50vh] overflow-auto">
-      <h3 className="text-[22px] font-bold mb-8">Lista de lectura</h3>
+      <h3 className="text-[22px] font-bold mb-8"></h3>
 
       {bookmarkArr && bookmarkArr.length === 0 ? (
         <p>No hay lista de recursos disponible</p>
