@@ -5,7 +5,7 @@ import CreateResourcePage from "./pages/CreateResourcePage";
 import HeaderComponent from "./components/Layout/HeaderComponent";
 import AsideComponent from "./components/Layout/AsideComponent";
 import ResourcesPage from "./pages/ResourcesPage";
-import { asideContent } from "./components/Layout/header/aside/asideContent";
+import { asideContent } from "./components/Layout/aside/asideContent";
 
 const App: FC = () => {
   return (
@@ -14,12 +14,14 @@ const App: FC = () => {
 
       <div className="flex flex-col lg:flex-row lg:flex-grow lg:overflow-hidden">
         <AsideComponent asideContent={asideContent} />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/resources/:category" element={<ResourcesPage />} />
-          <Route path="/resources/add" element={<CreateResourcePage />} />
-          <Route path="/resources" element={<ResourcesPage />} />
-        </Routes>
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/resources/:category" element={<ResourcesPage />} />
+            <Route path="/resources/add" element={<CreateResourcePage />} />
+            <Route path="/resources" element={<ResourcesPage />} />
+          </Routes>
+        </div>
       </div>
     </div>
   );

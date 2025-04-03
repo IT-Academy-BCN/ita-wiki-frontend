@@ -30,11 +30,11 @@ const SearchComponent: FC<SearchComponentProps> = ({
   }, [resetTrigger]);
 
   return (
-    <div className="relative mr-[120px]">
+    <div className="relative mr-4">
       <input
         type="text"
         placeholder="Buscar recurso"
-        className="bg-white pl-10 pr-4 py-2 border border-gray-300 font-semibold text-base rounded-lg
+        className=" bg-white pl-10 pr-4 py-2 border border-gray-300 font-semibold text-base rounded-lg
                    focus:outline-none focus:ring-2 focus:ring-gray-400 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed"
         value={searchTerm}
         onChange={handleChange}
