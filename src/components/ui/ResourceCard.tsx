@@ -33,7 +33,7 @@ const ResourceCard: FC<ResourceCardProps> = ({
         : "Fecha desconocida";
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border p-6 flex justify-between items-center w-full max-w-[710px] h-[109px]">
+    <div className="bg-white rounded-2xl shadow-sm border  border-gray-400 p-6 flex justify-between items-center w-full max-w-[710px] h-[109px]">
       {/* Left Section */}
       <div className="flex flex-col space-y-2 overflow-hidden">
         <div>
@@ -58,11 +58,11 @@ const ResourceCard: FC<ResourceCardProps> = ({
 
       {/* Right Section */}
       <div className="flex items-center gap-4 shrink-0">
-        <div className="flex flex-col items-center justify-center border rounded-lg px-3 py-2">
+        <div className="flex flex-col items-center justify-center border  border-gray-200 rounded-lg px-3 py-2">
           <MessageCircle size={16} className="text-black" />
           <span className="text-sm font-medium">{commentsCount}</span>
         </div>
-        <div className="flex flex-col items-center justify-center border rounded-lg px-3 py-2">
+        <div className="flex flex-col items-center justify-center border  border-gray-200 rounded-lg px-3 py-2">
           <Triangle size={16} className="text-black" />
           <span className="text-sm font-medium">{votes ?? 0}</span>
         </div>
