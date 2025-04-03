@@ -1,6 +1,6 @@
-import GitHubLogin from '../github-login/GitHubLogin';
-import { useCtxUser } from '../../hooks/useCtxUser';
-import closeIcon from '../../../src/assets/close2.svg';
+import GitHubLogin from "../github-login/GitHubLogin";
+import { useCtxUser } from "../../hooks/useCtxUser";
+import closeIcon from "../../../src/assets/close2.svg";
 
 interface ModalProps {
   closeModal: () => void;
@@ -20,11 +20,10 @@ export const Modal = ({ closeModal, title, children }: ModalProps) => {
     <>
       <div
         className="fixed inset-0 bg-black/30 flex justify-center items-center z-50"
-        onClick={handleBackdropClick}>
-        <div className="bg-white p-6 rounded-2xl w-[35%] min-h-[30%] relative">
-          <button
-            className="absolute top-6 right-6 "
-            onClick={closeModal}>
+        onClick={handleBackdropClick}
+      >
+        <div className="bg-white p-6 rounded-2xl w-[35%] min-h-[35%] relative">
+          <button className="absolute top-6 right-6 " onClick={closeModal}>
             <img
               src={closeIcon}
               alt="Cerrar modal"
@@ -33,7 +32,9 @@ export const Modal = ({ closeModal, title, children }: ModalProps) => {
           </button>
           <div className="flex flex-col justify-center items-center w-full mt-10">
             {title && (
-              <h2 className="text-[1.625rem] font-bold mb-10">{title}</h2>
+              <h2 className="text-[1.7rem] text-black font-extrabold mb-10">
+                {title}
+              </h2>
             )}
 
             {children ? children : <GitHubLogin onClick={signIn} />}
