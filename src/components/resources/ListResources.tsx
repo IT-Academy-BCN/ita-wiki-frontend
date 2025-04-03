@@ -4,19 +4,19 @@ import { useCtxUser } from "../../hooks/useCtxUser";
 import { useResourceFilter } from "../../hooks/useResourceFilter";
 import { useResourceSort } from "../../hooks/useResourceSort";
 
-import { Resource } from "./Resource";
 import { FilterResources } from "./FilterResources";
 import { ListMyResources } from "./ListMyResources";
-// import SortButton from "./SortButton";
+import SortButton from "./SortButton";
 
 import { categories } from "../../data/categories";
 import { themes } from "../../data/themes";
 import { resourceTypes } from "../../data/resourceTypes";
-// import BookMarkList from "./bookmarks/BookMarkList";
-// import SearchComponent from "../Layout/header/SearchComponent";
+import BookMarkList from "./bookmarks/BookMarkList";
+
 import FilterButton from "./FilterButton";
 import { useSearchParams } from "react-router";
-// import searchIcon from "../../assets/search.svg";
+import ResourceCard from "../ui/ResourceCard";
+
 interface ListResourceProps {
   resources: IntResource[];
   category?: keyof typeof categories;
@@ -27,9 +27,7 @@ export const ListResources: FC<ListResourceProps> = ({
   category,
 }) => {
   const [showFilters, setShowFilters] = useState<boolean>(false);
-  // const [searchTerm, setSearchTerm] = useState("");
   const { user } = useCtxUser();
-  // const [showSearch, setShowSearch] = useState(false);
 
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get("search") || "";
@@ -49,10 +47,10 @@ export const ListResources: FC<ListResourceProps> = ({
 
   const {
     sortedResources,
-    // setSortOption,
-    // setSelectedYear,
-    // availableYears,
-    // sortOption,
+    setSortOption,
+    setSelectedYear,
+    availableYears,
+    sortOption,
   } = useResourceSort({
     resources: filteredResources,
   });
@@ -66,10 +64,6 @@ export const ListResources: FC<ListResourceProps> = ({
   const visibleResources = sortedResources.filter((resource) =>
     resource.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  // const handleToggleFilter = () => {
-  //   setShowSearch((prev) => !prev);
-  // };
 
   return (
     resources && (
@@ -94,40 +88,20 @@ export const ListResources: FC<ListResourceProps> = ({
               <h2 className="text-[26px] font-bold">
                 Recursos {String(category) || ""}
               </h2>
-              {/* <h2 className="text-[26px] font-bold hidden">
-                Buscar recurso {String(category) || ""}
-              </h2>
-              <button onClick={handleToggleFilter}>
-                <img
-                  src={searchIcon}
-                  alt="Buscar"
-                  className="h-5 w-5 text-gray-500"
-                />
-              </button> */}
 
-              {/* Campo de búsqueda de recursos */}
-
-              {/* <SortButton
+              <SortButton
                 setSortOption={setSortOption}
                 setSelectedYear={setSelectedYear}
                 availableYears={availableYears}
                 sortOption={sortOption}
-              /> */}
+              />
               {/* Filter Button (Mobile only) */}
               <FilterButton
                 setShowFilters={setShowFilters}
                 showFilters={showFilters}
               />
             </div>
-            {/* Searchbar - Toggled visible */}
-            {/* {showSearch && (
-              <div className="pt-3">
-                <SearchComponent
-                  onSearch={(query) => setSearchTerm(query)}
-                  disabled={false}
-                />
-              </div>
-            )} */}
+
             {/* Filters - Visible on mobile when toggled */}
             {showFilters && (
               <div className="sm:hidden mt-4 p-4 bg-gray-100 rounded-lg">
@@ -146,16 +120,17 @@ export const ListResources: FC<ListResourceProps> = ({
 
             <ul className="flex flex-col gap-2 py-8">
               {visibleResources.map((resource: IntResource) => (
-                <Resource key={resource.id} resource={resource} />
+                // <Resource key={resource.id} resource={resource} />
+                <ResourceCard key={resource.id} resource={resource} />
               ))}
             </ul>
           </div>
         </div>
 
         <div className="shrink-0 px-4 lg:w-80 mt-6 sm:mt-0 space-y-6">
-          {/* <div className="bg-white sm:rounded-xl px-4 py-6 sm:px-6 lg:pl-8 xl:shrink-0 xl:pl-6">
+          <div className="bg-white sm:rounded-xl px-4 py-6 sm:px-6 lg:pl-8 xl:shrink-0 xl:pl-6">
             <BookMarkList resources={resources} />
-          </div> */}
+          </div>
           {user && userCreatedResources.length > 0 && (
             <ListMyResources myResources={userCreatedResources} />
           )}
