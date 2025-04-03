@@ -30,8 +30,8 @@ const AsideComponent: React.FC<AsideComponentProps> = ({ asideContent }) => {
   };
 
   return (
-    <aside className="flex p-6 lg:block lg:w-80 lg:h-screen lg:max-h-[calc(100vh-90px)]">
-      <div className="space-y-6 py-6">
+    <aside className="flex flex-col p-3 lg:w-56">
+      <div className="space-y-3 py-3">
         <SearchComponent
           onSearch={handleSearch}
           disabled={isSearchDisabled}
@@ -39,7 +39,7 @@ const AsideComponent: React.FC<AsideComponentProps> = ({ asideContent }) => {
         />
       </div>
       <section>
-        <p className="space-y-6 py-6 font-bold text-lg">Categorias</p>
+        <p className="space-y-3 py-6 font-bold text-lg">Categorias</p>
         <ul className="space-y-6">
           {asideContent.map((item, index) => {
             const path = `/resources/${item.label}`;
@@ -64,10 +64,12 @@ const AsideComponent: React.FC<AsideComponentProps> = ({ asideContent }) => {
         </ul>
       </section>
       <section>
-        <p className="space-y-6 py-6 font-bold text-lg">Mis recursos</p>
-        <p className="space-y-6 py-6 text-lg">Guardados</p>
-        <p className="space-y-6 py-6 text-lg">Creados</p>
-        <BookMarkList resources={resources} />
+        <p className="space-y-6 pt-6 pb-3 font-bold text-lg">Mis recursos</p>
+        <p className="space-y-6 py-1 ">Guardados</p>
+        <p className="space-y-6 py-1 ">Creados</p>
+        <p className="space-y-6 py-1 ">
+          <BookMarkList resources={resources} />
+        </p>
       </section>
     </aside>
   );
