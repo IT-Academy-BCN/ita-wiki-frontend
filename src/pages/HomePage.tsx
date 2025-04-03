@@ -11,30 +11,38 @@ import { useNavigate } from "react-router";
 export default function HomePage() {
   const navigate = useNavigate();
   const { signOut, user } = useCtxUser();
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userRole, setUserRole] = useState<string | null>(null);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (user) {
-      navigate("/resources");
-    }
-  }, [user, navigate]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (user && user.id) {
       getUserRole(user.id)
-        .then((roleData) => {
-          setUserRole(roleData || null);
+        .then((role) => {
+          setUserRole(role || "anonymous");
+          setLoading(false);
         })
         .catch((err) => {
           console.error("Error fetching role:", err);
-          setUserRole(null);
+          setUserRole("anonymous");
+          setLoading(false);
         });
     } else {
-      setUserRole(null);
+      setUserRole("anonymous");
+      setLoading(false);
     }
   }, [user]);
+
+  useEffect(() => {
+    if (!user || !userRole) return;
+
+    if (["anonymous", "student", "mentor"].includes(userRole)) {
+      navigate("/resources");
+    } else if (["admin", "superadmin"].includes(userRole)) {
+      navigate("/admin-dashboard");
+    }
+  }, [user, userRole, navigate]);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -43,9 +51,13 @@ export default function HomePage() {
     ? ["superadmin", "admin", "mentor"].includes(userRole)
     : false;
 
-  const handleNavigate = useCallback(() => {
-    navigate("/resources/React");
-  }, []);
+  if (loading) {
+    return (
+      <main className="flex justify-center items-center h-screen w-full">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500 border-solid"></div>
+      </main>
+    );
+  }
 
   return (
     <>

@@ -16,6 +16,7 @@ export interface IntUser {
   displayName: string | null;
   photoURL: string | undefined;
   role?: string;
+  github_id?: number;
 }
 
 export interface IntResource {
