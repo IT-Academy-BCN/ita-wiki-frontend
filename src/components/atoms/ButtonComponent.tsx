@@ -2,13 +2,13 @@ import { FC, ReactNode } from 'react';
 import closeIcon from '../../assets/close.svg';
 
 type ItaBtnVariant =
-  | "primary"
-  | "secondary"
-  | "neutral"
-  | "github"
-  | "close"
-  | "icon"
-  | "custom";
+  | 'default'
+  | 'primary'
+  | 'secondary'
+  | 'github'
+  | 'close'
+  | 'icon'
+  | 'custom';
 interface ItaButtonProps {
   children?: ReactNode;
   variant?: ItaBtnVariant;
@@ -21,11 +21,12 @@ interface ItaButtonProps {
 }
 
 const basicCss =
-  "block text-[14px] h-[41px] capitalize text-center rounded-[12px] outline-none cursor-pointer box-sizing w-full";
+  'block w-full h-[63px] text-[16px] text-white font-semibold capitalize text-center rounded-[12px] my-[15px] bg-[#B91879] hover:bg-[#c44d95] transition-all duration-200 ease-in-out border-2 border-[#B91879] hover:border-[#c44d95] hover:scale-95 hover:duration-100 will-change-transform outline-none cursor-pointer box-sizing';
 const classList = {
-  primary: `${basicCss} text-white min-w-[152px] bg-primary font-[600] hover:opacity-90 border-none`,
-  secondary: `${basicCss} border border-gray-foreground font-[600] text-gray-foregorund hover:bg-neutral-50 min-w-[138px]`,
-  neutral: `${basicCss} bg-white text-gray-foreground font-[500] min-w-[138px] hover:bg-neutral-50`,
+  primary: basicCss,
+  default: basicCss,
+  secondary:
+    'block w-full h-[63px] text-[16px] text-[#7e7e7e] font-semibold capitalize text-center rounded-[12px] my-[15px] bg-[#fff] hover:bg-[#dcdcdc] transition-all duration-200 ease-in-out border-2 border-[#aeaeae] hover:border-[#aeaeae] hover:scale-95 hover:duration-100 will-change-transform outline-none cursor-pointer box-sizing',
   github:
     'text-[var(--github-color)] bg-[var(--github-bg)]  justify-between max-w-60 hover:bg-[var(--github-color)] hover:text-[var(--github-bg)] hover:border-black outline-none cursor-pointer box-sizing',
   close:
@@ -43,21 +44,27 @@ const ButtonComponent: FC<ItaButtonProps> = ({
   onClick,
 }) => {
   const baseClass =
-    variant === "custom" ? className || "" : classList[variant ?? "primary"];
+    variant === 'custom'
+      ? className || ''
+      : `${classList[variant ?? 'default']} ${className || ''}`.trim();
 
   return (
-    <button type={type || "button"} onClick={onClick} className={baseClass}>
-      {variant === "close" && <img src={closeIcon} alt="Close" />}
-
-      {variant === "icon" && text && (
-        <>
-          <span className="mr-2">{text}</span>
-          <img src={icon} alt="icon" className="h-[17px]" />
-        </>
+    <button
+      type={type || 'button'}
+      onClick={onClick}
+      className={baseClass}>
+      {variant === 'close' && (
+        <img
+          src={closeIcon}
+          alt="Close"
+        />
       )}
-
-      {variant === "icon" && !text && (
-        <img src={icon} alt="icon" className="h-[17px]" />
+      {variant === 'icon' && (
+        <img
+          src={icon}
+          alt="icon"
+          className={`h-[17px] ${text ? 'mr-3' : ''}`}
+        />
       )}
 
       {variant !== "icon" && (text || children)}
