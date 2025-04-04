@@ -30,6 +30,8 @@ const HeaderComponent = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [showConfirmLogout, setShowConfirmLogout] = useState(false);
+  const [selectedLang, setSelectedLang] = useState<"ES" | "EN">("ES");
+  const [showLangDropdown, setShowLangDropdown] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -95,7 +97,7 @@ const HeaderComponent = () => {
       <Link to="/">
         <img src={logoItAcademy} alt="logo" width={"116px"} />
       </Link>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-[6px]">
         <SearchComponent
           onSearch={handleSearch}
           disabled={isSearchDisabled}
@@ -110,15 +112,44 @@ const HeaderComponent = () => {
           />
         )}
   
-        {/* LANG SELECT */}
-        <div className="flex justify-center items-center">
-          <select
-            title="lang"
-            className="h-10 bg-white px-4 text-[#808080] rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#808080] focus:border-transparent"
+        {/* LANG SELECT DROPDOWN */}
+        <div className="relative">
+          <ButtonComponent
+            variant="custom"
+            className="inline-flex items-center justify-center h-10 px-4 text-[#808080] border-2 rounded-[10px] border-white bg-white hover:bg-[#dcdcdc] hover:border-[#808080] hover:scale-95 transition"
+            onClick={() => setShowLangDropdown((prev) => !prev)}
+            title="Idioma"
           >
-            <option>ES</option>
-            <option>EN</option>
-          </select>
+            <span className="mr-2">{selectedLang}</span>
+            <img
+              src={arrowDown}
+              alt="arrow"
+              className={`w-4 h-4 transition-transform ${showLangDropdown ? "rotate-180" : ""}`}
+            />
+          </ButtonComponent>
+  
+          {showLangDropdown && (
+            <div className="absolute right-0 mt-1 w-[48px] bg-white border rounded-md shadow-lg z-50 py-1 text-center">
+              <button
+                onClick={() => {
+                  setSelectedLang("ES");
+                  setShowLangDropdown(false);
+                }}
+                className="py-1 text-sm text-[#4a4a4a] hover:bg-[#fcecec] transition w-full"
+              >
+                ES
+              </button>
+              <button
+                onClick={() => {
+                  setSelectedLang("EN");
+                  setShowLangDropdown(false);
+                }}
+                className="py-1 text-sm text-[#4a4a4a] hover:bg-[#fcecec] transition w-full"
+              >
+                EN
+              </button>
+            </div>
+          )}
         </div>
   
         <ButtonComponent icon={settingsIcon} variant="icon" />
@@ -129,7 +160,7 @@ const HeaderComponent = () => {
             <button
               onClick={() => setShowDropdown((prev) => !prev)}
               title={user.displayName || ""}
-              className="h-10 px-2 flex items-center gap-1 rounded-lg hover:bg-white border border-transparent hover:border-gray-300 transition"
+              className="h-10 px-[6px] flex items-center gap-1 rounded-lg hover:bg-white border border-transparent hover:border-gray-300 transition"
             >
               <img
                 src={user.photoURL}
@@ -146,28 +177,6 @@ const HeaderComponent = () => {
             {showDropdown && (
               <div className="absolute right-0 mt-2 bg-white border rounded-md shadow-lg z-50 px-2 py-2 flex flex-col gap-2">
                 <button
-                  title="Perfil"
-                  onClick={() => {
-                    navigate("/profile");
-                    setShowDropdown(false);
-                  }}
-                  className="w-10 h-10 flex items-center justify-center hover:bg-[#fcecec] transition rounded-md"
-                >
-                  <img src={userIcon} alt="perfil icon" className="w-5 h-5" />
-                </button>
-  
-                <button
-                  title="Configuración"
-                  onClick={() => {
-                    navigate("/settings");
-                    setShowDropdown(false);
-                  }}
-                  className="w-10 h-10 flex items-center justify-center hover:bg-[#fcecec] transition rounded-md"
-                >
-                  <img src={settingsIcon} alt="settings icon" className="w-5 h-5" />
-                </button>
-  
-                <button
                   title="Cerrar sesión"
                   onClick={() => {
                     setShowConfirmLogout(true);
@@ -181,7 +190,7 @@ const HeaderComponent = () => {
             )}
           </div>
         ) : (
-          <div className="mr-[-10px]">
+          <div>
             <ButtonComponent
               icon={userIcon}
               variant="icon"
@@ -202,7 +211,7 @@ const HeaderComponent = () => {
                 type="checkbox"
                 onChange={handleCheckboxChange}
                 checked={isChecked}
-              ></input>
+              />
               Acepto términos legales
             </label>
             {loginError && (
@@ -216,10 +225,7 @@ const HeaderComponent = () => {
   
         {/* MODAL LOGOUT CONFIRM */}
         {showConfirmLogout && (
-          <Modal
-            closeModal={() => setShowConfirmLogout(false)}
-            title="Confirmar salida"
-          >
+          <Modal closeModal={() => setShowConfirmLogout(false)} title="Confirmar salida">
             <p className="text-center my-4">
               ¿Estás segur@ que quieres cerrar sesión?
             </p>
