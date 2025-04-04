@@ -81,7 +81,7 @@ export const useResourceSort = ({ resources }: UseResourceSortProps) => {
       sorted.sort((a, b) => a.parsedDate - b.parsedDate);
 
     if (sortOption === "votes")
-      sorted.sort((a, b) => (b.votes as number) - (a.votes as number));
+      sorted.sort((a, b) => (b.votes) - (a.votes));
 
     if (selectedYear !== null)
       sorted = sorted.filter((res) => res.parsedYear === selectedYear);

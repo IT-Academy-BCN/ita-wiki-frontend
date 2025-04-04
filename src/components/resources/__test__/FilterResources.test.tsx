@@ -92,7 +92,7 @@ describe("FilterResources Component", () => {
       </MemoryRouter>,
     );
 
-    const videoCheckbox = screen.getByLabelText("Video") as HTMLInputElement;
+    const videoCheckbox = screen.getByLabelText("Video");
     fireEvent.click(videoCheckbox);
 
     expect(setSelectedResourceTypes).toHaveBeenCalled();

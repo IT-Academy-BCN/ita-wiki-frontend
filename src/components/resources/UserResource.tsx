@@ -11,7 +11,7 @@ export const UserResource: FC<TypChildren & UserResourceProps> = ({
   return (
     <div data-testid="user-resource" className="flex gap-2 items-center ">
       <img
-        src={user.photoURL!}
+        src={user.photoURL}
         alt="User avatar"
         width={28}
         height={28}

@@ -1,22 +1,16 @@
-import {
-  Link,
-  useNavigate,
-  useLocation,
-  useSearchParams,
-} from "react-router";
+import { Link, useNavigate, useLocation, useSearchParams } from "react-router";
 import logoItAcademy from "../../assets/LogoItAcademy.svg";
 import addIcon from "../../assets/add.svg";
 import userIcon from "../../assets/user2.svg";
 import arrowDown from "../../assets/arrow-down.svg";
 // import close from "../../assets/close.svg";
-import logOutIcon from "../../assets/logout-svgrepo-com.svg"
+import logOutIcon from "../../assets/logout-svgrepo-com.svg";
 import ButtonComponent from "../atoms/ButtonComponent";
 import { useCtxUser } from "../../hooks/useCtxUser";
 import SearchComponent from "./header/SearchComponent";
 import { useEffect, useRef, useState } from "react";
 import { Modal } from "../Modal/Modal";
 import GitHubLogin from "../github-login/GitHubLogin";
-
 
 const HeaderComponent = () => {
   const { user, signIn, signOut } = useCtxUser();
@@ -103,7 +97,7 @@ const HeaderComponent = () => {
           disabled={isSearchDisabled}
           resetTrigger={resource}
         />
-  
+
         {user && (
           <ButtonComponent
             icon={addIcon}
@@ -111,7 +105,7 @@ const HeaderComponent = () => {
             onClick={goToResourcesPage}
           />
         )}
-  
+
         {/* LANG SELECT DROPDOWN */}
         <div className="relative">
           <ButtonComponent
@@ -127,7 +121,7 @@ const HeaderComponent = () => {
               className={`w-4 h-4 transition-transform ${showLangDropdown ? "rotate-180" : ""}`}
             />
           </ButtonComponent>
-  
+
           {showLangDropdown && (
             <div className="absolute right-0 mt-1 w-[48px] bg-white border rounded-md shadow-lg z-50 py-1 text-center">
               <button
@@ -151,9 +145,9 @@ const HeaderComponent = () => {
             </div>
           )}
         </div>
-  
+
         <ButtonComponent icon={settingsIcon} variant="icon" />
-  
+
         {/* AVATAR & DROPDOWN */}
         {user ? (
           <div className="relative" ref={dropdownRef}>
@@ -173,7 +167,7 @@ const HeaderComponent = () => {
                 className={`w-4 h-4 transition-transform ${showDropdown ? "rotate-180" : ""}`}
               />
             </button>
-  
+
             {showDropdown && (
               <div className="absolute right-0 mt-2 bg-white border rounded-md shadow-lg z-50 px-2 py-2 flex flex-col gap-2">
                 <button
@@ -199,7 +193,7 @@ const HeaderComponent = () => {
             />
           </div>
         )}
-  
+
         {/* MODAL LOGIN */}
         {isModalOpen && (
           <Modal closeModal={closeModal} title="Inicio sesión">
@@ -222,10 +216,13 @@ const HeaderComponent = () => {
             )}
           </Modal>
         )}
-  
+
         {/* MODAL LOGOUT CONFIRM */}
         {showConfirmLogout && (
-          <Modal closeModal={() => setShowConfirmLogout(false)} title="Confirmar salida">
+          <Modal
+            closeModal={() => setShowConfirmLogout(false)}
+            title="Confirmar salida"
+          >
             <p className="text-center my-4">
               ¿Estás segur@ que quieres cerrar sesión?
             </p>
