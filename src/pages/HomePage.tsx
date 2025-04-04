@@ -56,9 +56,9 @@ export default function HomePage() {
   }
 
   return (
-    <>
+    <div className="h-full flex overflow-hidden flex-col">
       <PageTitle title="" />
-      <main className="bg-white rounded-xl flex flex-col items-center justify-center w-full mx-6 gap-10 p-10 md:p-6 mb-6 text-center">
+      <main className="flex-1 bg-white rounded-xl flex flex-col items-center justify-center mx-6 gap-10 mb-6 text-center">
         <h1 className="font-bold text-3xl">
           ¡Bienvenid@ a la wiki de la IT Academy!
         </h1>
@@ -92,6 +92,6 @@ export default function HomePage() {
           />
         </section>
       </main>
-    </>
+    </div>
   );
 }
