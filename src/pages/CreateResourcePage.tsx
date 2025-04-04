@@ -1,15 +1,15 @@
-import { IntResource } from "../types";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { resourceSchema } from "../validations/resourceSchema";
-import FormInput from "../components/FormInput";
-import { createResource } from "../api/endPointResources";
-import { toast } from "sonner";
-import ButtonComponent from "../components/atoms/ButtonComponent";
-import { categories } from "../data/categories";
-import { themes } from "../data/themes";
-import { useUser } from "../hooks/useUser";
-import PageTitle from "../components/ui/PageTitle";
+import { IntResource } from '../types';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { resourceSchema } from '../validations/resourceSchema';
+import FormInput from '../components/FormInput';
+import { createResource } from '../api/endPointResources';
+import { toast } from 'sonner';
+import ButtonComponent from '../components/atoms/ButtonComponent';
+import { categories } from '../data/categories';
+import { themes } from '../data/themes';
+import { useUser } from '../hooks/useUser';
+import PageTitle from '../components/ui/PageTitle';
 
 export default function CreateResourcePage() {
   const { user } = useUser();
@@ -31,27 +31,50 @@ export default function CreateResourcePage() {
 
     try {
       await createResource(resourceWithGithubId);
-      toast.success("¡Recurso creado con éxito!");
+      toast.success('¡Recurso creado con éxito!');
       setTimeout(() => {
         window.location.href = `/resources/${data?.category?.toLowerCase()}`;
       }, 1000);
       reset();
     } catch (error) {
-      console.error("Error al crear el recurso:", error);
-      toast.error("Hubo un error al crear el recurso");
+      console.error('Error al crear el recurso:', error);
+      toast.error('Hubo un error al crear el recurso');
     }
   };
 
   return (
     <>
       <PageTitle title="Create Resource" />
-      <div className="w-full">
-        <h1 className="font-semibold">Nuevo recurso</h1>
+      <div className="my-5 w-full lg:w-6/7 bg-white py-10 px-15 rounded-xl">
+        <div className="md:flex justify-between items-center mt-1">
+          <div>
+            <h3 className="text-[14px] font-medium text-gray-500">
+              Recursos / crear recurso
+            </h3>
+            <h1 className="font-extrabold text-[26px] font-black ">
+              Nuevo recurso
+            </h1>
+          </div>
+          <div className="flex  ">
+            <ButtonComponent
+              variant="secondary"
+              onClick={() => window.history.back()}
+              className="min-w-[122px] min-h-[44px]">
+              Cancelar
+            </ButtonComponent>
+            <ButtonComponent
+              type="submit"
+              variant="primary"
+              className="">
+              Publicar
+            </ButtonComponent>
+          </div>
+        </div>
+
         <div className="flex justify-center mt-20 xl:mr-[198px]">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="my-5 w-full lg:w-3/5 bg-white p-10 rounded-xl"
-          >
+            className="">
             <FormInput
               id="title"
               placeholder="Título"
@@ -75,13 +98,16 @@ export default function CreateResourcePage() {
               id="category"
               className="w-full mb-1 px-6 py-4 border border-[#dddddd] rounded-lg placeholder:font-medium outline-[#B91879]"
               defaultValue=""
-              {...register("category", { required: true })}
-            >
-              <option value="" disabled>
+              {...register('category', { required: true })}>
+              <option
+                value=""
+                disabled>
                 Categoria
               </option>
               {categories.map((categorie) => (
-                <option key={categorie} value={categorie}>
+                <option
+                  key={categorie}
+                  value={categorie}>
                   {categorie}
                 </option>
               ))}
@@ -98,13 +124,16 @@ export default function CreateResourcePage() {
               id="theme"
               className="w-full mb-1 px-6 py-4 border border-[#dddddd] rounded-lg placeholder:font-medium outline-[#B91879]"
               defaultValue=""
-              {...register("theme", { required: true })}
-            >
-              <option value="" disabled>
+              {...register('theme', { required: true })}>
+              <option
+                value=""
+                disabled>
                 Tema
               </option>
               {themes.map((theme) => (
-                <option key={theme} value={theme}>
+                <option
+                  key={theme}
+                  value={theme}>
                   {theme}
                 </option>
               ))}
@@ -122,7 +151,7 @@ export default function CreateResourcePage() {
                   id="video"
                   value="Video"
                   className="scale-150 accent-[#B91879]"
-                  {...register("type", { required: true })}
+                  {...register('type', { required: true })}
                 />
                 <label htmlFor="video">Vídeo</label>
               </div>
@@ -132,7 +161,7 @@ export default function CreateResourcePage() {
                   id="curso"
                   value="Cursos"
                   className="scale-150 accent-[#B91879]"
-                  {...register("type", { required: true })}
+                  {...register('type', { required: true })}
                 />
                 <label htmlFor="curso">Curso</label>
               </div>
@@ -142,7 +171,7 @@ export default function CreateResourcePage() {
                   id="blog"
                   value="Blog"
                   className="scale-150 accent-[#B91879]"
-                  {...register("type", { required: true })}
+                  {...register('type', { required: true })}
                 />
                 <label htmlFor="blog">Blog</label>
               </div>
@@ -151,18 +180,6 @@ export default function CreateResourcePage() {
               {errors.type && (
                 <p className="text-red-500 text-sm">{errors.type.message}</p>
               )}
-            </div>
-
-            <div className="md:flex gap-4 mt-1">
-              <ButtonComponent type="submit" variant="primary">
-                Crear
-              </ButtonComponent>
-              <ButtonComponent
-                variant="secondary"
-                onClick={() => window.history.back()}
-              >
-                Cancelar
-              </ButtonComponent>
             </div>
           </form>
         </div>
