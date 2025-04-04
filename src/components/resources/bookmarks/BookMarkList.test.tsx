@@ -71,11 +71,11 @@ describe("BookMarkList Component", () => {
     render(
       <BrowserRouter>
         <BookMarkList resources={mockResources} />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     expect(
-      screen.getByText("No hay lista de recursos disponible")
+      screen.getByText("No hay lista de recursos disponible"),
     ).toBeInTheDocument();
   });
 
@@ -85,7 +85,7 @@ describe("BookMarkList Component", () => {
     render(
       <BrowserRouter>
         <BookMarkList resources={mockResources} />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     await waitFor(() => {
@@ -103,7 +103,7 @@ describe("BookMarkList Component", () => {
     render(
       <BrowserRouter>
         <BookMarkList resources={mockResources} />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     await waitFor(() => {
