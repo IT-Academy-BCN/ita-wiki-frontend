@@ -13,6 +13,7 @@ interface ItaButtonProps {
   children?: ReactNode;
   variant?: ItaBtnVariant;
   text?: string;
+  title?: string;
   icon?: string;
   type?: 'button' | 'submit' | 'reset';
   className?: string;
