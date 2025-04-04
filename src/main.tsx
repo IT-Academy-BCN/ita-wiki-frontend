@@ -34,5 +34,5 @@ createRoot(document.getElementById("root")!).render(
         </ResourcesProvider>
       </BrowserRouter>
     </StrictMode>
-  </UserCtxProvider>
+  </UserCtxProvider>,
 );

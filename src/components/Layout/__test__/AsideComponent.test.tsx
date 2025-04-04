@@ -11,7 +11,7 @@ test("renders aside content items", () => {
   render(
     <MemoryRouter>
       <AsideComponent asideContent={asideContentMock} />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 
   asideContentMock.forEach((item) => {

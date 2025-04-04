@@ -62,7 +62,7 @@ export const ListResources: FC<ListResourceProps> = ({
   useEffect(() => {}, [sortedResources]);
 
   const visibleResources = sortedResources.filter((resource) =>
-    resource.title.toLowerCase().includes(searchTerm.toLowerCase())
+    resource.title.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   return (
