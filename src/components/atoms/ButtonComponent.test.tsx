@@ -139,4 +139,17 @@ describe("Render Button", () => {
     expect(button).toHaveClass("text-[var(--github-color)]");
     expect(button).toHaveClass("bg-[var(--github-bg)]");
   });
+
+  it("should render icon button with text and icon", () => {
+    render(<ButtonComponent variant="icon" text="EN" icon={addIcon} />);
+    const button = screen.getByRole("button");
+    const icon = screen.getByRole("img");
+    const text = screen.getByText("EN");
+
+    expect(button).toBeInTheDocument();
+    expect(text).toBeInTheDocument();
+    expect(icon).toBeInTheDocument();
+    expect(icon).toHaveAttribute("src", addIcon);
+    expect(icon).toHaveAttribute("alt", "icon");
+  });
 });
