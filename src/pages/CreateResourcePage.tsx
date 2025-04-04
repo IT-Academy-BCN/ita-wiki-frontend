@@ -59,42 +59,41 @@ export default function CreateResourcePage() {
             <ButtonComponent
               variant="secondary"
               onClick={() => window.history.back()}
-              className="min-w-[122px] min-h-[44px]">
+              className="min-w-[122px] min-h-[44px] mr-4">
               Cancelar
             </ButtonComponent>
             <ButtonComponent
               type="submit"
               variant="primary"
-              className="">
+              className="min-w-[122px] min-h-[44px] ">
               Publicar
             </ButtonComponent>
           </div>
         </div>
+        <hr className="w-full border-t border-gray-300 mt-4 " />
 
-        <div className="flex justify-center mt-20 xl:mr-[198px]">
+        <div className="flex  mt-12 ]">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="">
+            <h2 className="text-xl text-black mb-2">Título</h2>
             <FormInput
               id="title"
-              placeholder="Título"
+              placeholder=""
               register={register}
               errors={errors.title?.message}
+              className="min-w-[31rem] min-h-[2.6rem] border-[0.06rem]  "
             />
-            <FormInput
-              id="description"
-              placeholder="Descripción"
-              register={register}
-              errors={errors.description?.message}
-            />
+            <h2 className="text-xl text-black mb-2">URL</h2>
             <FormInput
               id="url"
-              placeholder="URL"
+              placeholder=""
               register={register}
               errors={errors.url?.message}
             />
+            <h2 className="text-xl text-black mb-2">Lenguaje</h2>
 
-            <select
+            {/* <select
               id="category"
               className="w-full mb-1 px-6 py-4 border border-[#dddddd] rounded-lg placeholder:font-medium outline-[#B91879]"
               defaultValue=""
@@ -111,16 +110,16 @@ export default function CreateResourcePage() {
                   {categorie}
                 </option>
               ))}
-            </select>
-            <div className="h-6">
+            </select> */}
+            {/* <div className="h-6">
               {errors.category && (
                 <p className="text-red-500 text-sm">
                   {errors.category.message}
                 </p>
               )}
-            </div>
+            </div> */}
 
-            <select
+            {/* <select
               id="theme"
               className="w-full mb-1 px-6 py-4 border border-[#dddddd] rounded-lg placeholder:font-medium outline-[#B91879]"
               defaultValue=""
@@ -137,13 +136,14 @@ export default function CreateResourcePage() {
                   {theme}
                 </option>
               ))}
-            </select>
-            <div className="h-6">
+            </select> */}
+            {/* <div className="h-6">
+             
               {errors.theme && (
                 <p className="text-red-500 text-sm">{errors.theme.message}</p>
               )}
-            </div>
-
+            </div> */}
+            <h2 className="text-xl text-black mb-5">Tipo de recurso</h2>
             <div className="flex justify-around">
               <div className="flex gap-2 md:text-xl">
                 <input
@@ -180,6 +180,20 @@ export default function CreateResourcePage() {
               {errors.type && (
                 <p className="text-red-500 text-sm">{errors.type.message}</p>
               )}
+            </div>
+
+            <h2 className="text-xl text-black mb-5">Tags</h2>
+            <div>
+              <hr className="w-full border-t border-gray-300 mt-4 " />
+              <h2 className="text-xl text-black mb-5 mt-5">
+                Información adicional
+              </h2>
+              <FormInput
+                id="description"
+                placeholder="Descripción"
+                register={register}
+                errors={errors.description?.message}
+              />
             </div>
           </form>
         </div>
