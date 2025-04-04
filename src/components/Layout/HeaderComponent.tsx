@@ -7,6 +7,9 @@ import {
 import logoItAcademy from "../../assets/LogoItAcademy.svg";
 import addIcon from "../../assets/add.svg";
 import userIcon from "../../assets/user2.svg";
+import arrowDown from "../../assets/arrow-down.svg";
+// import close from "../../assets/close.svg";
+import logOutIcon from "../../assets/logout-svgrepo-com.svg"
 import ButtonComponent from "../atoms/ButtonComponent";
 import { useCtxUser } from "../../hooks/useCtxUser";
 import SearchComponent from "./header/SearchComponent";
@@ -92,12 +95,13 @@ const HeaderComponent = () => {
       <Link to="/">
         <img src={logoItAcademy} alt="logo" width={"116px"} />
       </Link>
-      <div className="flex gap-2 items-center">
+      <div className="flex items-center gap-3">
         <SearchComponent
           onSearch={handleSearch}
           disabled={isSearchDisabled}
           resetTrigger={resource}
         />
+  
         {user && (
           <ButtonComponent
             icon={addIcon}
@@ -105,44 +109,73 @@ const HeaderComponent = () => {
             onClick={goToResourcesPage}
           />
         )}
+  
+        {/* LANG SELECT */}
         <div className="flex justify-center items-center">
           <select
             title="lang"
-            className="bg-white p-2 text-[#808080] rounded-lg border border-white focus:outline-none focus:ring-2 focus:ring-[#808080] focus:border-transparent"
+            className="h-10 bg-white px-4 text-[#808080] rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#808080] focus:border-transparent"
           >
             <option>ES</option>
             <option>EN</option>
           </select>
         </div>
+  
         <ButtonComponent icon={settingsIcon} variant="icon" />
-
+  
         {/* AVATAR & DROPDOWN */}
         {user ? (
-          <div className="relative ml-4" ref={dropdownRef}>
+          <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setShowDropdown((prev) => !prev)}
-              className="flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-gray-300 hover:shadow-md transition"
+              title={user.displayName || ""}
+              className="h-10 px-2 flex items-center gap-1 rounded-lg hover:bg-white border border-transparent hover:border-gray-300 transition"
             >
               <img
                 src={user.photoURL}
                 alt="avatar"
                 className="w-8 h-8 rounded-full"
               />
-              <span className="font-medium text-sm text-gray-700">
-                {user.displayName}
-              </span>
+              <img
+                src={arrowDown}
+                alt="toggle dropdown"
+                className={`w-4 h-4 transition-transform ${showDropdown ? "rotate-180" : ""}`}
+              />
             </button>
-
+  
             {showDropdown && (
-              <div className="absolute right-0 mt-2 w-40 bg-white border rounded-md shadow-lg z-50">
+              <div className="absolute right-0 mt-2 bg-white border rounded-md shadow-lg z-50 px-2 py-2 flex flex-col gap-2">
                 <button
+                  title="Perfil"
+                  onClick={() => {
+                    navigate("/profile");
+                    setShowDropdown(false);
+                  }}
+                  className="w-10 h-10 flex items-center justify-center hover:bg-[#fcecec] transition rounded-md"
+                >
+                  <img src={userIcon} alt="perfil icon" className="w-5 h-5" />
+                </button>
+  
+                <button
+                  title="Configuración"
+                  onClick={() => {
+                    navigate("/settings");
+                    setShowDropdown(false);
+                  }}
+                  className="w-10 h-10 flex items-center justify-center hover:bg-[#fcecec] transition rounded-md"
+                >
+                  <img src={settingsIcon} alt="settings icon" className="w-5 h-5" />
+                </button>
+  
+                <button
+                  title="Cerrar sesión"
                   onClick={() => {
                     setShowConfirmLogout(true);
                     setShowDropdown(false);
                   }}
-                  className="block w-full text-left px-4 py-2 text-sm text-[#B91879] hover:bg-gray-100"
+                  className="w-10 h-10 flex items-center justify-center hover:bg-[#fcecec] transition rounded-md"
                 >
-                  Exit
+                  <img src={logOutIcon} alt="logout icon" className="w-5 h-5" />
                 </button>
               </div>
             )}
@@ -157,7 +190,7 @@ const HeaderComponent = () => {
             />
           </div>
         )}
-
+  
         {/* MODAL LOGIN */}
         {isModalOpen && (
           <Modal closeModal={closeModal} title="Inicio sesión">
@@ -180,17 +213,22 @@ const HeaderComponent = () => {
             )}
           </Modal>
         )}
-
+  
         {/* MODAL LOGOUT CONFIRM */}
         {showConfirmLogout && (
-          <Modal closeModal={() => setShowConfirmLogout(false)} title="Confirmar salida">
-            <p className="text-center my-4">¿Estás segur@ que quieres cerrar sesión?</p>
+          <Modal
+            closeModal={() => setShowConfirmLogout(false)}
+            title="Confirmar salida"
+          >
+            <p className="text-center my-4">
+              ¿Estás segur@ que quieres cerrar sesión?
+            </p>
             <div className="flex justify-center gap-4 mt-6">
               <button
                 onClick={() => {
                   signOut();
                   setShowConfirmLogout(false);
-                  navigate("/"); 
+                  navigate("/");
                 }}
                 className="px-4 py-2 bg-[#b91879] text-white rounded-md hover:bg-[#98537c]"
               >
