@@ -3,7 +3,6 @@ import logoItAcademy from "../../assets/LogoItAcademy.svg";
 import addIcon from "../../assets/add.svg";
 import userIcon from "../../assets/user2.svg";
 import arrowDown from "../../assets/arrow-down.svg";
-// import close from "../../assets/close.svg";
 import logOutIcon from "../../assets/logout-svgrepo-com.svg";
 import ButtonComponent from "../atoms/ButtonComponent";
 import { useCtxUser } from "../../hooks/useCtxUser";
