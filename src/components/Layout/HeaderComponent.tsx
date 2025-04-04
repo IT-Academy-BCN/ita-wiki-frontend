@@ -104,7 +104,17 @@ const HeaderComponent = () => {
       <Link to="/">
         <img src={logoItAcademy} alt="logo" width={"116px"} />
       </Link>
-      <div className="flex">
+
+      <div className="flex gap-2 items-center">
+        {hasPermission && (
+          <ButtonComponent
+            onClick={openAddUserModal}
+            icon={addIcon}
+            variant="icon"
+            text="Añadir Usuario"
+          ></ButtonComponent>
+        )}
+
         {user && (
           <ButtonComponent
             icon={addIcon}
