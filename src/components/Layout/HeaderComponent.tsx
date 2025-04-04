@@ -10,6 +10,8 @@ import SearchComponent from "./header/SearchComponent";
 import { useEffect, useRef, useState } from "react";
 import { Modal } from "../Modal/Modal";
 import GitHubLogin from "../github-login/GitHubLogin";
+import { AddUsersModal } from "../resources/AddUserModal";
+import { getUserRole } from "../../api/userApi";
 
 const HeaderComponent = () => {
   const { user, signIn, signOut } = useCtxUser();
@@ -20,13 +22,7 @@ const HeaderComponent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [loginError, setLoginError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [showConfirmLogout, setShowConfirmLogout] = useState(false);
-  const [selectedLang, setSelectedLang] = useState<"ES" | "EN">("ES");
-  const [showLangDropdown, setShowLangDropdown] = useState(false);
-
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [isAddUserModalOpen, setIsAddUserModalOpen] = useState(false);
 
   const goToResourcesPage = () => {
     navigate("/resources/add");
@@ -65,6 +61,32 @@ const HeaderComponent = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  const openAddUserModal = () => setIsAddUserModalOpen(true);
+  const closeAddUserModal = () => setIsAddUserModalOpen(false);
+
+  const [userRole, setUserRole] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (user && user.id) {
+      getUserRole(user.id)
+        .then((roleData) => {
+          setUserRole(roleData || null);
+        })
+        .catch((err) => {
+          console.error("Error fetching role:", err);
+          setUserRole(null);
+        });
+    } else {
+      setUserRole(null);
+    }
+  }, [user]);
+
+  const hasPermission = userRole
+    ? ["superadmin", "admin", "mentor"].includes(userRole)
+    : false;
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSignIn = async () => {
     if (!isChecked) {
       setLoginError(true);
@@ -96,7 +118,14 @@ const HeaderComponent = () => {
           disabled={isSearchDisabled}
           resetTrigger={resource}
         />
-
+        {hasPermission && (
+          <ButtonComponent
+            onClick={openAddUserModal}
+            icon={addIcon}
+            variant="icon"
+            text="Añadir Usuario"
+          ></ButtonComponent>
+        )}
         {user && (
           <ButtonComponent
             icon={addIcon}
@@ -215,35 +244,12 @@ const HeaderComponent = () => {
             )}
           </Modal>
         )}
-
-        {/* MODAL LOGOUT CONFIRM */}
-        {showConfirmLogout && (
-          <Modal
-            closeModal={() => setShowConfirmLogout(false)}
-            title="Confirmar salida"
-          >
-            <p className="text-center my-4">
-              ¿Estás segur@ que quieres cerrar sesión?
-            </p>
-            <div className="flex justify-center gap-4 mt-6">
-              <button
-                onClick={() => {
-                  signOut();
-                  setShowConfirmLogout(false);
-                  navigate("/");
-                }}
-                className="px-4 py-2 bg-[#b91879] text-white rounded-md hover:bg-[#98537c]"
-              >
-                Sí, salir
-              </button>
-              <button
-                onClick={() => setShowConfirmLogout(false)}
-                className="px-4 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400"
-              >
-                Cancelar
-              </button>
-            </div>
-          </Modal>
+        {isAddUserModalOpen && hasPermission && (
+          <AddUsersModal
+            onClose={closeAddUserModal}
+            userRole={userRole}
+            userID={user.id}
+          />
         )}
       </div>
     </header>
