@@ -138,7 +138,7 @@ const HeaderComponent = () => {
         <div className="relative">
           <ButtonComponent
             variant="custom"
-            className="inline-flex items-center justify-center h-10 px-4 text-[#808080] border-2 rounded-[10px] border-white bg-white hover:bg-[#dcdcdc] hover:border-[#808080] hover:scale-95 transition"
+            className="inline-flex items-center justify-center h-[41px] px-4 text-[#808080] border-2 rounded-[10px] border-white bg-white hover:bg-[#dcdcdc] hover:border-[#808080] hover:scale-95 transition cursor-pointer"
             onClick={() => setShowLangDropdown((prev) => !prev)}
             title="Idioma"
           >
@@ -151,13 +151,13 @@ const HeaderComponent = () => {
           </ButtonComponent>
 
           {showLangDropdown && (
-            <div className="absolute right-0 mt-1 w-[48px] bg-white border rounded-md shadow-lg z-50 py-1 text-center">
+            <div className="absolute right-0 mt-2 w-[48px] bg-white border rounded-md shadow-lg z-50 py-1 text-center">
               <button
                 onClick={() => {
                   setSelectedLang("ES");
                   setShowLangDropdown(false);
                 }}
-                className="py-1 text-sm text-[#4a4a4a] hover:bg-[#fcecec] transition w-full"
+                className="py-1 text-sm text-[#4a4a4a] hover:bg-[#fcecec] transition w-full cursor-pointer"
               >
                 ES
               </button>
@@ -166,7 +166,7 @@ const HeaderComponent = () => {
                   setSelectedLang("EN");
                   setShowLangDropdown(false);
                 }}
-                className="py-1 text-sm text-[#4a4a4a] hover:bg-[#fcecec] transition w-full"
+                className="py-1 text-sm text-[#4a4a4a] hover:bg-[#fcecec] transition w-full cursor-pointer"
               >
                 EN
               </button>
@@ -182,7 +182,7 @@ const HeaderComponent = () => {
             <button
               onClick={() => setShowDropdown((prev) => !prev)}
               title={user.displayName || ""}
-              className="h-10 px-[6px] flex items-center gap-1 rounded-lg hover:bg-white border border-transparent hover:border-gray-300 transition"
+              className="h-[41px] px-4 flex items-center gap-1 rounded-lg hover:bg-white border border-transparent hover:border-gray-300 transition cursor-pointer"
             >
               <img
                 src={user.photoURL}
@@ -204,7 +204,7 @@ const HeaderComponent = () => {
                     setShowConfirmLogout(true);
                     setShowDropdown(false);
                   }}
-                  className="w-10 h-10 flex items-center justify-center hover:bg-[#fcecec] transition rounded-md"
+                  className="w-10 h-10 flex items-center justify-center hover:bg-[#fcecec] transition rounded-md cursor-pointer"
                 >
                   <img src={logOutIcon} alt="logout icon" className="w-5 h-5" />
                 </button>
@@ -274,6 +274,37 @@ const HeaderComponent = () => {
             )}
           </Modal>
         )}
+
+        {/* MODAL LOGOUT CONFIRM */}
+        {showConfirmLogout && (
+          <Modal
+            closeModal={() => setShowConfirmLogout(false)}
+            title="Confirmar salida"
+          >
+            <p className="text-center my-4">
+              ¿Estás segur@ que quieres cerrar sesión?
+            </p>
+            <div className="flex justify-center gap-4 mt-6">
+              <button
+                onClick={() => {
+                  signOut();
+                  setShowConfirmLogout(false);
+                  navigate("/");
+                }}
+                className="px-4 py-2 bg-[#b91879] text-white rounded-md hover:bg-[#98537c] cursor-pointer"
+              >
+                Sí, salir
+              </button>
+              <button
+                onClick={() => setShowConfirmLogout(false)}
+                className="px-4 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400 cursor-pointer"
+              >
+                Cancelar
+              </button>
+            </div>
+          </Modal>
+        )}
+
         {isAddUserModalOpen && hasPermission && (
           <AddUsersModal
             onClose={closeAddUserModal}
