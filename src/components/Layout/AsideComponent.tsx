@@ -4,6 +4,7 @@ import SearchComponent from "./header/SearchComponent";
 import { useState } from "react";
 import BookMarkList from "../resources/bookmarks/BookMarkList";
 import { useResources } from "../../context/ResourcesContext";
+import { Bookmark, PenSquare } from "lucide-react";
 
 type AsideItem = {
   icon: string;
@@ -30,7 +31,7 @@ const AsideComponent: React.FC<AsideComponentProps> = ({ asideContent }) => {
   };
 
   return (
-    <aside className="flex flex-col p-3 lg:w-56">
+    <aside className="flex flex-col p-6 lg:w-56">
       <div className="space-y-3 py-3">
         <SearchComponent
           onSearch={handleSearch}
@@ -63,13 +64,23 @@ const AsideComponent: React.FC<AsideComponentProps> = ({ asideContent }) => {
           })}
         </ul>
       </section>
-      <section>
-        <p className="space-y-6 pt-6 pb-3 font-bold text-lg">Mis recursos</p>
-        <p className="space-y-6 py-1 ">Guardados</p>
-        <p className="space-y-6 py-1 ">Creados</p>
-        <p className="space-y-6 py-1 ">
-          <BookMarkList resources={resources} />
+
+      <section className="pt-6">
+        <p className="pb-3 font-bold text-lg">Mis recursos</p>
+
+        <div className="flex items-center gap-2 py-1 text-gray-500">
+          <Bookmark size={25} />
+          <span>Guardados</span>
+        </div>
+
+        <p className="flex items-center gap-2 py-1 text-gray-500">
+          <PenSquare size={25} />
+          <span>Creados</span>
         </p>
+
+        <div className="py-1">
+          <BookMarkList resources={resources} />
+        </div>
       </section>
     </aside>
   );
