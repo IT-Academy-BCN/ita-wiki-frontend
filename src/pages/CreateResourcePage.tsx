@@ -89,7 +89,7 @@ export default function CreateResourcePage() {
               placeholder=""
               register={register}
               errors={errors.title?.message}
-              className="min-w-[31rem] max-h-[2.6rem] border-[0.06rem] border-gray-300 focus:border-[#B91879] outline-none"
+              className="min-w-[30rem] max-h-[2.6rem] border-[0.06rem] border-gray-300 focus:border-[#B91879] outline-none"
             />
             <h2 className="text-xl text-black mb-2">URL</h2>
             <FormInput
@@ -99,9 +99,10 @@ export default function CreateResourcePage() {
               errors={errors.url?.message}
               className="min-w-[31rem] max-h-[2.6rem] border-[0.06rem] border-gray-300 focus:border-[#B91879] outline-none "
             />
+
             {/* AQUI VAN LOS BOTONES DE LENGUAJE */}
             <h2 className="text-xl text-black mb-2">Lenguaje</h2>
-            <div className=" flex gap-6 mb-4">
+            <div className=" flex gap-x-3 mb-4">
               <ButtonComponent
                 type="button"
                 variant="secondary"
@@ -203,6 +204,7 @@ export default function CreateResourcePage() {
               </ButtonComponent>
             </div>
 
+            {/* CÓDIGO QUE AÚN NO QUIERO BORRAR */}
             {/* <select
               id="category"
               className="w-full mb-1 px-6 py-4 border border-[#dddddd] rounded-lg placeholder:font-medium outline-[#B91879]"
@@ -253,6 +255,8 @@ export default function CreateResourcePage() {
                 <p className="text-red-500 text-sm">{errors.theme.message}</p>
               )}
             </div> */}
+
+            {/* ESTO DEBERÍA ESTAR MÁS JUNTO */}
             <h2 className="text-xl text-black mb-5">Tipo de recurso</h2>
             <div className="flex justify-between mx-3 ">
               <div className="flex gap-4 md:text-xl">
@@ -292,7 +296,7 @@ export default function CreateResourcePage() {
                 <p className="text-red-500 text-sm">{errors.type.message}</p>
               )}
             </div>
-
+            {/* FALTA EL CUADRO DE TAGS */}
             <h2 className="text-xl text-black mb-5">Tags</h2>
             <div>
               <hr className="w-full border-t border-gray-300 mt-4 " />
