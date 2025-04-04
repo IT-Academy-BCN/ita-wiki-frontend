@@ -10,6 +10,13 @@ import { categories } from '../data/categories';
 import { themes } from '../data/themes';
 import { useUser } from '../hooks/useUser';
 import PageTitle from '../components/ui/PageTitle';
+import logoJava from '../../src/assets/logo-java 1.svg';
+import logoPhp from '../../src/assets/logo-php 1.svg';
+import logoJavaS from '../../src/assets//javascript.svg';
+import logoTypeS from '../../src/assets/TypescriptVector.svg';
+import logoPython from '../../src/assets/pythonVector.svg';
+import logoSql from '../../src/assets/sqlVector.svg';
+import { useEffect } from 'react';
 
 export default function CreateResourcePage() {
   const { user } = useUser();
@@ -59,13 +66,13 @@ export default function CreateResourcePage() {
             <ButtonComponent
               variant="secondary"
               onClick={() => window.history.back()}
-              className="min-w-[122px] min-h-[44px] mr-4">
+              className="min-w-[8rem] max-h-[2.75rem]  mr-4  ">
               Cancelar
             </ButtonComponent>
             <ButtonComponent
               type="submit"
               variant="primary"
-              className="min-w-[122px] min-h-[44px] ">
+              className="min-w-[8rem] max-h-[2.75rem] ">
               Publicar
             </ButtonComponent>
           </div>
@@ -82,7 +89,7 @@ export default function CreateResourcePage() {
               placeholder=""
               register={register}
               errors={errors.title?.message}
-              className="min-w-[31rem] min-h-[2.6rem] border-[0.06rem]  "
+              className="min-w-[31rem] max-h-[2.6rem] border-[0.06rem] border-gray-300 focus:border-[#B91879] outline-none"
             />
             <h2 className="text-xl text-black mb-2">URL</h2>
             <FormInput
@@ -90,8 +97,111 @@ export default function CreateResourcePage() {
               placeholder=""
               register={register}
               errors={errors.url?.message}
+              className="min-w-[31rem] max-h-[2.6rem] border-[0.06rem] border-gray-300 focus:border-[#B91879] outline-none "
             />
+            {/* AQUI VAN LOS BOTONES DE LENGUAJE */}
             <h2 className="text-xl text-black mb-2">Lenguaje</h2>
+            <div className=" flex gap-6 mb-4">
+              <ButtonComponent
+                type="button"
+                variant="secondary"
+                className="min-w-[8rem] max-h-[3.5rem] focus:border-[#B91879] text-black py-2 hover:bg-transparent hover:scale-100
+              ">
+                <div className="flex justify-center">
+                  <img
+                    src={logoJava}
+                    alt="LogoJava"
+                    className="mb-2 mx-1"
+                  />
+                  <h1 className="mt-3 ml-1 mr-1 text-[1rem] font-medium">
+                    Java
+                  </h1>
+                </div>
+              </ButtonComponent>
+
+              <ButtonComponent
+                type="button"
+                variant="secondary"
+                className="min-w-[8rem] max-h-[3.5rem] focus:border-[#B91879] text-black py-2 hover:bg-transparent hover:scale-100
+              ">
+                <div className="flex justify-center mt-1">
+                  <img
+                    src={logoPhp}
+                    alt="LogoPHP"
+                    className="mb-2 mx-1"
+                  />
+                  <h1 className="mt-1 ml-1 mr-1 text-[1rem] font-medium">
+                    PHP
+                  </h1>
+                </div>
+              </ButtonComponent>
+
+              <ButtonComponent
+                type="button"
+                variant="secondary"
+                className="min-w-[12rem] max-h-[3.5rem] focus:border-[#B91879] text-black py-2 hover:bg-transparent hover:scale-100
+              ">
+                <div className="flex justify-center p-1">
+                  <img
+                    src={logoJavaS}
+                    alt="LogoJavaS"
+                    className="mb-2 mx-1 mt-1"
+                  />
+                  <h1 className="mt-2 ml-1 mr-1 text-[1rem] font-medium">
+                    JavaScript
+                  </h1>
+                </div>
+              </ButtonComponent>
+
+              <ButtonComponent
+                type="button"
+                variant="secondary"
+                className="min-w-[12rem] max-h-[3.5rem] focus:border-[#B91879] text-black py-2 hover:bg-transparent hover:scale-100
+              ">
+                <div className="flex justify-center pt-2">
+                  <img
+                    src={logoTypeS}
+                    alt="logoTypeS"
+                    className="mb-2 mx-1"
+                  />
+                  <h1 className=" ml-1 mr-1 text-[1rem] font-medium">
+                    TypeScript
+                  </h1>
+                </div>
+              </ButtonComponent>
+              <ButtonComponent
+                type="button"
+                variant="secondary"
+                className="min-w-[8rem] max-h-[3.5rem] focus:border-[#B91879] text-black py-2 hover:bg-transparent hover:scale-100
+              ">
+                <div className="flex justify-center pt-1">
+                  <img
+                    src={logoPython}
+                    alt="logoPython"
+                    className="mb-2 mx-1"
+                  />
+                  <h1 className="mt-1 ml-1 mr-1 text-[1rem] font-medium">
+                    Python
+                  </h1>
+                </div>
+              </ButtonComponent>
+              <ButtonComponent
+                type="button"
+                variant="secondary"
+                className="min-w-[8rem] max-h-[3.5rem] focus:border-[#B91879] text-black py-2 hover:bg-transparent hover:scale-100
+              ">
+                <div className="flex justify-center">
+                  <img
+                    src={logoSql}
+                    alt="logoSql"
+                    className="mb-2 mx-1 p-1"
+                  />
+                  <h1 className="mt-3 ml-1 mr-1 text-[1rem] font-medium">
+                    SQL
+                  </h1>
+                </div>
+              </ButtonComponent>
+            </div>
 
             {/* <select
               id="category"
@@ -144,13 +254,13 @@ export default function CreateResourcePage() {
               )}
             </div> */}
             <h2 className="text-xl text-black mb-5">Tipo de recurso</h2>
-            <div className="flex justify-around">
-              <div className="flex gap-2 md:text-xl">
+            <div className="flex justify-between mx-3 ">
+              <div className="flex gap-4 md:text-xl">
                 <input
                   type="radio"
                   id="video"
                   value="Video"
-                  className="scale-150 accent-[#B91879]"
+                  className=" scale-150 accent-[#B91879] "
                   {...register('type', { required: true })}
                 />
                 <label htmlFor="video">Vídeo</label>
@@ -176,6 +286,7 @@ export default function CreateResourcePage() {
                 <label htmlFor="blog">Blog</label>
               </div>
             </div>
+
             <div className="h-6">
               {errors.type && (
                 <p className="text-red-500 text-sm">{errors.type.message}</p>
@@ -185,14 +296,18 @@ export default function CreateResourcePage() {
             <h2 className="text-xl text-black mb-5">Tags</h2>
             <div>
               <hr className="w-full border-t border-gray-300 mt-4 " />
-              <h2 className="text-xl text-black mb-5 mt-5">
+              <h2 className="text-xl font-semibold mb-5 mt-5">
                 Información adicional
+              </h2>
+              <h2 className="text-xl text-black font-light mb-5 mt-5">
+                Descripción
               </h2>
               <FormInput
                 id="description"
-                placeholder="Descripción"
+                placeholder=""
                 register={register}
                 errors={errors.description?.message}
+                className="min-w-[30rem] max-h-[4.5rem] border-[0.06rem] border-gray-300 focus:border-[#B91879] outline-none"
               />
             </div>
           </form>
