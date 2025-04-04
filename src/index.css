@@ -13,6 +13,8 @@
   -moz-osx-font-smoothing: grayscale;
   color: #213547;
   background-color: #ffffff;
+
+  --color-primary: #b91879;
 }
 
 @theme {
