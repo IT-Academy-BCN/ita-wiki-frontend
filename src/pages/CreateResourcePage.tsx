@@ -6,8 +6,6 @@ import FormInput from '../components/FormInput';
 import { createResource } from '../api/endPointResources';
 import { toast } from 'sonner';
 import ButtonComponent from '../components/atoms/ButtonComponent';
-import { categories } from '../data/categories';
-import { themes } from '../data/themes';
 import { useUser } from '../hooks/useUser';
 import PageTitle from '../components/ui/PageTitle';
 import logoJava from '../../src/assets/logo-java 1.svg';
@@ -16,7 +14,6 @@ import logoJavaS from '../../src/assets//javascript.svg';
 import logoTypeS from '../../src/assets/TypescriptVector.svg';
 import logoPython from '../../src/assets/pythonVector.svg';
 import logoSql from '../../src/assets/sqlVector.svg';
-import { useEffect } from 'react';
 
 export default function CreateResourcePage() {
   const { user } = useUser();
@@ -55,10 +52,10 @@ export default function CreateResourcePage() {
       <div className="my-5 w-full lg:w-6/7 bg-white py-10 px-15 rounded-xl">
         <div className="md:flex justify-between items-center mt-1">
           <div>
-            <h3 className="text-[14px] font-medium text-gray-500">
+            <h3 className="text-sm font-medium text-gray-500">
               Recursos / crear recurso
             </h3>
-            <h1 className="font-extrabold text-[26px] font-black ">
+            <h1 className="text-[26px] font-black ">
               Nuevo recurso
             </h1>
           </div>
@@ -66,55 +63,54 @@ export default function CreateResourcePage() {
             <ButtonComponent
               variant="secondary"
               onClick={() => window.history.back()}
-              className="min-w-[8rem] max-h-[2.75rem]  mr-4  ">
+              className="min-w-[8rem] max-h-[2.75rem] mr-4">
               Cancelar
             </ButtonComponent>
             <ButtonComponent
               type="submit"
               variant="primary"
-              className="min-w-[8rem] max-h-[2.75rem] ">
+              className="min-w-[8rem] max-h-[2.75rem]">
               Publicar
             </ButtonComponent>
           </div>
         </div>
-        <hr className="w-full border-t border-gray-300 mt-4 " />
+        <hr className="w-full border-t border-gray-300 mt-4" />
 
         <div className="flex  mt-12 ]">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="">
-            <h2 className="text-xl text-black mb-2">Título</h2>
+            <h2 className="text-sm text-black font-medium mb-2">Título</h2>
             <FormInput
               id="title"
               placeholder=""
               register={register}
               errors={errors.title?.message}
-              className="min-w-[30rem] max-h-[2.6rem] border-[0.06rem] border-gray-300 focus:border-[#B91879] outline-none"
+              className="max-w-[482px] max-h-[2.6rem] border-[0.06rem] border-gray-300 focus:border-2 focus:border-[#B91879] outline-none"
             />
-            <h2 className="text-xl text-black mb-2">URL</h2>
+            <h2 className="text-sm text-black font-medium mb-2">URL</h2>
             <FormInput
               id="url"
               placeholder=""
               register={register}
               errors={errors.url?.message}
-              className="min-w-[31rem] max-h-[2.6rem] border-[0.06rem] border-gray-300 focus:border-[#B91879] outline-none "
+              className="max-w-[482px] max-h-[2.6rem] border-[0.06rem] border-gray-300 focus:border-2 focus:border-[#B91879] outline-none "
             />
 
             {/* AQUI VAN LOS BOTONES DE LENGUAJE */}
-            <h2 className="text-xl text-black mb-2">Lenguaje</h2>
-            <div className=" flex gap-x-3 mb-4">
+            <h2 className="text-sm text-black font-medium mb-2">Lenguaje</h2>
+            <div className="flex gap-x-3 mb-4">
               <ButtonComponent
                 type="button"
                 variant="secondary"
-                className="min-w-[8rem] max-h-[3.5rem] focus:border-[#B91879] text-black py-2 hover:bg-transparent hover:scale-100
-              ">
+                className="min-w-[8rem] max-h-[3.5rem] text-black py-2 hover:bg-transparent hover:scale-100 focus:border-2 focus:border-[#B91879]">
                 <div className="flex justify-center">
                   <img
                     src={logoJava}
                     alt="LogoJava"
                     className="mb-2 mx-1"
                   />
-                  <h1 className="mt-3 ml-1 mr-1 text-[1rem] font-medium">
+                  <h1 className="mt-3 ml-1 mr-1 text-sm font-medium">
                     Java
                   </h1>
                 </div>
@@ -123,7 +119,7 @@ export default function CreateResourcePage() {
               <ButtonComponent
                 type="button"
                 variant="secondary"
-                className="min-w-[8rem] max-h-[3.5rem] focus:border-[#B91879] text-black py-2 hover:bg-transparent hover:scale-100
+                className="min-w-[8rem] max-h-[3.5rem] focus:border-2 focus:border-[#B91879] text-black py-2 hover:bg-transparent hover:scale-100
               ">
                 <div className="flex justify-center mt-1">
                   <img
@@ -131,7 +127,7 @@ export default function CreateResourcePage() {
                     alt="LogoPHP"
                     className="mb-2 mx-1"
                   />
-                  <h1 className="mt-1 ml-1 mr-1 text-[1rem] font-medium">
+                  <h1 className="mt-1 ml-1 mr-1 text-sm font-medium">
                     PHP
                   </h1>
                 </div>
@@ -148,7 +144,7 @@ export default function CreateResourcePage() {
                     alt="LogoJavaS"
                     className="mb-2 mx-1 mt-1"
                   />
-                  <h1 className="mt-2 ml-1 mr-1 text-[1rem] font-medium">
+                  <h1 className="mt-2 ml-1 mr-1 text-sm font-medium">
                     JavaScript
                   </h1>
                 </div>
@@ -165,7 +161,7 @@ export default function CreateResourcePage() {
                     alt="logoTypeS"
                     className="mb-2 mx-1"
                   />
-                  <h1 className=" ml-1 mr-1 text-[1rem] font-medium">
+                  <h1 className=" ml-1 mr-1 text-sm font-medium">
                     TypeScript
                   </h1>
                 </div>
@@ -181,7 +177,7 @@ export default function CreateResourcePage() {
                     alt="logoPython"
                     className="mb-2 mx-1"
                   />
-                  <h1 className="mt-1 ml-1 mr-1 text-[1rem] font-medium">
+                  <h1 className="mt-1 ml-1 mr-1 text-sm font-medium">
                     Python
                   </h1>
                 </div>
@@ -197,7 +193,7 @@ export default function CreateResourcePage() {
                     alt="logoSql"
                     className="mb-2 mx-1 p-1"
                   />
-                  <h1 className="mt-3 ml-1 mr-1 text-[1rem] font-medium">
+                  <h1 className="mt-3 ml-1 mr-1 text-sm font-medium">
                     SQL
                   </h1>
                 </div>
@@ -257,8 +253,8 @@ export default function CreateResourcePage() {
             </div> */}
 
             {/* ESTO DEBERÍA ESTAR MÁS JUNTO */}
-            <h2 className="text-xl text-black mb-5">Tipo de recurso</h2>
-            <div className="flex justify-between mx-3 ">
+            <h2 className="text-sm text-black font-medium mb-5">Tipo de recurso</h2>
+            <div className="flex justify-start gap-x-10">
               <div className="flex gap-4 md:text-xl">
                 <input
                   type="radio"
@@ -267,7 +263,7 @@ export default function CreateResourcePage() {
                   className=" scale-150 accent-[#B91879] "
                   {...register('type', { required: true })}
                 />
-                <label htmlFor="video">Vídeo</label>
+                <label htmlFor="video" className='text-sm'>Vídeo</label>
               </div>
               <div className="flex gap-2 md:text-xl">
                 <input
@@ -277,7 +273,7 @@ export default function CreateResourcePage() {
                   className="scale-150 accent-[#B91879]"
                   {...register('type', { required: true })}
                 />
-                <label htmlFor="curso">Curso</label>
+                <label htmlFor="curso" className='text-sm'>Curso</label>
               </div>
               <div className="flex gap-2 md:text-xl">
                 <input
@@ -287,7 +283,7 @@ export default function CreateResourcePage() {
                   className="scale-150 accent-[#B91879]"
                   {...register('type', { required: true })}
                 />
-                <label htmlFor="blog">Blog</label>
+                <label htmlFor="blog" className='text-sm'>Blog</label>
               </div>
             </div>
 
@@ -297,13 +293,13 @@ export default function CreateResourcePage() {
               )}
             </div>
             {/* FALTA EL CUADRO DE TAGS */}
-            <h2 className="text-xl text-black mb-5">Tags</h2>
+            <h2 className="text-sm text-black font-medium mb-5">Tags</h2>
             <div>
               <hr className="w-full border-t border-gray-300 mt-4 " />
-              <h2 className="text-xl font-semibold mb-5 mt-5">
+              <h2 className="text-base font-semibold mb-5 mt-5">
                 Información adicional
               </h2>
-              <h2 className="text-xl text-black font-light mb-5 mt-5">
+              <h2 className="text-sm text-black font-medium vmb-5 mt-5">
                 Descripción
               </h2>
               <FormInput
@@ -311,7 +307,7 @@ export default function CreateResourcePage() {
                 placeholder=""
                 register={register}
                 errors={errors.description?.message}
-                className="min-w-[30rem] max-h-[4.5rem] border-[0.06rem] border-gray-300 focus:border-[#B91879] outline-none"
+                className="max-w-[482px] max-h-[4.5rem] border-[0.06rem] border-gray-300 focus:border-[#B91879] outline-none"
               />
             </div>
           </form>
