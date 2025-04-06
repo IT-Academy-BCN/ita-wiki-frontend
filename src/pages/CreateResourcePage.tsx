@@ -2,7 +2,7 @@ import { IntResource } from '../types';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { resourceSchema } from '../validations/resourceSchema';
-import FormInput from '../components/FormInput';
+import FormInput from '../components/resources/create-resources/FormInput';
 import { createResource } from '../api/endPointResources';
 import { toast } from 'sonner';
 import ButtonComponent from '../components/atoms/ButtonComponent';
@@ -14,6 +14,8 @@ import logoJavaS from '../../src/assets//javascript.svg';
 import logoTypeS from '../../src/assets/TypescriptVector.svg';
 import logoPython from '../../src/assets/pythonVector.svg';
 import logoSql from '../../src/assets/sqlVector.svg';
+ import TagInput from '../components/resources/create-resources/TagInput';
+import { useState } from 'react';
 
 export default function CreateResourcePage() {
   const { user } = useUser();
@@ -26,6 +28,8 @@ export default function CreateResourcePage() {
   } = useForm<Partial<IntResource>>({
     resolver: zodResolver(resourceSchema),
   });
+
+  const [tags, setTags] = useState<string[]>([]);
 
   const onSubmit = async (data: Partial<IntResource>) => {
     const resourceWithGithubId = {
@@ -49,8 +53,8 @@ export default function CreateResourcePage() {
   return (
     <>
       <PageTitle title="Create Resource" />
-      <div className="my-5 w-full lg:w-6/7 bg-white py-10 px-15 rounded-xl">
-        <div className="md:flex justify-between items-center mt-1">
+      <div className="my-5 w-full lg:w-6/7 bg-white py-10 px-15 rounded-xl overflow-y-scroll">
+        <div className="md:flex justify-between items-center">
           <div>
             <h3 className="text-sm font-medium text-gray-500">
               Recursos / crear recurso
@@ -74,21 +78,21 @@ export default function CreateResourcePage() {
             </ButtonComponent>
           </div>
         </div>
-        <hr className="w-full border-t border-gray-300 mt-4" />
+        <hr className="w-full border-t border-gray-300 mt-3" />
 
-        <div className="flex  mt-12 ]">
+        <div className="flex mt-8">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="">
-            <h2 className="text-sm text-black font-medium mb-2">Título</h2>
+            <h2 className="text-sm text-black font-medium mb-3">Título</h2>
             <FormInput
               id="title"
               placeholder=""
               register={register}
               errors={errors.title?.message}
-              className="max-w-[482px] max-h-[2.6rem] border-[0.06rem] border-gray-300 focus:border-2 focus:border-[#B91879] outline-none"
+              className="max-w-[482px] max-h-[2.6rem] border-[0.06rem] border-gray-300 focus:border-2 focus:border-[#B91879] outline-none mb-0"
             />
-            <h2 className="text-sm text-black font-medium mb-2">URL</h2>
+            <h2 className="text-sm text-black font-medium mb-3">URL</h2>
             <FormInput
               id="url"
               placeholder=""
@@ -98,19 +102,19 @@ export default function CreateResourcePage() {
             />
 
             {/* AQUI VAN LOS BOTONES DE LENGUAJE */}
-            <h2 className="text-sm text-black font-medium mb-2">Lenguaje</h2>
-            <div className="flex gap-x-3 mb-4">
+            <h2 className="text-sm text-black font-medium">Lenguaje</h2>
+            <div className="flex gap-x-3">
               <ButtonComponent
                 type="button"
                 variant="secondary"
                 className="min-w-[8rem] max-h-[3.5rem] text-black py-2 hover:bg-transparent hover:scale-100 focus:border-2 focus:border-[#B91879]">
-                <div className="flex justify-center">
+                <div className="flex justify-center items-center gap-1 h-fit">
                   <img
                     src={logoJava}
                     alt="LogoJava"
-                    className="mb-2 mx-1"
+                    className="mx-1"
                   />
-                  <h1 className="mt-3 ml-1 mr-1 text-sm font-medium">
+                  <h1 className="text-sm font-medium">
                     Java
                   </h1>
                 </div>
@@ -121,13 +125,13 @@ export default function CreateResourcePage() {
                 variant="secondary"
                 className="min-w-[8rem] max-h-[3.5rem] focus:border-2 focus:border-[#B91879] text-black py-2 hover:bg-transparent hover:scale-100
               ">
-                <div className="flex justify-center mt-1">
+                <div className="flex justify-center items-center gap-1">
                   <img
                     src={logoPhp}
                     alt="LogoPHP"
-                    className="mb-2 mx-1"
+                    className="mx-1"
                   />
-                  <h1 className="mt-1 ml-1 mr-1 text-sm font-medium">
+                  <h1 className=" text-sm font-medium">
                     PHP
                   </h1>
                 </div>
@@ -138,13 +142,13 @@ export default function CreateResourcePage() {
                 variant="secondary"
                 className="min-w-[12rem] max-h-[3.5rem] focus:border-[#B91879] text-black py-2 hover:bg-transparent hover:scale-100
               ">
-                <div className="flex justify-center p-1">
+                <div className="flex justify-center items-center gap-1">
                   <img
                     src={logoJavaS}
                     alt="LogoJavaS"
-                    className="mb-2 mx-1 mt-1"
+                    className="mx-1"
                   />
-                  <h1 className="mt-2 ml-1 mr-1 text-sm font-medium">
+                  <h1 className="text-sm font-medium">
                     JavaScript
                   </h1>
                 </div>
@@ -155,13 +159,13 @@ export default function CreateResourcePage() {
                 variant="secondary"
                 className="min-w-[12rem] max-h-[3.5rem] focus:border-[#B91879] text-black py-2 hover:bg-transparent hover:scale-100
               ">
-                <div className="flex justify-center pt-2">
+                <div className="flex justify-center">
                   <img
                     src={logoTypeS}
                     alt="logoTypeS"
-                    className="mb-2 mx-1"
+                    className="mx-1"
                   />
-                  <h1 className=" ml-1 mr-1 text-sm font-medium">
+                  <h1 className="text-sm font-medium">
                     TypeScript
                   </h1>
                 </div>
@@ -171,13 +175,13 @@ export default function CreateResourcePage() {
                 variant="secondary"
                 className="min-w-[8rem] max-h-[3.5rem] focus:border-[#B91879] text-black py-2 hover:bg-transparent hover:scale-100
               ">
-                <div className="flex justify-center pt-1">
+                <div className="flex justify-center items-center gap-1">
                   <img
                     src={logoPython}
                     alt="logoPython"
-                    className="mb-2 mx-1"
+                    className="mx-1"
                   />
-                  <h1 className="mt-1 ml-1 mr-1 text-sm font-medium">
+                  <h1 className="text-sm font-medium">
                     Python
                   </h1>
                 </div>
@@ -187,13 +191,13 @@ export default function CreateResourcePage() {
                 variant="secondary"
                 className="min-w-[8rem] max-h-[3.5rem] focus:border-[#B91879] text-black py-2 hover:bg-transparent hover:scale-100
               ">
-                <div className="flex justify-center">
+                <div className="flex justify-center items-center gap-1">
                   <img
                     src={logoSql}
                     alt="logoSql"
-                    className="mb-2 mx-1 p-1"
+                    className="mx-1"
                   />
-                  <h1 className="mt-3 ml-1 mr-1 text-sm font-medium">
+                  <h1 className="text-sm font-medium">
                     SQL
                   </h1>
                 </div>
@@ -255,7 +259,7 @@ export default function CreateResourcePage() {
             {/* ESTO DEBERÍA ESTAR MÁS JUNTO */}
             <h2 className="text-sm text-black font-medium mb-5">Tipo de recurso</h2>
             <div className="flex justify-start gap-x-10">
-              <div className="flex gap-4 md:text-xl">
+              <div className="ml-1 flex gap-4 md:text-xl">
                 <input
                   type="radio"
                   id="video"
@@ -293,13 +297,15 @@ export default function CreateResourcePage() {
               )}
             </div>
             {/* FALTA EL CUADRO DE TAGS */}
-            <h2 className="text-sm text-black font-medium mb-5">Tags</h2>
+            <h2 className="text-sm text-black font-medium mb-3">Tags</h2>
+            <TagInput selectedTags={tags} setSelectedTags={setTags} />
+
             <div>
-              <hr className="w-full border-t border-gray-300 mt-4 " />
-              <h2 className="text-base font-semibold mb-5 mt-5">
+              <hr className="w-full border-t border-gray-300 mt-3 " />
+              <h2 className="text-base font-semibold my-4">
                 Información adicional
               </h2>
-              <h2 className="text-sm text-black font-medium vmb-5 mt-5">
+              <h2 className="text-sm text-black font-medium vmb-5 mt-5 mb-3">
                 Descripción
               </h2>
               <FormInput
