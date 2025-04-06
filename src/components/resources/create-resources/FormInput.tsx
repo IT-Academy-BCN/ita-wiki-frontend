@@ -1,5 +1,5 @@
 import { UseFormRegister } from 'react-hook-form';
-import { IntResource } from '../types';
+import { IntResource } from '../../../types';
 
 interface FormInputProps {
   id: keyof IntResource;
@@ -22,7 +22,7 @@ export default function FormInput({
         type="text"
         id={id}
         placeholder={placeholder}
-        className={`w-full mb-1 px-6 py-4 border border-[#dddddd] rounded-lg placeholder:font-medium outline-[#B91879] ${className}`}
+        className={`w-full px-6 py-4 border border-[#dddddd] rounded-lg placeholder:font-medium outline-[#B91879] ${className}`}
         {...register(id)}
       />
       <div className="h-6">
