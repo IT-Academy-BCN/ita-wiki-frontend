@@ -14,10 +14,10 @@ import RequireAuth from "./components/RequireAuth";
 
 const App: FC = () => {
   return (
-    <div className="h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <HeaderComponent />
 
-      <div className="flex flex-col lg:flex-row lg:flex-grow lg:overflow-hidden">
+      <div className="flex flex-col lg:flex-row lg:flex-grow">
         <AsideComponent asideContent={asideContent} />
         <div className="flex-grow">
           <Routes>

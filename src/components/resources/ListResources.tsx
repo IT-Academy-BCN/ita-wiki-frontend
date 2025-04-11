@@ -60,8 +60,8 @@ export const ListResources: FC<ListResourceProps> = ({
 
   return (
     resources && (
-      <div className="w-full max-w-screen-xl px-4 mx-auto grow lg:flex-1 gap-x-6 sm:bg-white lg:bg-transparent">
-        <div className="flex flex-col lg:flex-row lg:flex-grow lg:overflow-y-auto bg-white lg:rounded-xl px-4 lg:px-8 py-4 sm:py-6">
+      <div className="flex h-full">
+        <div className="flex flex-1 flex-col lg:flex-row bg-white rounded-xl lg:px-4 lg:px-8 py-4 sm:py-6 mb-6 mx-6">
           {/* Sidebar Filters (Visible on larger screens, on the left) */}
           <div className="hidden sm:block px-4 py-6 sm:px-6 lg:pr-8 lg:w-80 xl:shrink-0 xl:pr-6">
             <h2 className="text-[26px] font-bold">Filtros</h2>
@@ -76,7 +76,7 @@ export const ListResources: FC<ListResourceProps> = ({
             />
           </div>
 
-          <div className="lg:flex-1 overflow-y-auto h-[calc(100vh-90px)] px-4 py-6 lg:pl-8 xl:pl-6">
+          <div className="lg:flex-1 px-4 py-6 lg:pl-8 xl:pl-6">
             <div className="flex justify-between items-center">
               <h2 className="text-[26px] font-bold">
                 Recursos {String(category) || ""}

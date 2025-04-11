@@ -58,7 +58,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="h-full flex overflow-hidden flex-col">
+    <div className="h-full flex flex-col">
       <PageTitle title="" />
       <main className="flex-1 bg-white rounded-xl flex flex-col items-center justify-center mx-6 gap-10 mb-6 text-center">
         <h1 className="font-bold text-3xl">
