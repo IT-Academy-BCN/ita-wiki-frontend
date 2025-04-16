@@ -40,6 +40,7 @@ export const useGetBookmarksList = (resources: IntResource[]) => {
               title: resource.title,
               description: resource.description,
               url: resource.url,
+              created_at: matchedBookmark?.created_at || "",
             };
           });
 

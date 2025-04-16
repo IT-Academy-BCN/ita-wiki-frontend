@@ -49,6 +49,7 @@ describe("BookMarkList Component", () => {
       title: "Resource 1",
       description: "Description 1",
       url: "http://example.com/1",
+      created_at: "2025-04-16",
     },
   ];
 

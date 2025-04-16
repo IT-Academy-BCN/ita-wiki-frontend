@@ -41,9 +41,9 @@ export const Resource: FC<ResourceProps> = ({ resource }) => {
           />
           {`,`}
           <span className="text-[#808080] font-bold">
-            {resource.create_at instanceof Date
-              ? resource.create_at.toLocaleDateString()
-              : resource.create_at}
+            {resource.created_at instanceof Date
+              ? resource.created_at.toLocaleDateString()
+              : resource.created_at}
           </span>{" "}
         </>
       </FooterResource>
