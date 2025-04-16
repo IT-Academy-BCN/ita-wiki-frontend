@@ -28,11 +28,8 @@ const HeaderComponent = () => {
   const [showLangDropdown, setShowLangDropdown] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const langDropdownRef = useRef<HTMLDivElement>(null); // Для отслеживания кликов за языковым меню
   const [isAddUserModalOpen, setIsAddUserModalOpen] = useState(false);
-
-  const goToResourcesPage = () => {
-    navigate("/resources/add");
-  };
 
   useEffect(() => {
     const resourcePath =
@@ -49,6 +46,12 @@ const HeaderComponent = () => {
         !dropdownRef.current.contains(event.target as Node)
       ) {
         setShowDropdown(false);
+      }
+      if (
+        langDropdownRef.current &&
+        !langDropdownRef.current.contains(event.target as Node)
+      ) {
+        setShowLangDropdown(false);
       }
     };
 
@@ -117,17 +120,8 @@ const HeaderComponent = () => {
             text="Añadir Usuario"
           ></ButtonComponent>
         )}
-
-        {user && (
-          <ButtonComponent
-            icon={addIcon}
-            variant="icon"
-            onClick={goToResourcesPage}
-          />
-        )}
-
         {/* LANG SELECT DROPDOWN */}
-        <div className="relative">
+        <div className="relative" ref={langDropdownRef}>
           <ButtonComponent
             variant="custom"
             className="inline-flex items-center justify-center h-[41px] px-4 text-[#808080] border-2 rounded-[10px] border-white bg-white hover:bg-[#dcdcdc] hover:border-[#808080] hover:scale-95 transition cursor-pointer"
