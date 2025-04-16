@@ -1,7 +1,12 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
-type AutoRedirectRole = "anonymous" | "student" | "mentor" | "admin" | "superadmin";
+type AutoRedirectRole =
+  | "anonymous"
+  | "student"
+  | "mentor"
+  | "admin"
+  | "superadmin";
 
 interface UseAutoRedirectByRoleProps {
   userId: string | null | undefined;
