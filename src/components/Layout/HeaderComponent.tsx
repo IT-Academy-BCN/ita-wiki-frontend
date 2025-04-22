@@ -28,7 +28,7 @@ const HeaderComponent = () => {
   const [showLangDropdown, setShowLangDropdown] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const langDropdownRef = useRef<HTMLDivElement>(null); 
+  const langDropdownRef = useRef<HTMLDivElement>(null);
   const [isAddUserModalOpen, setIsAddUserModalOpen] = useState(false);
 
   useEffect(() => {
