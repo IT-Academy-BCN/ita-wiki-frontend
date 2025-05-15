@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { MessageCircle, PlayCircle, Clock } from "lucide-react";
 import { IntResource } from "../../types";
 import { useCtxUser } from "../../hooks/useCtxUser";
@@ -8,6 +8,7 @@ import BookmarkIconComponent from "../resources/BookmarkIconComponent";
 import { canBookmark } from "../../data/tempRoles";
 import LikeIcon from "../resources/LikeIcon";
 import { useLikeResources } from "../../hooks/useLikeResources";
+import { BookmarkPermissionModal } from "../Modal/BookmarkPermissionModal";
 
 interface ResourceCardProps {
   resource: IntResource;
@@ -32,8 +33,11 @@ const ResourceCard: FC<ResourceCardProps> = ({
 
   const hasBookmarkPermission = user && canBookmark(user.role);
 
+  const [isBookmarkModalOpen, setisBookmarkModalOpen] = useState<boolean>(false);
+
   const handleBookmarkClick = () => {
     if (!user || !canBookmark(user.role)) {
+      setisBookmarkModalOpen(true);
       return;
     }
 
@@ -41,6 +45,10 @@ const ResourceCard: FC<ResourceCardProps> = ({
       toggleBookmark(resource);
     }
   };
+
+  const closeBookmarkModal = () => {
+    setisBookmarkModalOpen(false);
+  }
 
   const formattedDate =
     typeof created_at === "string" && isNaN(Date.parse(created_at))
@@ -74,8 +82,8 @@ const ResourceCard: FC<ResourceCardProps> = ({
           <span className="flex items-center gap-1">
             <div
               onClick={handleBookmarkClick}
-              className={`${hasBookmarkPermission ? "cursor-pointer" : "cursor-not-allowed opacity-70"}`}
-              title={!user ? "Inicia sesión para guardar recursos" : !hasBookmarkPermission ? "No tienes permiso para guardar recursos. Contacta con un administrador" : undefined}
+              /*className={`${hasBookmarkPermission ? "cursor-pointer" : "cursor-not-allowed opacity-70"}`}*/
+              title={!user ? "Inicia sesión para guardar recursos" : !hasBookmarkPermission ? "No tienes permiso para guardar recursos. Contacta con un admin" : undefined}
             >
               <BookmarkIconComponent marked={isBookmarked} />
             </div>
@@ -87,6 +95,11 @@ const ResourceCard: FC<ResourceCardProps> = ({
           </span>
         </div>
       </div>
+
+      {/*Bookmark Permission Modal*/}
+      {isBookmarkModalOpen &&
+        <BookmarkPermissionModal onClose={closeBookmarkModal} />
+      }
 
       {/* Right Section */}
       <div className="flex items-center gap-4 shrink-0">
