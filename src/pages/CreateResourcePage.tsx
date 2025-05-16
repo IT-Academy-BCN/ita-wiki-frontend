@@ -1,5 +1,5 @@
 import { IntResource, Category, Tag } from "../types";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { resourceSchema } from "../validations/resourceSchema";
 import FormInput from "../components/resources/create-resources/FormInput";
@@ -24,9 +24,22 @@ export default function CreateResourcePage() {
     handleSubmit,
     setValue,
     reset,
+    control,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(resourceSchema),
+  });
+
+  const titleValue = useWatch({
+    control,
+    name: "title",
+    defaultValue: "",
+  });
+
+  const descriptionValue = useWatch({
+    control,
+    name: "description",
+    defaultValue: "",
   });
 
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(
@@ -78,7 +91,6 @@ export default function CreateResourcePage() {
       toast.error("Hubo un error al crear el recurso");
     }
   };
-  const [charCount, setCharCount] = useState(0);
   const charLimitTitle = 65;
   const charLimitDescription = 120;
 
@@ -136,13 +148,12 @@ export default function CreateResourcePage() {
               className="max-w-[482px] max-h-[2.6rem] border-[0.06rem]  border-gray-300 focus:border-2 focus:border-[#B91879] outline-none "
               maxLength={charLimitTitle}
               onChange={(e) => {
-                setCharCount(e.target.value.length);
                 setValue("title", e.target.value);
               }}
             />
             <div className="w-1/2">
               <p className="text-sm text-slate-600 -mt-5 text-center ml-75">
-                {charCount}/{charLimitTitle}
+                {titleValue?.length}/{charLimitTitle}
               </p>
             </div>
 
@@ -264,13 +275,12 @@ export default function CreateResourcePage() {
                 className="max-w-[482px] max-h-[4.5rem] border-[0.06rem] border-gray-300 focus:border-[#B91879] outline-none"
                 maxLength={charLimitDescription}
                 onChange={(e) => {
-                  setCharCount(e.target.value.length); // TODO separar contador
                   setValue("description", e.target.value);
                 }}
               />
               <div className="w-1/2">
                 <p className="text-sm text-slate-600 -mt-5 text-center ml-75">
-                  {charCount}/{charLimitDescription}
+                  {descriptionValue?.length}/{charLimitDescription}
                 </p>
               </div>
             </div>
