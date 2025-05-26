@@ -1,63 +1,78 @@
-# Ita Wiki Frontend
+# ITA Wiki Frontend
 
-## React + TypeScript + Vite
+The ITA Wiki Frontend is a React-based web application that serves as a knowledge-sharing platform for IT Academy students and professionals. It allows users to discover, create, and interact with educational resources related to programming and technology.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Purpose and Key Features
 
-Currently, two official plugins are available:
+The ITA Wiki Frontend provides the following core functionality:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Resource Management**: Browse, filter, create, and interact with learning resources
+- **GitHub Authentication**: Sign in with GitHub credentials  
+- **Role-Based Access Control**: Different permissions based on user roles
+- **Social Features**: Bookmark and like resources
+- **Category and Tag System**: Organized content discovery
 
-## Expanding the ESLint configuration
+## System Architecture
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The application follows a component-based architecture built with React, using context API for state management and Firebase for authentication.
 
-- Configure the top-level `parserOptions` property like this:
+<img src="./src/assets/diagrams/system-architecture.svg" alt="System Architecture" width="650"/>
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+## Core Data Flow
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+The application manages several key data types that flow through the system:
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
+<img src="./src/assets/diagrams/core-data-flow.svg" alt="Core Data Flow" width="650"/>
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules,
-  },
-});
-```
+## Component Hierarchy
 
-## Additional facilities
+The component structure follows a hierarchical pattern, with the main application container wrapping various feature components:
 
-- [jsdom](https://www.npmjs.com/package/jsdom)
-- [@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom)
-- [@testing-library/react](https://testing-library.com/)
-- [@testing-library/user-event](https://github.com/testing-library/user-ev)
-- [vitest](https://vitest.dev/)
-- [@vitest/coverage-v8](https://www.npmjs.com/package/@vitest/coverage-v8)
-- [@vitest/ui](https://vitest.dev/guide/ui)
-- [Tailwindcss](https://tailwindcss.com/)
+<img src="./src/assets/diagrams/component-hierarchy.svg" alt="Component Hierarchy" width="750"/>
+
+## State Management
+
+The application uses React Context for state management. There are three main contexts:
+
+| Context | Purpose | Main State |
+|---------|---------|------------|
+| UserContext | Manages authentication state | Current user, login status, role |
+| ResourcesContext | Manages resource data | Resource list, bookmarks, loading states |
+| LikesContext | Manages user likes | Liked resources, like counts |
+
+<img src="./src/assets/diagrams/state-management.svg" alt="State Management" width="775"/>
+
+## Authentication Flow
+
+The application uses GitHub for authentication:
+
+<img src="./src/assets/diagrams/authentication-flow.svg" alt="Authentication Flow" width="775"/>
+
+## API Integration
+
+The application communicates with the backend through a set of configured endpoints:
+
+| API Endpoint | Purpose |
+|--------------|---------|
+| resources/ | Manage educational resources |
+| bookmarks/ | Handle user bookmarks |
+| likes/ | Handle user likes |
+| tags/ | Manage resource tags |
+| roles/ | Manage user roles |
+
+## Resource Management
+
+The ResourcesContext is the central state manager for resources:
+
+<img src="./src/assets/diagrams/resource-management.svg" alt="Resource Management" width="200"/>
+
+## Resource Type System
+
+The application handles various types of resources, categorized by field and type:
+
+| Resource Property | Description | Examples |
+|------------------|-------------|----------|
+| Category | Subject area | React, JavaScript, Node.js |
+| Theme | UI framework/theme | Null or specific theme |
+| Type | Content type | Tutorial, Article, Video |
+| Tags | Custom labels | Array of tag objects |
