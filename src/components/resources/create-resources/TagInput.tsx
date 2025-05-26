@@ -19,13 +19,15 @@ const TagInput: React.FC<TagInputProps> = ({
   useEffect(() => {
     const fetchTags = async () => {
       const tags = await getTags();
+      console.log("Fetched Tags:", tags);
       setTags(tags);
     };
     fetchTags();
     setselectedTags([]);
   }, [setselectedTags]);
 
-  const tagNames = tags?.map((tag) => tag.name) || [];
+  // const tagNames = tags?.map((tag) => tag.name) || [];
+  const tagIds = tags?.map((tag) => tag.id) || [];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -37,7 +39,7 @@ const TagInput: React.FC<TagInputProps> = ({
       const filtered = tags.filter(
         (tag) =>
           tag.name.toLowerCase().includes(lowerValue) &&
-          !selectedTags.some((t) => t.id === tag.id),
+          !selectedTags.some((t) => t.id === tag.id)
       );
 
       setFilteredTags(filtered);
@@ -58,8 +60,19 @@ const TagInput: React.FC<TagInputProps> = ({
     if (e.key === "Enter" && inputValue.trim() !== "") {
       const trimmedValue = inputValue.trim();
 
-      if (tagNames.includes(trimmedValue)) {
+      // if (tagNames.includes(trimmedValue)) {
+      //   const selectedTag = tags?.find((tag) => tag.name === trimmedValue);
+      //   if (selectedTag && !selectedTags.includes(selectedTag)) {
+      //     setselectedTags([...selectedTags, selectedTag]);
+      //     setInputValue("");
+      //     setFilteredTags([]);
+      //   }
+      // } else {
+      //   console.error("El valor ingresado no es válido.");
+      // }
+      if (tagIds.includes(parseInt(trimmedValue))) {
         const selectedTag = tags?.find((tag) => tag.name === trimmedValue);
+
         if (selectedTag && !selectedTags.includes(selectedTag)) {
           setselectedTags([...selectedTags, selectedTag]);
           setInputValue("");
@@ -76,6 +89,10 @@ const TagInput: React.FC<TagInputProps> = ({
       setselectedTags(selectedTags.filter((tag) => tag.id !== theme.id));
     }
   };
+  useEffect(() => {
+    const tagIds = selectedTags.map((tag) => tag.id);
+    console.log("✅ Will send tag_ids to POST:", tagIds);
+  }, [selectedTags]);
 
   return (
     <div className="w-full max-w-[482px]">

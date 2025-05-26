@@ -9,6 +9,10 @@ interface TagsByCategoryProps {
 const TagsByCategory: React.FC<TagsByCategoryProps> = ({ category, tags }) => {
   const tagNames = Object.keys(tags); // <- obtenemos solo los nombres
 
+  //Testing
+  console.log("tags: ");
+  console.log(tagNames);
+
   return (
     <div>
       <h3 className="text-lg font-semibold">{category}</h3>
