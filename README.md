@@ -7,7 +7,7 @@ The ITA Wiki Frontend is a React-based web application that serves as a knowledg
 The ITA Wiki Frontend provides the following core functionality:
 
 - **Resource Management**: Browse, filter, create, and interact with learning resources
-- **GitHub Authentication**: Sign in with GitHub credentials  
+- **GitHub Authentication**: Sign in with GitHub credentials
 - **Role-Based Access Control**: Different permissions based on user roles
 - **Social Features**: Bookmark and like resources
 - **Category and Tag System**: Organized content discovery
@@ -34,11 +34,11 @@ The component structure follows a hierarchical pattern, with the main applicatio
 
 The application uses React Context for state management. There are three main contexts:
 
-| Context | Purpose | Main State |
-|---------|---------|------------|
-| UserContext | Manages authentication state | Current user, login status, role |
-| ResourcesContext | Manages resource data | Resource list, bookmarks, loading states |
-| LikesContext | Manages user likes | Liked resources, like counts |
+| Context          | Purpose                      | Main State                               |
+| ---------------- | ---------------------------- | ---------------------------------------- |
+| UserContext      | Manages authentication state | Current user, login status, role         |
+| ResourcesContext | Manages resource data        | Resource list, bookmarks, loading states |
+| LikesContext     | Manages user likes           | Liked resources, like counts             |
 
 <img src="./src/assets/diagrams/state-management.svg" alt="State Management" width="775"/>
 
@@ -52,13 +52,13 @@ The application uses GitHub for authentication:
 
 The application communicates with the backend through a set of configured endpoints:
 
-| API Endpoint | Purpose |
-|--------------|---------|
-| resources/ | Manage educational resources |
-| bookmarks/ | Handle user bookmarks |
-| likes/ | Handle user likes |
-| tags/ | Manage resource tags |
-| roles/ | Manage user roles |
+| API Endpoint | Purpose                      |
+| ------------ | ---------------------------- |
+| resources/   | Manage educational resources |
+| bookmarks/   | Handle user bookmarks        |
+| likes/       | Handle user likes            |
+| tags/        | Manage resource tags         |
+| roles/       | Manage user roles            |
 
 ## Resource Management
 
@@ -70,9 +70,9 @@ The ResourcesContext is the central state manager for resources:
 
 The application handles various types of resources, categorized by field and type:
 
-| Resource Property | Description | Examples |
-|------------------|-------------|----------|
-| Category | Subject area | React, JavaScript, Node.js |
-| Theme | UI framework/theme | Null or specific theme |
-| Type | Content type | Tutorial, Article, Video |
-| Tags | Custom labels | Array of tag objects |
+| Resource Property | Description        | Examples                   |
+| ----------------- | ------------------ | -------------------------- |
+| Category          | Subject area       | React, JavaScript, Node.js |
+| Theme             | UI framework/theme | Null or specific theme     |
+| Type              | Content type       | Tutorial, Article, Video   |
+| Tags              | Custom labels      | Array of tag objects       |
