@@ -26,7 +26,6 @@ const TagInput: React.FC<TagInputProps> = ({
     setselectedTags([]);
   }, [setselectedTags]);
 
-  // const tagNames = tags?.map((tag) => tag.name) || [];
   const tagIds = tags?.map((tag) => tag.id) || [];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,17 +58,6 @@ const TagInput: React.FC<TagInputProps> = ({
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && inputValue.trim() !== "") {
       const trimmedValue = inputValue.trim();
-
-      // if (tagNames.includes(trimmedValue)) {
-      //   const selectedTag = tags?.find((tag) => tag.name === trimmedValue);
-      //   if (selectedTag && !selectedTags.includes(selectedTag)) {
-      //     setselectedTags([...selectedTags, selectedTag]);
-      //     setInputValue("");
-      //     setFilteredTags([]);
-      //   }
-      // } else {
-      //   console.error("El valor ingresado no es válido.");
-      // }
       if (tagIds.includes(parseInt(trimmedValue))) {
         const selectedTag = tags?.find((tag) => tag.name === trimmedValue);
 
