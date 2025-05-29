@@ -40,13 +40,7 @@ export const ListResources: FC<ListResourceProps> = ({
     resourceTypes,
   });
 
-  const {
-    sortedResources,
-    setSortOption,
-    setSelectedYear,
-    availableYears,
-    sortOption,
-  } = useResourceSort({
+  const { sortedResources, setSortOption, sortOption } = useResourceSort({
     resources: filteredResources,
   });
 
@@ -80,8 +74,6 @@ export const ListResources: FC<ListResourceProps> = ({
 
               <SortButton
                 setSortOption={setSortOption}
-                setSelectedYear={setSelectedYear}
-                availableYears={availableYears}
                 sortOption={sortOption}
               />
               {/* Filter Button (Mobile only) */}
