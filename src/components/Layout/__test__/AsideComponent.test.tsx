@@ -3,15 +3,15 @@ import { MemoryRouter } from "react-router";
 
 import { vi, describe, test, expect, beforeEach } from "vitest";
 import AsideComponent from "../AsideComponent";
-import { useCtxUser } from "../../../hooks/useCtxUser";
+import { useUserContext } from "../../../context/UserContext";
 const MockIcon = () => <svg data-testid="mock-icon" />;
 
 const mockUseLocation = vi.fn();
 const mockUseNavigate = vi.fn();
 const mockUseSearchParams = vi.fn();
 
-vi.mock("../../../hooks/useCtxUser", () => ({
-  useCtxUser: vi.fn().mockReturnValue({
+vi.mock("../../../context/UserContext", () => ({
+  useUserContext: vi.fn().mockReturnValue({
     user: null,
     isAuthenticated: false,
     signIn: vi.fn(),
@@ -19,6 +19,7 @@ vi.mock("../../../hooks/useCtxUser", () => ({
     error: null,
     setError: vi.fn(),
     saveUser: vi.fn(),
+    setUser: vi.fn(),
   }),
 }));
 
@@ -54,7 +55,7 @@ describe("AsideComponent Tests", () => {
   });
 
   test("renders aside content items when user is not logged in", () => {
-    vi.mocked(useCtxUser).mockReturnValue({
+    vi.mocked(useUserContext).mockReturnValue({
       user: null,
       isAuthenticated: false,
       signIn: vi.fn(),
@@ -62,6 +63,7 @@ describe("AsideComponent Tests", () => {
       error: null,
       setError: vi.fn(),
       saveUser: vi.fn(),
+      setUser: vi.fn(),
     });
 
     render(
@@ -87,7 +89,7 @@ describe("AsideComponent Tests", () => {
   });
 
   test("renders user-specific sections when user is logged in", () => {
-    vi.mocked(useCtxUser).mockReturnValue({
+    vi.mocked(useUserContext).mockReturnValue({
       user: {
         id: 12345,
         displayName: "Test User",
@@ -99,6 +101,7 @@ describe("AsideComponent Tests", () => {
       error: null,
       setError: vi.fn(),
       saveUser: vi.fn(),
+      setUser: vi.fn(),
     });
 
     render(
@@ -116,7 +119,7 @@ describe("AsideComponent Tests", () => {
   });
 
   test("has correct link structure", () => {
-    vi.mocked(useCtxUser).mockReturnValue({
+    vi.mocked(useUserContext).mockReturnValue({
       user: {
         id: 12345,
         displayName: "Test User",
@@ -128,6 +131,7 @@ describe("AsideComponent Tests", () => {
       error: null,
       setError: vi.fn(),
       saveUser: vi.fn(),
+      setUser: vi.fn(),
     });
 
     mockUseLocation.mockReturnValue({

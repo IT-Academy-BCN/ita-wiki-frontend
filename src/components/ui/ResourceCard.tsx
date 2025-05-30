@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { MessageCircle, PlayCircle, Clock } from "lucide-react";
 import { IntResource } from "../../types";
-import { useCtxUser } from "../../hooks/useCtxUser";
+import { useUserContext } from "../../context/UserContext";
 import { useResources } from "../../context/ResourcesContext";
 
 import BookmarkIconComponent from "../resources/BookmarkIconComponent";
@@ -22,7 +22,7 @@ const ResourceCard: FC<ResourceCardProps> = ({
 }) => {
   const { title, description, type, created_at, comment_count } = resource;
 
-  const { user } = useCtxUser();
+  const { user } = useUserContext();
 
   const { liked, voteCount, handleLike, disabled } = useLikeResources(resource);
 

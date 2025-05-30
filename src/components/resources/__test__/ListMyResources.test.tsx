@@ -12,8 +12,8 @@ vi.mock("../../ui/ResourceCard", () => ({
   )),
 }));
 
-vi.mock("../../../hooks/useCtxUser", () => ({
-  useCtxUser: vi.fn().mockReturnValue({
+vi.mock("../../../context/UserContext", () => ({
+  useUserContext: vi.fn().mockReturnValue({
     user: { id: "user123" },
     isAuthenticated: true,
     signIn: vi.fn(),

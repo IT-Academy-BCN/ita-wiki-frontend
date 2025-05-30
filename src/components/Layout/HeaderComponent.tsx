@@ -6,7 +6,7 @@ import arrowDown from "../../assets/arrow-down.svg";
 import logOutIcon from "../../assets/logout-svgrepo-com.svg";
 import ButtonComponent from "../atoms/ButtonComponent";
 import DropdownButtonComponent from "../atoms/DropdownButtonComponent";
-import { useCtxUser } from "../../hooks/useCtxUser";
+import { useUserContext } from "../../context/UserContext";
 import { useChangeUserRole } from "../../hooks/useChangeUserRole";
 import { useEffect, useRef, useState } from "react";
 import { Modal } from "../Modal/Modal";
@@ -17,7 +17,7 @@ import { TermsAndConditionsModal } from "../Modal/TermsAndConditionsModal";
 import RoleDropdownComponent from "./header/RoleDropdownComponent";
 
 const HeaderComponent = () => {
-  const { user, signIn, signOut } = useCtxUser();
+  const { user, signIn, signOut } = useUserContext();
   const { isChanging, updateUserRole } = useChangeUserRole();
   const navigate = useNavigate();
   const location = useLocation();

@@ -1,5 +1,4 @@
 import { API_URL, END_POINTS } from "../config";
-import { getCurrentUserId } from "../utils/getCurrentUserId";
 import { createRole } from "./endPointRoles";
 import { getUserRole } from "./userApi";
 
@@ -18,6 +17,7 @@ interface RoleChangeResponse {
 
 const changeRole = async (
   body: RoleChangeRequest,
+  githubId: number | null,
 ): Promise<RoleChangeResponse> => {
   const controller = new AbortController();
   const signal = controller.signal;
@@ -38,7 +38,6 @@ const changeRole = async (
     clearTimeout(timeout);
 
     // Check if user has no role (anonymous) and allow creation of student or mentor role
-    const githubId = getCurrentUserId();
     if (githubId) {
       const userRole = await getUserRole(githubId);
       if (

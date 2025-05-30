@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { PenSquare } from "lucide-react";
 
-import { useCtxUser } from "../hooks/useCtxUser";
+import { useUserContext } from "../context/UserContext";
 
 import { ListMyResources } from "../components/resources/ListMyResources";
 import { useResources } from "../context/ResourcesContext";
@@ -9,7 +9,7 @@ import PageTitle from "../components/ui/PageTitle";
 
 const MyResourcesPage: FC = () => {
   const { resources, isLoading } = useResources();
-  const { user } = useCtxUser();
+  const { user } = useUserContext();
 
   const myResources = resources.filter(
     (resource) => resource.github_id === user?.id,

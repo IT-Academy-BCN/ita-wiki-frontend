@@ -1,11 +1,11 @@
 import { FC } from "react";
 import { Navigate, Outlet } from "react-router";
-import { useCtxUser } from "../hooks/useCtxUser";
+import { useUserContext } from "../context/UserContext";
 
 export const RequireAuth: FC = () => {
-  const { isAuthenticated } = useCtxUser();
+  const { user } = useUserContext();
 
-  if (!isAuthenticated) {
+  if (!user) {
     return <Navigate to="/" replace />;
   }
 

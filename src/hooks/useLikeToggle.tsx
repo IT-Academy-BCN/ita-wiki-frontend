@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 import { createLike, deleteLike } from "../api/likesApi";
-import { useCtxUser } from "../hooks/useCtxUser";
+import { useUserContext } from "../context/UserContext";
 
 export const useLikeToggle = () => {
-  const { user } = useCtxUser();
+  const { user } = useUserContext();
 
   const toggleLike = useCallback(
     async (resource_id: number, isLiked: boolean) => {

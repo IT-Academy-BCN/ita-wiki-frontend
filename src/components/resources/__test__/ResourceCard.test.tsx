@@ -50,6 +50,27 @@ const renderWithUserContext = (
   );
 };
 
+vi.mock("../../../context/UserContext", () => {
+  const actual = vi.importActual("../../../context/UserContext");
+  return {
+    ...actual,
+    useUserContext: () => ({
+      user: {
+        id: 123,
+        displayName: "Test User",
+        photoURL: undefined,
+      } as IntUser,
+      isAuthenticated: true,
+      saveUser: vi.fn(),
+      signIn: vi.fn(),
+      signOut: vi.fn(),
+      setUser: vi.fn(),
+      error: null,
+      setError: vi.fn(),
+    }),
+  };
+});
+
 test("renders title and description with zero counts", () => {
   renderWithUserContext(
     <ResourceCard

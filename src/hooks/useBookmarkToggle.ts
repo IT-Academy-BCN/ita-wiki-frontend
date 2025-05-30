@@ -1,10 +1,10 @@
 import { IntResource, IntBookmarkElement } from "../types";
-import { useCtxUser } from "./useCtxUser";
+import { useUserContext } from "../context/UserContext";
 import { createBookmark, deleteBookmark } from "../api/endPointBookmark";
 import { canBookmark } from "../data/permission/tempRolesPremission";
 
 export function useBookmarkToggle() {
-  const { user } = useCtxUser();
+  const { user } = useUserContext();
 
   const toggleBookmark = async (
     resource: IntResource,

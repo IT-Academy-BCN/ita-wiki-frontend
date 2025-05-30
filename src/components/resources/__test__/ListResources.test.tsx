@@ -16,8 +16,8 @@ vi.mock("../../../hooks/useResourceFilter", () => ({
   }),
 }));
 
-vi.mock("../../../hooks/useCtxUser", () => ({
-  useCtxUser: () => ({
+vi.mock("../../../context/UserContext", () => ({
+  useUserContext: () => ({
     user: { id: "123463" },
   }),
 }));

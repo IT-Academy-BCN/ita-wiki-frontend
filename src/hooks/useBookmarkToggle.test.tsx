@@ -1,7 +1,7 @@
 import { renderHook, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { useBookmarkToggle } from "./useBookmarkToggle";
-import { useCtxUser } from "./useCtxUser";
+import { useUserContext } from "../context/UserContext";
 import { createBookmark, deleteBookmark } from "../api/endPointBookmark";
 import {
   IntResource,
@@ -11,7 +11,7 @@ import {
   ResourceType,
 } from "../types";
 
-vi.mock("./useCtxUser");
+vi.mock("../context/UserContext");
 vi.mock("../api/endPointBookmark");
 
 describe("useBookmarkToggle", () => {
@@ -59,12 +59,13 @@ describe("useBookmarkToggle", () => {
     global.Date.now = vi.fn(() => mockDate.getTime());
     Date.prototype.toISOString = vi.fn(() => mockDateISO);
 
-    vi.mocked(useCtxUser).mockReturnValue({
+    vi.mocked(useUserContext).mockReturnValue({
       user: mockUser,
       isAuthenticated: true,
       signIn: vi.fn(),
       signOut: vi.fn(),
       saveUser: vi.fn(),
+      setUser: vi.fn(),
       setError: vi.fn(),
       error: null,
     });
@@ -246,12 +247,13 @@ describe("useBookmarkToggle", () => {
 
     it("does nothing when user is not authenticated", async () => {
       // Mock user as null to simulate unauthenticated state
-      vi.mocked(useCtxUser).mockReturnValue({
+      vi.mocked(useUserContext).mockReturnValue({
         user: null,
         isAuthenticated: false,
         signIn: vi.fn(),
         signOut: vi.fn(),
         saveUser: vi.fn(),
+        setUser: vi.fn(),
         setError: vi.fn(),
         error: null,
       });
@@ -275,12 +277,13 @@ describe("useBookmarkToggle", () => {
 
     it("does nothing when user role has no permission to bookmark", async () => {
       // Mock user as role mentor to simulate unauthorized role
-      vi.mocked(useCtxUser).mockReturnValue({
+      vi.mocked(useUserContext).mockReturnValue({
         user: mockUserRoleCantBookmark,
         isAuthenticated: true,
         signIn: vi.fn(),
         signOut: vi.fn(),
         saveUser: vi.fn(),
+        setUser: vi.fn(),
         setError: vi.fn(),
         error: null,
       });

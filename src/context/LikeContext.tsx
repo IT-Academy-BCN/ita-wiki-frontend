@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { getLikes } from "../api/likesApi";
-import { useCtxUser } from "../hooks/useCtxUser";
+import { useUserContext } from "../context/UserContext";
 
 interface LikeContextType {
   likedResourceIds: number[];
@@ -16,7 +16,7 @@ export const LikeContext = createContext<LikeContextType>({
 
 export const LikesProvider = ({ children }: { children: React.ReactNode }) => {
   const [likedResourceIds, setLikedResourceIds] = useState<number[]>([]);
-  const { user } = useCtxUser();
+  const { user } = useUserContext();
 
   const fetchLikes = async () => {
     if (!user?.id) return;

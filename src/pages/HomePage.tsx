@@ -1,7 +1,7 @@
 import folder from "../assets/new-folder-dynamic-color.svg";
 import puzzle from "../assets/puzzle-dynamic-color.svg";
 import ok from "../assets/thumb-up-dynamic-color.svg";
-import { useCtxUser } from "../hooks/useCtxUser";
+import { useUserContext } from "../context/UserContext";
 import { useCallback, useEffect, useState } from "react";
 import ButtonComponent from "../components/atoms/ButtonComponent";
 import Card from "../components/ui/Card";
@@ -12,7 +12,7 @@ import Container from "../components/ui/Container";
 
 export default function HomePage() {
   const navigate = useNavigate();
-  const { user } = useCtxUser();
+  const { user } = useUserContext();
   const [userRole, setUserRole] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 

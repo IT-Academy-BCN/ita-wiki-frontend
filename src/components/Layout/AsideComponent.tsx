@@ -3,9 +3,7 @@ import { Link, useLocation, useNavigate, useSearchParams } from "react-router";
 import { SVGProps, FC } from "react";
 import classNames from "classnames";
 import { Bookmark, PenSquare } from "lucide-react";
-
-import { useCtxUser } from "../../hooks/useCtxUser";
-
+import { useUserContext } from "../../context/UserContext";
 import SearchComponent from "./header/SearchComponent";
 import ButtonComponent from "../atoms/ButtonComponent";
 
@@ -26,7 +24,7 @@ const AsideComponent: React.FC<AsideComponentProps> = ({ asideContent }) => {
   const navigate = useNavigate();
   const [resource] = useState("");
   const isSearchDisabled = location.pathname === "/";
-  const { user } = useCtxUser();
+  const { user } = useUserContext();
 
   const handleSearch = (query: string) => {
     const params = new URLSearchParams(searchParams);

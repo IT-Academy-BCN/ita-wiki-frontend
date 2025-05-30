@@ -1,5 +1,5 @@
 import GitHubLogin from "../github-login/GitHubLogin";
-import { useCtxUser } from "../../hooks/useCtxUser";
+import { useUserContext } from "../../context/UserContext";
 import closeIcon from "../../../src/assets/close2.svg";
 
 interface ModalProps {
@@ -8,7 +8,7 @@ interface ModalProps {
   children?: React.ReactNode;
 }
 export const Modal = ({ closeModal, title, children }: ModalProps) => {
-  const { signIn } = useCtxUser();
+  const { signIn } = useUserContext();
 
   const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {

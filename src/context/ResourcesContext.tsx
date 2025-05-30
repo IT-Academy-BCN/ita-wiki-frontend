@@ -4,7 +4,7 @@ import { getResources } from "../api/endPointResources";
 import { getBookmarks } from "../api/endPointBookmark";
 import mock from "../moock/resources.json";
 import { useBookmarkToggle } from "../hooks/useBookmarkToggle";
-import { useCtxUser } from "../hooks/useCtxUser";
+import { useUserContext } from "../context/UserContext";
 import { canBookmark } from "../data/permission/tempRolesPremission";
 
 interface ResourcesContextType {
@@ -36,7 +36,7 @@ export const ResourcesProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const { user } = useCtxUser();
+  const { user } = useUserContext();
   const [resources, setResources] = useState<IntResource[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [bookmarkedResources, setBookmarkedResources] = useState<

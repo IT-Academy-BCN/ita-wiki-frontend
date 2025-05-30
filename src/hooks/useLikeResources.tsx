@@ -2,13 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import { LikeContext } from "../context/LikeContext";
 import { useLikeToggle } from "./useLikeToggle";
 import { IntResource } from "../types";
-import { useCtxUser } from "./useCtxUser";
+import { useUserContext } from "../context/UserContext";
 import { useResources } from "../context/ResourcesContext";
 
 export function useLikeResources(resource: IntResource) {
   const { likedResourceIds, setLikedResourceIds } = useContext(LikeContext);
   const { toggleLike } = useLikeToggle();
-  const { user } = useCtxUser();
+  const { user } = useUserContext();
   const { refreshResources } = useResources();
 
   const allowedToVote = user?.role == "student" ? true : false;

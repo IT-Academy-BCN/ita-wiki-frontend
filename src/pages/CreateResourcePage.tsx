@@ -47,10 +47,13 @@ export default function CreateResourcePage() {
   );
   const [selectedTags, setselectedTags] = useState<Tag[]>([]);
 
-  const handleTagChange = useCallback((tags: Tag[]) => {
-    setselectedTags(tags);
-    setValue("tags", tags);
-  }, []);
+  const handleTagChange = useCallback(
+    (tags: Tag[]) => {
+      setselectedTags(tags);
+      setValue("tags", tags);
+    },
+    [setValue],
+  );
 
   const handleCategorySelect = (category: Category) => {
     setSelectedCategory(category);

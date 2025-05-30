@@ -3,6 +3,7 @@ import { vi, describe, test, expect } from "vitest";
 import { ListBookmarks } from "../ListBookmarks";
 import { IntResource } from "../../../types";
 import userEvent from "@testing-library/user-event";
+// import { useUserContext } from "../../../context/UserContext";
 
 vi.mock("../../ui/ResourceCard", () => ({
   default: vi.fn(({ resource, isBookmarked, toggleBookmark }) => (
@@ -20,8 +21,8 @@ vi.mock("../../ui/ResourceCard", () => ({
   )),
 }));
 
-vi.mock("../../../hooks/useCtxUser", () => ({
-  useCtxUser: vi.fn().mockReturnValue({
+vi.mock("../../../context/UserContext.tsx", () => ({
+  useUserContext: vi.fn().mockReturnValue({
     user: { id: "user123" },
     isAuthenticated: true,
     signIn: vi.fn(),
