@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { getTags } from "../../../api/endPointTags";
 import { Tag } from "../../../types";
 import { formatText } from "../../../utils/formatText";
@@ -15,15 +15,35 @@ const TagInput: React.FC<TagInputProps> = ({
   const [inputValue, setInputValue] = useState("");
   const [filteredTags, setFilteredTags] = useState<Tag[]>([]);
   const [tags, setTags] = useState<Tag[]>([]);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
     const fetchTags = async () => {
       const tags = await getTags();
-      setTags(tags);
+      const sortedTags = tags.sort((a, b) =>
+        a.name.localeCompare(b.name, "es", { sensitivity: "base" })
+      );
+      setTags(sortedTags);
     };
     fetchTags();
     setselectedTags([]);
   }, [setselectedTags]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
+      ) {
+        setFilteredTags([]);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const tagNames = tags?.map((tag) => tag.name) || [];
 
@@ -31,19 +51,27 @@ const TagInput: React.FC<TagInputProps> = ({
     const value = e.target.value;
     setInputValue(value);
 
-    if (value && tags.length) {
-      const lowerValue = value.toLowerCase();
+    const lowerValue = value.toLowerCase();
+    const availableTags = tags.filter(
+      (tag) => !selectedTags.some((t) => t.id === tag.id)
+    );
 
-      const filtered = tags.filter(
-        (tag) =>
-          tag.name.toLowerCase().includes(lowerValue) &&
-          !selectedTags.some((t) => t.id === tag.id),
+    if (lowerValue) {
+      const filtered = availableTags.filter((tag) =>
+        tag.name.toLowerCase().includes(lowerValue)
       );
 
       setFilteredTags(filtered);
     } else {
-      setFilteredTags([]);
+      setFilteredTags(availableTags);
     }
+  };
+
+  const handleFocus = () => {
+    const availableTags = tags.filter(
+      (tag) => !selectedTags.some((t) => t.id === tag.id)
+    );
+    setFilteredTags(availableTags);
   };
 
   const addTag = (tag: Tag) => {
@@ -78,10 +106,12 @@ const TagInput: React.FC<TagInputProps> = ({
   };
 
   return (
-    <div className="w-full max-w-[482px]">
+    <div ref={wrapperRef} className="w-full max-w-[482px]">
       <p className="font-medium mb-2 text-sm text-gray-800">Tags</p>
 
-      <div className="p-2 border rounded-md border-gray-200 flex flex-wrap gap-2 focus:border-2 ">
+      <div
+        className={`p-2 border rounded-md flex flex-wrap gap-2 ${isFocused ? "border-[#B91879]" : "border-gray-200"}`}
+      >
         {selectedTags &&
           selectedTags.length > 0 &&
           selectedTags.map((tag) => (
@@ -105,6 +135,13 @@ const TagInput: React.FC<TagInputProps> = ({
           value={inputValue}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
+          onFocus={() => {
+            setIsFocused(true);
+            handleFocus();
+          }}
+          onBlur={() => {
+            setIsFocused(false);
+          }}
           placeholder="Escribe un tag..."
           className="w-full border-none outline-none bg-transparent px-2 py-1"
         />
