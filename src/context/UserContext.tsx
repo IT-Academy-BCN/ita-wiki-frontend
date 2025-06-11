@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import { IntUser } from "../types";
-import { signInWithGitHub } from "../api/firebase";
+import { signInWithGitHub } from "../api/firebase"; //TODO: Cambiar a signInWithBackend
 import { getUserRole } from "../api/userApi";
 
 interface UserContextType {

@@ -10,7 +10,7 @@ export const useUser = () => {
 
   const signIn = async () => {
     try {
-      const newUser = await signInWithGitHub();
+      const newUser = await signInWithGitHub(); //TODO: Crear signInWithBackend => api/signIn
       setUser(newUser);
       await handleSetRole();
     } catch (error) {

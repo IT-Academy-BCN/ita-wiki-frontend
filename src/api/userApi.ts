@@ -7,7 +7,7 @@ export const getUserRole = async (githubId: number): Promise<string> => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ github_id: githubId }),
+      body: JSON.stringify({ github_id: githubId }), //TODO: Enviar token de github
     });
 
     //TO-DO: poner AbortController()

@@ -3,6 +3,7 @@ import { getAuth, GithubAuthProvider, signInWithPopup } from "firebase/auth";
 import { IntUser } from "../types";
 import { getUserRole } from "./userApi";
 
+//TODO: Delete this file when the backend is ready to handle authentication
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
   authDomain: import.meta.env.VITE_AUTH_DOMAIN,
