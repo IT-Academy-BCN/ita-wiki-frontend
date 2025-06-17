@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { IntUser } from "../types";
-import { signInWithGitHub } from "../api/firebase";
+import { signInWithGitHub } from "../api/githubAuth";
 import { useUserContext } from "../context/UserContext";
-import { getUserRole } from "../api/userApi";
 
 export const useUser = () => {
   const { user, setUser } = useUserContext();
@@ -10,9 +9,8 @@ export const useUser = () => {
 
   const signIn = async () => {
     try {
-      const newUser = await signInWithGitHub(); //TODO: Crear signInWithBackend => api/signIn
+      const newUser = await signInWithGitHub();
       setUser(newUser);
-      await handleSetRole();
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
@@ -31,18 +29,6 @@ export const useUser = () => {
     setUser(user);
   };
 
-  const handleSetRole = async () => {
-    if (user) {
-      try {
-        const userRole = await getUserRole(user.id);
-        const updatedUser = { ...user, role: userRole };
-        setUser(updatedUser);
-      } catch (error) {
-        throw new Error(error as string);
-      }
-    }
-  };
-
   const isAuthenticated = !!user;
 
   return {
@@ -53,6 +39,5 @@ export const useUser = () => {
     signOut,
     error,
     setError,
-    handleSetRole,
   };
 };

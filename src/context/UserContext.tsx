@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import { IntUser } from "../types";
-import { signInWithGitHub } from "../api/firebase"; //TODO: Cambiar a signInWithBackend
-import { getUserRole } from "../api/userApi";
+import { signInWithGitHub } from "../api/githubAuth";
 
 interface UserContextType {
   user: IntUser | null;
@@ -25,27 +24,17 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const saveUser = (user: IntUser) => {
     setUser(user);
   };
+
   const signIn = async () => {
     try {
       const newUser = await signInWithGitHub();
       setUser(newUser);
-      await handleSetRole(newUser);
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
       } else {
         setError("Unknown error during sign in");
       }
-    }
-  };
-
-  const handleSetRole = async (user: IntUser) => {
-    try {
-      const userRole = await getUserRole(user.id);
-      const updatedUser = { ...user, role: userRole };
-      setUser(updatedUser);
-    } catch (error) {
-      console.error("Error setting user role:", error);
     }
   };
 
