@@ -9,8 +9,10 @@ import ResourcesPage from "./pages/ResourcesPage";
 import { asideContent } from "./components/Layout/aside/asideContent";
 import BookmarksPage from "./pages/BookmarksPage";
 import MyResourcesPage from "./pages/MyResourcesPage";
+import CreateTechnicalTestPage from "./pages/CreateTechnicalTestPage";
 
 import RequireAuth from "./components/RequireAuth";
+
 
 const App: FC = () => {
   return (
@@ -24,6 +26,7 @@ const App: FC = () => {
             {/* Public routes */}
             <Route path="/" element={<HomePage />} />
             <Route path="/resources/:category" element={<ResourcesPage />} />
+            <Route path="/technical-tests/add" element={<CreateTechnicalTestPage />} /> {/* Public route for testing, move to protected routes when it's ready */}
 
             {/* Protected routes */}
             <Route element={<RequireAuth />}>
@@ -33,6 +36,7 @@ const App: FC = () => {
                 element={<MyResourcesPage />}
               />
               <Route path="/resources/add" element={<CreateResourcePage />} />
+
             </Route>
 
             {/* Fallback route */}
