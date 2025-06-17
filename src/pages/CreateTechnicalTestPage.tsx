@@ -113,7 +113,7 @@ export default function CreateTechnicalTestPage() {
           <div className="flex">
             <ButtonComponent
               variant="secondary"
-              onClick={() => window.history.back()}
+              onClick={goBack}
               className="min-w-[8rem] max-h-[2.75rem] mr-4"
             >
               Cancelar
