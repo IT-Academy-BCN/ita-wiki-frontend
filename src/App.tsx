@@ -6,7 +6,6 @@ import CreateResourcePage from "./pages/CreateResourcePage";
 import HeaderComponent from "./components/Layout/HeaderComponent";
 import AsideComponent from "./components/Layout/AsideComponent";
 import ResourcesPage from "./pages/ResourcesPage";
-import { asideContent } from "./components/Layout/aside/asideContent";
 import BookmarksPage from "./pages/BookmarksPage";
 import MyResourcesPage from "./pages/MyResourcesPage";
 import CreateTechnicalTestPage from "./pages/CreateTechnicalTestPage";
@@ -19,7 +18,7 @@ const App: FC = () => {
       <HeaderComponent />
 
       <div className="flex flex-col lg:flex-row lg:flex-grow">
-        <AsideComponent asideContent={asideContent} />
+        <AsideComponent />
         <div className="flex-grow">
           <Routes>
             {/* Public routes */}

@@ -1,23 +1,13 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router";
-import { SVGProps, FC } from "react";
+
 import classNames from "classnames";
 import { Bookmark, PenSquare } from "lucide-react";
 import { useUserContext } from "../../context/UserContext";
 import SearchComponent from "./header/SearchComponent";
 import ButtonComponent from "../atoms/ButtonComponent";
 
-type SvgIcon = FC<SVGProps<SVGSVGElement>>;
-type AsideItem = {
-  icon: SvgIcon;
-  label: string;
-};
-
-type AsideComponentProps = {
-  asideContent: AsideItem[];
-};
-
-const AsideComponent: React.FC<AsideComponentProps> = ({ asideContent }) => {
+const AsideComponent: React.FC = () => {
   const location = useLocation();
   const currentPath = location.pathname;
   const [searchParams] = useSearchParams();
@@ -47,39 +37,6 @@ const AsideComponent: React.FC<AsideComponentProps> = ({ asideContent }) => {
         disabled={isSearchDisabled}
         resetTrigger={resource}
       />
-
-      <section>
-        <p className="space-y-3 py-6 font-bold text-lg">Categorias</p>
-        <ul className="space-y-6">
-          {asideContent.map((item, index) => {
-            const path = `/resources/${encodeURIComponent(item.label)}`;
-            const isActive = isPathActive(path);
-            const IconComponent = item.icon as unknown as React.FC<
-              React.SVGProps<SVGSVGElement>
-            >;
-            return (
-              <li key={index} className="flex items-center space-x-3">
-                <IconComponent
-                  className={classNames("w-6 h-6", {
-                    "text-[var(--color-primary)]": isActive,
-                    "text-gray-500": !isActive,
-                  })}
-                />
-
-                <Link
-                  to={path}
-                  className={classNames("transition-colors", {
-                    "!text-[var(--color-primary)] !font-bold": isActive,
-                    "text-gray-700": !isActive,
-                  })}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
 
       {user && (
         <>

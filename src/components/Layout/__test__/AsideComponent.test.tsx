@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
-
 import { vi, describe, test, expect, beforeEach } from "vitest";
 import AsideComponent from "../AsideComponent";
 import { useUserContext } from "../../../context/UserContext";
+
 const MockIcon = () => <svg data-testid="mock-icon" />;
 
 const mockUseLocation = vi.fn();
@@ -54,7 +54,7 @@ describe("AsideComponent Tests", () => {
     mockUseSearchParams.mockReturnValue([new URLSearchParams(), vi.fn()]);
   });
 
-  test("renders aside content items when user is not logged in", () => {
+  test("renders search input when user is not logged in", () => {
     vi.mocked(useUserContext).mockReturnValue({
       user: null,
       isAuthenticated: false,
@@ -72,23 +72,16 @@ describe("AsideComponent Tests", () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByText("Categorias")).toBeInTheDocument();
-
-    asideContentMock.forEach((item) => {
-      expect(screen.getByText(item.label)).toBeInTheDocument();
-    });
-    expect(screen.getAllByTestId("mock-icon")).toHaveLength(
-      asideContentMock.length,
-    );
-
     const searchInput = screen.getByRole("textbox");
     expect(searchInput).toBeInTheDocument();
+    expect(searchInput).toHaveAttribute("placeholder", "Buscar recurso");
 
+    // Verificar que no aparecen secciones de usuario cuando no está loggeado
     expect(screen.queryByText("Mis recursos")).not.toBeInTheDocument();
     expect(screen.queryByText("Crear recurso")).not.toBeInTheDocument();
   });
 
-  test("renders user-specific sections when user is logged in", () => {
+  test("renders user sections when logged in", () => {
     vi.mocked(useUserContext).mockReturnValue({
       user: {
         id: 12345,
@@ -109,8 +102,6 @@ describe("AsideComponent Tests", () => {
         <AsideComponent asideContent={asideContentMock} />
       </MemoryRouter>,
     );
-
-    expect(screen.getByText("Categorias")).toBeInTheDocument();
 
     expect(screen.getByText("Mis recursos")).toBeInTheDocument();
     expect(screen.getByText("Guardados")).toBeInTheDocument();
@@ -118,14 +109,10 @@ describe("AsideComponent Tests", () => {
     expect(screen.getByText("Crear recurso")).toBeInTheDocument();
   });
 
-  test("has correct link structure", () => {
+  test("renders search input with correct attributes", () => {
     vi.mocked(useUserContext).mockReturnValue({
-      user: {
-        id: 12345,
-        displayName: "Test User",
-        photoURL: "https://example.com/photo.jpg",
-      },
-      isAuthenticated: true,
+      user: null,
+      isAuthenticated: false,
       signIn: vi.fn(),
       signOut: vi.fn(),
       error: null,
@@ -134,32 +121,15 @@ describe("AsideComponent Tests", () => {
       setUser: vi.fn(),
     });
 
-    mockUseLocation.mockReturnValue({
-      pathname: "/resources/React",
-      search: "",
-      hash: "",
-      state: null,
-      key: "default",
-    });
-
     render(
       <MemoryRouter>
         <AsideComponent asideContent={asideContentMock} />
       </MemoryRouter>,
     );
 
-    const reactLink = screen.getByText("React").closest("a");
-    const nodeLink = screen.getByText("Node").closest("a");
-
-    expect(reactLink).toBeInTheDocument();
-    expect(nodeLink).toBeInTheDocument();
-    expect(reactLink).toHaveAttribute("href", "/resources/React");
-    expect(nodeLink).toHaveAttribute("href", "/resources/Node");
-
-    expect(reactLink).toHaveClass("transition-colors");
-    expect(nodeLink).toHaveClass("transition-colors");
-
-    expect(screen.getByText("React")).toBeInTheDocument();
-    expect(screen.getByText("Node")).toBeInTheDocument();
+    const searchInput = screen.getByRole("textbox");
+    expect(searchInput).toBeInTheDocument();
+    expect(searchInput).toHaveAttribute("placeholder", "Buscar recurso");
+    expect(searchInput).toBeDisabled(); // Según el HTML que vimos, está disabled
   });
 });
