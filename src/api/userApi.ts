@@ -1,5 +1,7 @@
 const API_URL = import.meta.env.VITE_API_URL;
 
+// This function can be deleted once the new OAuth flow is implemented
+
 export const getUserRole = async (githubId: number): Promise<string> => {
   try {
     const response = await fetch(`${API_URL}login`, {
@@ -7,7 +9,7 @@ export const getUserRole = async (githubId: number): Promise<string> => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ github_id: githubId }), //TODO: Enviar token de github
+      body: JSON.stringify({ github_id: githubId }),
     });
 
     //TO-DO: poner AbortController()
