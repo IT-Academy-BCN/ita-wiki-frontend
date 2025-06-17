@@ -1,17 +1,16 @@
-import { UseFormRegister } from "react-hook-form";
-import { IntResource } from "../../../types";
+import { UseFormRegister, FieldPath, FieldValues } from "react-hook-form";
 
-interface FormInputProps {
-  id: keyof IntResource;
+interface FormInputProps<T extends FieldValues> {
+  id: FieldPath<T>;
   placeholder: string;
-  register: UseFormRegister<Partial<IntResource>>;
+  register: UseFormRegister<T>;
   errors?: string;
   className?: string;
   maxLength?: number;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function FormInput({
+export default function FormInput<T extends FieldValues>({
   id,
   placeholder,
   register,
@@ -19,7 +18,7 @@ export default function FormInput({
   className,
   maxLength,
   onChange,
-}: FormInputProps) {
+}: FormInputProps<T>) {
   return (
     <div>
       <input
@@ -28,8 +27,7 @@ export default function FormInput({
         placeholder={placeholder}
         maxLength={maxLength}
         className={`w-full px-6 py-4 mb-1 border border-[#dddddd] rounded-lg placeholder:font-medium outline-[#B91879] ${className}`}
-        {...(register(id),
-        {
+        {...register(id, {
           onChange: (e) => {
             onChange?.(e);
           },
