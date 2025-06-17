@@ -13,7 +13,6 @@ import CreateTechnicalTestPage from "./pages/CreateTechnicalTestPage";
 
 import RequireAuth from "./components/RequireAuth";
 
-
 const App: FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
@@ -26,8 +25,11 @@ const App: FC = () => {
             {/* Public routes */}
             <Route path="/" element={<HomePage />} />
             <Route path="/resources/:category" element={<ResourcesPage />} />
-            <Route path="/technical-tests/add" element={<CreateTechnicalTestPage />} /> {/* Public route for testing, move to protected routes when it's ready */}
-
+            <Route
+              path="/technical-tests/add"
+              element={<CreateTechnicalTestPage />}
+            />{" "}
+            {/* Public route for testing, move to protected routes when it's ready */}
             {/* Protected routes */}
             <Route element={<RequireAuth />}>
               <Route path="/resources/bookmarks" element={<BookmarksPage />} />
@@ -36,9 +38,7 @@ const App: FC = () => {
                 element={<MyResourcesPage />}
               />
               <Route path="/resources/add" element={<CreateResourcePage />} />
-
             </Route>
-
             {/* Fallback route */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

@@ -57,11 +57,11 @@ export default function CreateTechnicalTestPage() {
 
   const languages = [
     "Java",
-    "PHP", 
+    "PHP",
     "JavaScript",
     "TypeScript",
     "Python",
-    "SQL"
+    "SQL",
   ];
 
   const handleLanguageSelect = (language: string) => {
@@ -72,7 +72,7 @@ export default function CreateTechnicalTestPage() {
   const onSubmit = async () => {
     try {
       // TODO: Implement the API call to create the technical test
-      
+
       toast.success("¡Prueba técnica creada con éxito!");
       setTimeout(() => {
         navigate("/technical-tests");
@@ -150,7 +150,9 @@ export default function CreateTechnicalTestPage() {
               </p>
             </div>
 
-            <h2 className="text-sm text-black font-medium mb-2 mt-4">Lenguaje</h2>
+            <h2 className="text-sm text-black font-medium mb-2 mt-4">
+              Lenguaje
+            </h2>
             <div className="flex flex-wrap gap-3">
               {languages.map((language) => (
                 <ButtonComponent
@@ -181,7 +183,7 @@ export default function CreateTechnicalTestPage() {
             <h2 className="text-sm text-black font-medium mb-4 mt-4">
               Tipo de contenido
             </h2>
-           <div className="flex justify-start gap-x-10 mb-1">
+            <div className="flex justify-start gap-x-10 mb-1">
               <div className="ml-1 flex gap-2 md:text-xl">
                 <input
                   type="radio"
@@ -209,7 +211,9 @@ export default function CreateTechnicalTestPage() {
             </div>
             <div className="h-6">
               {errors.contentType && (
-                <p className="text-red-500 text-xs">{errors.contentType.message}</p>
+                <p className="text-red-500 text-xs">
+                  {errors.contentType.message}
+                </p>
               )}
             </div>
 
@@ -236,7 +240,9 @@ export default function CreateTechnicalTestPage() {
                   </div>
                   <div className="h-6">
                     {errors.content && (
-                      <p className="text-red-500 text-xs">{errors.content.message}</p>
+                      <p className="text-red-500 text-xs">
+                        {errors.content.message}
+                      </p>
                     )}
                   </div>
                 </div>
@@ -255,11 +261,14 @@ export default function CreateTechnicalTestPage() {
                     {...register("file")}
                   />
                   <p className="text-xs text-gray-500 mt-2">
-                    Formatos admitidos: PDF, DOC, DOCX, ZIP, RAR, TXT (máx. 10MB)
+                    Formatos admitidos: PDF, DOC, DOCX, ZIP, RAR, TXT (máx.
+                    10MB)
                   </p>
                   <div className="h-6">
                     {errors.file && (
-                      <p className="text-red-500 text-xs">{errors.file.message}</p>
+                      <p className="text-red-500 text-xs">
+                        {errors.file.message}
+                      </p>
                     )}
                   </div>
                 </div>
