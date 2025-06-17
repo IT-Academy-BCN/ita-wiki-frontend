@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GitHub OAuth Callback</title>
+</head>
+<body>
+  <div>Processing authentication...</div>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    const error = urlParams.get('error');
+    
+    if (window.opener) {
+      if (code) {
+        window.opener.postMessage({
+          type: 'GITHUB_OAUTH_SUCCESS',
+          code: code
+        }, window.location.origin);
+      } else {
+        window.opener.postMessage({
+          type: 'GITHUB_OAUTH_ERROR',
+          error: error || 'No authorization code received'
+        }, window.location.origin);
+      }
+      window.close();
+    } else {
+      window.location.href = '/';
+    }
+  </script>
+</body>
+</html>
