@@ -1,12 +1,10 @@
+import React from "react";
 import { render, screen } from "@testing-library/react";
-import { vi, describe, test, expect } from "vitest";
+import { describe, expect, vi } from "vitest";
+import "@testing-library/jest-dom";
 import { FilterResources } from "../FilterResources";
 
 const mockUseParams = vi.fn();
-
-vi.mock("react-router", () => ({
-  useParams: () => mockUseParams(),
-}));
 
 const mockProps = {
   resourceTypes: ["Video", "Blog", "Cursos"] as const,

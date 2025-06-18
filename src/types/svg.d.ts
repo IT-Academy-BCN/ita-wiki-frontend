@@ -5,3 +5,9 @@ declare module "*.svg?react" {
   >;
   export default ReactComponent;
 }
+
+// Creado para importar SVGs como módulos en TypeScript
+declare module "*.svg" {
+  const content: string;
+  export default content;
+}

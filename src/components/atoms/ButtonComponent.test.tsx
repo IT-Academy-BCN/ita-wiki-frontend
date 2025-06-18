@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import ButtonComponent from "./ButtonComponent";
 import { vi } from "vitest";
+import React from "react";
 import closeIcon from "../../assets/close.svg";
 import addIcon from "../../assets/add.svg";
 

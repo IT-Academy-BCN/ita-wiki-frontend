@@ -37,7 +37,7 @@ describe("BookmarkIconComponent", () => {
     const svgElement = bookmarkIcon.closest("svg");
     expect(svgElement).toBeInTheDocument();
 
-    expect(svgElement).toHaveAttribute("stroke", "gray");
+    expect(svgElement).toHaveAttribute("stroke", "#808080");
   });
 
   it("renders a div with correct class names", () => {

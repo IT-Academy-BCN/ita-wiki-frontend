@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { MessageCircle, PlayCircle, Clock } from "lucide-react";
+import { MessageCircle, PlayCircle, Calendar } from "lucide-react";
 import { IntResource } from "../../types";
 import { useUserContext } from "../../context/UserContext";
 import { useResources } from "../../context/ResourcesContext";
@@ -92,7 +92,7 @@ const ResourceCard: FC<ResourceCardProps> = ({
             {bookmarkCount}
           </span>
           <span className="flex items-center gap-1">
-            <Clock size={16} />
+            <Calendar size={16} />
             {formattedDate}
           </span>
         </div>
@@ -101,15 +101,17 @@ const ResourceCard: FC<ResourceCardProps> = ({
       {/* Right Section */}
       <div className="flex items-center gap-4 shrink-0">
         <div
-          className="flex flex-col items-center justify-center border-2 border-gray-200 rounded-lg px-3 py-2 hover:border-2 hover:border-[#c20087]
+          className="flex flex-col items-center justify-center border-2 border-gray-200 rounded-lg px-4 py-1 hover:border-2 hover:border-[#c20087]
 "
         >
-          <MessageCircle size={16} className="text-black" />
-          <span className="text-sm font-medium">{comment_count ?? 0}</span>
+          <MessageCircle size={16} className="text-black mb-1" />
+          <span className="text-sm font-medium leading-none">
+            {comment_count ?? 0}
+          </span>
         </div>
         <div
           onClick={() => !disabled && handleLike()}
-          className={`flex flex-col items-center justify-center border-2 border-gray-200 rounded-lg px-3 py-2 hover:border-2 hover:border-[#c20087] ${
+          className={`flex flex-col items-center justify-center border-2 border-gray-200 rounded-lg px-4 py-1 hover:border-2 hover:border-[#c20087] ${
             disabled ? "opacity-70 cursor-not-allowed" : "cursor-pointer"
           }`}
         >

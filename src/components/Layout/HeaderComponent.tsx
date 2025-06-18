@@ -179,7 +179,7 @@ const HeaderComponent = () => {
           </ButtonComponent>
 
           {showLangDropdown && (
-            <div className="absolute right-0 mt-2 w-[48px] bg-white border rounded-md shadow-lg z-50 py-1 text-center">
+            <div className="absolute right-0 mt-2 w-[76px] bg-white border rounded-md shadow-lg z-50 py-1 text-center">
               <button
                 onClick={() => {
                   setSelectedLang("ES");

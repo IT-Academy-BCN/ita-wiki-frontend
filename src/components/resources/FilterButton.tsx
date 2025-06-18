@@ -1,4 +1,5 @@
 import { FC } from "react";
+import UiButton from "../ui/shared-ui/UiButton";
 
 interface FilterButtonProps {
   setShowFilters: (value: boolean) => void;
@@ -10,9 +11,11 @@ const FilterButton: FC<FilterButtonProps> = ({
   showFilters,
 }) => {
   return (
-    <button
-      className="sm:hidden bg-[#B91879] text-white px-4 py-2 rounded-md flex items-center gap-2"
+    <UiButton
       onClick={() => setShowFilters(!showFilters)}
+      variant="primary"
+      size="md"
+      className="sm:hidden flex items-center gap-2"
     >
       <span>Filtrar</span>
       {showFilters ? (
@@ -42,7 +45,7 @@ const FilterButton: FC<FilterButtonProps> = ({
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
       )}
-    </button>
+    </UiButton>
   );
 };
 
