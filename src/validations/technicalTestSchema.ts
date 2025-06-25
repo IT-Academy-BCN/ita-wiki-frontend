@@ -15,7 +15,7 @@ export const technicalTestSchema = z
     title: z
       .string()
       .min(10, { message: "El título debe tener al menos 10 caracteres" })
-      .max(65, { message: "El título debe tener menos de 65 caracteres" }),
+      .max(100, { message: "El título debe tener menos de 100 caracteres" }),
 
     language: z.enum(languages, {
       message: "Por favor, selecciona un lenguaje válido.",
@@ -28,8 +28,8 @@ export const technicalTestSchema = z
     content: z
       .string()
       .min(50, { message: "El contenido debe tener al menos 50 caracteres" })
-      .max(2000, {
-        message: "El contenido debe tener menos de 2000 caracteres",
+      .max(5000, {
+        message: "El contenido debe tener menos de 5000 caracteres",
       })
       .optional(),
 
