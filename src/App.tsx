@@ -10,6 +10,7 @@ import BookmarksPage from "./pages/BookmarksPage";
 import MyResourcesPage from "./pages/MyResourcesPage";
 import CreateTechnicalTestPage from "./pages/CreateTechnicalTestPage";
 
+
 import RequireAuth from "./components/RequireAuth";
 
 const App: FC = () => {
@@ -40,6 +41,11 @@ const App: FC = () => {
             </Route>
             {/* Fallback route */}
             <Route path="*" element={<Navigate to="/" replace />} />
+
+            <Route
+              path="/resources/technical-test/create"
+              element={<TechnicalTestCreatePage />}
+            />
           </Routes>
         </div>
       </div>

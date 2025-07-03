@@ -11,7 +11,8 @@ type EndPoints =
   | "tags/category-frequency"
   | "feature-flags/"
   | "feature-flags/role-self-assignment"
-  | "tags/by-category";
+  | "tags/by-category"
+  | "technicaltests";
 
 const END_POINTS = {
   resources: {
@@ -40,6 +41,10 @@ const END_POINTS = {
   },
   devTools: {
     roleChange: "feature-flags/role-self-assignment" as EndPoints,
+  },
+  technicaltests: {
+    create: "/technicaltests/" as EndPoints,
+    get: "technicaltests/" as EndPoints,
   },
 };
 
