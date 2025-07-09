@@ -346,8 +346,8 @@ const HeaderComponent = () => {
             </p>
             <div className="flex justify-center gap-4 mt-6">
               <button
-                onClick={() => {
-                  signOut();
+                onClick={async () => {
+                  await signOut();
                   setShowConfirmLogout(false);
                   navigate("/");
                 }}
