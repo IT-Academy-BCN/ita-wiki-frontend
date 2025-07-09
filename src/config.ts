@@ -12,7 +12,9 @@ type EndPoints =
   | "feature-flags/"
   | "feature-flags/role-self-assignment"
   | "tags/by-category"
-  | "technicaltests";
+  | "technicaltests"
+  | "user"
+  | "auth/logout";
 
 const END_POINTS = {
   resources: {
@@ -45,6 +47,10 @@ const END_POINTS = {
   technicaltests: {
     create: "/technicaltests/" as EndPoints,
     get: "technicaltests/" as EndPoints,
+  },
+  auth: {
+    user: "user" as EndPoints,
+    logout: "auth/logout" as EndPoints,
   },
 };
 
