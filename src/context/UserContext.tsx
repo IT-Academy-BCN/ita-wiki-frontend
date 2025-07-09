@@ -1,13 +1,12 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import { IntUser } from "../types";
-import { signInWithGitHub } from "../api/firebase";
-import { getUserRole } from "../api/userApi";
+import { initiateGitHubOAuth, signOut as authSignOut, checkAuthStatus, handleOAuthCallback } from "../api/authApi";
 
 interface UserContextType {
   user: IntUser | null;
   isAuthenticated: boolean;
   setUser: (user: IntUser | null) => void;
-  signOut: () => void;
+  signOut: () => Promise<void>;
   signIn: () => Promise<void>;
   saveUser: (user: IntUser) => void;
   error: string | null;
@@ -25,11 +24,34 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const saveUser = (user: IntUser) => {
     setUser(user);
   };
+  // Verificar estado de autenticación al cargar la aplicación
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        // Primero verificar si hay un callback de OAuth
+        const oauthUser = await handleOAuthCallback();
+        if (oauthUser) {
+          setUser(oauthUser);
+          return;
+        }
+        
+        // Si no hay callback, verificar estado de autenticación normal
+        const currentUser = await checkAuthStatus();
+        if (currentUser) {
+          setUser(currentUser);
+        }
+      } catch (error) {
+        console.error("Error checking auth status:", error);
+      }
+    };
+
+    checkAuth();
+  }, []);
+
   const signIn = async () => {
     try {
-      const newUser = await signInWithGitHub();
-      setUser(newUser);
-      await handleSetRole(newUser);
+      // Iniciar el flujo de OAuth con GitHub
+      initiateGitHubOAuth();
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
@@ -39,19 +61,17 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const handleSetRole = async (user: IntUser) => {
+  const signOut = async () => {
     try {
-      const userRole = await getUserRole(user.id);
-      const updatedUser = { ...user, role: userRole };
-      setUser(updatedUser);
+      await authSignOut();
+      setUser(null);
+      setError(null);
     } catch (error) {
-      console.error("Error setting user role:", error);
+      console.error("Error during sign out:", error);
+      // Aún así, limpiar el estado local
+      setUser(null);
+      setError(null);
     }
-  };
-
-  const signOut = () => {
-    setUser(null);
-    setError(null);
   };
 
   const isAuthenticated = !!user;
