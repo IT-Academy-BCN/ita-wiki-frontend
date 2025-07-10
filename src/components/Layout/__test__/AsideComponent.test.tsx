@@ -153,4 +153,25 @@ describe("AsideComponent Tests", () => {
     expect(searchInput).toBeInTheDocument();
     expect(searchInput).toHaveAttribute("placeholder", "Buscar recurso");
   });
+
+  test("should render 'Inicio' link", () => {
+    vi.mocked(useUserContext).mockReturnValue({
+      user: null,
+      isAuthenticated: false,
+      signIn: vi.fn(),
+      signOut: vi.fn(),
+      error: null,
+      setError: vi.fn(),
+      saveUser: vi.fn(),
+      setUser: vi.fn(),
+    });
+
+    render(
+      <MemoryRouter>
+        <AsideComponent asideContent={asideContentMock} />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText("Inicio")).toBeInTheDocument();
+  });
 });

@@ -26,7 +26,7 @@ export default function HomePage() {
           setLoading(false);
         })
         .catch((err) => {
-          console.error("Error fetching role:", err);
+          console.error("Error fetching role:", err, userRole);
           setUserRole("anonymous");
           setLoading(false);
         });
@@ -34,17 +34,7 @@ export default function HomePage() {
       setUserRole("anonymous");
       setLoading(false);
     }
-  }, [user]);
-
-  useEffect(() => {
-    if (!user || !userRole) return;
-
-    if (["anonymous", "student", "mentor"].includes(userRole)) {
-      navigate(`/resources/${DEFAULT_CATEGORY}`);
-    } else if (["admin", "superadmin"].includes(userRole)) {
-      navigate("/admin-dashboard");
-    }
-  }, [user, userRole, navigate]);
+  }, [user, userRole]);
 
   const handleNavigate = useCallback(() => {
     navigate(`/resources/${DEFAULT_CATEGORY}`);
