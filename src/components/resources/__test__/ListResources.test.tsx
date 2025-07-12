@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
-import { ListResources } from "../ListResources";
+import { ResourcesLayout } from "../ResourcesLayout";
+import { ResourcesFiltersProvider } from "../../../context/ResourcesFiltersContext";
 import moock from "../../../moock/resources.json";
 import { categories } from "../../../data/categories";
 import { IntResource } from "../../../types";
@@ -48,11 +49,16 @@ const moockResources = moock.resources.map(
 
 const category = Object.keys(categories)[0] as keyof typeof categories;
 
-describe("ListResources Component", () => {
+describe("ResourcesLayout Component", () => {
   it("should render the component and display the correct title", () => {
     render(
       <MemoryRouter>
-        <ListResources resources={moockResources} category={category} />
+        <ResourcesFiltersProvider>
+          <ResourcesLayout
+            resources={moockResources}
+            category={String(category)}
+          />
+        </ResourcesFiltersProvider>
       </MemoryRouter>,
     );
 

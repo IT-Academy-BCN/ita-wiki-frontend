@@ -1,7 +1,8 @@
 import { FC, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import { categories } from "../data/categories";
-import { ListResources } from "../components/resources/ListResources";
+import { ResourcesLayout } from "../components/resources/ResourcesLayout";
+import { ResourcesFiltersProvider } from "../context/ResourcesFiltersContext";
 import { useResources } from "../context/ResourcesContext";
 import PageTitle from "../components/ui/PageTitle";
 
@@ -17,17 +18,14 @@ const ResourcesPage: FC = () => {
   }, [category, navigate]);
 
   return (
-    <>
+    <ResourcesFiltersProvider>
       <PageTitle title={`${category}`} />
       {isLoading ? (
         <div>Obteniendo los recursos...</div>
       ) : (
-        <ListResources
-          resources={resources}
-          category={category as keyof typeof categories | undefined}
-        />
+        <ResourcesLayout resources={resources} category={category} />
       )}
-    </>
+    </ResourcesFiltersProvider>
   );
 };
 
