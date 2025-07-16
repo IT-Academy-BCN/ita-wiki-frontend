@@ -29,7 +29,10 @@ const AsideComponent: React.FC = () => {
   };
 
   const isResourcesPathActive = (generalPath: string) => {
-    return location.pathname.startsWith(generalPath);
+    return (
+      location.pathname.startsWith(generalPath) &&
+      !location.pathname.includes("technical")
+    );
   };
 
   const handleProtectedClick = (path: string) => {
