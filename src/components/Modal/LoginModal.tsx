@@ -17,7 +17,7 @@ const LoginModal: React.FC<ModalProps> = ({ visible, onClose }) => {
       onClick={onClose}
     >
       <div
-        className="bg-white p-6 rounded-2xl w-[35%] min-w-[300px] min-h-[35%] max-w-md text-center relative"
+        className="bg-white p-6 rounded-2xl w-[35%] min-w-[300px] max-w-md text-center relative"
         onClick={handleContentClick}
       >
         <button className="absolute top-6 right-6" onClick={onClose}>
@@ -32,7 +32,7 @@ const LoginModal: React.FC<ModalProps> = ({ visible, onClose }) => {
         </h2>
         <button
           onClick={onClose}
-          className="bg-primary text-white px-6 py-3 rounded-[12px] hover:bg-primary-dark transition mt-2"
+          className="bg-primary text-white px-6 py-3 rounded-[12px] mt-2 mb-4"
         >
           De acuerdo
         </button>
