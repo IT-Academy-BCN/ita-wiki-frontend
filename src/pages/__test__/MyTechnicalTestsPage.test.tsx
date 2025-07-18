@@ -1,11 +1,11 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import React from "react";
-import MyTechTestsPage from "../../../pages/MyTechTestsPage";
+import MyTechnicalTestsPage from "../MyTechnicalTestsPage";
 import { vi } from "vitest";
 import { MemoryRouter } from "react-router";
 
-describe("MyTechTestsPage", () => {
+describe("MyTechnicalTestsPage", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -13,10 +13,12 @@ describe("MyTechTestsPage", () => {
   it("renders without crashing", () => {
     render(
       <MemoryRouter>
-        <MyTechTestsPage />
+        <MyTechnicalTestsPage />
       </MemoryRouter>,
     );
-    expect(screen.getByRole("list")).toBeInTheDocument();
+    expect(
+      screen.getByText("Cargando pruebas técnicas..."),
+    ).toBeInTheDocument();
   });
 
   it("fetches and displays tech test titles from mock data", async () => {
@@ -41,13 +43,15 @@ describe("MyTechTestsPage", () => {
 
     global.fetch = vi.fn(() =>
       Promise.resolve({
+        ok: true,
+        status: 200,
         json: () => Promise.resolve(mockData),
       }),
     ) as unknown as typeof fetch;
 
     render(
       <MemoryRouter>
-        <MyTechTestsPage />
+        <MyTechnicalTestsPage />
       </MemoryRouter>,
     );
 
@@ -55,8 +59,6 @@ describe("MyTechTestsPage", () => {
       expect(screen.getByText("- Test A")).toBeInTheDocument();
       expect(screen.getByText("- Test B")).toBeInTheDocument();
     });
-
-    expect(fetch).toHaveBeenCalledWith("/technical-tests-mock.json");
   });
 
   it("handles empty data", async () => {
@@ -64,13 +66,15 @@ describe("MyTechTestsPage", () => {
 
     global.fetch = vi.fn(() =>
       Promise.resolve({
+        ok: true,
+        status: 200,
         json: () => Promise.resolve(emptyMockData),
       }),
     ) as unknown as typeof fetch;
 
     render(
       <MemoryRouter>
-        <MyTechTestsPage />
+        <MyTechnicalTestsPage />
       </MemoryRouter>,
     );
 

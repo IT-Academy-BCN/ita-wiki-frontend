@@ -9,7 +9,7 @@ import ResourcesPage from "./pages/ResourcesPage";
 import BookmarksPage from "./pages/BookmarksPage";
 import MyResourcesPage from "./pages/MyResourcesPage";
 import TechnicalTestCreatePage from "./pages/TechnicalTestCreatePage";
-import MyTechTestsPage from "./pages/MyTechTestsPage";
+import MyTechnicalTestsPage from "./pages/MyTechnicalTestsPage";
 import RequireAuth from "./components/RequireAuth";
 
 const App: FC = () => {
@@ -45,7 +45,7 @@ const App: FC = () => {
 
             <Route
               path="/resources/technical-test/all-tech-tests"
-              element={<MyTechTestsPage />}
+              element={<MyTechnicalTestsPage />}
             />
           </Routes>
         </div>

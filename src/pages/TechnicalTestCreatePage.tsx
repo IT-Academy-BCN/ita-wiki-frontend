@@ -1,4 +1,4 @@
-import { TechnicalTestForm } from "../components/tecgnical-test/TechnicalTestForm";
+import { TechnicalTestForm } from "../components/technical-test/TechnicalTestForm";
 
 export default function TechnicalTestCreatePage() {
   return <TechnicalTestForm />;
