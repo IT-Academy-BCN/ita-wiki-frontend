@@ -2,6 +2,7 @@ import { useState } from "react";
 import { asideContent } from "../Layout/aside/asideContent";
 import { createTechnicalTest } from "../../api/endPointTechnicalTests";
 import { API_URL, END_POINTS } from "../../config";
+import PdfUploadComponent from "../atoms/PdfUploadComponent";
 
 export const TechnicalTestForm = () => {
   const [title, setTitle] = useState("");
@@ -98,11 +99,9 @@ export const TechnicalTestForm = () => {
           placeholder="Escribe la descripción de la prueba..."
         />
       ) : (
-        <input
-          type="file"
-          onChange={(e) => setFile(e.target.files?.[0] || null)}
-          className="mb-4"
-        />
+        <div className="my-3">
+          <PdfUploadComponent onFileSelect={setFile} />
+        </div>
       )}
 
       <div className="flex justify-end gap-4">
