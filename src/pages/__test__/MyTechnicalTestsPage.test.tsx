@@ -101,28 +101,36 @@ describe("MyTechnicalTestsPage", () => {
     });
   });
 
-  describe("Crear prueba button", () => {
-    beforeEach(() => {
-      vi.clearAllMocks();
-    });
+  it("navigates to create tech test page when 'Crear prueba' button is clicked", async () => {
+    render(
+      <MemoryRouter initialEntries={["/resources/technical-test"]}>
+        <MyTechnicalTestsPage />
+      </MemoryRouter>,
+    );
 
-    it("renders and navigates when clicked", async () => {
-      render(
-        <MemoryRouter>
-          <MyTechnicalTestsPage />
-        </MemoryRouter>,
-      );
-
-      const button = await screen.findByRole("button", {
-        name: /crear prueba/i,
+    describe("Crear prueba button", () => {
+      beforeEach(() => {
+        vi.clearAllMocks();
       });
-      expect(button).toBeInTheDocument();
 
-      button.click();
+      it("renders and navigates when clicked", async () => {
+        render(
+          <MemoryRouter>
+            <MyTechnicalTestsPage />
+          </MemoryRouter>,
+        );
 
-      expect(mockedNavigate).toHaveBeenCalledWith(
-        "/resources/technical-test/create",
-      );
+        const button = await screen.findByRole("button", {
+          name: /crear prueba/i,
+        });
+        expect(button).toBeInTheDocument();
+
+        button.click();
+
+        expect(mockedNavigate).toHaveBeenCalledWith(
+          "/resources/technical-test/create",
+        );
+      });
     });
   });
 });
