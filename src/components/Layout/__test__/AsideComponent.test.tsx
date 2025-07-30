@@ -12,10 +12,7 @@ import ts_vector from "../../../assets/TypescriptVector.svg?react";
 import js_vector from "../../../assets/javascript.svg?react";
 import java_vector from "../../../assets/logo-java 1.svg?react";
 import php_vector from "../../../assets/logo-php 1.svg?react";
-import node_vector from "../../../assets/logo-node 1.svg?react";
 import react_vector from "../../../assets/react.svg?react";
-import angular_vector from "../../../assets/angular.svg?react";
-import dataScience_vector from "../../../assets/data-science.svg?react";
 
 // Mocks
 const MockIcon = () => <svg data-testid="mock-icon" />;
@@ -231,15 +228,12 @@ describe("AsideComponent Tests", () => {
 
   test("asideContentForTechnicalTest has correct labels and length", () => {
     const expectedLabels = [
-      "Node",
       "React",
-      "Angular",
+      "SQL",
       "JavaScript",
       "TypeScript",
       "Java",
       "PHP",
-      "Data Science",
-      "BBDD",
       "Python",
     ];
 
@@ -253,15 +247,12 @@ describe("AsideComponent Tests", () => {
 
   test("asideContentForTechnicalTest icons are correctly assigned", () => {
     const expectedIcons = [
-      node_vector,
       react_vector,
-      angular_vector,
+      sql_vector,
       js_vector,
       ts_vector,
       java_vector,
       php_vector,
-      dataScience_vector,
-      sql_vector,
       python_vector,
     ];
 
