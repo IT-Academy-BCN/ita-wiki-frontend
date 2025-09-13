@@ -56,5 +56,11 @@
     "vite": "^6.1.0",
     "vite-plugin-svgr": "^4.3.0",
     "vitest": "^3.0.8"
-  }
+  },
+  "overrides": {
+  "debug": "4.4.1",
+  "ansi-styles": "6.2.3",
+  "strip-ansi": "7.1.2",
+  "ms": "2.1.3"
+}
 }
