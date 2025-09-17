@@ -24,5 +24,10 @@
 - name: Danilo Espinosa
   joined: 2025-06-30
 
+<<<<<<< HEAD
 - name: Cristiana Sollini
   joined: 2025-09-11
+=======
+- name: Marcos Solé
+  joined: 2025-09-10
+>>>>>>> b7ba50ed01db5ab0ac6eab2ca49712851e0609f9
