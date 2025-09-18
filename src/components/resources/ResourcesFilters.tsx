@@ -33,20 +33,23 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
     ? decodeURIComponent(currentPath.split("/")[2])
     : undefined;
 
-  // Sync dropdown with current category
   const handleCategoryClick = useCallback(
     (categoryLabel: string) => {
       const path = `/resources/${encodeURIComponent(categoryLabel)}`;
       const isCurrentlyActive = currentCategory === categoryLabel;
+
       if (isCurrentlyActive) {
         toggleCategory(categoryLabel);
       } else {
+        expandedCategories.forEach((cat) => {
+          if (cat !== categoryLabel) toggleCategory(cat);
+        });
+
         navigate(path, { replace: false });
         toggleCategory(categoryLabel);
-
       }
     },
-    [currentCategory, navigate, toggleCategory],
+    [currentCategory, navigate, toggleCategory, expandedCategories],
   );
 
   const isPathActive = useCallback(
