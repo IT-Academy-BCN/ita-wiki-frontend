@@ -44,9 +44,8 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
         expandedCategories.forEach((cat) => {
           if (cat !== categoryLabel) toggleCategory(cat);
         });
-
-        navigate(path, { replace: false });
         toggleCategory(categoryLabel);
+        navigate(path, { replace: false });
       }
     },
     [currentCategory, navigate, toggleCategory, expandedCategories],
@@ -66,8 +65,9 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
       index: number,
     ) => {
       const path = `/resources/${encodeURIComponent(item.label)}`;
-      const isActive = isPathActive(path);
+      const isActivebyPath = isPathActive(path);
       const isExpanded = expandedCategories.has(item.label);
+      const isActive = isActivebyPath || isExpanded;
       const IconComponent = item.icon;
 
       return (
