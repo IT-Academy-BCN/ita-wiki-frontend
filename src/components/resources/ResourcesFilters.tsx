@@ -42,6 +42,8 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
         toggleCategory(categoryLabel);
       } else {
         navigate(path, { replace: false });
+        toggleCategory(categoryLabel);
+
       }
     },
     [currentCategory, navigate, toggleCategory],
