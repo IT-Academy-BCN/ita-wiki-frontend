@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Variables",
+    "created_at": "2024-09-01T10:00:00Z",
+    "updated_at": "2024-09-01T10:00:00Z"
+  },
+  {
+    "id": 2,
+    "name": "Funciones",
+    "created_at": "2024-09-01T10:05:00Z",
+    "updated_at": "2024-09-01T10:05:00Z"
+  },
+  {
+    "id": 3,
+    "name": "Promesas",
+    "created_at": "2024-09-01T10:10:00Z",
+    "updated_at": "2024-09-01T10:10:00Z"
+  },
+  {
+    "id": 4,
+    "name": "Algoritmos",
+    "created_at": "2024-09-01T10:15:00Z",
+    "updated_at": "2024-09-01T10:15:00Z"
+  },
+  {
+    "id": 5,
+    "name": "API",
+    "created_at": "2024-09-01T10:20:00Z",
+    "updated_at": "2024-09-01T10:20:00Z"
+  }
+]
