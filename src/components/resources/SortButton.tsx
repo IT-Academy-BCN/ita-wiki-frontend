@@ -1,5 +1,5 @@
 import { SortOption } from "../../types";
-import { ChevronDown } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 
 interface SortButtonProps {
   setSortOption: (option: SortOption) => void;
@@ -19,7 +19,7 @@ const SortButton: React.FC<SortButtonProps> = ({
         }`}
       >
         Votos
-        {sortOption === "likes" && <ChevronDown size={16} />}
+        {sortOption === "likes" && <ArrowDown size={16} strokeWidth={3} />}
       </button>
 
       <button
