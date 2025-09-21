@@ -6,6 +6,7 @@ import { useResourcesFilters } from "../../context/ResourcesFiltersContext";
 import { resourceTypes } from "../../data/resourceTypes";
 import { asideContent } from "../Layout/aside/asideContent";
 import { FilterResources } from "./FilterResources";
+import { useEffect } from "react";
 
 interface ResourcesFiltersProps {
   isMobile?: boolean;
@@ -26,12 +27,20 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
     toggleCategory,
     setSelectedResourceTypes,
     setSelectedTags,
+    setExpandedCategories,
   } = useResourcesFilters();
 
   // Extract category from URL
   const currentCategory = currentPath.split("/")[2]
     ? decodeURIComponent(currentPath.split("/")[2])
     : undefined;
+
+  useEffect(() => {
+    if (currentCategory) {
+      // Obrim només la categoria activa
+      setExpandedCategories(new Set([currentCategory]));
+    }
+  }, [currentCategory, setExpandedCategories]);
 
   const handleCategoryClick = useCallback(
     (categoryLabel: string) => {
@@ -44,7 +53,6 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
         expandedCategories.forEach((cat) => {
           if (cat !== categoryLabel) toggleCategory(cat);
         });
-        toggleCategory(categoryLabel);
         navigate(path, { replace: false });
       }
     },
