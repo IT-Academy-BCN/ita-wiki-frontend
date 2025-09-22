@@ -18,14 +18,16 @@ const ResourcesPage: FC = () => {
   }, [category, navigate]);
 
   return (
-    <ResourcesFiltersProvider>
-      <PageTitle title={`${category}`} />
-      {isLoading ? (
-        <div>Obteniendo los recursos...</div>
-      ) : (
-        <ResourcesLayout resources={resources} category={category} />
-      )}
-    </ResourcesFiltersProvider>
+   
+      <ResourcesFiltersProvider>
+        <PageTitle title={`${category}`} />
+        {isLoading ? (
+          <div>Obteniendo los recursos...</div>
+        ) : (
+          <ResourcesLayout resources={resources} category={category} />
+        )}
+      </ResourcesFiltersProvider>
+   
   );
 };
 

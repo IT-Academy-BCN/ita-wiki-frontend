@@ -7,6 +7,7 @@ interface VotesResource {
 
 export const VotesResource: FC<VotesResource> = ({ votes }) => {
   return (
+  
     <article
       data-testid="resource-votes"
       className="flex flex-col items-center "
@@ -15,7 +16,9 @@ export const VotesResource: FC<VotesResource> = ({ votes }) => {
       <span className="inline-flex text-[16px] text-[#282828]">
         <strong>{votes}</strong>
       </span>
-      <img src={arrowDown} alt="icon" width={16} height={16.1} />
+      <img src={arrowDown} alt="icon" width={16} height={16.1}/>
     </article>
+   
   );
 };
+
