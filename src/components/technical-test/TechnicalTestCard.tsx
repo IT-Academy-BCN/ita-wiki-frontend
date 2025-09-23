@@ -18,8 +18,8 @@ const TechnicalTestCard = ({ test }: TechnicalTestCardProps) => {
       <li className="flex justify-between">
         <div className="flex flex-col gap-2 m-2">
           <h3 className="text-lg font-bold">{test.title}</h3>
-          <span className="text-sm text-gray-500">
-            <img src={XnixCalendar} alt="XnixCalendar" /> 23 Julio 2025
+          <span className="text-sm text-gray-500 flex items-center gap-2">
+            <img src={XnixCalendar} alt="XnixCalendar" /> <p>23 Julio 2025</p>
           </span>
         </div>
         <div className="flex gap-2 m-2">
