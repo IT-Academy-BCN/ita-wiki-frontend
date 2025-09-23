@@ -1,5 +1,5 @@
 import { SortOption } from "../../types";
-import { ChevronDown } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 
 interface SortButtonProps {
   setSortOption: (option: SortOption) => void;
@@ -14,22 +14,22 @@ const SortButton: React.FC<SortButtonProps> = ({
     <div className="flex gap-4">
       <button
         onClick={() => setSortOption("likes")}
-        className={`flex items-center gap-1 transition-colors duration-200 ${
+        className={`flex items-center gap-1 transition-colors duration-200 cursor-pointer ${
           sortOption === "likes" ? "font-bold text-black" : "text-gray-500"
         }`}
       >
         Votos
-        {sortOption === "likes" && <ChevronDown size={16} />}
+        {sortOption === "likes" && <ArrowDown size={16} strokeWidth={3} />}
       </button>
 
       <button
         onClick={() => setSortOption("recent")}
-        className={`flex items-center gap-1 transition-colors duration-200 ${
+        className={`flex items-center gap-1 transition-colors duration-200 cursor-pointer ${
           sortOption === "recent" ? "font-bold text-black" : "text-gray-500"
         }`}
       >
         Fecha
-        {sortOption === "recent" && <ChevronDown size={16} />}
+        {sortOption === "recent" && <ArrowDown size={16} strokeWidth={3} />}
       </button>
     </div>
   );
