@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { MessageCircle, PlayCircle, Calendar } from "lucide-react";
 import { IntResource } from "../../types";
 import { useUserContext } from "../../context/UserContext";
@@ -8,6 +8,8 @@ import BookmarkIconComponent from "../resources/BookmarkIconComponent";
 import { canBookmark } from "../../data/permission/tempRolesPremission";
 import LikeIcon from "../resources/LikeIcon";
 import { useLikeResources } from "../../hooks/useLikeResources";
+
+import { Modal } from "../Modal/Modal";
 
 interface ResourceCardProps {
   resource: IntResource;
@@ -53,6 +55,17 @@ const ResourceCard: FC<ResourceCardProps> = ({
             year: "numeric",
           })
         : "Fecha desconocida";
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  function handleLikeDisabled() {
+   
+    setIsModalOpen(true);
+  }
+
+  function closeModal() {
+    setIsModalOpen(false);
+  }
 
   return (
     <div
@@ -109,8 +122,11 @@ const ResourceCard: FC<ResourceCardProps> = ({
             {comment_count ?? 0}
           </span>
         </div>
+
+        {/* like button */}
+
         <div
-          onClick={() => !disabled && handleLike()}
+          onClick={() => (disabled ? handleLikeDisabled() : handleLike())}
           className={`flex flex-col items-center justify-center border-2 border-gray-200 rounded-lg px-4 py-1 hover:border-2 hover:border-[#c20087] ${
             disabled ? "opacity-70 cursor-not-allowed" : "cursor-pointer"
           }`}
@@ -125,6 +141,30 @@ const ResourceCard: FC<ResourceCardProps> = ({
             {voteCount}
           </span>
         </div>
+
+        {/* modal from like button no allowed */}
+
+        {isModalOpen && (
+          <Modal closeModal={closeModal} title="Acción no permitida">
+            <p className="mb-6 text-center text-gray-700 text-lg">
+              No tienes permiso para indicar que Te Gusta.
+              <br />
+              Contacta con un administrador.
+            </p>
+            <div className="flex justify-center">
+              <button
+                onClick={closeModal}
+                className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+              >
+                Cerrar
+              </button>
+            </div>
+          </Modal>
+        )}
+
+        {/* End modal from like button no allowed */}
+
+        {/*end like button */}
       </div>
     </div>
   );
