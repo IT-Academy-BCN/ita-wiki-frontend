@@ -10,8 +10,6 @@ import PageTitle from "../components/ui/PageTitle";
 import { getUserRole } from "../api/userApi";
 import Container from "../components/ui/Container";
 
-
-
 export default function HomePage() {
   const navigate = useNavigate();
   const { user } = useUserContext();
@@ -57,17 +55,14 @@ export default function HomePage() {
         <div className="flex flex-col gap-10 justify-center items-center h-full text-center">
           <h1 className="font-bold text-3xl">
             ¡Bienvenid@ a la wiki de la IT Academy!
-          
           </h1>
           <div>
             <ButtonComponent onClick={handleNavigate}>
               Ver Recursos
             </ButtonComponent>
-
           </div>
           <h2>Funcionalidades básicas que te ofrece esta plataforma:</h2>
           <section className="flex flex-col gap-8 items-center md:items-stretch md:flex-row">
-             
             <Card
               number={1}
               imageSource={folder}

@@ -66,10 +66,7 @@ const ResourceCard: FC<ResourceCardProps> = ({
 "
     >
       {/* Left Section */}
-      <div
-        className="flex flex-col space-y-2 overflow-hidden"
-       
-      >
+      <div className="flex flex-col space-y-2 overflow-hidden">
         <a
           href={resource.url}
           target="_blank"
@@ -79,10 +76,7 @@ const ResourceCard: FC<ResourceCardProps> = ({
           <h3 className="text-lg font-bold text-black line-clamp-1">{title}</h3>
           <p className="text-gray-500 text-sm line-clamp-1">{description}</p>
         </a>
-        <div
-          className="flex items-center gap-4 text-gray-500 text-sm"
-       
-        >
+        <div className="flex items-center gap-4 text-gray-500 text-sm">
           <span className="flex items-center gap-1">
             <PlayCircle size={16} />
             {type}
