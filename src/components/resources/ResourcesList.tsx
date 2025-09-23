@@ -65,7 +65,7 @@ export const ResourcesList: FC<ResourcesListProps> = ({
 
   return (
     <div className="lg:flex-1">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-end items-center">
         {/* El encabezado se eliminó de aquí */}
         <SortButton setSortOption={setSortOption} sortOption={sortOption} />
       </div>
