@@ -59,7 +59,6 @@ const ResourceCard: FC<ResourceCardProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   function handleLikeDisabled() {
-   
     setIsModalOpen(true);
   }
 
