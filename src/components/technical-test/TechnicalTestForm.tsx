@@ -62,7 +62,7 @@ export const TechnicalTestForm = () => {
       <div className="flex flex-row justify-between">
         <div>
           <a
-            className="text-[#B91879]"
+            className="text-[#B91879] cursor-pointer"
             onClick={() => navigate("/resources/technical-test/all-tech-tests")}
           >
             <ArrowLeftIcon className="inline text-[#B91879] mb-2 me-1"></ArrowLeftIcon>
@@ -72,12 +72,12 @@ export const TechnicalTestForm = () => {
         </div>
 
         <div className="flex items-center justify-end gap-4">
-          <button className="px-4 py-2 border border-gray-400 rounded-lg w-1/2 h-fit hover:shadow-md">
+          <button className="px-4 py-2 border border-gray-400 rounded-lg w-1/2 h-fit hover:shadow-md cursor-pointer">
             Cancelar
           </button>
           <button
             onClick={handleSubmit}
-            className="px-4 py-2 bg-primary text-white rounded-lg w-1/2 h-fit hover:shadow-md"
+            className="px-4 py-2 bg-primary text-white rounded-lg w-1/2 h-fit hover:shadow-md cursor-pointer"
           >
             Publicar
           </button>
@@ -109,7 +109,7 @@ export const TechnicalTestForm = () => {
             <button
               key={cat.label}
               onClick={() => setSelectedLanguage(cat.label)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg border-2 hover:shadow-md ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg border-2 hover:shadow-md cursor-pointer ${
                 selectedLanguage === cat.label
                   ? "border-3 border-[#B91879] bg-white text-black"
                   : "border-gray-300 bg-white text-black"
@@ -135,7 +135,7 @@ export const TechnicalTestForm = () => {
       "
       >
         <button
-          className={`px-8 py-2 rounded-full ${
+          className={`px-8 py-2 rounded-full cursor-pointer ${
             contentType === "text" ? "bg-[#B91879] text-white" : "bg-white"
           }`}
           onClick={() => setContentType("text")}
@@ -143,7 +143,7 @@ export const TechnicalTestForm = () => {
           Texto
         </button>
         <button
-          className={`px-6 py-2 rounded-full ${
+          className={`px-6 py-2 rounded-full cursor-pointer ${
             contentType === "file" ? "bg-[#B91879] text-white" : "bg-white"
           }`}
           onClick={() => setContentType("file")}

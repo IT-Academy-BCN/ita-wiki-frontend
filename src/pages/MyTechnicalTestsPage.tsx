@@ -11,7 +11,7 @@ function MyTechnicalTestsPage() {
         <TechnicalTestFilter />
         <TechnicalTestList />
       </div>
-      <div className="bg-white w-fit p-2 m-4 rounded hover:border-2 hover:border-black">
+      <div className="bg-white w-fit p-2 m-4 rounded hover:border-2 hover:border-black cursor-pointer">
         <button onClick={() => navigate("/resources/technical-test/create")}>
           Crear prueba
         </button>
