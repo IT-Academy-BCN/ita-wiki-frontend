@@ -18,7 +18,7 @@ describe("FilterGroup", () => {
         options={mockOptions}
         selectedValues={mockSelectedValues}
         onToggle={mockOnToggle}
-      />
+      />,
     );
 
     expect(screen.getByText("Test Filter")).toBeInTheDocument();
@@ -31,7 +31,7 @@ describe("FilterGroup", () => {
         options={mockOptions}
         selectedValues={mockSelectedValues}
         onToggle={mockOnToggle}
-      />
+      />,
     );
 
     expect(screen.getByText("Option 1")).toBeInTheDocument();
@@ -46,7 +46,7 @@ describe("FilterGroup", () => {
         options={mockOptions}
         selectedValues={mockSelectedValues}
         onToggle={mockOnToggle}
-      />
+      />,
     );
 
     const option1Checkbox = screen.getByLabelText("Option 1");
@@ -63,7 +63,7 @@ describe("FilterGroup", () => {
         options={mockOptions}
         selectedValues={mockSelectedValues}
         onToggle={mockOnToggle}
-      />
+      />,
     );
 
     const option2Checkbox = screen.getByLabelText("Option 2");
@@ -80,7 +80,7 @@ describe("FilterGroup", () => {
         selectedValues={mockSelectedValues}
         onToggle={mockOnToggle}
         className="custom-class"
-      />
+      />,
     );
 
     const filterGroup = container.firstChild as HTMLElement;
@@ -94,7 +94,7 @@ describe("FilterGroup", () => {
         options={[]}
         selectedValues={[]}
         onToggle={mockOnToggle}
-      />
+      />,
     );
 
     expect(screen.getByText("Test Filter")).toBeInTheDocument();
@@ -109,7 +109,7 @@ describe("FilterGroup", () => {
         options={mockOptions}
         selectedValues={[]}
         onToggle={mockOnToggle}
-      />
+      />,
     );
 
     const option1Checkbox = screen.getByLabelText("Option 1");

@@ -19,7 +19,7 @@ describe("TechnicalTestFilter", () => {
 
   it("renders all filter sections", () => {
     render(<TechnicalTestFilter />);
-    
+
     expect(screen.getByText("Lenguaje")).toBeInTheDocument();
     expect(screen.getByText("Año")).toBeInTheDocument();
     expect(screen.getByText("Dificultad")).toBeInTheDocument();
@@ -27,7 +27,7 @@ describe("TechnicalTestFilter", () => {
 
   it("renders language options", () => {
     render(<TechnicalTestFilter />);
-    
+
     expect(screen.getByText("JavaScript")).toBeInTheDocument();
     expect(screen.getByText("Java")).toBeInTheDocument();
     expect(screen.getByText("Python")).toBeInTheDocument();
@@ -35,7 +35,7 @@ describe("TechnicalTestFilter", () => {
 
   it("renders year options", () => {
     render(<TechnicalTestFilter />);
-    
+
     expect(screen.getByText("2025")).toBeInTheDocument();
     expect(screen.getByText("2024")).toBeInTheDocument();
     expect(screen.getByText("2023")).toBeInTheDocument();
@@ -43,7 +43,7 @@ describe("TechnicalTestFilter", () => {
 
   it("renders difficulty options", () => {
     render(<TechnicalTestFilter />);
-    
+
     expect(screen.getByText("Básica")).toBeInTheDocument();
     expect(screen.getByText("Intermedia")).toBeInTheDocument();
     expect(screen.getByText("Difícil")).toBeInTheDocument();
@@ -51,19 +51,19 @@ describe("TechnicalTestFilter", () => {
 
   it("has default selected values", () => {
     render(<TechnicalTestFilter />);
-    
+
     // Check default selected languages
     const jsCheckbox = screen.getByLabelText("JavaScript");
     const javaCheckbox = screen.getByLabelText("Java");
     expect(jsCheckbox).toBeChecked();
     expect(javaCheckbox).toBeChecked();
-    
+
     // Check default selected years
     const year2025Checkbox = screen.getByLabelText("2025");
     const year2024Checkbox = screen.getByLabelText("2024");
     expect(year2025Checkbox).toBeChecked();
     expect(year2024Checkbox).toBeChecked();
-    
+
     // Check default selected difficulty
     const basicCheckbox = screen.getByLabelText("Básica");
     expect(basicCheckbox).toBeChecked();
@@ -72,10 +72,10 @@ describe("TechnicalTestFilter", () => {
   it("calls onFiltersChange when language is toggled", () => {
     const mockOnFiltersChange = vi.fn();
     render(<TechnicalTestFilter onFiltersChange={mockOnFiltersChange} />);
-    
+
     const pythonCheckbox = screen.getByLabelText("Python");
     fireEvent.click(pythonCheckbox);
-    
+
     expect(mockOnFiltersChange).toHaveBeenCalledWith({
       languages: ["JavaScript", "Java", "Python"],
       years: ["2025", "2024"],
@@ -86,10 +86,10 @@ describe("TechnicalTestFilter", () => {
   it("calls onFiltersChange when year is toggled", () => {
     const mockOnFiltersChange = vi.fn();
     render(<TechnicalTestFilter onFiltersChange={mockOnFiltersChange} />);
-    
+
     const year2023Checkbox = screen.getByLabelText("2023");
     fireEvent.click(year2023Checkbox);
-    
+
     expect(mockOnFiltersChange).toHaveBeenCalledWith({
       languages: ["JavaScript", "Java"],
       years: ["2025", "2024", "2023"],
@@ -100,10 +100,10 @@ describe("TechnicalTestFilter", () => {
   it("calls onFiltersChange when difficulty is toggled", () => {
     const mockOnFiltersChange = vi.fn();
     render(<TechnicalTestFilter onFiltersChange={mockOnFiltersChange} />);
-    
+
     const intermediateCheckbox = screen.getByLabelText("Intermedia");
     fireEvent.click(intermediateCheckbox);
-    
+
     expect(mockOnFiltersChange).toHaveBeenCalledWith({
       languages: ["JavaScript", "Java"],
       years: ["2025", "2024"],
@@ -114,10 +114,10 @@ describe("TechnicalTestFilter", () => {
   it("unchecks language when clicked again", () => {
     const mockOnFiltersChange = vi.fn();
     render(<TechnicalTestFilter onFiltersChange={mockOnFiltersChange} />);
-    
+
     const jsCheckbox = screen.getByLabelText("JavaScript");
     fireEvent.click(jsCheckbox);
-    
+
     expect(mockOnFiltersChange).toHaveBeenCalledWith({
       languages: ["Java"], // JavaScript removed
       years: ["2025", "2024"],
@@ -127,10 +127,10 @@ describe("TechnicalTestFilter", () => {
 
   it("works without onFiltersChange callback", () => {
     render(<TechnicalTestFilter />);
-    
+
     const pythonCheckbox = screen.getByLabelText("Python");
     fireEvent.click(pythonCheckbox);
-    
+
     // Should not throw an error
     expect(pythonCheckbox).toBeInTheDocument();
   });

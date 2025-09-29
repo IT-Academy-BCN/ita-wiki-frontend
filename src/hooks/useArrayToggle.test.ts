@@ -58,7 +58,7 @@ describe("useArrayToggle", () => {
     const obj3 = { id: 3, name: "test3" };
 
     const { result } = renderHook(() => {
-      const [items, setItems] = React.useState<typeof obj1[]>([obj1, obj2]);
+      const [items, setItems] = React.useState<(typeof obj1)[]>([obj1, obj2]);
       const toggleItem = useArrayToggle(items, setItems);
       return { items, toggleItem };
     });

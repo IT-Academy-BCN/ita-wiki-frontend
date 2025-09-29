@@ -8,17 +8,15 @@ import { useCallback } from "react";
  */
 export const useArrayToggle = <T>(
   selectedItems: T[],
-  setSelectedItems: React.Dispatch<React.SetStateAction<T[]>>
+  setSelectedItems: React.Dispatch<React.SetStateAction<T[]>>,
 ) => {
   const toggleItem = useCallback(
     (item: T) => {
       setSelectedItems((prev) =>
-        prev.includes(item)
-          ? prev.filter((i) => i !== item)
-          : [...prev, item]
+        prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item],
       );
     },
-    [setSelectedItems]
+    [setSelectedItems],
   );
 
   return toggleItem;
