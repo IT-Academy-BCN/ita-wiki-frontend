@@ -1,9 +1,21 @@
 import TechnicalTestFilter from "../components/technical-test/TechnicalTestFilter";
 import TechnicalTestList from "../components/technical-test/TechnicalTestList";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
+import { useEffect, useRef } from "react";
+import { toast } from "sonner";
 
 function MyTechnicalTestsPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const toastShown = useRef(false);
+
+  useEffect(() => {
+    if (location.state?.successMessage && !toastShown.current) {
+      toast.success(location.state.successMessage);
+      toastShown.current = true; 
+      navigate(location.pathname, { replace: true, state: {} }); 
+    }
+  }, [location, navigate]);
 
   return (
     <>

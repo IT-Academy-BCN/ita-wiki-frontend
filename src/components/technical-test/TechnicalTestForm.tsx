@@ -47,10 +47,10 @@ export const TechnicalTestForm = () => {
     try {
       const result = await createTechnicalTest(formData);
       console.log("Guardado:", result);
-      toast.success("Prueba técnica publicada con éxito");
-      setTimeout(() => {
-        navigate("/resources/technical-test/all-tech-tests");
-      }, 1500);
+
+      navigate("/resources/technical-test/all-tech-tests", {
+        state: { successMessage: "Prueba técnica publicada con éxito" },
+      });
     } catch (error) {
       console.error("Error:", error);
       toast.error("Error al publicar la prueba técnica");
