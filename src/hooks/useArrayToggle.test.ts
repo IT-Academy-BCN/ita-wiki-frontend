@@ -7,7 +7,7 @@ describe("useArrayToggle", () => {
   it("should add item to array when not present", () => {
     const { result } = renderHook(() => {
       const [items, setItems] = React.useState<string[]>([]);
-      const toggleItem = useArrayToggle(items, setItems);
+      const toggleItem = useArrayToggle(setItems);
       return { items, toggleItem };
     });
 
@@ -21,7 +21,7 @@ describe("useArrayToggle", () => {
   it("should remove item from array when present", () => {
     const { result } = renderHook(() => {
       const [items, setItems] = React.useState<string[]>(["test", "other"]);
-      const toggleItem = useArrayToggle(items, setItems);
+      const toggleItem = useArrayToggle(setItems);
       return { items, toggleItem };
     });
 
@@ -35,7 +35,7 @@ describe("useArrayToggle", () => {
   it("should work with numbers", () => {
     const { result } = renderHook(() => {
       const [items, setItems] = React.useState<number[]>([1, 2]);
-      const toggleItem = useArrayToggle(items, setItems);
+      const toggleItem = useArrayToggle(setItems);
       return { items, toggleItem };
     });
 
@@ -59,7 +59,7 @@ describe("useArrayToggle", () => {
 
     const { result } = renderHook(() => {
       const [items, setItems] = React.useState<(typeof obj1)[]>([obj1, obj2]);
-      const toggleItem = useArrayToggle(items, setItems);
+      const toggleItem = useArrayToggle(setItems);
       return { items, toggleItem };
     });
 
@@ -79,7 +79,7 @@ describe("useArrayToggle", () => {
   it("should maintain reference equality for toggle function", () => {
     const { result, rerender } = renderHook(() => {
       const [items, setItems] = React.useState<string[]>([]);
-      const toggleItem = useArrayToggle(items, setItems);
+      const toggleItem = useArrayToggle(setItems);
       return { items, toggleItem };
     });
 

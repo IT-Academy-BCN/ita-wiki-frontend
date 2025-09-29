@@ -30,15 +30,9 @@ export const TechnicalTestFilter: FC<TechnicalTestFilterProps> = ({
   const difficulties = ["Básica", "Intermedia", "Difícil"];
   const languages = asideContentForTechnicalTest.map((item) => item.label);
 
-  const toggleLanguage = useArrayToggle(
-    selectedLanguages,
-    setSelectedLanguages,
-  );
-  const toggleYear = useArrayToggle(selectedYears, setSelectedYears);
-  const toggleDifficulty = useArrayToggle(
-    selectedDifficulties,
-    setSelectedDifficulties,
-  );
+  const toggleLanguage = useArrayToggle(setSelectedLanguages);
+  const toggleYear = useArrayToggle(setSelectedYears);
+  const toggleDifficulty = useArrayToggle(setSelectedDifficulties);
 
   const handleLanguageToggle = (language: string) => {
     toggleLanguage(language);
