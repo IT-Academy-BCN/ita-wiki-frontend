@@ -6,7 +6,8 @@ import js_vector from "../../../assets/javascript.svg?react";
 import java_vector from "../../../assets/logo-java 1.svg?react";
 import php_vector from "../../../assets/logo-php 1.svg?react";
 import react_vector from "../../../assets/react.svg?react";
-import { CircleIcon } from "lucide-react";
+import CircleIcon from "../../../assets/circle-icon.svg?react";
+
 import { FC, SVGProps } from "react";
 
 type SvgIcon = FC<SVGProps<SVGSVGElement>>;
