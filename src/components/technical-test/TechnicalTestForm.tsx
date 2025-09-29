@@ -18,17 +18,17 @@ export const TechnicalTestForm = () => {
 
   const handleSubmit = async () => {
     if (!title || !selectedLanguage) {
-      alert("Completa todos los campos obligatorios.");
+      toast.error("Completa todos los campos obligatorios.");
       return;
     }
 
     if (contentType === "text" && !content.trim()) {
-      alert("La descripción no puede estar vacía");
+      toast.error("La descripción no puede estar vacía");
       return;
     }
 
     if (contentType === "file" && !file) {
-      alert("Por favor, selecciona un archivo PDF.");
+      toast.error("Por favor, selecciona un archivo PDF.");
       return;
     }
     const formData = new FormData();
