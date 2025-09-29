@@ -12,8 +12,10 @@ function MyTechnicalTestsPage() {
         <TechnicalTestList />
       </div>
       <div className="m-4">
-        <button onClick={() => navigate("/resources/technical-test/create")} className="px-4 py-2 bg-primary text-white rounded-lg  h-fit hover:shadow-md cursor-pointer w-fit"
-          >
+        <button
+          onClick={() => navigate("/resources/technical-test/create")}
+          className="px-4 py-2 bg-primary text-white rounded-lg  h-fit hover:shadow-md cursor-pointer w-fit"
+        >
           Crear prueba
         </button>
       </div>

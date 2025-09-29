@@ -72,9 +72,10 @@ export const TechnicalTestForm = () => {
         </div>
 
         <div className="flex items-center justify-end gap-4">
-          <button 
-          onClick={() => navigate("/resources/technical-test/all-tech-tests")}
-          className="px-4 py-2 border border-gray-400 rounded-lg w-1/2 h-fit hover:shadow-md cursor-pointer">
+          <button
+            onClick={() => navigate("/resources/technical-test/all-tech-tests")}
+            className="px-4 py-2 border border-gray-400 rounded-lg w-1/2 h-fit hover:shadow-md cursor-pointer"
+          >
             Cancelar
           </button>
           <button
