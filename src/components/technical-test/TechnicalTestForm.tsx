@@ -6,6 +6,7 @@ import { formatDocumentIcons } from "../../icons/formatDocumentIconsArray";
 import { ArrowLeftIcon } from "lucide-react";
 import { useNavigate } from "react-router";
 import PdfUploadComponent from "../atoms/PdfUploadComponent";
+import { toast } from "sonner";
 
 export const TechnicalTestForm = () => {
   const [title, setTitle] = useState("");
@@ -46,8 +47,13 @@ export const TechnicalTestForm = () => {
     try {
       const result = await createTechnicalTest(formData);
       console.log("Guardado:", result);
+      toast.success("Prueba técnica publicada con éxito");
+      setTimeout(() => {
+        navigate("/resources/technical-test/all-tech-tests");
+      }, 1500);
     } catch (error) {
       console.error("Error:", error);
+      toast.error("Error al publicar la prueba técnica");
     }
   };
 
