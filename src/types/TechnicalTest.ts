@@ -1,7 +1,7 @@
 export interface TechnicalTest {
   id: string;
   title: string;
-  lanuage: string;
+  language: string;
   description: string;
   tags: Array<string>;
 }
