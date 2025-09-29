@@ -12,8 +12,8 @@ function MyTechnicalTestsPage() {
   useEffect(() => {
     if (location.state?.successMessage && !toastShown.current) {
       toast.success(location.state.successMessage);
-      toastShown.current = true; 
-      navigate(location.pathname, { replace: true, state: {} }); 
+      toastShown.current = true;
+      navigate(location.pathname, { replace: true, state: {} });
     }
   }, [location, navigate]);
 
