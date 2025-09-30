@@ -6,6 +6,7 @@ import { useResourcesFilters } from "../../context/ResourcesFiltersContext";
 import { resourceTypes } from "../../data/resourceTypes";
 import { asideContent } from "../Layout/aside/asideContent";
 import { FilterResources } from "./FilterResources";
+import { useEffect } from "react";
 
 interface ResourcesFiltersProps {
   isMobile?: boolean;
@@ -26,6 +27,7 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
     toggleCategory,
     setSelectedResourceTypes,
     setSelectedTags,
+    setExpandedCategories,
   } = useResourcesFilters();
 
   // Extract category from URL
@@ -33,18 +35,28 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
     ? decodeURIComponent(currentPath.split("/")[2])
     : undefined;
 
-  // Sync dropdown with current category
+  useEffect(() => {
+    if (currentCategory) {
+      // Obrim només la categoria activa
+      setExpandedCategories(new Set([currentCategory]));
+    }
+  }, [currentCategory, setExpandedCategories]);
+
   const handleCategoryClick = useCallback(
     (categoryLabel: string) => {
       const path = `/resources/${encodeURIComponent(categoryLabel)}`;
       const isCurrentlyActive = currentCategory === categoryLabel;
+
       if (isCurrentlyActive) {
         toggleCategory(categoryLabel);
       } else {
+        expandedCategories.forEach((cat) => {
+          if (cat !== categoryLabel) toggleCategory(cat);
+        });
         navigate(path, { replace: false });
       }
     },
-    [currentCategory, navigate, toggleCategory],
+    [currentCategory, navigate, toggleCategory, expandedCategories],
   );
 
   const isPathActive = useCallback(
@@ -61,8 +73,9 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
       index: number,
     ) => {
       const path = `/resources/${encodeURIComponent(item.label)}`;
-      const isActive = isPathActive(path);
+      const isActivebyPath = isPathActive(path);
       const isExpanded = expandedCategories.has(item.label);
+      const isActive = isActivebyPath || isExpanded;
       const IconComponent = item.icon;
 
       return (
