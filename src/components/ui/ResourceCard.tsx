@@ -47,6 +47,11 @@ const ResourceCard: FC<ResourceCardProps> = ({
     }
   };
 
+  const handleLikeDisabled = () => {
+    setShowModal(true);
+    return;
+  };
+
   const formattedDate =
     typeof created_at === "string" && isNaN(Date.parse(created_at))
       ? created_at
@@ -102,14 +107,6 @@ const ResourceCard: FC<ResourceCardProps> = ({
         </div>
       </div>
 
-      {/*Modal */}
-      {showModal && (
-        <GenericModal
-          onClose={() => setShowModal(false)}
-          message="No tienes permisos para realizar esta acción"
-        />
-      )}
-
       {/* Right Section */}
       <div className="flex items-center gap-4 shrink-0">
         <div
@@ -122,7 +119,7 @@ const ResourceCard: FC<ResourceCardProps> = ({
           </span>
         </div>
         <div
-          onClick={() => !disabled && handleLike()}
+          onClick={() => (disabled ? handleLikeDisabled() : handleLike())}
           className={`flex flex-col items-center justify-center border-2 border-gray-200 rounded-lg px-4 py-1 hover:border-2 hover:border-[#c20087] ${
             disabled ? "opacity-70 cursor-not-allowed" : "cursor-pointer"
           }`}
@@ -138,6 +135,16 @@ const ResourceCard: FC<ResourceCardProps> = ({
           </span>
         </div>
       </div>
+      
+      {/*Modal */}
+      {showModal && (
+        <GenericModal
+          onClose={() => setShowModal(false)}
+          message="No tienes permisos para realizar esta acción"
+        />
+      )}
+      {/*Fin Modal */}
+
     </div>
   );
 };
