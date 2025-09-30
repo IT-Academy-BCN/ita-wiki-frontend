@@ -135,7 +135,7 @@ const ResourceCard: FC<ResourceCardProps> = ({
           </span>
         </div>
       </div>
-      
+
       {/*Modal */}
       {showModal && (
         <GenericModal
@@ -144,7 +144,6 @@ const ResourceCard: FC<ResourceCardProps> = ({
         />
       )}
       {/*Fin Modal */}
-
     </div>
   );
 };
