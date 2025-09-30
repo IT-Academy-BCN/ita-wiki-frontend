@@ -1,9 +1,21 @@
 import TechnicalTestFilter from "../components/technical-test/TechnicalTestFilter";
 import TechnicalTestList from "../components/technical-test/TechnicalTestList";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
+import { useEffect, useRef } from "react";
+import { toast } from "sonner";
 
 function MyTechnicalTestsPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const toastShown = useRef(false);
+
+  useEffect(() => {
+    if (location.state?.successMessage && !toastShown.current) {
+      toast.success(location.state.successMessage);
+      toastShown.current = true;
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+  }, [location, navigate]);
 
   return (
     <>
@@ -11,8 +23,11 @@ function MyTechnicalTestsPage() {
         <TechnicalTestFilter />
         <TechnicalTestList />
       </div>
-      <div className="bg-white w-fit p-2 m-4 rounded hover:border-2 hover:border-black">
-        <button onClick={() => navigate("/resources/technical-test/create")}>
+      <div className="m-4">
+        <button
+          onClick={() => navigate("/resources/technical-test/create")}
+          className="px-4 py-2 bg-primary text-white rounded-lg  h-fit hover:shadow-md cursor-pointer w-fit"
+        >
           Crear prueba
         </button>
       </div>

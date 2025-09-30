@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { MessageCircle, PlayCircle, Calendar } from "lucide-react";
 import { IntResource } from "../../types";
 import { useUserContext } from "../../context/UserContext";
@@ -8,6 +8,7 @@ import BookmarkIconComponent from "../resources/BookmarkIconComponent";
 import { canBookmark } from "../../data/permission/tempRolesPremission";
 import LikeIcon from "../resources/LikeIcon";
 import { useLikeResources } from "../../hooks/useLikeResources";
+import GenericModal from "../Modal/GenericModal/GenericModal";
 
 interface ResourceCardProps {
   resource: IntResource;
@@ -20,6 +21,8 @@ const ResourceCard: FC<ResourceCardProps> = ({
   isBookmarked,
   toggleBookmark,
 }) => {
+  const [showModal, setShowModal] = useState(false);
+
   const { title, description, type, created_at, comment_count } = resource;
 
   const { user } = useUserContext();
@@ -35,6 +38,7 @@ const ResourceCard: FC<ResourceCardProps> = ({
 
   const handleBookmarkClick = () => {
     if (!user || !canBookmark(user.role)) {
+      setShowModal(true);
       return;
     }
 
@@ -97,6 +101,14 @@ const ResourceCard: FC<ResourceCardProps> = ({
           </span>
         </div>
       </div>
+
+      {/*Modal */}
+      {showModal && (
+        <GenericModal
+          onClose={() => setShowModal(false)}
+          message="No tienes permisos para realizar esta acción"
+        />
+      )}
 
       {/* Right Section */}
       <div className="flex items-center gap-4 shrink-0">
