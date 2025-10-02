@@ -64,10 +64,7 @@ const ResourceCard: FC<ResourceCardProps> = ({
         : "Fecha desconocida";
 
   return (
-    <div
-      className="bg-white rounded-2xl shadow-sm border border-gray-400 p-6 flex justify-between items-center gap-2 w-full h-[109px] hover:bg-gray-100
-"
-    >
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-400 p-6 flex justify-between items-center gap-2 w-full h-[109px] hover:bg-gray-100">
       {/* Left Section */}
       <div className="flex flex-col space-y-2 overflow-hidden">
         <a
@@ -109,10 +106,7 @@ const ResourceCard: FC<ResourceCardProps> = ({
 
       {/* Right Section */}
       <div className="flex items-center gap-4 shrink-0">
-        <div
-          className="flex flex-col items-center justify-center border-2 border-gray-200 rounded-lg px-4 py-1 hover:border-2 hover:border-[#c20087]
-"
-        >
+        <div className="flex flex-col items-center justify-center border-2 border-gray-200 rounded-lg px-4 py-1 hover:border-2 hover:border-[#c20087]">
           <MessageCircle size={16} className="text-black mb-1" />
           <span className="text-sm font-medium leading-none">
             {comment_count ?? 0}
@@ -136,14 +130,16 @@ const ResourceCard: FC<ResourceCardProps> = ({
         </div>
       </div>
 
-      {/*Modal */}
-      {showModal && (
-        <GenericModal
-          onClose={() => setShowModal(false)}
-          message="No tienes permisos para realizar esta acción"
-        />
-      )}
-      {/*Fin Modal */}
+      {/* Modal */}
+      <GenericModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        title="Permisos insuficientes"
+        size="md"
+        primaryButtonAction={() => setShowModal(false)}
+      >
+        <p>No tienes permisos para realizar esta acción</p>
+      </GenericModal>
     </div>
   );
 };
