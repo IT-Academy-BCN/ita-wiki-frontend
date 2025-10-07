@@ -8,7 +8,7 @@ import BookmarkIconComponent from "../resources/BookmarkIconComponent";
 import { canBookmark } from "../../data/permission/tempRolesPremission";
 import LikeIcon from "../resources/LikeIcon";
 import { useLikeResources } from "../../hooks/useLikeResources";
-import GenericModal from "../Modal/GenericModal/GenericModal";
+import GenericModal from "./Modal/GenericModal"
 
 interface ResourceCardProps {
   resource: IntResource;
@@ -136,6 +136,8 @@ const ResourceCard: FC<ResourceCardProps> = ({
         onClose={() => setShowModal(false)}
         title="Permisos insuficientes"
         size="md"
+        showPrimaryButton
+        primaryButtonText="De acuerdo"
         primaryButtonAction={() => setShowModal(false)}
       >
         <p>No tienes permisos para realizar esta acción</p>
