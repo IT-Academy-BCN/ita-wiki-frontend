@@ -5,6 +5,7 @@ import { ResourcesLayout } from "../components/resources/ResourcesLayout";
 import { ResourcesFiltersProvider } from "../context/ResourcesFiltersContext";
 import { useResources } from "../context/ResourcesContext";
 import PageTitle from "../components/ui/PageTitle";
+import LoadingImage from "../components/ui/LoadingImage";
 
 const ResourcesPage: FC = () => {
   const { resources, isLoading } = useResources();
@@ -21,7 +22,7 @@ const ResourcesPage: FC = () => {
     <ResourcesFiltersProvider>
       <PageTitle title={`${category}`} />
       {isLoading ? (
-        <div>Obteniendo los recursos...</div>
+        <LoadingImage text="Cargando recursos..." />        
       ) : (
         <ResourcesLayout resources={resources} category={category} />
       )}
