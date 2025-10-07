@@ -142,12 +142,9 @@ const GenericModal: React.FC<GenericModalProps> = ({
   };
 
   const buttonVariantClasses = {
-    primary:
-      "bg-[#c20087] text-white hover:bg-[#a1006d] focus:bg-[#a1006d] active:bg-[#85005a] focus:ring-[#c20087]/50 cursor-pointer",
-    secondary:
-      "bg-gray-300 text-gray-800 hover:bg-gray-400 focus:bg-gray-400 active:bg-gray-500 focus:ring-gray-300 cursor-pointer",
-    danger:
-      "bg-red-500 text-white hover:bg-red-600 focus:bg-red-600 active:bg-red-700 focus:ring-red-300 cursor-pointer",
+    primary: "bg-[#c20087] text-white hover:bg-[#a1006d] focus:bg-[#a1006d] active:bg-[#85005a] focus:ring-[#c20087]/50 cursor-pointer",
+    secondary: "bg-gray-300 text-gray-800 hover:bg-gray-400 focus:bg-gray-400 active:bg-gray-500 focus:ring-gray-300 cursor-pointer",
+    danger: "bg-red-500 text-white hover:bg-red-600 focus:bg-red-600 active:bg-red-700 focus:ring-red-300 cursor-pointer",
   };
 
   const showSecondaryButton = !!secondaryButtonText;
@@ -161,7 +158,7 @@ const GenericModal: React.FC<GenericModalProps> = ({
         className={clsx(
           "bg-white p-6 rounded-2xl text-center relative shadow-lg",
           sizeClasses[size],
-          className,
+          className
         )}
         onClick={handleContentClick}
       >
@@ -180,15 +177,11 @@ const GenericModal: React.FC<GenericModalProps> = ({
         )}
 
         {title && (
-          <h2 className="text-xl font-semibold mb-6 mt-5 mx-2 text-gray-900">
-            {title}
-          </h2>
+          <h2 className="text-xl font-semibold mb-6 mt-5 mx-2 text-gray-900">{title}</h2>
         )}
 
         {children && (
-          <div className={clsx("mb-6 text-gray-600", { "mt-5": !title })}>
-            {children}
-          </div>
+          <div className={clsx("mb-6 text-gray-600", { "mt-5": !title })}>{children}</div>
         )}
 
         {showButtons && (
@@ -202,13 +195,13 @@ const GenericModal: React.FC<GenericModalProps> = ({
                   buttonVariantClasses[secondaryButtonVariant],
                   {
                     "opacity-50 cursor-not-allowed": secondaryButtonDisabled,
-                  },
+                  }
                 )}
               >
                 {secondaryButtonText}
               </button>
             )}
-
+            
             <button
               onClick={primaryButtonAction}
               disabled={primaryButtonDisabled}
@@ -217,7 +210,7 @@ const GenericModal: React.FC<GenericModalProps> = ({
                 buttonVariantClasses[primaryButtonVariant],
                 {
                   "opacity-50 cursor-not-allowed": primaryButtonDisabled,
-                },
+                }
               )}
             >
               {primaryButtonText}
