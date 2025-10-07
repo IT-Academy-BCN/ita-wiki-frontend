@@ -1,11 +1,11 @@
 /**
  * GenericModal Component
- * 
+ *
  * A reusable modal component with optional primary and secondary buttons.
- * 
+ *
  * BASIC USAGE:
  * ============
- * 
+ *
  * Modal with one button:
  * <GenericModal
  *   isOpen={showModal}
@@ -17,7 +17,7 @@
  * >
  *   <p>¿Deseas guardar los cambios realizados?</p>
  * </GenericModal>
- * 
+ *
  * Modal with two buttons:
  * <GenericModal
  *   isOpen={showConfirm}
@@ -98,7 +98,7 @@ const GenericModal: React.FC<GenericModalProps> = ({
         className={clsx(
           "bg-white p-6 rounded-2xl text-center relative shadow-lg",
           sizeClasses[size],
-          className
+          className,
         )}
         onClick={handleContentClick}
       >
@@ -108,11 +108,7 @@ const GenericModal: React.FC<GenericModalProps> = ({
             onClick={onClose}
             aria-label="Cerrar"
           >
-            <img
-              src={closeIcon}
-              alt="Cerrar"
-              className="w-[21px] h-[19px]"
-            />
+            <img src={closeIcon} alt="Cerrar" className="w-[21px] h-[19px]" />
           </button>
         )}
 
@@ -123,9 +119,7 @@ const GenericModal: React.FC<GenericModalProps> = ({
         )}
 
         {children && (
-          <div
-            className={clsx("mb-6 text-gray-600", { "mt-5": !title })}
-          >
+          <div className={clsx("mb-6 text-gray-600", { "mt-5": !title })}>
             {children}
           </div>
         )}
@@ -134,7 +128,7 @@ const GenericModal: React.FC<GenericModalProps> = ({
           <div
             className={clsx(
               "flex justify-center gap-4 mb-4 mt-2",
-              "max-sm:flex-col-reverse max-sm:gap-3" // Cambia orden en mobile
+              "max-sm:flex-col-reverse max-sm:gap-3", // Cambia orden en mobile
             )}
           >
             {showSecondaryButton && (
@@ -142,7 +136,7 @@ const GenericModal: React.FC<GenericModalProps> = ({
                 onClick={secondaryButtonAction}
                 className={clsx(
                   "px-6 py-3 rounded-[12px] font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 border border-gray-300",
-                  "bg-white text-gray-700 hover:bg-gray-100 active:bg-gray-200 focus:ring-gray-200 cursor-pointer"
+                  "bg-white text-gray-700 hover:bg-gray-100 active:bg-gray-200 focus:ring-gray-200 cursor-pointer",
                 )}
               >
                 {secondaryButtonText}
@@ -154,7 +148,7 @@ const GenericModal: React.FC<GenericModalProps> = ({
                 onClick={primaryButtonAction}
                 className={clsx(
                   "px-6 py-3 rounded-[12px] font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2",
-                  "bg-[#c20087] text-white hover:bg-[#a1006d] focus:bg-[#a1006d] active:bg-[#85005a] focus:ring-[#c20087]/50 cursor-pointer"
+                  "bg-[#c20087] text-white hover:bg-[#a1006d] focus:bg-[#a1006d] active:bg-[#85005a] focus:ring-[#c20087]/50 cursor-pointer",
                 )}
               >
                 {primaryButtonText}

@@ -8,7 +8,7 @@ import BookmarkIconComponent from "../resources/BookmarkIconComponent";
 import { canBookmark } from "../../data/permission/tempRolesPremission";
 import LikeIcon from "../resources/LikeIcon";
 import { useLikeResources } from "../../hooks/useLikeResources";
-import GenericModal from "./Modal/GenericModal"
+import GenericModal from "./Modal/GenericModal";
 
 interface ResourceCardProps {
   resource: IntResource;
