@@ -7,8 +7,8 @@ interface LoadingImageProps {
 
 const LoadingImage: FC<LoadingImageProps> = ({ text }) => {
   return (
-    <div className="text-center">
-      <img src={loading} alt="Cargando..." className="mx-auto" />
+    <div>
+      <img src={loading} alt="Cargando..." className="w-1/2" />
       <p> {text}</p>
     </div>
   );
