@@ -7,6 +7,8 @@ import { useResources } from "../../context/ResourcesContext";
 import { useResourcesFilters } from "../../context/ResourcesFiltersContext";
 import ResourceCard from "../ui/ResourceCard";
 import SortButton from "./SortButton";
+import LoadingImage from "../ui/LoadingImage";
+import { useMinLoading } from "../../hooks/useMinLoading";
 
 interface ResourcesListProps {
   resources: IntResource[];
@@ -21,7 +23,9 @@ export const ResourcesList: FC<ResourcesListProps> = ({
   const searchTerm = searchParams.get("search") || "";
 
   const { selectedResourceTypes, selectedTags } = useResourcesFilters();
-  const { isBookmarked, toggleBookmark } = useResources();
+  const { isBookmarked, toggleBookmark, isLoading } = useResources();
+
+  const showLoader = useMinLoading(isLoading, 1500);
 
   // Filter resources by category
   const categoryFilteredResources = useMemo(() => {
@@ -54,6 +58,9 @@ export const ResourcesList: FC<ResourcesListProps> = ({
     );
   }, [sortedResources, searchTerm]);
 
+  if (showLoader) {
+    return <LoadingImage text="Cargando recursos..." />;
+  }
   // Early return if no resources
   if (!resources?.length) {
     return (
