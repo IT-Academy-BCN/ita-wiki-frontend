@@ -20,9 +20,8 @@ const ResourcesPage: FC = () => {
   return (
     <ResourcesFiltersProvider>
       <PageTitle title={`${category}`} />
-     
-        <ResourcesLayout resources={resources} category={category} />
-      
+
+      <ResourcesLayout resources={resources} category={category} />
     </ResourcesFiltersProvider>
   );
 };

@@ -1,8 +1,7 @@
 import useTechnicalTests from "../../hooks/useTechnicalTests";
 import TechnicalTestCard from "./TechnicalTestCard";
 import LoadingImage from "../ui/LoadingImage";
-import {useMinLoading} from "../../hooks/useMinLoading";
-
+import { useMinLoading } from "../../hooks/useMinLoading";
 
 const TechnicalTestList = () => {
   const { technicalTests, isLoading, error } = useTechnicalTests();
