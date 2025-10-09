@@ -18,8 +18,10 @@ const SortButton: React.FC<SortButtonProps> = ({
           sortOption === "likes" ? "font-bold text-black" : "text-gray-500"
         }`}
       >
-        Votos
-        {sortOption === "likes" && <ArrowDown size={16} strokeWidth={3} />}
+        <span>Votos</span>
+        <span className="flex w-4 justify-center">
+          {sortOption === "likes" && <ArrowDown size={16} strokeWidth={3} />}
+        </span>
       </button>
 
       <button
@@ -28,8 +30,10 @@ const SortButton: React.FC<SortButtonProps> = ({
           sortOption === "recent" ? "font-bold text-black" : "text-gray-500"
         }`}
       >
-        Fecha
-        {sortOption === "recent" && <ArrowDown size={16} strokeWidth={3} />}
+        <span>Fecha</span>
+        <span className="flex w-4 justify-center">
+          {sortOption === "recent" && <ArrowDown size={16} strokeWidth={3} />}
+        </span>
       </button>
     </div>
   );
