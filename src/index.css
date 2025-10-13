@@ -15,6 +15,7 @@
   background-color: #ffffff;
 
   --color-primary: #b91879;
+  --color-gray-foreground: #7e7e7e;
 }
 
 @theme {
@@ -43,6 +44,10 @@ body {
 .text-green-custom {
   color: rgb(39, 174, 96);
 }
+.text-gray-foreground {
+  color: var(--color-gray-foreground);
+}
+
 
 .fill-green-custom {
   fill: rgb(39, 174, 96);
