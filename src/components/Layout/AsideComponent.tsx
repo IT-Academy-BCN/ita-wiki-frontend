@@ -124,45 +124,51 @@ const AsideComponent: React.FC = () => {
         </ul>
       </section>
 
-<section className="py-6">
-  <p className="pb-3 font-bold text-lg mb-2 text-black">Mis recursos</p>
+      <section className="py-6">
+        <p className="pb-3 font-bold text-lg mb-2 text-black">Mis recursos</p>
 
-  <div className="flex flex-col gap-4">
-    {/* Guardados */}
-    <div
-      onClick={() => handleProtectedClick("/resources/bookmarks")}
-      className="flex items-center space-x-3 py-1 cursor-pointer"
-    >
-      <img src={Bookmark} alt="Bookmark icon" className="w-6 h-6" />
-      <div
-        className={classNames("transition-colors", {
-          "!text-black !font-bold": isPathActive("/resources/bookmarks"),
-          "text-gray-foreground": !isPathActive("/resources/bookmarks"),
-        })}
-      >
-        Guardados
-      </div>
-    </div>
+        <div className="flex flex-col gap-4">
+          {/* Guardados */}
+          <div
+            onClick={() => handleProtectedClick("/resources/bookmarks")}
+            className="flex items-center space-x-3 py-1 cursor-pointer"
+          >
+            <img src={Bookmark} alt="Bookmark icon" className="w-6 h-6" />
+            <div
+              className={classNames("transition-colors", {
+                "!text-black !font-bold": isPathActive("/resources/bookmarks"),
+                "text-gray-foreground": !isPathActive("/resources/bookmarks"),
+              })}
+            >
+              Guardados
+            </div>
+          </div>
 
-    {/* Creados */}
-    <div
-      onClick={() => handleProtectedClick("/resources/my-resources")}
-      className="flex items-center space-x-3 py-1 cursor-pointer"
-    >
-      <img src={CreatedResources} alt="Create resources icon" className="w-6 h-6" />
-      <div
-        className={classNames("transition-colors", {
-          "!text-black !font-bold": isPathActive("/resources/my-resources"),
-          "text-gray-foreground": !isPathActive("/resources/my-resources"),
-        })}
-      >
-        Creados
-      </div>
-    </div>
-  </div>
-</section>
-
-     
+          {/* Creados */}
+          <div
+            onClick={() => handleProtectedClick("/resources/my-resources")}
+            className="flex items-center space-x-3 py-1 cursor-pointer"
+          >
+            <img
+              src={CreatedResources}
+              alt="Create resources icon"
+              className="w-6 h-6"
+            />
+            <div
+              className={classNames("transition-colors", {
+                "!text-black !font-bold": isPathActive(
+                  "/resources/my-resources",
+                ),
+                "text-gray-foreground": !isPathActive(
+                  "/resources/my-resources",
+                ),
+              })}
+            >
+              Creados
+            </div>
+          </div>
+        </div>
+      </section>
     </aside>
   );
 };

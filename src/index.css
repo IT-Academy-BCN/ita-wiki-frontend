@@ -48,7 +48,6 @@ body {
   color: var(--color-gray-foreground);
 }
 
-
 .fill-green-custom {
   fill: rgb(39, 174, 96);
   stroke: rgb(39, 174, 96);
