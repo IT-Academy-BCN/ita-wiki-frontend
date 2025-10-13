@@ -7,7 +7,7 @@ import { useResources } from "../context/ResourcesContext";
 import PageTitle from "../components/ui/PageTitle";
 
 const ResourcesPage: FC = () => {
-  const { resources, isLoading } = useResources();
+  const { resources } = useResources();
   const { category } = useParams();
   const navigate = useNavigate();
 
@@ -20,11 +20,8 @@ const ResourcesPage: FC = () => {
   return (
     <ResourcesFiltersProvider>
       <PageTitle title={`${category}`} />
-      {isLoading ? (
-        <div>Obteniendo los recursos...</div>
-      ) : (
-        <ResourcesLayout resources={resources} category={category} />
-      )}
+
+      <ResourcesLayout resources={resources} category={category} />
     </ResourcesFiltersProvider>
   );
 };
