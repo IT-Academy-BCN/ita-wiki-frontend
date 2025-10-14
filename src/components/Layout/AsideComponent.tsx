@@ -2,12 +2,10 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router";
 import { useUserContext } from "../../context/UserContext";
 import classNames from "classnames";
-//import BookmarkFigmaIcon from "../../icons/BookmarkFigmaIcon";
-//import { ReactComponent as Bookmark } from "../../assets/Bookmark.svg";
 
 import Bookmark from "../../assets/Bookmark.svg";
 import CreatedResources from "../../assets/CreatedResources.svg";
-//import CreatedFigmaIcon from "../../icons/CreatedFigmaIcon";
+
 import SearchComponent from "./header/SearchComponent";
 import ButtonComponent from "../atoms/ButtonComponent";
 import LoginModal from "../Modal/LoginModal";
@@ -128,7 +126,6 @@ const AsideComponent: React.FC = () => {
         <p className="pb-3 font-bold text-lg mb-2 text-black">Mis recursos</p>
 
         <div className="flex flex-col gap-4">
-          {/* Guardados */}
           <div
             onClick={() => handleProtectedClick("/resources/bookmarks")}
             className="flex items-center space-x-3 py-1 cursor-pointer"
@@ -137,14 +134,15 @@ const AsideComponent: React.FC = () => {
             <div
               className={classNames("transition-colors", {
                 "!text-black !font-bold": isPathActive("/resources/bookmarks"),
-                "text-gray-foreground": !isPathActive("/resources/bookmarks"),
+                "text-[var(--color-gray-foreground)]": !isPathActive(
+                  "/resources/bookmarks",
+                ),
               })}
             >
               Guardados
             </div>
           </div>
 
-          {/* Creados */}
           <div
             onClick={() => handleProtectedClick("/resources/my-resources")}
             className="flex items-center space-x-3 py-1 cursor-pointer"
@@ -159,7 +157,7 @@ const AsideComponent: React.FC = () => {
                 "!text-black !font-bold": isPathActive(
                   "/resources/my-resources",
                 ),
-                "text-gray-foreground": !isPathActive(
+                "text-[var(--color-gray-foreground)]": !isPathActive(
                   "/resources/my-resources",
                 ),
               })}
