@@ -3,7 +3,7 @@ import logoItAcademy from "../../assets/LogoItAcademy.svg";
 import addIcon from "../../assets/add.svg";
 import userIcon from "../../assets/user2.svg";
 import arrowDown from "../../assets/arrow-down.svg";
-import logOutIcon from "../../assets/logout-svgrepo-com.svg";
+import logOutIcon from "../../assets/logOut.svg";
 import ButtonComponent from "../atoms/ButtonComponent";
 import DropdownButtonComponent from "../atoms/DropdownButtonComponent";
 import { useUserContext } from "../../context/UserContext";

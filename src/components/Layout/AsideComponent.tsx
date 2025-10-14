@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router";
 import { useUserContext } from "../../context/UserContext";
 import classNames from "classnames";
-import BookmarkFigmaIcon from "../../icons/BookmarkFigmaIcon";
-import CreatedFigmaIcon from "../../icons/CreatedFigmaIcon";
+
+import Bookmark from "../../assets/Bookmark.svg";
+import CreatedResources from "../../assets/CreatedResources.svg";
+
 import SearchComponent from "./header/SearchComponent";
 import ButtonComponent from "../atoms/ButtonComponent";
 import LoginModal from "../Modal/LoginModal";
@@ -123,39 +125,45 @@ const AsideComponent: React.FC = () => {
       <section className="py-6">
         <p className="pb-3 font-bold text-lg mb-2 text-black">Mis recursos</p>
 
-        <div className="flex items-center space-x-3 py-1 mb-4 cursor-pointer">
-          <BookmarkFigmaIcon
-            className={classNames("w-6 h-6", {
-              "text-primary": isPathActive("/resources/bookmarks"),
-              "text-gray-600": !isPathActive("/resources/bookmarks"),
-            })}
-          />
+        <div className="flex flex-col gap-4">
           <div
             onClick={() => handleProtectedClick("/resources/bookmarks")}
-            className={classNames("transition-colors", {
-              "!text-black !font-bold": isPathActive("/resources/bookmarks"),
-              "text-gray-700": !isPathActive("/resources/bookmarks"),
-            })}
+            className="flex items-center space-x-3 py-1 cursor-pointer"
           >
-            Guardados
+            <img src={Bookmark} alt="Bookmark icon" className="w-6 h-6" />
+            <div
+              className={classNames("transition-colors", {
+                "!text-black !font-bold": isPathActive("/resources/bookmarks"),
+                "text-[var(--color-gray-foreground)]": !isPathActive(
+                  "/resources/bookmarks",
+                ),
+              })}
+            >
+              Guardados
+            </div>
           </div>
-        </div>
 
-        <div className="flex items-center space-x-3 py-1 cursor-pointer">
-          <CreatedFigmaIcon
-            className={classNames("w-6 h-6", {
-              "text-primary": isPathActive("/resources/my-resources"),
-              "text-gray-600": !isPathActive("/resources/my-resources"),
-            })}
-          />
           <div
             onClick={() => handleProtectedClick("/resources/my-resources")}
-            className={classNames("transition-colors", {
-              "!text-black !font-bold": isPathActive("/resources/my-resources"),
-              "text-gray-700": !isPathActive("/resources/my-resources"),
-            })}
+            className="flex items-center space-x-3 py-1 cursor-pointer"
           >
-            Creados
+            <img
+              src={CreatedResources}
+              alt="Create resources icon"
+              className="w-6 h-6"
+            />
+            <div
+              className={classNames("transition-colors", {
+                "!text-black !font-bold": isPathActive(
+                  "/resources/my-resources",
+                ),
+                "text-[var(--color-gray-foreground)]": !isPathActive(
+                  "/resources/my-resources",
+                ),
+              })}
+            >
+              Creados
+            </div>
           </div>
         </div>
       </section>
