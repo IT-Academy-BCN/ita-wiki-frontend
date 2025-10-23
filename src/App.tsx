@@ -25,7 +25,7 @@ const App: FC = () => {
             {/* Public routes */}
             <Route path="/" element={<HomePage />} />
             <Route path="/resources/:category" element={<ResourcesPage />} />
-            
+
             <Route path="/codeconnect" element={<CodeConnectPage />} />
 
             {/* Protected routes */}
