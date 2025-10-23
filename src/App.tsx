@@ -11,6 +11,7 @@ import MyResourcesPage from "./pages/MyResourcesPage";
 import TechnicalTestCreatePage from "./pages/TechnicalTestCreatePage";
 import MyTechnicalTestsPage from "./pages/MyTechnicalTestsPage";
 import RequireAuth from "./components/RequireAuth";
+import CodeConnectPage from "./pages/CodeConnectPage";
 
 const App: FC = () => {
   return (
@@ -24,6 +25,8 @@ const App: FC = () => {
             {/* Public routes */}
             <Route path="/" element={<HomePage />} />
             <Route path="/resources/:category" element={<ResourcesPage />} />
+            
+            <Route path="/codeconnect" element={<CodeConnectPage />} />
 
             {/* Protected routes */}
             <Route element={<RequireAuth />}>
