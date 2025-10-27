@@ -18,14 +18,14 @@ describe("CodeConnectPage routing", () => {
         <Routes>
           <Route path="/codeconnect" element={<CodeConnectPage />} />
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     expect(screen.getByTestId("page-title")).toHaveTextContent(
-      "Lista de proyectos Code Connect"
+      "Lista de proyectos Code Connect",
     );
     expect(
-      screen.getByRole("heading", { level: 2, name: /Code Connect/i })
+      screen.getByRole("heading", { level: 2, name: /Code Connect/i }),
     ).toBeInTheDocument();
   });
 });
