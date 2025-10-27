@@ -1,8 +1,8 @@
 import { Category } from "../../types";
-import JavaIcon from "../../../assets/logo-java 1.svg?react";
-import PhpIcon from "../../../assets/logo-php 1.svg?react";
-import ReactIcon from "../../../assets/react.svg?react";
-import AngularIcon from "../../../assets/angular.svg?react";
+import JavaIcon from "@/assets/logo-java 1.svg?react";
+import PhpIcon from "@/assets/logo-php 1.svg?react";
+import ReactIcon from "@/assets/react.svg?react";
+import AngularIcon from "@/assets/angular.svg?react";
 import { FC, SVGProps } from "react";
 
 export type FilterItem = {
