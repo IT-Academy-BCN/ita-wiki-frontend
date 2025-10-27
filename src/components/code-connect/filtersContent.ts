@@ -1,16 +1,18 @@
 import { Category } from "../../types";
-import java_vector from "../../../assets/logo-java 1.svg?react";
-import php_vector from "../../../assets/logo-php 1.svg?react";
-import react_vector from "../../../assets/react.svg?react";
-import angular from "../../../assets/angular.svg?react";
-
+import JavaIcon from "../../../assets/logo-java 1.svg?react";
+import PhpIcon from "../../../assets/logo-php 1.svg?react";
+import ReactIcon from "../../../assets/react.svg?react";
+import AngularIcon from "../../../assets/angular.svg?react";
 import { FC, SVGProps } from "react";
 
-type SvgIcon = FC<SVGProps<SVGSVGElement>>;
+export type FilterItem = {
+  icon: FC<SVGProps<SVGSVGElement>>;
+  label: Category;
+};
 
-export const filtersContent: { icon: SvgIcon; label: Category }[] = [
-  { icon: java_vector, label: "Java" },
-  { icon: php_vector, label: "PHP" },
-  { icon: react_vector, label: "React" },
-  { icon: angular, label: "Angular" },
+export const filtersContent: FilterItem[] = [
+  { icon: JavaIcon, label: "Java" },
+  { icon: PhpIcon, label: "PHP" },
+  { icon: ReactIcon, label: "React" },
+  { icon: AngularIcon, label: "Angular" },
 ];
