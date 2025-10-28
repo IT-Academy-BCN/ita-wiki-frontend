@@ -101,7 +101,7 @@ const AsideComponent: React.FC = () => {
             </Link>
           </li>
 
-          <li className="flex items-center space-x-3">
+          <li className="flex items-center space-x-3 mb-5">
             {isPathActive("/resources/technical-test/all-tech-tests") && (
               <span className="w-3 h-3 rounded-full bg-primary" />
             )}
@@ -120,14 +120,14 @@ const AsideComponent: React.FC = () => {
             </Link>
           </li>
           <li className="flex items-center space-x-3 mb-5">
-            {isResourcesPathActive("/codeconnect/") && (
+            {isResourcesPathActive("/codeconnect") && (
               <span className="w-3 h-3 rounded-full bg-primary" />
             )}
             <Link
-              to="/codeconnect/"
+              to="/codeconnect"
               className={classNames("transition-colors", {
-                "!text-black !font-bold": isPathActive("/codeconnect/"),
-                "text-gray-400": !isPathActive("/codeconnect/"),
+                "!text-black !font-bold": isPathActive("/codeconnect"),
+                "text-gray-400": !isPathActive("/codeconnect"),
               })}
             >
               Code Connect
