@@ -247,9 +247,9 @@ describe("AsideComponent Tests", () => {
     );
 
     const codeConnectLink = screen.getByText("Code Connect");
-    
+
     expect(codeConnectLink).toBeInTheDocument();
-    
+
     expect(codeConnectLink).toHaveAttribute("href", "/codeconnect/");
   });
 
