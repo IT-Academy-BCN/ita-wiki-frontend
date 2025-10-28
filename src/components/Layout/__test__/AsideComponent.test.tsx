@@ -250,7 +250,7 @@ describe("AsideComponent Tests", () => {
 
     expect(codeConnectLink).toBeInTheDocument();
 
-    expect(codeConnectLink).toHaveAttribute("href", "/codeconnect/");
+    expect(codeConnectLink).toHaveAttribute("href", "/codeconnect");
   });
 
   test("asideContentForTechnicalTest has correct labels and length", () => {
