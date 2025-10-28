@@ -226,6 +226,33 @@ describe("AsideComponent Tests", () => {
     expect(screen.getByText("Inicio")).toBeInTheDocument();
   });
 
+  test("should render 'Code Connect' link", () => {
+    vi.mocked(useUserContext).mockReturnValue({
+      user: null,
+      isAuthenticated: false,
+      signIn: vi.fn(),
+      signOut: vi.fn(),
+      error: null,
+      setError: vi.fn(),
+      saveUser: vi.fn(),
+      setUser: vi.fn(),
+    });
+
+    render(
+      <MemoryRouter>
+        <AsideComponent
+          asideContentForTechnicalTest={asideContentForTechnicalTestMock}
+        />
+      </MemoryRouter>,
+    );
+
+    const codeConnectLink = screen.getByText("Code Connect");
+    
+    expect(codeConnectLink).toBeInTheDocument();
+    
+    expect(codeConnectLink).toHaveAttribute("href", "/codeconnect/");
+  });
+
   test("asideContentForTechnicalTest has correct labels and length", () => {
     const expectedLabels = [
       "React",
