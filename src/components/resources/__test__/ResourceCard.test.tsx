@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import ResourceCard from "../../ui/ResourceCard";
 import { IntResource, IntUser } from "../../../types";
+import { resourceTypes } from "../../../data/resourceTypes";
 import { MemoryRouter } from "react-router";
 import CtxUser from "../../../context";
 import { PropsContext } from "../../../context";
@@ -148,4 +149,18 @@ test("bookmark icon is not clickable when user is not logged in", () => {
   bookmarkContainer.click();
 
   expect(toggleBookmarkMock).not.toHaveBeenCalled();
+});
+
+test("ContentTypeBadge renders correct type text and icon for each resource type", () => {
+  resourceTypes.forEach((type) => {
+    renderWithUserContext(
+      <ResourceCard resource={{ ...resourceMock, type }} />,
+    );
+    // Check type text
+    expect(screen.getByText(type)).toBeInTheDocument();
+    // Check icon alt text
+    const icon = screen.getByAltText(`${type} icon`);
+    expect(icon).toBeInTheDocument();
+    expect(icon.tagName).toBe("IMG");
+  });
 });
