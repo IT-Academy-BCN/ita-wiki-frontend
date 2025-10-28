@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { CodeConnectFiltersComponent } from "./CodeConnectFiltersComponent";
 
 describe("CodeConnectFiltersComponent", () => {
@@ -11,10 +11,12 @@ describe("CodeConnectFiltersComponent", () => {
     expect(screen.getByText("Angular")).toBeInTheDocument();
   });
 
-  it("changes selection when a button is clicked", () => {
+  it("changes selection when a button is clicked", async () => {
     render(<CodeConnectFiltersComponent />);
-    const javaButton = screen.getByText("Java");
+    const javaButton = screen.getByRole("button", { name: /java/i });
     fireEvent.click(javaButton);
-    expect(javaButton.getAttribute("aria-pressed")).toBe("true");
+    await waitFor(() =>
+      expect(javaButton).toHaveAttribute("aria-pressed", "true"),
+    );
   });
 });

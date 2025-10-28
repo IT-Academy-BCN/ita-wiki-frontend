@@ -19,7 +19,7 @@ export const CodeConnectFiltersComponent = () => {
           <button
             key={label}
             onClick={() => handleSelect(label)}
-            aria-pressed={isSelected}
+            aria-pressed={isSelected ? "true" : "false"}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg border-2 transition-all hover:shadow-md
               ${isSelected ? "border-[#B91879]" : "border-gray-300"}
               bg-white text-black`}
