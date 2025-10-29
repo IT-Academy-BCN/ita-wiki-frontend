@@ -1,7 +1,7 @@
 import { FC } from "react";
 import PageTitle from "../components/ui/PageTitle";
 
-const details = [
+export const details = [
   {
     title: "TaskForge: forja tu productividad",
     description: `TaskForge es una aplicación web de gestión de tareas que convierte la productividad en una aventura. Cada usuario crea proyectos, completa misiones (tareas) y gana puntos de experiencia, niveles y logros.
