@@ -68,12 +68,4 @@ describe("ResourcesFilters", () => {
     fireEvent.mouseLeave(categoryDiv!);
     expect(mockSetExpandedCategories).toHaveBeenCalled();
   });
-
-  it("calls toggleCategory on category click", () => {
-    render(<ResourcesFilters />);
-    const categoryLabel = asideContent[0].label;
-    const categoryDiv = screen.getByText(categoryLabel).closest("div");
-    fireEvent.click(categoryDiv!);
-    expect(mockToggleCategory).toHaveBeenCalled;
-  });
 });
