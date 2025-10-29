@@ -16,7 +16,7 @@ function ProjectCard({
   avatarSrc3,
 }: ProjectCardProps) {
   return (
-    <div className="flex flex-col border border-gray-500 text-black items-center w-64 lg:w-52 xl:w-82 px-6 rounded-3xl py-7 pb-10">
+    <div className="flex flex-col border border-gray-500 text-black items-center w-70 sm:w-76 xl:w-82 px-6 rounded-3xl py-7 pb-10">
       <div>
         <h1 className="font-extrabold text-xl text-start">
           TaskForge: forja tu productividad
