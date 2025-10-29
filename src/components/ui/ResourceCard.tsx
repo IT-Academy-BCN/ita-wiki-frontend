@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { MessageCircle, PlayCircle, Calendar } from "lucide-react";
+import { MessageCircle, Calendar } from "lucide-react";
 import { IntResource } from "../../types";
 import { useUserContext } from "../../context/UserContext";
 import { useResources } from "../../context/ResourcesContext";
@@ -9,6 +9,7 @@ import { canBookmark } from "../../data/permission/tempRolesPremission";
 import LikeIcon from "../resources/LikeIcon";
 import { useLikeResources } from "../../hooks/useLikeResources";
 import GenericModal from "./Modal/GenericModal";
+import ContentTypeBadge from "../resources/ContentTypeBadge";
 
 interface ResourceCardProps {
   resource: IntResource;
@@ -77,10 +78,7 @@ const ResourceCard: FC<ResourceCardProps> = ({
           <p className="text-gray-500 text-sm line-clamp-1">{description}</p>
         </a>
         <div className="flex items-center gap-4 text-gray-500 text-sm">
-          <span className="flex items-center gap-1">
-            <PlayCircle size={16} />
-            {type}
-          </span>
+          <ContentTypeBadge type={type} />
           <span className="flex items-center gap-1">
             <div
               onClick={handleBookmarkClick}
