@@ -128,19 +128,24 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
               </div>
             </div>
 
-            {isExpanded && (
-              <div className="px-3 pb-3">
-                <div className="pt-1">
-                  <FilterResources
-                    resourceTypes={resourceTypes}
-                    selectedResourceTypes={selectedResourceTypes}
-                    setSelectedResourceTypes={setSelectedResourceTypes}
-                    selectedTags={selectedTags}
-                    setSelectedTags={setSelectedTags}
-                  />
-                </div>
+            <div
+              className={`px-3 pb-3 transition-all duration-300 ease-in-out overflow-hidden`}
+              style={{
+                maxHeight: isExpanded ? "500px" : "0px",
+                opacity: isExpanded ? 1 : 0,
+                pointerEvents: isExpanded ? "auto" : "none",
+              }}
+            >
+              <div className="pt-1">
+                <FilterResources
+                  resourceTypes={resourceTypes}
+                  selectedResourceTypes={selectedResourceTypes}
+                  setSelectedResourceTypes={setSelectedResourceTypes}
+                  selectedTags={selectedTags}
+                  setSelectedTags={setSelectedTags}
+                />
               </div>
-            )}
+            </div>
           </div>
         </div>
       );
