@@ -2,11 +2,13 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { ResourcesFilters } from "../ResourcesFilters";
 import { resourceTypes } from "../../../data/resourceTypes";
 import { asideContent } from "../../Layout/aside/asideContent";
+import { useParams } from "react-router";
 
 // Mock hooks and navigation
 vi.mock("react-router", () => ({
   useLocation: () => ({ pathname: "/resources/JavaScript" }),
   useNavigate: () => vi.fn(),
+  useParams: () => ({}),
 }));
 
 const mockToggleResourceType = vi.fn();
@@ -66,6 +68,6 @@ describe("ResourcesFilters", () => {
       new Set([categoryLabel]),
     );
     fireEvent.mouseLeave(categoryDiv!);
-    expect(mockSetExpandedCategories).toHaveBeenCalled();
+    expect(mockSetExpandedCategories).toHaveBeenCalledWith(new Set());
   });
 });
