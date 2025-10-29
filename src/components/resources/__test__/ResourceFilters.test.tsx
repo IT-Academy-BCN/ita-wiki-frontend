@@ -2,7 +2,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { ResourcesFilters } from "../ResourcesFilters";
 import { resourceTypes } from "../../../data/resourceTypes";
 import { asideContent } from "../../Layout/aside/asideContent";
-import { useParams } from "react-router";
 
 // Mock hooks and navigation
 vi.mock("react-router", () => ({
