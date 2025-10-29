@@ -64,6 +64,16 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
     [currentPath],
   );
 
+  const handleMouseEnter = (categoryLabel: string) => {
+    setExpandedCategories(new Set([categoryLabel]));
+  };
+
+  const handleMouseLeave = (categoryLabel: string) => {
+    if (currentCategory !== categoryLabel) {
+      setExpandedCategories(new Set());
+    }
+  };
+
   const renderCategoryItem = useCallback(
     (
       item: {
@@ -80,7 +90,11 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
 
       return (
         <div key={index} className="mb-2">
-          <div className="overflow-hidden">
+          <div
+            className="overflow-hidden"
+            onMouseEnter={() => handleMouseEnter(item.label)}
+            onMouseLeave={() => handleMouseLeave(item.label)}
+          >
             <div
               className={`flex items-center justify-start p-1 cursor-pointer transition-colors select-none ${
                 isActive ? "text-[var(--color-primary)]" : "text-gray-500"
