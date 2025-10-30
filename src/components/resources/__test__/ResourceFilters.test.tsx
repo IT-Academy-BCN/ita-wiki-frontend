@@ -2,6 +2,8 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { ResourcesFilters } from "../ResourcesFilters";
 import { resourceTypes } from "../../../data/resourceTypes";
 import { asideContent } from "../../Layout/aside/asideContent";
+import { describe, expect, vi } from "vitest";
+import "@testing-library/jest-dom";
 
 // Mock hooks and navigation
 vi.mock("react-router", () => ({
