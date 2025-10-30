@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { CodeConnectFiltersComponent } from "./CodeConnectFiltersComponent";
+import CodeConnectFiltersComponent from "./CodeConnectFiltersComponent";
 
 describe("CodeConnectFiltersComponent", () => {
   it("renders all filter buttons", () => {
