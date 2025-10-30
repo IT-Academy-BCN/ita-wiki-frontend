@@ -2,12 +2,9 @@ import { FC } from "react";
 import PageTitle from "../components/ui/PageTitle";
 import moockData from "../moock/projectDetails.json";
 
-
-
-
 const CodeConnectDetails: FC = () => {
-const { title, description, roadmap } = moockData.details[0];
-return (
+  const { title, description, roadmap } = moockData.details[0];
+  return (
     <>
       <PageTitle title={title} />
       <div className="w-full px-4 pb-4 grow lg:flex-1 gap-x-6 sm:bg-white lg:bg-transparent">
@@ -30,8 +27,7 @@ return (
                   ))}
                 </ol>
               </div>
-              <div className="lg:w-1/3">
-              </div>
+              <div className="lg:w-1/3"></div>
             </div>
           </div>
         </div>
