@@ -18,8 +18,8 @@
       "positions": 2,
       "participants": []
     },
-    "startDate": "01-10-2025",
-    "endDate": "13-11-2025"
+    "startDate": "10-01-2025",
+    "endDate": "11-13-2025"
   },
   {
     "id": 2,
@@ -27,7 +27,7 @@
     "duration": "1 mes",
     "frontend": {
       "tech": "React",
-      "logo": ".../assets/react.svg",
+      "logo": "../assets/react.svg",
       "positions": 3,
       "participants": [
         { "name": "Natasha", "avatar": "../assets/project-avatar.svg" },
@@ -42,8 +42,8 @@
         { "name": "Aina", "avatar": "../assets/project-avatar3.svg" }
       ]
     },
-    "startDate": "12-10-2025",
-    "endDate": "2-11-2025"
+    "startDate": "10-12-2025",
+    "endDate": "11-02-2025"
   },
   {
     "id": 3,
@@ -64,20 +64,20 @@
       "positions": 2,
       "participants": []
     },
-    "startDate": "20-10-2025",
-    "endDate": "5-11-2025"
+    "startDate": "10-20-2025",
+    "endDate": "11-05-2025"
   },
   {
     "id": 4,
     "title": "SkillTree: muestra tus habilidades",
-    "duration": "2 mes",
+    "duration": "2 meses",
     "frontend": {
       "tech": "Angular",
       "logo": "../assets/angular.svg",
       "positions": 2,
       "participants": [
-        { "name": "Natasha", "avatar": "/avatars/project-avatar.svg" },
-        { "name": "Jordi", "avatar": "/avatars/project-avatar2.svg" }
+        { "name": "Natasha", "avatar": "../assets/project-avatar.svg" },
+        { "name": "Jordi", "avatar": "../assets/project-avatar2.svg" }
       ]
     },
     "backend": {
@@ -86,8 +86,8 @@
       "positions": 2,
       "participants": []
     },
-    "startDate": "25-10-2025",
-    "endDate": "13-11-2025"
+    "startDate": "10-25-2025",
+    "endDate": "11-13-2025"
   },
   {
     "id": 5,
@@ -95,7 +95,7 @@
     "duration": "1 semana",
     "frontend": {
       "tech": "React",
-      "logo": ".../assets/react.svg",
+      "logo": "../assets/react.svg",
       "positions": 3,
       "participants": [
         { "name": "Natasha", "avatar": "../assets/project-avatar.svg" },
@@ -104,14 +104,14 @@
     },
     "backend": {
       "tech": "PHP",
-      "logo": "../assets/php.svg",
+      "logo": "../assets/logo-php 1.svg",
       "positions": 2,
       "participants": [
         { "name": "Aina", "avatar": "../assets/project-avatar3.svg" }
       ]
     },
-    "startDate": "12-10-2025",
-    "endDate": "2-11-2025"
+    "startDate": "10-12-2025",
+    "endDate": "11-02-2025"
   },
   {
     "id": 6,
@@ -134,8 +134,8 @@
         { "name": "Aina", "avatar": "../assets/project-avatar3.svg" }
       ]
     },
-    "startDate": "29-10-2025",
-    "endDate": "13-11-2025"
+    "startDate": "10-29-2025",
+    "endDate": "11-13-2025"
   },
   {
     "id": 7,
@@ -143,7 +143,7 @@
     "duration": "2 meses",
     "frontend": {
       "tech": "React",
-      "logo": ".../assets/react.svg",
+      "logo": "../assets/react.svg",
       "positions": 4,
       "participants": [
         { "name": "Natasha", "avatar": "../assets/project-avatar.svg" },
@@ -152,15 +152,15 @@
     },
     "backend": {
       "tech": "PHP",
-      "logo": "../assets/php.svg",
+      "logo": "../assets/logo-php 1.svg",
       "positions": 4,
       "participants": [
         { "name": "Aina", "avatar": "../assets/project-avatar3.svg" },
         { "name": "Roman", "avatar": "../assets/project-avatar4.svg" }
       ]
     },
-    "startDate": "12-10-2025",
-    "endDate": "2-12-2025"
+    "startDate": "10-12-2025",
+    "endDate": "12-02-2025"
   },
   {
     "id": 8,
@@ -183,8 +183,8 @@
         { "name": "Roman", "avatar": "../assets/project-avatar4.svg" }
       ]
     },
-    "startDate": "29-10-2025",
-    "endDate": "13-11-2025"
+    "startDate": "10-29-2025",
+    "endDate": "11-13-2025"
   },
   {
     "id": 9,
@@ -192,7 +192,7 @@
     "duration": "3 semanas",
     "frontend": {
       "tech": "React",
-      "logo": ".../assets/react.svg",
+      "logo": "../assets/react.svg",
       "positions": 4,
       "participants": [
         { "name": "Roman", "avatar": "../assets/project-avatar4.svg" },
@@ -201,7 +201,7 @@
     },
     "backend": {
       "tech": "PHP",
-      "logo": "../assets/php.svg",
+      "logo": "../assets/logo-php 1.svg",
       "positions": 4,
       "participants": [
         { "name": "Aina", "avatar": "../assets/project-avatar3.svg" },
@@ -209,6 +209,6 @@
       ]
     },
     "startDate": "10-10-2025",
-    "endDate": "10-11-2025"
+    "endDate": "11-10-2025"
   }
 ]
