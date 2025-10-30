@@ -1,0 +1,18 @@
+{
+  "details": [
+    {
+      "title": "TaskForge: forja tu productividad",
+      "description": "TaskForge es una aplicación web de gestión de tareas que convierte la productividad en una aventura. Cada usuario crea proyectos, completa misiones (tareas) y gana puntos de experiencia, niveles y logros.\nEl objetivo es aprender a trabajar con APIs, bases de datos y sistemas de autenticación mientras se practica diseño de interfaz, gestión de estado y metodologías ágiles.\nEn TaskForge, trabajar en equipo se siente como jugar una partida cooperativa: ¡tu productividad se forja a golpe de código!",
+      "roadmap": [
+        "Autenticación (F/B) — login, registro, tokens y guardas de ruta.",
+        "Gestión de usuarios (B) — modelo, roles y endpoints básicos.",
+        "Visualización del dashboard (F) — resumen de tareas, progreso y XP.",
+        "CRUD de proyectos (F/B) — crear, listar, editar y eliminar proyectos.",
+        "CRUD de tareas (F/B) — operaciones básicas de tareas con estados.",
+        "Detalle de tarea (F/B) — vista individual con descripción, estado y comentarios.",
+        "Sistema de niveles y experiencia (B) — lógica de puntos y subida de nivel.",
+        "Visualización de XP y logros (F) — barra de progreso y badges dinámicos."
+      ]
+    }
+  ]
+}
