@@ -1,7 +1,8 @@
 import { describe, it, expect, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import ProjectCard, { Project } from "../ProjectCard";
+import { Project } from "../types/project-types";
+import ProjectCard from "../ProjectCard";
 
 function makeProject(partial: Partial<Project> = {}): Project {
   const base: Project = {

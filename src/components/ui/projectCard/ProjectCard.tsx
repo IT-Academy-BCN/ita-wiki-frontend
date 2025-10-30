@@ -1,33 +1,8 @@
 import ProjectButton from "./ProjectButton";
 import ProgressBar from "./ProgressBar";
 import { resolveAsset } from "../../../utils/resolveAsset";
-
-export interface Participant {
-  name: string;
-  avatar: string;
-}
-
-export interface Role {
-  tech: string;
-  logo: string;
-  positions: number;
-  participants: Participant[];
-}
-
-export interface Project {
-  id: number;
-  title: string;
-  duration: string;
-  frontend: Role;
-  backend: Role;
-  startDate: string;
-  endDate: string;
-}
-
-interface ProjectCardProps {
-  project: Project;
-  onClick?: (id: number) => void;
-}
+import type { ProjectCardProps } from "./types/project-types";
+export type { Participant, Role } from "./types/project-types";
 
 function ProjectCard({ project, onClick }: ProjectCardProps) {
   const availableFrontend =

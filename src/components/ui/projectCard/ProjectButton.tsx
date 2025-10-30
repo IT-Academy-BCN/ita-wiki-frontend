@@ -1,9 +1,4 @@
-import { ReactNode } from "react";
-
-interface ProjectButtonProps {
-  children?: ReactNode;
-  onClick?: () => void;
-}
+import type { ProjectButtonProps } from "./types/project-types";
 
 function ProjectButton({ children, onClick }: ProjectButtonProps) {
   return (
