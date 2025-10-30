@@ -7,7 +7,6 @@ import { useUserContext } from "../../../context/UserContext";
 import { asideContentForTechnicalTest } from "../aside/asideContent";
 import userEvent from "@testing-library/user-event";
 
-
 import sql_vector from "../../../assets/sqlVector.svg?react";
 import python_vector from "../../../assets/pythonVector.svg?react";
 import ts_vector from "../../../assets/TypescriptVector.svg?react";
@@ -255,35 +254,35 @@ describe("AsideComponent Tests", () => {
     expect(codeConnectLink).toHaveAttribute("href", "/codeconnect");
   });
 
-test("should navigate to /codeconnect when clicked", async () => {
-  
-  vi.mocked(useUserContext).mockReturnValue({
-    user: null,
-    isAuthenticated: false,
-    signIn: vi.fn(),
-    signOut: vi.fn(),
-    error: null,
-    setError: vi.fn(),
-    saveUser: vi.fn(),
-    setUser: vi.fn(),
+  test("should navigate to /codeconnect when clicked", async () => {
+    vi.mocked(useUserContext).mockReturnValue({
+      user: null,
+      isAuthenticated: false,
+      signIn: vi.fn(),
+      signOut: vi.fn(),
+      error: null,
+      setError: vi.fn(),
+      saveUser: vi.fn(),
+      setUser: vi.fn(),
+    });
+
+    render(
+      <MemoryRouter initialEntries={["/"]}>
+        <AsideComponent
+          asideContentForTechnicalTest={asideContentForTechnicalTestMock}
+        />
+        <Routes>
+          <Route path="/codeconnect" element={<div>Code Connect Page</div>} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    const codeConnectLink = screen.getByText("Code Connect");
+    const user = userEvent.setup();
+    await user.click(codeConnectLink);
+
+    expect(await screen.findByText("Code Connect Page")).toBeInTheDocument();
   });
-
-  render(
-    <MemoryRouter initialEntries={["/"]}>
-      <AsideComponent asideContentForTechnicalTest={asideContentForTechnicalTestMock} />
-      <Routes>
-        <Route path="/codeconnect" element={<div>Code Connect Page</div>} />
-      </Routes>
-    </MemoryRouter>
-  );
-
-  const codeConnectLink = screen.getByText("Code Connect");
-  const user = userEvent.setup(); 
-  await user.click(codeConnectLink);
-
-  expect(await screen.findByText("Code Connect Page")).toBeInTheDocument();
-});
-
 
   test("asideContentForTechnicalTest has correct labels and length", () => {
     const expectedLabels = [
