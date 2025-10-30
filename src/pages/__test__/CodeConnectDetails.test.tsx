@@ -2,15 +2,22 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import React from "react";
 import { MemoryRouter, Routes, Route } from "react-router";
-import CodeConnectDetails, { details } from "../CodeConnectDetails";
 import { vi } from "vitest";
+import CodeConnectDetails from "../CodeConnectDetails";
+import moockData from "../../moock/projectDetails.json";
 
-vi.mock("react-router-dom", () => ({
-  ...vi.importActual("react-router-dom"),
-  useParams: () => ({ projectId: "taskforge" }),
-}));
+// Mock URL param
+vi.mock("react-router-dom", async () => {
+  const actual = await vi.importActual("react-router-dom");
+  return {
+    ...actual,
+    useParams: () => ({ projectId: "taskforge" }),
+  };
+});
 
 describe("CodeConnectDetails", () => {
+  const project = moockData.details[0];
+
   it("renders project details correctly", () => {
     render(
       <MemoryRouter initialEntries={["/codeconnect/taskforge"]}>
@@ -23,9 +30,11 @@ describe("CodeConnectDetails", () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByRole("heading", { level: 2 }));
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
+      project.title,
+    );
 
-    details[0].roadmap.forEach((item) => {
+    project.roadmap.forEach((item) => {
       expect(screen.getByText(item)).toBeInTheDocument();
     });
   });
@@ -43,7 +52,7 @@ describe("CodeConnectDetails", () => {
     );
 
     expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
-      details[0].title,
+      project.title,
     );
   });
 });
