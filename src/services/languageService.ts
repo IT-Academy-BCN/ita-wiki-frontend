@@ -8,7 +8,7 @@ export type Language = {
 
 const mockLanguages: Language[] = [
   { id: 1, code: "node", name: "Node" },
-  { id: 2, code: "react",name: "React" },
+  { id: 2, code: "react", name: "React" },
   { id: 3, code: "angular", name: "Angular" },
   { id: 4, code: "javascript", name: "JavaScript" },
   { id: 5, code: "typescript", name: "TypeScript" },
