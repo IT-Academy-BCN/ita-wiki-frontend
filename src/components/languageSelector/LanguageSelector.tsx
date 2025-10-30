@@ -11,7 +11,7 @@ export function LanguageSelector() {
   return (
     <select>
       {languages.map((lang) => (
-        <option key={lang.id} value={lang.name}>
+        <option key={lang.id} value={lang.code}>
           {lang.name}
         </option>
       ))}
