@@ -5,9 +5,9 @@ import { MemoryRouter, Routes, Route } from "react-router";
 import CodeConnectDetails, { details } from "../CodeConnectDetails";
 import { vi } from "vitest";
 
-vi.mock('react-router-dom', () => ({
-  ...vi.importActual('react-router-dom'),
-  useParams: () => ({ projectId: 'taskforge' })
+vi.mock("react-router-dom", () => ({
+  ...vi.importActual("react-router-dom"),
+  useParams: () => ({ projectId: "taskforge" }),
 }));
 
 describe("CodeConnectDetails", () => {
@@ -15,9 +15,12 @@ describe("CodeConnectDetails", () => {
     render(
       <MemoryRouter initialEntries={["/codeconnect/taskforge"]}>
         <Routes>
-          <Route path="/codeconnect/:projectId" element={<CodeConnectDetails />} />
+          <Route
+            path="/codeconnect/:projectId"
+            element={<CodeConnectDetails />}
+          />
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     expect(screen.getByRole("heading", { level: 2 }));
@@ -31,12 +34,16 @@ describe("CodeConnectDetails", () => {
     render(
       <MemoryRouter initialEntries={["/codeconnect/taskforge"]}>
         <Routes>
-          <Route path="/codeconnect/:projectId" element={<CodeConnectDetails />} />
+          <Route
+            path="/codeconnect/:projectId"
+            element={<CodeConnectDetails />}
+          />
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
-    expect(screen.getByRole("heading", { level: 2 }))
-      .toHaveTextContent(details[0].title);
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
+      details[0].title,
+    );
   });
 });

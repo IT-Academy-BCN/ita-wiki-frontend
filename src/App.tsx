@@ -28,7 +28,10 @@ const App: FC = () => {
             <Route path="/resources/:category" element={<ResourcesPage />} />
 
             <Route path="/codeconnect" element={<CodeConnectPage />} />
-            <Route path="/codeconnect/:projectId" element={<CodeConnectDetails />} />
+            <Route
+              path="/codeconnect/:projectId"
+              element={<CodeConnectDetails />}
+            />
 
             {/* Protected routes */}
             <Route element={<RequireAuth />}>

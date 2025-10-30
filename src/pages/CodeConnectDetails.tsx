@@ -34,7 +34,10 @@ const CodeConnectDetails: FC = () => {
                 <h2 className="text-[26px] font-extrabold text-left mb-10">
                   {title}
                 </h2>
-<p className="text-[16px] mb-20 whitespace-pre-line">{description}</p>                <h3 className="text-[22px] font-extrabold mb-5">Roadmap</h3>
+                <p className="text-[16px] mb-20 whitespace-pre-line">
+                  {description}
+                </p>{" "}
+                <h3 className="text-[22px] font-extrabold mb-5">Roadmap</h3>
                 <ol className="list-decimal list-inside">
                   {roadmap.map((item, index) => (
                     <li key={index} className="text-[16px] mb-2">
@@ -43,8 +46,7 @@ const CodeConnectDetails: FC = () => {
                   ))}
                 </ol>
               </div>
-              <div className="lg:w-1/3">
-              </div>
+              <div className="lg:w-1/3"></div>
             </div>
           </div>
         </div>
