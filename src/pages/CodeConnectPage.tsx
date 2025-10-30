@@ -1,5 +1,6 @@
 import { FC } from "react";
 import PageTitle from "../components/ui/PageTitle";
+import CodeConnectFiltersComponent from "../components/code-connect/CodeConnectFiltersComponent";
 
 const CodeConnectPage: FC = () => {
   return (
@@ -11,6 +12,7 @@ const CodeConnectPage: FC = () => {
             <div className="flex flex-col justify-start items-start">
               <h2 className="text-[26px] font-bold text-left">Code Connect</h2>
             </div>
+            <CodeConnectFiltersComponent />
           </div>
         </div>
       </div>
