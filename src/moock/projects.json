@@ -1,0 +1,214 @@
+[
+  {
+    "id": 1,
+    "title": "AnimalKing:habla con tus mascota con IA",
+    "duration": "1 mes",
+    "frontend": {
+      "tech": "Angular",
+      "logo": "../assets/angular.svg",
+      "positions": 3,
+      "participants": [
+        { "name": "Natasha", "avatar": "../assets/project-avatar.svg" },
+        { "name": "Roman", "avatar": "../assets/project-avatar4.svg" }
+      ]
+    },
+    "backend": {
+      "tech": "Java",
+      "logo": "../assets/logo-java 1.svg",
+      "positions": 2,
+      "participants": []
+    },
+    "startDate": "10-01-2025",
+    "endDate": "11-13-2025"
+  },
+  {
+    "id": 2,
+    "title": "TaskForge: forja tu productividad",
+    "duration": "1 mes",
+    "frontend": {
+      "tech": "React",
+      "logo": "../assets/react.svg",
+      "positions": 3,
+      "participants": [
+        { "name": "Natasha", "avatar": "../assets/project-avatar.svg" },
+        { "name": "Jordi", "avatar": "../assets/project-avatar2.svg" }
+      ]
+    },
+    "backend": {
+      "tech": "PHP",
+      "logo": "../assets/logo-php 1.svg",
+      "positions": 4,
+      "participants": [
+        { "name": "Aina", "avatar": "../assets/project-avatar3.svg" }
+      ]
+    },
+    "startDate": "10-12-2025",
+    "endDate": "11-02-2025"
+  },
+  {
+    "id": 3,
+    "title": "PixelPlan: organiza tus proyectos",
+    "duration": "2 semanas",
+    "frontend": {
+      "tech": "Angular",
+      "logo": "../assets/angular.svg",
+      "positions": 2,
+      "participants": [
+        { "name": "Natasha", "avatar": "../assets/project-avatar.svg" },
+        { "name": "Roman", "avatar": "../assets/project-avatar4.svg" }
+      ]
+    },
+    "backend": {
+      "tech": "Java",
+      "logo": "../assets/logo-java 1.svg",
+      "positions": 2,
+      "participants": []
+    },
+    "startDate": "10-20-2025",
+    "endDate": "11-05-2025"
+  },
+  {
+    "id": 4,
+    "title": "SkillTree: muestra tus habilidades",
+    "duration": "2 meses",
+    "frontend": {
+      "tech": "Angular",
+      "logo": "../assets/angular.svg",
+      "positions": 2,
+      "participants": [
+        { "name": "Natasha", "avatar": "../assets/project-avatar.svg" },
+        { "name": "Jordi", "avatar": "../assets/project-avatar2.svg" }
+      ]
+    },
+    "backend": {
+      "tech": "Java",
+      "logo": "../assets/logo-java 1.svg",
+      "positions": 2,
+      "participants": []
+    },
+    "startDate": "10-25-2025",
+    "endDate": "11-13-2025"
+  },
+  {
+    "id": 5,
+    "title": "EcoTrack: control sostenible",
+    "duration": "1 semana",
+    "frontend": {
+      "tech": "React",
+      "logo": "../assets/react.svg",
+      "positions": 3,
+      "participants": [
+        { "name": "Natasha", "avatar": "../assets/project-avatar.svg" },
+        { "name": "Jordi", "avatar": "../assets/project-avatar2.svg" }
+      ]
+    },
+    "backend": {
+      "tech": "PHP",
+      "logo": "../assets/logo-php 1.svg",
+      "positions": 2,
+      "participants": [
+        { "name": "Aina", "avatar": "../assets/project-avatar3.svg" }
+      ]
+    },
+    "startDate": "10-12-2025",
+    "endDate": "11-02-2025"
+  },
+  {
+    "id": 6,
+    "title": "MergeMate: domina Git",
+    "duration": "3 semanas",
+    "frontend": {
+      "tech": "Angular",
+      "logo": "../assets/angular.svg",
+      "positions": 2,
+      "participants": [
+        { "name": "Natasha", "avatar": "../assets/project-avatar.svg" },
+        { "name": "Roman", "avatar": "../assets/project-avatar4.svg" }
+      ]
+    },
+    "backend": {
+      "tech": "Java",
+      "logo": "../assets/logo-java 1.svg",
+      "positions": 4,
+      "participants": [
+        { "name": "Aina", "avatar": "../assets/project-avatar3.svg" }
+      ]
+    },
+    "startDate": "10-29-2025",
+    "endDate": "11-13-2025"
+  },
+  {
+    "id": 7,
+    "title": "CodeQuest: conquista tus retos de programación",
+    "duration": "2 meses",
+    "frontend": {
+      "tech": "React",
+      "logo": "../assets/react.svg",
+      "positions": 4,
+      "participants": [
+        { "name": "Natasha", "avatar": "../assets/project-avatar.svg" },
+        { "name": "Jordi", "avatar": "../assets/project-avatar2.svg" }
+      ]
+    },
+    "backend": {
+      "tech": "PHP",
+      "logo": "../assets/logo-php 1.svg",
+      "positions": 4,
+      "participants": [
+        { "name": "Aina", "avatar": "../assets/project-avatar3.svg" },
+        { "name": "Roman", "avatar": "../assets/project-avatar4.svg" }
+      ]
+    },
+    "startDate": "10-12-2025",
+    "endDate": "12-02-2025"
+  },
+  {
+    "id": 8,
+    "title": "TestBuddy: automatiza tus pruebas con IA",
+    "duration": "6 semanas",
+    "frontend": {
+      "tech": "Angular",
+      "logo": "../assets/angular.svg",
+      "positions": 3,
+      "participants": [
+        { "name": "Natasha", "avatar": "../assets/project-avatar.svg" },
+        { "name": "Aina", "avatar": "../assets/project-avatar3.svg" }
+      ]
+    },
+    "backend": {
+      "tech": "Java",
+      "logo": "../assets/logo-java 1.svg",
+      "positions": 3,
+      "participants": [
+        { "name": "Roman", "avatar": "../assets/project-avatar4.svg" }
+      ]
+    },
+    "startDate": "10-29-2025",
+    "endDate": "11-13-2025"
+  },
+  {
+    "id": 9,
+    "title": "SprintBoard: impulsa tu flujo ágil",
+    "duration": "3 semanas",
+    "frontend": {
+      "tech": "React",
+      "logo": "../assets/react.svg",
+      "positions": 4,
+      "participants": [
+        { "name": "Roman", "avatar": "../assets/project-avatar4.svg" },
+        { "name": "Jordi", "avatar": "../assets/project-avatar2.svg" }
+      ]
+    },
+    "backend": {
+      "tech": "PHP",
+      "logo": "../assets/logo-php 1.svg",
+      "positions": 4,
+      "participants": [
+        { "name": "Aina", "avatar": "../assets/project-avatar3.svg" },
+        { "name": "Natasha", "avatar": "../assets/project-avatar.svg" }
+      ]
+    },
+    "startDate": "10-10-2025",
+    "endDate": "11-10-2025"
+  }
+]
