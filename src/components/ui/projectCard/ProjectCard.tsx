@@ -1,8 +1,8 @@
 import ProjectButton from "./ProjectButton";
 import ProgressBar from "./ProgressBar";
 import { resolveAsset } from "../../../utils/resolveAsset";
-import type { ProjectCardProps } from "./types/project-types";
-export type { Participant, Role } from "./types/project-types";
+import type { ProjectCardProps } from "./types/projectTypes";
+export type { Participant, Role } from "./types/projectTypes";
 
 function ProjectCard({ project, onClick }: ProjectCardProps) {
   const availableFrontend =

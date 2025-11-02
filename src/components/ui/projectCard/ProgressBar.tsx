@@ -1,5 +1,5 @@
 import React from "react";
-import type { ProgressBarProps } from "./types/project-types";
+import type { ProgressBarProps } from "./types/projectTypes";
 
 const ProgressBar: React.FC<ProgressBarProps> = ({ startDate, endDate }) => {
   const start = new Date(startDate);
