@@ -36,7 +36,9 @@ describe("ProjectCard", () => {
     render(<ProjectCard project={project} />);
 
     expect(screen.getByText(project.title)).toBeInTheDocument();
-    expect(screen.getByText(project.duration)).toBeInTheDocument();
+    expect(
+      screen.getByText((t) => t.includes(`Duración: ${project.duration}`)),
+    ).toBeInTheDocument();
     expect(screen.getByText("Frontend")).toBeInTheDocument();
     expect(screen.getByText("Backend")).toBeInTheDocument();
     expect(screen.getByText("Inscripción")).toBeInTheDocument();
