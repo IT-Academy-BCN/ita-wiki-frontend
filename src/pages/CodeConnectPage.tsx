@@ -1,6 +1,5 @@
 import { FC } from "react";
 import PageTitle from "../components/ui/PageTitle";
-import ProjectList from "../components/ui/projectList/ProjectList";
 
 const CodeConnectPage: FC = () => {
   return (
@@ -11,7 +10,6 @@ const CodeConnectPage: FC = () => {
           <div className="lg:flex-1 overflow-y-auto h-[calc(100vh-90px)] px-4 py-6 lg:pl-8 xl:pl-6">
             <div className="flex flex-col justify-start items-start">
               <h2 className="text-[26px] font-bold text-left">Code Connect</h2>
-              <ProjectList />
             </div>
           </div>
         </div>
