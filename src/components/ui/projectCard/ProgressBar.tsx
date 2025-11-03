@@ -1,10 +1,5 @@
 import React from "react";
-
-interface ProgressBarProps {
-  title: string;
-  startDate: string;
-  endDate: string;
-}
+import type { ProgressBarProps } from "./types/projectTypes";
 
 const ProgressBar: React.FC<ProgressBarProps> = ({ startDate, endDate }) => {
   const start = new Date(startDate);
