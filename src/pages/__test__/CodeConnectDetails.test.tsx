@@ -15,7 +15,9 @@ vi.mock("../projectCard/ProgressBar", () => ({
 }));
 
 vi.mock("../../atoms/ButtonComponent", () => ({
-  default: (props: React.ComponentProps<'button'>) => <button {...props}>Mock Button</button>,
+  default: (props: React.ComponentProps<"button">) => (
+    <button {...props}>Mock Button</button>
+  ),
 }));
 
 vi.mock("react-router-dom", async () => {
@@ -38,7 +40,7 @@ describe("CodeConnectDetails", () => {
             element={<CodeConnectDetails />}
           />
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     expect(screen.getByText(project.title)).toBeInTheDocument();
@@ -57,7 +59,7 @@ describe("CodeConnectDetails", () => {
             element={<CodeConnectDetails />}
           />
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     expect(screen.getByText(project.title)).toBeInTheDocument();
