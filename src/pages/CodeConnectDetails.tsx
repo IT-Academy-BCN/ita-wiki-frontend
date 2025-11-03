@@ -1,6 +1,13 @@
 import { FC } from "react";
 import PageTitle from "../components/ui/PageTitle";
 import moockData from "../moock/projectDetails.json";
+import ProjectTeam from "../components/ui/projectTeam/ProjectTeam"
+
+import react from "../assets/react.svg"
+import php from "../assets/logo-php 1.svg"
+import avatar1 from "../assets/project-avatar.svg"
+import avatar2 from "../assets/project-avatar2.svg"
+import avatar3 from "../assets/project-avatar3.svg"
 
 const CodeConnectDetails: FC = () => {
   const { title, description, roadmap } = moockData.details[0];
@@ -27,7 +34,15 @@ const CodeConnectDetails: FC = () => {
                   ))}
                 </ol>
               </div>
-              <div className="lg:w-1/3"></div>
+              <div className="lg:w-1/3">
+                <ProjectTeam
+                logoFront={react}
+                logoBack={php}
+                avatarSrc={avatar1}
+                avatarSrc2={avatar2}
+                avatarSrc3={avatar3}
+                />
+              </div>
             </div>
           </div>
         </div>

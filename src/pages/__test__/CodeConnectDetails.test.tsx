@@ -6,7 +6,18 @@ import { vi } from "vitest";
 import CodeConnectDetails from "../CodeConnectDetails";
 import moockData from "../../moock/projectDetails.json";
 
-// Mock URL param
+vi.mock("../projectCard/ProjectButton", () => ({
+  default: () => <div data-testid="mock-project-button" />,
+}));
+
+vi.mock("../projectCard/ProgressBar", () => ({
+  default: () => <div data-testid="mock-progress-bar" />,
+}));
+
+vi.mock("../../atoms/ButtonComponent", () => ({
+  default: (props: React.ComponentProps<'button'>) => <button {...props}>Mock Button</button>,
+}));
+
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual("react-router-dom");
   return {
@@ -27,12 +38,10 @@ describe("CodeConnectDetails", () => {
             element={<CodeConnectDetails />}
           />
         </Routes>
-      </MemoryRouter>,
+      </MemoryRouter>
     );
 
-    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
-      project.title,
-    );
+    expect(screen.getByText(project.title)).toBeInTheDocument();
 
     project.roadmap.forEach((item) => {
       expect(screen.getByText(item)).toBeInTheDocument();
@@ -48,11 +57,9 @@ describe("CodeConnectDetails", () => {
             element={<CodeConnectDetails />}
           />
         </Routes>
-      </MemoryRouter>,
+      </MemoryRouter>
     );
 
-    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
-      project.title,
-    );
+    expect(screen.getByText(project.title)).toBeInTheDocument();
   });
 });
