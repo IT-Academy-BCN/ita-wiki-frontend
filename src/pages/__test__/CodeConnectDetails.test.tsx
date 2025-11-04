@@ -6,7 +6,6 @@ import { vi } from "vitest";
 import CodeConnectDetails from "../CodeConnectDetails";
 import moockData from "../../moock/projectDetails.json";
 
-
 vi.mock("../../components/ui/Container", () => ({
   default: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="mock-container">{children}</div>
@@ -14,11 +13,13 @@ vi.mock("../../components/ui/Container", () => ({
 }));
 
 vi.mock("../components/ui/projectTeam/ProjectTeam", () => ({
-    default: () => <div data-testid="mock-project-team" />,
+  default: () => <div data-testid="mock-project-team" />,
 }));
 
 vi.mock("../components/ui/PageTitle", () => ({
-    default: ({ title }: { title: string }) => <h1 data-testid="mock-page-title">{title}</h1>,
+  default: ({ title }: { title: string }) => (
+    <h1 data-testid="mock-page-title">{title}</h1>
+  ),
 }));
 
 vi.mock("../projectCard/ProjectButton", () => ({

@@ -17,8 +17,9 @@ const CodeConnectDetails: FC = () => {
       <PageTitle title={title} />
 
       <Container className="px-4 py-6 lg:pl-8 xl:pl-6">
-        <div className="flex flex-col lg:flex-row gap-8 w-full h-full"> {/* Aseguramos el layout interno */}
-          
+        <div className="flex flex-col lg:flex-row gap-8 w-full h-full">
+          {" "}
+          {/* Aseguramos el layout interno */}
           <div className="lg:w-2/3">
             <h2 className="text-[26px] font-extrabold text-left mb-10">
               {title}
@@ -26,7 +27,6 @@ const CodeConnectDetails: FC = () => {
             <p className="text-[16px] mb-20 whitespace-pre-line">
               {description}
             </p>{" "}
-            
             <h3 className="text-[22px] font-extrabold mb-5">Roadmap</h3>
             <ol className="list-decimal list-inside">
               {(roadmap || []).map((item, index) => (
@@ -36,7 +36,6 @@ const CodeConnectDetails: FC = () => {
               ))}
             </ol>
           </div>
-          
           <div className="lg:w-1/3">
             <ProjectTeam
               logoFront={react}
@@ -46,7 +45,6 @@ const CodeConnectDetails: FC = () => {
               avatarSrc3={avatar3}
             />
           </div>
-          
         </div>
       </Container>
     </>

@@ -25,7 +25,9 @@ function ProjectTeam({
       <div className="w-full mt-5">
         <div className="flex w-full items-center gap-4 mb-4">
           <h2 className="text-sm font-bold">Frontend</h2>
-          {logoFront && <img className="w-7" src={logoFront} alt="Logo Frontend" />}
+          {logoFront && (
+            <img className="w-7" src={logoFront} alt="Logo Frontend" />
+          )}
         </div>
 
         <div className="w-full flex gap-6 pr-2 mb-4">
@@ -47,7 +49,9 @@ function ProjectTeam({
         <div className="flex w-full items-center gap-4 mb-4">
           <h2 className="text-sm font-bold">Backend</h2>
           {/* Condicional para logoBack */}
-          {logoBack && <img className="w-7" src={logoBack} alt="Logo Backend" />}
+          {logoBack && (
+            <img className="w-7" src={logoBack} alt="Logo Backend" />
+          )}
         </div>
 
         <div className="w-full flex gap-6 pr-2 mb-14">
