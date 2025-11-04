@@ -2,7 +2,7 @@ import { FC } from "react";
 import PageTitle from "../components/ui/PageTitle";
 import moockData from "../moock/projectDetails.json";
 import ProjectTeam from "../components/ui/projectTeam/ProjectTeam";
-import Container from "../components/ui/Container"; // Importar el nuevo componente Container
+import Container from "../components/ui/Container";
 
 import react from "../assets/react.svg";
 import php from "../assets/logo-php 1.svg";
@@ -17,7 +17,7 @@ const CodeConnectDetails: FC = () => {
       <PageTitle title={title} />
 
       <Container className="px-4 py-6 lg:pl-8 xl:pl-6">
-        <div className="flex flex-col lg:flex-row gap-8 w-full h-full">
+        <div className="flex flex-col lg:flex-row gap-8 w-full">
           <div className="lg:w-2/3">
             <h2 className="text-[26px] font-extrabold text-left mb-10">
               {title}
