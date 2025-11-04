@@ -18,8 +18,6 @@ const CodeConnectDetails: FC = () => {
 
       <Container className="px-4 py-6 lg:pl-8 xl:pl-6">
         <div className="flex flex-col lg:flex-row gap-8 w-full h-full">
-          {" "}
-          {/* Aseguramos el layout interno */}
           <div className="lg:w-2/3">
             <h2 className="text-[26px] font-extrabold text-left mb-10">
               {title}
@@ -36,7 +34,7 @@ const CodeConnectDetails: FC = () => {
               ))}
             </ol>
           </div>
-          <div className="lg:w-1/3">
+          <div className="lg:w-1/3 flex-shrink-0 min-w-[320px] flex lg:justify-end">
             <ProjectTeam
               logoFront={react}
               logoBack={php}
