@@ -25,18 +25,18 @@ function ProjectTeam({
       <div className="w-full mt-5">
         <div className="flex w-full items-center gap-4 mb-4">
           <h2 className="text-sm font-bold">Frontend</h2>
-          <img className="w-7" src={logoFront} alt="Logo" />
+          {logoFront && <img className="w-7" src={logoFront} alt="Logo Frontend" />}
         </div>
 
         <div className="w-full flex gap-6 pr-2 mb-4">
           <figure className="flex flex-col items-center">
-            <img className="w-12 h-12" src={avatarSrc} alt="Logo" />
+            <img className="w-12 h-12" src={avatarSrc} alt="Avatar Natasha" />
             <figcaption className="text-xs mt-1 font-bold text-gray-500">
               Natasha
             </figcaption>
           </figure>
           <figure className="flex flex-col items-center">
-            <img className="w-12 h-12" src={avatarSrc2} alt="Logo" />
+            <img className="w-12 h-12" src={avatarSrc2} alt="Avatar Jordi" />
             <figcaption className="text-xs mt-1 font-bold text-gray-500">
               Jordi
             </figcaption>
@@ -46,12 +46,13 @@ function ProjectTeam({
 
         <div className="flex w-full items-center gap-4 mb-4">
           <h2 className="text-sm font-bold">Backend</h2>
-          <img className="w-7" src={logoBack} alt="Logo" />
+          {/* Condicional para logoBack */}
+          {logoBack && <img className="w-7" src={logoBack} alt="Logo Backend" />}
         </div>
 
         <div className="w-full flex gap-6 pr-2 mb-14">
           <figure className="flex flex-col items-center">
-            <img className="w-12 h-12" src={avatarSrc3} alt="Logo" />
+            <img className="w-12 h-12" src={avatarSrc3} alt="Avatar Aina" />
             <figcaption className="text-xs mt-1 font-bold text-gray-500">
               Aina
             </figcaption>
