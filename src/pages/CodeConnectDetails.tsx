@@ -15,14 +15,11 @@ const CodeConnectDetails: FC = () => {
   return (
     <>
       <PageTitle title={title} />
-      
-      {/* Sustitución de toda la estructura de divs por el componente Container.
-        Las clases de manejo de layout, fondo y margen se mueven a Container.
-      */}
+
       <Container className="px-4 py-6 lg:pl-8 xl:pl-6">
         <div className="flex flex-col lg:flex-row gap-8 w-full h-full"> {/* Aseguramos el layout interno */}
           
-          <div className="lg:w-2/3"> {/* Contenido principal */}
+          <div className="lg:w-2/3">
             <h2 className="text-[26px] font-extrabold text-left mb-10">
               {title}
             </h2>
@@ -40,7 +37,7 @@ const CodeConnectDetails: FC = () => {
             </ol>
           </div>
           
-          <div className="lg:w-1/3"> {/* Columna lateral (ProjectTeam) */}
+          <div className="lg:w-1/3">
             <ProjectTeam
               logoFront={react}
               logoBack={php}

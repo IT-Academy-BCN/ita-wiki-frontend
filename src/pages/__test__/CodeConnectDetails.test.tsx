@@ -6,6 +6,21 @@ import { vi } from "vitest";
 import CodeConnectDetails from "../CodeConnectDetails";
 import moockData from "../../moock/projectDetails.json";
 
+
+vi.mock("../../components/ui/Container", () => ({
+  default: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="mock-container">{children}</div>
+  ),
+}));
+
+vi.mock("../components/ui/projectTeam/ProjectTeam", () => ({
+    default: () => <div data-testid="mock-project-team" />,
+}));
+
+vi.mock("../components/ui/PageTitle", () => ({
+    default: ({ title }: { title: string }) => <h1 data-testid="mock-page-title">{title}</h1>,
+}));
+
 vi.mock("../projectCard/ProjectButton", () => ({
   default: () => <div data-testid="mock-project-button" />,
 }));
@@ -48,6 +63,8 @@ describe("CodeConnectDetails", () => {
     project.roadmap.forEach((item) => {
       expect(screen.getByText(item)).toBeInTheDocument();
     });
+
+    expect(screen.getByTestId("mock-container")).toBeInTheDocument();
   });
 
   it("navigates to correct project using URL parameter", () => {
