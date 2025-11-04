@@ -1,6 +1,7 @@
 import { FC } from "react";
 import PageTitle from "../components/ui/PageTitle";
 import CodeConnectFiltersComponent from "../components/code-connect/CodeConnectFiltersComponent";
+import ProjectList from "../components/ui/projectList/ProjectList";
 
 const CodeConnectPage: FC = () => {
   return (
@@ -13,6 +14,7 @@ const CodeConnectPage: FC = () => {
               <h2 className="text-[26px] font-bold text-left">Code Connect</h2>
             </div>
             <CodeConnectFiltersComponent />
+            <ProjectList />
           </div>
         </div>
       </div>
