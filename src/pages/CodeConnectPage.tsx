@@ -1,9 +1,11 @@
-import { FC } from "react";
 import PageTitle from "../components/ui/PageTitle";
 import CodeConnectFiltersComponent from "../components/code-connect/CodeConnectFiltersComponent";
 import ProjectList from "../components/ui/projectList/ProjectList";
+import { useNavigate } from "react-router";
 
-const CodeConnectPage: FC = () => {
+const CodeConnectPage = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <PageTitle title="Lista de proyectos Code Connect" />
@@ -14,6 +16,12 @@ const CodeConnectPage: FC = () => {
               <h2 className="text-[26px] font-bold text-left">Code Connect</h2>
             </div>
             <CodeConnectFiltersComponent />
+            <button
+              onClick={() => navigate("/codeconnect/create")}
+              className="px-4 py-2 bg-primary text-white rounded-lg  h-fit hover:shadow-md cursor-pointer w-fit"
+            >
+              Afegir Code Connect
+            </button>
             <ProjectList />
           </div>
         </div>
