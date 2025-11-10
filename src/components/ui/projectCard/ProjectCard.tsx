@@ -17,7 +17,7 @@ function ProjectCard({ project, onClick }: ProjectCardProps) {
       <div className="w-full">
         <h1 className="font-extrabold text-xl  text-start">{project.title}</h1>
         <p className="text-sm font-bold text-gray-500 text-start">
-          {project.duration}
+          Duración: {project.duration}
         </p>
       </div>
       <div className="flex w-full gap-4 mt-5">

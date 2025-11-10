@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { Project } from "../types/project-types";
+import { Project } from "../types/projectTypes";
 import ProjectCard from "../ProjectCard";
 
 function makeProject(partial: Partial<Project> = {}): Project {
@@ -36,7 +36,9 @@ describe("ProjectCard", () => {
     render(<ProjectCard project={project} />);
 
     expect(screen.getByText(project.title)).toBeInTheDocument();
-    expect(screen.getByText(project.duration)).toBeInTheDocument();
+    expect(
+      screen.getByText((t) => t.includes(`Duración: ${project.duration}`)),
+    ).toBeInTheDocument();
     expect(screen.getByText("Frontend")).toBeInTheDocument();
     expect(screen.getByText("Backend")).toBeInTheDocument();
     expect(screen.getByText("Inscripción")).toBeInTheDocument();
