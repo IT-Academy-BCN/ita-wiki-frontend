@@ -21,7 +21,7 @@ describe("CodeConnectPage", () => {
     );
 
     expect(screen.getByTestId("page-title")).toHaveTextContent(
-      "Lista de proyectos Code Connect",
+      "Llista de projectes Code Connect",
     );
     expect(
       screen.getByRole("heading", { level: 2, name: /Code Connect/i }),
