@@ -41,7 +41,7 @@ describe("CodeConnectPage", () => {
       </MemoryRouter>,
     );
 
-    const button = screen.getByRole("button", { name: /Afegir Code Connect/i });
+    const button = screen.getByRole("button", { name: /Crear projecte/i });
     fireEvent.click(button);
 
     expect(screen.getByText("Create Code Connect Page")).toBeInTheDocument();
