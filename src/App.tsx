@@ -12,6 +12,7 @@ import TechnicalTestCreatePage from "./pages/TechnicalTestCreatePage";
 import MyTechnicalTestsPage from "./pages/MyTechnicalTestsPage";
 import RequireAuth from "./components/RequireAuth";
 import CodeConnectPage from "./pages/CodeConnectPage";
+import ResourceFormPage from "./pages/ResourceFormPage";
 import CodeConnectDetails from "./pages/CodeConnectDetails";
 
 const App: FC = () => {
@@ -32,6 +33,9 @@ const App: FC = () => {
               path="/codeconnect/:projectId"
               element={<CodeConnectDetails />}
             />
+
+            {/* 🔹 TEMPORARY TEST ROUTE */}
+            <Route path="/test-language" element={<ResourceFormPage />} />
 
             {/* Protected routes */}
             <Route element={<RequireAuth />}>
