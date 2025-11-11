@@ -27,7 +27,7 @@ export const TechnicalTestFilter: FC<TechnicalTestFilterProps> = ({
   ]);
 
   const years = ["2025", "2024", "2023"];
-  const difficulties = ["Básica", "Intermèdia", "Difícil"];
+  const difficulties = ["Bàsica", "Intermèdia", "Difícil"];
   const languages = asideContentForTechnicalTest.map((item) => item.label);
 
   const toggleLanguage = useArrayToggle(setSelectedLanguages);
