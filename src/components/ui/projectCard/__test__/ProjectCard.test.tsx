@@ -37,7 +37,7 @@ describe("ProjectCard", () => {
     render(
       <MemoryRouter>
         <ProjectCard project={project} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     expect(screen.getByText(project.title)).toBeInTheDocument();
@@ -54,7 +54,7 @@ describe("ProjectCard", () => {
     render(
       <MemoryRouter>
         <ProjectCard project={project} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     const frontLogo = screen.getByAltText(
@@ -82,7 +82,7 @@ describe("ProjectCard", () => {
     render(
       <MemoryRouter>
         <ProjectCard project={project} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     const addButtons = screen.getAllByRole("button", { name: "+" });
@@ -94,7 +94,7 @@ describe("ProjectCard", () => {
     render(
       <MemoryRouter>
         <ProjectCard project={project} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     const link = screen.getByRole("link");

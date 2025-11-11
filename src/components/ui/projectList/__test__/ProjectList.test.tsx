@@ -8,7 +8,7 @@ describe("ProjectList", () => {
     render(
       <MemoryRouter>
         <ProjectList />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     const titles = (projects as Array<{ title: string }>).map((p) => p.title);
@@ -22,7 +22,9 @@ describe("ProjectList", () => {
     const links = screen.getAllByRole("link");
     const ids = (projects as Array<{ id: number }>).map((p) => p.id);
     ids.forEach((id) => {
-      expect(links.some((a) => a.getAttribute("href") === `/codeconnect/${id}`)).toBe(true);
+      expect(
+        links.some((a) => a.getAttribute("href") === `/codeconnect/${id}`),
+      ).toBe(true);
     });
   });
 });
