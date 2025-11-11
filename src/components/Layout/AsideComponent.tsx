@@ -137,7 +137,9 @@ const AsideComponent: React.FC = () => {
       </section>
 
       <section className="py-6">
-        <p className="pb-3 font-bold text-lg mb-2 text-black">Els meus recursos</p>
+        <p className="pb-3 font-bold text-lg mb-2 text-black">
+          Els meus recursos
+        </p>
 
         <div className="flex flex-col gap-4">
           <div
