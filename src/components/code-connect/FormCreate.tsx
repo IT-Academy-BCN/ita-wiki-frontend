@@ -73,6 +73,7 @@ const FormCreate = () => {
 
     try {
       const result = formPayload;
+      // TODO remove console.log, uncomment result
       // const result = await createCodeConnect(formPayload);
       console.log("Guardat:", result);
       toast.success("Code Connect publicat amb èxit");
