@@ -66,7 +66,7 @@ const AsideComponent: React.FC = () => {
           variant="primary"
           onClick={() => handleProtectedClick("/resources/add")}
         >
-          Crear recurso
+          Crear recurs
         </ButtonComponent>
       </section>
 
