@@ -23,7 +23,7 @@ const FormCreate = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
-  const handleLanguageToggle = (language: string) => {
+  const handleProgramingLanguageToggle = (language: string) => {
     setFormData((prev) => {
       const isSelected = prev.languages.includes(language);
       return {
@@ -164,7 +164,7 @@ const FormCreate = () => {
                   name="languages[]"
                   value={cat.label}
                   checked={isSelected}
-                  onChange={() => handleLanguageToggle(cat.label)}
+                  onChange={() => handleProgramingLanguageToggle(cat.label)}
                   className="sr-only"
                 />
                 <IconComponent className="w-5 h-5" />

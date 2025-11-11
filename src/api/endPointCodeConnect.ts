@@ -1,9 +1,19 @@
 import { API_URL, END_POINTS } from "../config";
 
+export type CodeConnectError = {
+  message: string;
+  status?: number;
+  code?: string;
+};
+
 export const createCodeConnect = async (formData: FormData) => {
   const controller = new AbortController();
   const signal = controller.signal;
   const url = `${API_URL}${END_POINTS.codeconnect.post}`;
+
+  const cancel = () => {
+    controller.abort();
+  };
 
   try {
     const response = await fetch(url, {
@@ -13,19 +23,45 @@ export const createCodeConnect = async (formData: FormData) => {
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(
-        errorData.message || `Error ${response.status}: ${response.statusText}`,
-      );
+      let errorMessage = `Error ${response.status}: ${response.statusText}`;
+      let errorCode;
+
+      try {
+        const errorData = await response.json();
+        errorMessage = errorData.message || errorMessage;
+        errorCode = errorData.code;
+      } catch {
+        // Ignore the parsing error and use the default values that have already been set.
+      }
+
+      throw {
+        message: errorMessage,
+        status: response.status,
+        code: errorCode,
+      } as CodeConnectError;
     }
 
-    return await response.json();
+    const data = await response.json();
+
+    return { data, cancel };
   } catch (error) {
     if (error instanceof DOMException && error.name === "AbortError") {
-      console.warn("Petición cancelada.");
-    } else {
-      console.error("Error al crear Code Connect:", error);
+      console.warn("Petición cancelada por el usuario o timeout.");
+      throw {
+        message: "Petición cancelada",
+        code: "ABORTED",
+      } as CodeConnectError;
     }
+
+    if (error instanceof TypeError) {
+      console.error("Error de red al crear Code Connect:", error);
+      throw {
+        message: "Error de conexión. Verifica tu conexión a internet.",
+        code: "NETWORK_ERROR",
+      } as CodeConnectError;
+    }
+
+    console.error("Error al crear Code Connect:", error);
     throw error;
   }
 };
