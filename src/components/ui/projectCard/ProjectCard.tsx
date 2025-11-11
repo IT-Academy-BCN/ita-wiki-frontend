@@ -17,7 +17,7 @@ function ProjectCard({ project, onClick }: ProjectCardProps) {
       <div className="w-full">
         <h1 className="font-extrabold text-xl  text-start">{project.title}</h1>
         <p className="text-sm font-bold text-gray-500 text-start">
-          Duración: {project.duration}
+          Durada: {project.duration}
         </p>
       </div>
       <div className="flex w-full gap-4 mt-5">
@@ -75,9 +75,9 @@ function ProjectCard({ project, onClick }: ProjectCardProps) {
         </div>
       </div>
       <div className="w-full">
-        <h2 className="text-sm mt-10 font-bold text-start mb-2">Inscripción</h2>
+        <h2 className="text-sm mt-10 font-bold text-start mb-2">Inscripció</h2>
         <ProgressBar
-          title="Progreso del proyecto"
+          title="Progrés del projecte"
           startDate={project.startDate}
           endDate={project.endDate}
         />
