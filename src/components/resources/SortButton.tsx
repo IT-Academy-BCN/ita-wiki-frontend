@@ -30,7 +30,7 @@ const SortButton: React.FC<SortButtonProps> = ({
           sortOption === "recent" ? "font-bold text-black" : "text-gray-500"
         }`}
       >
-        <span>Fecha</span>
+        <span>Data</span>
         <span className="flex w-4 justify-center">
           {sortOption === "recent" && <ArrowDown size={16} strokeWidth={3} />}
         </span>

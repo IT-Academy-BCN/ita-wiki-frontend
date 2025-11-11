@@ -10,7 +10,7 @@ const LikeIcon: FC<LikeIconProps> = ({ active = false }) => {
     <Triangle
       size={16}
       className={`${active ? "text-green-custom fill-green-custom" : "text-black"}`}
-      aria-label={active ? "Me gusta" : ""}
+      aria-label={active ? "M'agrada" : ""}
     />
   );
 };

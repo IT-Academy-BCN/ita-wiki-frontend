@@ -52,7 +52,7 @@ describe("TagInput component", () => {
       </TagsProvider>,
     );
 
-    const input = await screen.findByPlaceholderText("Escribe un tag...");
+    const input = await screen.findByPlaceholderText("Escriu una etiqueta...");
     fireEvent.focus(input);
 
     fireEvent.focus(input);
@@ -78,11 +78,11 @@ describe("TagInput component", () => {
 
     await waitFor(() => {
       expect(
-        screen.getByPlaceholderText("Escribe un tag..."),
+        screen.getByPlaceholderText("Escriu una etiqueta..."),
       ).toBeInTheDocument();
     });
 
-    const input = screen.getByPlaceholderText("Escribe un tag...");
+    const input = screen.getByPlaceholderText("Escriu una etiqueta...");
 
     fireEvent.focus(input);
 
@@ -109,7 +109,7 @@ describe("TagInput component", () => {
       </TagsProvider>,
     );
 
-    const input = await screen.findByPlaceholderText("Escribe un tag...");
+    const input = await screen.findByPlaceholderText("Escriu una etiqueta...");
     fireEvent.focus(input);
 
     const tagOption = await screen.findByText(formatText("React"));

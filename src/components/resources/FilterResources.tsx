@@ -110,7 +110,7 @@ export const FilterResources: FC<FilterResourcesProps> = ({
         })}
 
         {tagNames.length === 0 && (
-          <p className="text-sm text-gray-500">No hay temas disponibles.</p>
+          <p className="text-sm text-gray-500">No hi ha temes disponibles.</p>
         )}
       </div>
     </div>

@@ -20,8 +20,8 @@ const BookmarkIconComponent: FC<BookmarkComponentProps> = ({
         color={marked ? "black" : "#808080"}
         aria-label={
           marked
-            ? "Guardado en la lista de lectura"
-            : "No guardado en la lista de lectura"
+            ? "Guardat a la llista de lectura"
+            : "No guardat a la llista de lectura"
         }
       />
     </div>

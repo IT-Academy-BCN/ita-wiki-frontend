@@ -36,11 +36,11 @@ export const AddUsersModal: React.FC<AddUsersModalProps> = ({
     };
     createRole(requestBody)
       .then(() => {
-        toast.success("¡Rol asignado con éxito!");
+        toast.success("Rol assignat amb èxit!");
         onClose();
       })
       .catch((error) => {
-        toast.error("No se pudo asignar el rol...");
+        toast.error("No s'ha pogut assignar el rol...");
         console.error("Failed to create role:", error);
       });
     onClose();
@@ -50,7 +50,7 @@ export const AddUsersModal: React.FC<AddUsersModalProps> = ({
     <div className="fixed inset-0 bg-black/20 backdrop-blur-sm flex justify-center items-center z-50 overflow-visible">
       <div className="bg-white rounded-xl p-8 w-full max-w-md shadow-xl">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">Add Users</h2>
+          <h2 className="text-xl font-bold">Afegir usuaris</h2>
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700"
@@ -71,7 +71,7 @@ export const AddUsersModal: React.FC<AddUsersModalProps> = ({
               type="text"
               id="username"
               className="w-full px-3 py-2 border border-gray-300 rounded-md"
-              placeholder="Ingresa su ID"
+              placeholder="Introdueix el seu ID"
               value={githubId}
               onChange={(e) => setGithubId(e.target.value)}
               required
@@ -92,7 +92,7 @@ export const AddUsersModal: React.FC<AddUsersModalProps> = ({
               onChange={(e) => setSelectedRole(e.target.value)}
               required
             >
-              <option value="">Selecciona su rol</option>
+              <option value="">Selecciona el seu rol</option>
               {availableRoles.map((role) => (
                 <option key={role} value={role}>
                   {role}
@@ -107,10 +107,10 @@ export const AddUsersModal: React.FC<AddUsersModalProps> = ({
               variant="secondary"
               onClick={onClose}
             >
-              Cancelar
+              Cancel·lar
             </ButtonComponent>
             <ButtonComponent type="submit" variant="primary">
-              Añadir
+              Afegir
             </ButtonComponent>
           </div>
         </form>

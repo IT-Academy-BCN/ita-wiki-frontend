@@ -14,7 +14,7 @@ describe("BookmarkIconComponent", () => {
   it("renders filled bookmark icon when marked is true", () => {
     render(<BookmarkIconComponent marked={true} />);
     const bookmarkIcon = screen.getByLabelText(
-      "Guardado en la lista de lectura",
+      "Guardat a la llista de lectura",
     );
     expect(bookmarkIcon).toBeInTheDocument();
 
@@ -30,7 +30,7 @@ describe("BookmarkIconComponent", () => {
   it("renders empty bookmark icon when marked is false", () => {
     render(<BookmarkIconComponent marked={false} />);
     const bookmarkIcon = screen.getByLabelText(
-      "No guardado en la lista de lectura",
+      "No guardat a la llista de lectura",
     );
     expect(bookmarkIcon).toBeInTheDocument();
 
@@ -51,7 +51,7 @@ describe("BookmarkIconComponent", () => {
   it("renders bookmark with correct size", () => {
     render(<BookmarkIconComponent marked={true} />);
     const bookmarkIcon = screen.getByLabelText(
-      "Guardado en la lista de lectura",
+      "Guardat a la llista de lectura",
     );
 
     const svgElement = bookmarkIcon.closest("svg");
