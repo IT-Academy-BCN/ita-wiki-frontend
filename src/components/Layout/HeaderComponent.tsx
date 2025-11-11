@@ -158,7 +158,7 @@ const HeaderComponent = () => {
             onClick={openAddUserModal}
             icon={addIcon}
             variant="icon"
-            text="Añadir Usuario"
+            text="Afegir Usuari"
           ></ButtonComponent>
         )}
 
@@ -280,7 +280,7 @@ const HeaderComponent = () => {
             <ButtonComponent
               icon={userIcon}
               variant="icon"
-              text="Iniciar sesión"
+              text="Iniciar sessió"
               onClick={openModal}
             />
           </div>
@@ -288,7 +288,7 @@ const HeaderComponent = () => {
 
         {/* MODAL LOGIN */}
         {isModalOpen && (
-          <Modal closeModal={closeModal} title="Inicio de sesión">
+          <Modal closeModal={closeModal} title="Inici de sessió">
             <GitHubLogin onClick={handleSignIn} isLoading={isLoading} />
             <section className="flex items-center gap-2 mt-8 font-medium">
               <label htmlFor="terms">
@@ -326,20 +326,20 @@ const HeaderComponent = () => {
                 </div>
               </label>
               <p>
-                Acepto{" "}
+                Accepto{" "}
                 <span
                   className="underline cursor-pointer"
                   onClick={() => openTermsModal()}
                 >
-                  términos legales
+                  els termes legals
                 </span>
               </p>
             </section>
 
             {loginError && (
               <div className="text-red-500 text-[1rem] mt-8 text-center font-medium">
-                Lo sentimos, no se ha podido iniciar sesión,
-                <br /> contacte con el administrador
+                Ho sentim, no s'ha pogut iniciar sessió,
+                <br /> contacti amb l'administrador
               </div>
             )}
           </Modal>
@@ -349,10 +349,10 @@ const HeaderComponent = () => {
         {showConfirmLogout && (
           <Modal
             closeModal={() => setShowConfirmLogout(false)}
-            title="Confirmar salida"
+            title="Confirmar sortida"
           >
             <p className="text-center my-4">
-              ¿Estás segur@ que quieres cerrar sesión?
+              ¿Estàs segur@ que vols tancar sessió?
             </p>
             <div className="flex justify-center gap-4 mt-6">
               <button
@@ -363,13 +363,13 @@ const HeaderComponent = () => {
                 }}
                 className="px-4 py-2 bg-[#b91879] text-white rounded-md hover:bg-[#98537c] cursor-pointer"
               >
-                Sí, salir
+                Sí, sortir
               </button>
               <button
                 onClick={() => setShowConfirmLogout(false)}
                 className="px-4 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400 cursor-pointer"
               >
-                Cancelar
+                Cancel·lar
               </button>
             </div>
           </Modal>
@@ -379,7 +379,7 @@ const HeaderComponent = () => {
         {isTermsModalOpen && (
           <TermsAndConditionsModal
             closeModal={closeTermsModal}
-            title="Términos Legales"
+            title="Termes Legals"
           />
         )}
 
@@ -394,7 +394,7 @@ const HeaderComponent = () => {
       </div>
       {devMode && (
         <div className="fixed bottom-2 right-2 bg-yellow-200 text-xs rounded px-2 py-1 opacity-70 z-50">
-          Modo dev activo
+          Mode dev actiu
         </div>
       )}
     </header>
