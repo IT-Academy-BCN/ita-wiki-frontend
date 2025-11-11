@@ -10,7 +10,7 @@ describe("HeaderComponent Language Dropdown", () => {
         <UserProvider>
           <HeaderComponent />
         </UserProvider>
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     const selectedLanguage = screen.getByText("CA", { selector: "span" });
