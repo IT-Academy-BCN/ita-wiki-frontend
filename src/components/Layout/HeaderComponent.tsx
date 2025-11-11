@@ -32,7 +32,7 @@ const HeaderComponent = () => {
     useState<boolean>(false);
   const [devMode, setDevMode] = useState<boolean>(false);
   const [showConfirmLogout, setShowConfirmLogout] = useState(false);
-  const [selectedLang, setSelectedLang] = useState<"ES" | "EN">("ES");
+  const [selectedLang, setSelectedLang] = useState<"CA" |"ES" | "EN">("CA");
   const [showLangDropdown, setShowLangDropdown] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -179,7 +179,17 @@ const HeaderComponent = () => {
           </ButtonComponent>
 
           {showLangDropdown && (
+            
             <div className="absolute right-0 mt-2 w-[76px] bg-white border rounded-md shadow-lg z-50 py-1 text-center">
+              <button
+                onClick={() => {
+                  setSelectedLang("CA");
+                  setShowLangDropdown(false);
+                }}
+                className="py-1 text-sm text-[#4a4a4a] hover:bg-[#fcecec] transition w-full cursor-pointer"
+              >
+                CA
+              </button>
               <button
                 onClick={() => {
                   setSelectedLang("ES");
