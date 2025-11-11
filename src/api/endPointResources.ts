@@ -16,12 +16,8 @@ const getResources = async (): Promise<IntResource[]> => {
     const data = await response.json();
 
     if (Array.isArray(data) && data.length) return data as IntResource[];
-    if (
-      data &&
-      Array.isArray((data as any).resources) &&
-      (data as any).resources.length
-    ) {
-      return (data as any).resources as IntResource[];
+    if (data && Array.isArray(data.resources) && data.resources.length) {
+      return data.resources as IntResource[];
     }
 
     return [];

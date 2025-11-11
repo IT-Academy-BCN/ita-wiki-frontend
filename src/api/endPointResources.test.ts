@@ -95,7 +95,6 @@ describe("getResources", () => {
   });
 
   it("debería devolver la lista de recursos interna cuando la API devuelve un objeto", async () => {
-    // @ts-ignore
     global.fetch = vi.fn(() =>
       Promise.resolve({
         ok: true,
