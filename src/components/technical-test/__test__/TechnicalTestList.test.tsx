@@ -40,11 +40,11 @@ it("fetches and displays technical test titles from mock data", async () => {
   });
 });
 
-it("The title 'Pruebas técnicas' must be displayed", () => {
+it("The title 'Proves tècniques' must be displayed", () => {
   render(
     <MemoryRouter>
       <TechnicalTestList />
     </MemoryRouter>,
   );
-  expect(screen.getByText("Pruebas técnicas")).toBeDefined();
+  expect(screen.getByText("Proves tècniques")).toBeDefined();
 });
