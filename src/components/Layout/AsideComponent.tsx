@@ -83,7 +83,7 @@ const AsideComponent: React.FC = () => {
                 "text-gray-400": !isPathActive("/"),
               })}
             >
-              Inicio
+              Inici
             </Link>
           </li>
           <li className="flex items-center space-x-3 mb-5">
@@ -116,7 +116,7 @@ const AsideComponent: React.FC = () => {
                 ),
               })}
             >
-              Pruebas técnicas
+              Proves tècniques
             </Link>
           </li>
           <li className="flex items-center space-x-3 mb-5">
@@ -137,7 +137,7 @@ const AsideComponent: React.FC = () => {
       </section>
 
       <section className="py-6">
-        <p className="pb-3 font-bold text-lg mb-2 text-black">Mis recursos</p>
+        <p className="pb-3 font-bold text-lg mb-2 text-black">Els meus recursos</p>
 
         <div className="flex flex-col gap-4">
           <div
@@ -153,7 +153,7 @@ const AsideComponent: React.FC = () => {
                 ),
               })}
             >
-              Guardados
+              Guardats
             </div>
           </div>
 
@@ -176,7 +176,7 @@ const AsideComponent: React.FC = () => {
                 ),
               })}
             >
-              Creados
+              Creats
             </div>
           </div>
         </div>
