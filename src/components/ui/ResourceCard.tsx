@@ -62,7 +62,7 @@ const ResourceCard: FC<ResourceCardProps> = ({
             month: "short",
             year: "numeric",
           })
-        : "Fecha desconocida";
+        : "Data desconeguda";
 
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-400 p-6 flex justify-between items-center gap-2 w-full h-[109px] hover:bg-gray-100">
@@ -85,9 +85,9 @@ const ResourceCard: FC<ResourceCardProps> = ({
               className={`${hasBookmarkPermission ? "cursor-pointer" : "cursor-not-allowed opacity-70"}`}
               title={
                 !user
-                  ? "Inicia sesión para guardar recursos"
+                  ? "Inicia sessió per desar recursos"
                   : !hasBookmarkPermission
-                    ? "No tienes permiso para guardar recursos. Contacta con un admin."
+                    ? "No tens permís per desar recursos. Contacta amb un admin."
                     : undefined
               }
             >
@@ -132,13 +132,13 @@ const ResourceCard: FC<ResourceCardProps> = ({
       <GenericModal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
-        title="Permisos insuficientes"
+        title="Permisos insuficients"
         size="md"
         showPrimaryButton
-        primaryButtonText="De acuerdo"
+        primaryButtonText="D'acord"
         primaryButtonAction={() => setShowModal(false)}
       >
-        <p>No tienes permisos para realizar esta acción</p>
+        <p>No tens permisos per realitzar aquesta acció</p>
       </GenericModal>
     </div>
   );

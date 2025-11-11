@@ -37,11 +37,11 @@ describe("ProjectCard", () => {
 
     expect(screen.getByText(project.title)).toBeInTheDocument();
     expect(
-      screen.getByText((t) => t.includes(`Duración: ${project.duration}`)),
+      screen.getByText((t) => t.includes(`Durada: ${project.duration}`)),
     ).toBeInTheDocument();
     expect(screen.getByText("Frontend")).toBeInTheDocument();
     expect(screen.getByText("Backend")).toBeInTheDocument();
-    expect(screen.getByText("Inscripción")).toBeInTheDocument();
+    expect(screen.getByText("Inscripció")).toBeInTheDocument();
   });
 
   it("renders logos and participant avatars with correct alt text", () => {

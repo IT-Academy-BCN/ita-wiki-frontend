@@ -19,7 +19,7 @@ function ProjectTeam({
   return (
     <div className="flex flex-col items-start border border-gray-500 text-black w-80 pt-7 pb-10 px-6 rounded-3xl max-h-[700px]">
       <div>
-        <h2 className="font-extrabold text-xl text-start">Equipo</h2>
+        <h2 className="font-extrabold text-xl text-start">Equip</h2>
       </div>
 
       <div className="w-full mt-5">
@@ -67,17 +67,17 @@ function ProjectTeam({
 
       <div className="w-full mb-14">
         <h2 className="font-extrabold text-xl text-start mb-4">
-          Plazo inscripción
+          Termini d’inscripció
         </h2>
         <ProgressBar
-          title="Progreso del proyecto"
+          title="Progrés del projecte"
           startDate="2025-10-01"
           endDate="2025-11-13"
         />
       </div>
 
       <div className="mb-10">
-        <h2 className="font-extrabold text-xl text-start">Duración</h2>
+        <h2 className="font-extrabold text-xl text-start">Durada</h2>
         <p className="text-sm font-bold text-start">1 mes</p>
       </div>
 
@@ -87,7 +87,7 @@ function ProjectTeam({
           type="button"
           variant="primary"
         >
-          Apuntarme
+          Apuntar-me
         </ButtonComponent>
       </div>
     </div>

@@ -46,10 +46,10 @@ describe("ProjectTeam", () => {
   test("renders basic project info sections", () => {
     render(<ProjectTeam {...props} />);
 
-    expect(screen.getByText(/equipo/i)).toBeInTheDocument();
+    expect(screen.getByText(/equip/i)).toBeInTheDocument();
     expect(screen.getByText(/frontend/i)).toBeInTheDocument();
     expect(screen.getByText(/backend/i)).toBeInTheDocument();
-    expect(screen.getByText(/duración/i)).toBeInTheDocument();
-    expect(screen.getByText(/inscripción/i)).toBeInTheDocument();
+    expect(screen.getByText(/durada/i)).toBeInTheDocument();
+    expect(screen.getByText(/inscripció/i)).toBeInTheDocument();
   });
 });
