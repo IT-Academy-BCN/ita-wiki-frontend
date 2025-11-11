@@ -59,12 +59,6 @@ vi.mock("../../../assets/logo-node 1.svg?react", () => ({
 vi.mock("../../../assets/react.svg?react", () => ({
   default: () => <svg data-testid="react-icon" />,
 }));
-vi.mock("../../../assets/angular.svg?react", () => ({
-  default: () => <svg data-testid="angular-icon" />,
-}));
-vi.mock("../../../assets/data-science.svg?react", () => ({
-  default: () => <svg data-testid="datascience-icon" />,
-}));
 
 vi.mock("react-router-dom", () => {
   const actual = vi.importActual("react-router-dom");
@@ -119,13 +113,13 @@ describe("AsideComponent Tests", () => {
 
     const searchInput = screen.getByRole("textbox");
     expect(searchInput).toBeInTheDocument();
-    expect(searchInput).toHaveAttribute("placeholder", "Buscar recurso");
+    expect(searchInput).toHaveAttribute("placeholder", "Cercar recurs");
 
-    expect(screen.queryByText("Mis recursos")).toBeInTheDocument();
-    expect(screen.queryByText("Crear recurso")).toBeInTheDocument();
+    expect(screen.queryByText("Els meus recursos")).toBeInTheDocument();
+    expect(screen.queryByText("Crear recurs")).toBeInTheDocument();
   });
 
-  test("should display 'Mis recursos' and 'Crear recurso' sections", () => {
+  test("should display 'Els meus recursos' and 'Crear recurs' sections", () => {
     vi.mocked(useUserContext).mockReturnValue({
       user: null,
       isAuthenticated: false,
@@ -145,8 +139,8 @@ describe("AsideComponent Tests", () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByText("Mis recursos")).toBeInTheDocument();
-    expect(screen.getByText("Crear recurso")).toBeInTheDocument();
+    expect(screen.getByText("Els meus recursos")).toBeInTheDocument();
+    expect(screen.getByText("Crear recurs")).toBeInTheDocument();
   });
 
   test("renders user sections when logged in", () => {
@@ -173,10 +167,10 @@ describe("AsideComponent Tests", () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByText("Mis recursos")).toBeInTheDocument();
-    expect(screen.getByText("Guardados")).toBeInTheDocument();
-    expect(screen.getByText("Creados")).toBeInTheDocument();
-    expect(screen.getByText("Crear recurso")).toBeInTheDocument();
+    expect(screen.getByText("Els meus recursos")).toBeInTheDocument();
+    expect(screen.getByText("Guardats")).toBeInTheDocument();
+    expect(screen.getByText("Creats")).toBeInTheDocument();
+    expect(screen.getByText("Crear recurs")).toBeInTheDocument();
   });
 
   test("renders search input with correct attributes", () => {
@@ -201,10 +195,10 @@ describe("AsideComponent Tests", () => {
 
     const searchInput = screen.getByRole("textbox");
     expect(searchInput).toBeInTheDocument();
-    expect(searchInput).toHaveAttribute("placeholder", "Buscar recurso");
+    expect(searchInput).toHaveAttribute("placeholder", "Cercar recurs");
   });
 
-  test("should render 'Inicio' link", () => {
+  test("should render 'Inici' link", () => {
     vi.mocked(useUserContext).mockReturnValue({
       user: null,
       isAuthenticated: false,
@@ -224,7 +218,7 @@ describe("AsideComponent Tests", () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByText("Inicio")).toBeInTheDocument();
+    expect(screen.getByText("Inici")).toBeInTheDocument();
   });
 
   test("should render 'Code Connect' link", () => {

@@ -18,9 +18,9 @@ const TermsAndConditionsComponent = ({
           type="button"
           variant="primary"
           onClick={closeModal}
-          title="Entendido"
+          title="Entès"
         >
-          Entendido
+          Entès
         </ButtonComponent>
       </div>
     </div>
