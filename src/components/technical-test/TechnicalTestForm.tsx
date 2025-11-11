@@ -18,17 +18,17 @@ export const TechnicalTestForm = () => {
 
   const handleSubmit = async () => {
     if (!title || !selectedLanguage) {
-      toast.error("Completa todos los campos obligatorios.");
+      toast.error("Completa tots els camps obligatoris.");
       return;
     }
 
     if (contentType === "text" && !content.trim()) {
-      toast.error("La descripción no puede estar vacía");
+      toast.error("La descripció no pot estar buida");
       return;
     }
 
     if (contentType === "file" && !file) {
-      toast.error("Por favor, selecciona un archivo PDF.");
+      toast.error("Si us plau, selecciona un fitxer PDF.");
       return;
     }
     const formData = new FormData();
@@ -66,9 +66,9 @@ export const TechnicalTestForm = () => {
             onClick={() => navigate("/resources/technical-test/all-tech-tests")}
           >
             <ArrowLeftIcon className="inline text-[#B91879] mb-2 me-1"></ArrowLeftIcon>
-            Volver a pruebas técnicas
+            Tornar a proves tècniques
           </a>
-          <h2 className="text-2xl font-semibold mb-">Nueva prueba técnica</h2>
+          <h2 className="text-2xl font-semibold mb-">Nova prova tècnica</h2>
         </div>
 
         <div className="flex items-center justify-end gap-4">
@@ -76,7 +76,7 @@ export const TechnicalTestForm = () => {
             onClick={() => navigate("/resources/technical-test/all-tech-tests")}
             className="px-4 py-2 border border-gray-400 rounded-lg w-1/2 h-fit hover:shadow-md cursor-pointer"
           >
-            Cancelar
+            Cancel·lar
           </button>
           <button
             onClick={handleSubmit}
@@ -89,7 +89,7 @@ export const TechnicalTestForm = () => {
 
       <div className="mx-[-3.7rem] border-t border-gray-300 my-8"></div>
       <div className="flex flex-col">
-        <label className="block mb-2 mt-8 font-medium">Título *</label>
+        <label className="block mb-2 mt-8 font-medium">Títol *</label>
         <input
           type="text"
           value={title}
@@ -102,7 +102,7 @@ export const TechnicalTestForm = () => {
         </div>
       </div>
 
-      <label className="block mb-2 font-medium">Lenguaje *</label>
+      <label className="block mb-2 font-medium">Llenguatge *</label>
       <div className="flex flex-wrap gap-3 mb-4">
         {asideContentForTechnicalTest.map((cat) => {
           const IconComponent = cat.icon as unknown as React.FC<
@@ -128,7 +128,7 @@ export const TechnicalTestForm = () => {
       <div className="mx-[-3.7rem] border-t border-gray-300 my-8"></div>
 
       <label className="block my-4 mb-8 font-medium">
-        Contenido de la prueba
+        Contingut de la prova
       </label>
       <div
         className="flex gap-2 mb-10
@@ -143,7 +143,7 @@ export const TechnicalTestForm = () => {
           }`}
           onClick={() => setContentType("text")}
         >
-          Texto
+          Text
         </button>
         <button
           className={`px-6 py-2 rounded-full cursor-pointer ${
@@ -151,7 +151,7 @@ export const TechnicalTestForm = () => {
           }`}
           onClick={() => setContentType("file")}
         >
-          Archivo
+          Fitxer
         </button>
       </div>
 
