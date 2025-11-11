@@ -57,7 +57,7 @@ test("POST includes tag IDs not names", async () => {
   fireEvent.click(screen.getByLabelText("Blog"));
 
   // Select tag
-  fireEvent.change(screen.getByPlaceholderText("Escribe un tag..."), {
+  fireEvent.change(screen.getByPlaceholderText("Escriu una etiqueta..."), {
     target: { value: "react" },
   });
 
