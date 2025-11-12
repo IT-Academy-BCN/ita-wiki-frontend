@@ -47,7 +47,8 @@ const BookmarksPage: FC = () => {
                           No has afegit cap recurs a la teva llista de lectura
                         </h3>
                         <p className="text-yellow-700 mt-1">
-                          Afegeix recursos a la teva llista de lectura per veure'ls aquí
+                          Afegeix recursos a la teva llista de lectura per
+                          veure'ls aquí
                         </p>
                       </div>
                     </div>
