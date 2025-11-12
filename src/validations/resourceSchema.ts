@@ -13,30 +13,30 @@ const tagSchema = z.object({
 export const resourceSchema: z.ZodType<Partial<IntResource>> = z.object({
   title: z
     .string()
-    .min(10, { message: "El título debe tener al menos 10 caracteres" })
-    .max(65, { message: "El título debe tener menos de 65 caracteres" }),
+    .min(10, { message: "El títol ha de tenir almenys 10 caràcters" })
+    .max(65, { message: "El títol ha de tenir menys de 65 caràcters" }),
 
   description: z
     .string()
-    .max(120, { message: "La descripción debe tener menos de 120 caracteres" })
+    .max(120, { message: "La descripció ha de tenir menys de 120 caràcters" })
     .optional()
     .or(z.literal("")),
 
   url: z
     .string()
-    .url({ message: "Debe ser una URL válida. Indica el protocolo" })
-    .max(300, { message: "La URL debe tener menos de 300 caracteres" }),
+    .url({ message: "Ha de ser una URL vàlida. Indica el protocol" })
+    .max(300, { message: "La URL ha de tenir menys de 300 caràcters" }),
 
   category: z.enum(categories, {
-    message: "Por favor, selecciona una categoría válida.",
+    message: "Si us plau, selecciona una categoria vàlida.",
   }),
 
   tags: z
     .array(tagSchema)
-    .max(10, { message: "No puedes agregar más de 10 tags." })
+    .max(10, { message: "No pots afegir més de 10 etiquetes." })
     .optional(),
 
   type: z.enum(resourceTypes, {
-    message: "Debes seleccionar al menos un tipo de recurso.",
+    message: "Has de seleccionar almenys un tipus de recurs.",
   }),
 });
