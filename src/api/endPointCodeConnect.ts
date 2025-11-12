@@ -6,14 +6,11 @@ export type CodeConnectError = {
   code?: string;
 };
 
-export const createCodeConnect = async (formData: FormData) => {
-  const controller = new AbortController();
-  const signal = controller.signal;
+export const createCodeConnect = async (
+  formData: FormData,
+  signal?: AbortSignal,
+) => {
   const url = `${API_URL}${END_POINTS.codeconnect.post}`;
-
-  const cancel = () => {
-    controller.abort();
-  };
 
   try {
     const response = await fetch(url, {
@@ -41,9 +38,7 @@ export const createCodeConnect = async (formData: FormData) => {
       } as CodeConnectError;
     }
 
-    const data = await response.json();
-
-    return { data, cancel };
+    return await response.json();
   } catch (error) {
     if (error instanceof DOMException && error.name === "AbortError") {
       console.warn("Petición cancelada por el usuario o timeout.");

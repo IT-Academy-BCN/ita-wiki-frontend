@@ -40,24 +40,19 @@ describe("createCodeConnect", () => {
     formData.append("description", "Lorem ipsum lorem");
     formData.append("roadmap", "Calar ipsum lorem");
 
-    // Act
     const result = await createCodeConnect(formData);
 
-    // Assert
     expect(mockFetch).toHaveBeenCalledTimes(1);
     expect(mockFetch).toHaveBeenCalledWith(
       "https://localhost:8000/codeconnect/create",
       expect.objectContaining({
         method: "POST",
         body: formData,
-        signal: expect.any(AbortSignal),
+        signal: undefined,
       }),
     );
 
-    expect(result).toHaveProperty("data");
-    expect(result).toHaveProperty("cancel");
-    expect(result.data).toEqual(mockResponseData);
-    expect(typeof result.cancel).toBe("function");
+    expect(result).toEqual(mockResponseData);
   });
 
   it("should throw an error on failed request", async () => {
