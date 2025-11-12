@@ -19,8 +19,8 @@ const Button = ({
     <button
       onClick={() => handleSelect(label)}
       aria-pressed={isSelected ? "true" : "false"}
-      className={`flex items-center gap-2 px-4 py-2 rounded-lg border-2 transition-all hover:shadow-md
-              ${isSelected ? "border-[#B91879]" : "border-gray-300"} `}
+      className={`flex items-center gap-2 px-6 py-4 rounded-lg border-2 transition-all hover:shadow-md
+              ${isSelected ? "border-[#B91879]" : "border-gray-400"} `}
     >
       <Icon className="w-5 h-5" />
       <span className="text-sm font-medium">{label}</span>
