@@ -28,7 +28,7 @@ function MyTechnicalTestsPage() {
           onClick={() => navigate("/resources/technical-test/create")}
           className="px-4 py-2 bg-primary text-white rounded-lg  h-fit hover:shadow-md cursor-pointer w-fit"
         >
-          Crear prueba
+          Crear prova
         </button>
       </div>
     </>

@@ -17,10 +17,10 @@ const MyResourcesPage: FC = () => {
 
   return (
     <>
-      <PageTitle title="Recursos que has creado" />
+      <PageTitle title="Recursos que has creat" />
       {isLoading ? (
         <div className="w-full max-w-screen-xl px-4 mx-auto py-10 text-center">
-          Obteniendo los recursos...
+          Obtenint els recursos...
         </div>
       ) : (
         <div className="w-full max-w-screen-xl px-4 mx-auto grow lg:flex-1 gap-x-6 sm:bg-white lg:bg-transparent">
@@ -28,7 +28,7 @@ const MyResourcesPage: FC = () => {
             <div className="lg:flex-1 overflow-y-auto h-[calc(100vh-90px)] px-4 py-6 lg:pl-8 xl:pl-6">
               <div className="flex flex-col justify-between items-center">
                 <h2 className="text-[26px] font-bold text-center">
-                  Recursos que has creado
+                  Recursos que has creat
                 </h2>
 
                 {myResources.length > 0 ? (
@@ -39,10 +39,10 @@ const MyResourcesPage: FC = () => {
                       <PenSquare className="h-5 w-5 text-yellow-500 mr-3" />
                       <div>
                         <h3 className="text-lg font-medium text-yellow-800">
-                          No has creado ningún recurso
+                          No has creat cap recurs
                         </h3>
                         <p className="text-yellow-700 mt-1">
-                          Crea recursos para verlos aquí
+                          Crea recursos per veure'ls aquí
                         </p>
                       </div>
                     </div>
