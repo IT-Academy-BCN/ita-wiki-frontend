@@ -1,5 +1,8 @@
 import { useState, FormEvent } from "react";
-import { asideContentForTechnicalTest } from "../Layout/aside/asideContent";
+import {
+  contentTechsFrontCodeConnect,
+  contentTechsBackCodeConnect,
+} from "../Layout/aside/asideContent";
 // import { createCodeConnect } from "../../api/endPointCodeConnect";
 import { formatDocumentIcons } from "../../icons/formatDocumentIconsArray";
 import { ArrowLeftIcon } from "lucide-react";
@@ -8,35 +11,47 @@ import { toast } from "sonner";
 
 type FormState = {
   title: string;
-  languages: string[];
+  techsFront: string[];
+  techsBack: string[];
   description: string;
-  roadmap: string;
 };
 
 const FormCreate = () => {
   const [formData, setFormData] = useState<FormState>({
     title: "",
-    languages: [],
+    techsFront: [],
+    techsBack: [],
     description: "",
-    roadmap: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
-  const handleProgramingLanguageToggle = (language: string) => {
+  const handleTechsFrontToggle = (tech: string) => {
     setFormData((prev) => {
-      const isSelected = prev.languages.includes(language);
+      const isSelected = prev.techsFront.includes(tech);
       return {
         ...prev,
-        languages: isSelected
-          ? prev.languages.filter((lang) => lang !== language)
-          : [...prev.languages, language],
+        techsFront: isSelected
+          ? prev.techsFront.filter((item) => item !== tech)
+          : [...prev.techsFront, tech],
+      };
+    });
+  };
+
+  const handleTechsBackToggle = (tech: string) => {
+    setFormData((prev) => {
+      const isSelected = prev.techsBack.includes(tech);
+      return {
+        ...prev,
+        techsBack: isSelected
+          ? prev.techsBack.filter((item) => item !== tech)
+          : [...prev.techsBack, tech],
       };
     });
   };
 
   const handleInputChange = (
-    field: keyof Omit<FormState, "languages">,
+    field: keyof Omit<FormState, "techsFronts">,
     value: string,
   ) => {
     setFormData((prev) => ({
@@ -46,9 +61,9 @@ const FormCreate = () => {
   };
 
   const validateForm = (): boolean => {
-    const { title, languages, description, roadmap } = formData;
+    const { title, techsFront, techsBack, description } = formData;
 
-    if (!title.trim() || !languages || !description.trim() || !roadmap.trim()) {
+    if (!title.trim() || !techsFront || !techsBack || !description.trim()) {
       toast.error("Completa tots els camps obligatoris.");
       return false;
     }
@@ -65,11 +80,13 @@ const FormCreate = () => {
 
     const formPayload = new FormData();
     formPayload.append("title", formData.title);
-    formData.languages.forEach((lang) => {
-      formPayload.append("languages[]", lang);
+    formData.techsFront.forEach((item) => {
+      formPayload.append("techsFront[]", item);
+    });
+    formData.techsBack.forEach((item) => {
+      formPayload.append("techsBack[]", item);
     });
     formPayload.append("description", formData.description);
-    formPayload.append("roadmap", formData.roadmap);
 
     try {
       const result = formPayload;
@@ -145,15 +162,15 @@ const FormCreate = () => {
       </div>
 
       <fieldset disabled={isSubmitting}>
-        <label className="block mb-2 font-medium">Llenguatge *</label>
+        <label className="block mb-2 font-medium">Tecnologia Frontend *</label>
         <div className="flex flex-wrap gap-3 mb-4">
-          {asideContentForTechnicalTest.map((cat) => {
-            const IconComponent = cat.icon;
-            const isSelected = formData.languages.includes(cat.label);
+          {contentTechsFrontCodeConnect.map((item) => {
+            const IconComponent = item.icon;
+            const isSelected = formData.techsFront.includes(item.label);
 
             return (
               <label
-                key={cat.label}
+                key={item.label}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg border-2 hover:shadow-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${
                   isSelected
                     ? "border-3 border-[#B91879] bg-white text-black"
@@ -162,14 +179,46 @@ const FormCreate = () => {
               >
                 <input
                   type="checkbox"
-                  name="languages[]"
-                  value={cat.label}
+                  name="techsFront[]"
+                  value={item.label}
                   checked={isSelected}
-                  onChange={() => handleProgramingLanguageToggle(cat.label)}
+                  onChange={() => handleTechsFrontToggle(item.label)}
                   className="sr-only"
                 />
                 <IconComponent className="w-5 h-5" />
-                <span className="text-sm font-medium">{cat.label}</span>
+                <span className="text-sm font-medium">{item.label}</span>
+              </label>
+            );
+          })}
+        </div>
+      </fieldset>
+
+      <fieldset disabled={isSubmitting}>
+        <label className="block mb-2 font-medium">Tecnologia Backend*</label>
+        <div className="flex flex-wrap gap-3 mb-4">
+          {contentTechsBackCodeConnect.map((item) => {
+            const IconComponent = item.icon;
+            const isSelected = formData.techsBack.includes(item.label);
+
+            return (
+              <label
+                key={item.label}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg border-2 hover:shadow-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${
+                  isSelected
+                    ? "border-3 border-[#B91879] bg-white text-black"
+                    : "border-gray-300 bg-white text-black"
+                }`}
+              >
+                <input
+                  type="checkbox"
+                  name="techsBack[]"
+                  value={item.label}
+                  checked={isSelected}
+                  onChange={() => handleTechsBackToggle(item.label)}
+                  className="sr-only"
+                />
+                <IconComponent className="w-5 h-5" />
+                <span className="text-sm font-medium">{item.label}</span>
               </label>
             );
           })}
@@ -206,20 +255,26 @@ const FormCreate = () => {
 
       <div className="lg:w-2/3">
         <label htmlFor="roadmap" className="block my-4 mb-4 font-medium">
-          RoadMap *
+          Data límit d'inscripió *
         </label>
-        <textarea
-          id="roadmap"
-          name="roadmap"
-          value={formData.roadmap}
-          onChange={(e) => handleInputChange("roadmap", e.target.value)}
-          disabled={isSubmitting}
-          maxLength={1000}
-          className="w-full min-h-[350px] p-2 border border-gray-600 rounded-lg mb-4 focus:outline-none focus:ring-1 focus:ring-[#B91879] focus:border-[#B91879]"
-        />
-        <div className="flex w-full justify-end me-10 text-sm text-gray-500">
-          <span className="self-end">{formData.roadmap.length}/1000</span>
-        </div>
+      </div>
+
+      <div className="lg:w-2/3">
+        <label htmlFor="roadmap" className="block my-4 mb-4 font-medium">
+          Durada del projecte *
+        </label>
+      </div>
+
+      <div className="lg:w-2/3">
+        <label htmlFor="roadmap" className="block my-4 mb-4 font-medium">
+          Nombre de programadors frontend *
+        </label>
+      </div>
+
+      <div className="lg:w-2/3">
+        <label htmlFor="roadmap" className="block my-4 mb-4 font-medium">
+          Nombre de programadors backend *
+        </label>
       </div>
     </form>
   );
