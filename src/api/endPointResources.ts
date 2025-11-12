@@ -1,9 +1,19 @@
 import { API_URL, END_POINTS } from "../config";
 import { IntResource } from "../types";
 
-const getResources = async (): Promise<IntResource[]> => {
+/**
+ * Fetch resources. If timeoutMs > 0 the request will be aborted after that many ms.
+ * Default 0 => no automatic timeout (caller must pass timeout to enable abort).
+ */
+const getResources = async (timeoutMs = 0): Promise<IntResource[]> => {
   const controller = new AbortController();
   const signal = controller.signal;
+  let timeoutId: ReturnType<typeof setTimeout> | null = null;
+
+  if (timeoutMs > 0) {
+    timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+  }
+
   try {
     const url = `${API_URL}${END_POINTS.resources.lists}`;
     const response = await fetch(url, { signal });
@@ -28,6 +38,8 @@ const getResources = async (): Promise<IntResource[]> => {
     }
     console.error("Error en getResources:", error);
     throw new Error("Error al obtener los recursos");
+  } finally {
+    if (timeoutId) clearTimeout(timeoutId);
   }
 };
 
