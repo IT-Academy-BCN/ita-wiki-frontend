@@ -1,4 +1,5 @@
 import { API_URL, END_POINTS } from "../config";
+import { IntCodeConnect } from "../types";
 
 export type CodeConnectError = {
   message: string;
@@ -7,7 +8,7 @@ export type CodeConnectError = {
 };
 
 export const createCodeConnect = async (
-  formData: FormData,
+  formData: IntCodeConnect,
   signal?: AbortSignal,
 ) => {
   const url = `${API_URL}${END_POINTS.codeconnect.post}`;
@@ -15,7 +16,10 @@ export const createCodeConnect = async (
   try {
     const response = await fetch(url, {
       method: "POST",
-      body: formData,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
       signal,
     });
 

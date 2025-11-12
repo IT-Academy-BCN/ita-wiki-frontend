@@ -3,25 +3,21 @@ import {
   contentTechsFrontCodeConnect,
   contentTechsBackCodeConnect,
 } from "../Layout/aside/asideContent";
+import { IntCodeConnect } from "../../types";
 // import { createCodeConnect } from "../../api/endPointCodeConnect";
 import { formatDocumentIcons } from "../../icons/formatDocumentIconsArray";
 import { ArrowLeftIcon } from "lucide-react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 
-type FormState = {
-  title: string;
-  techsFront: string[];
-  techsBack: string[];
-  description: string;
-};
-
 const FormCreate = () => {
-  const [formData, setFormData] = useState<FormState>({
+  const [formData, setFormData] = useState<IntCodeConnect>({
     title: "",
     techsFront: [],
     techsBack: [],
     description: "",
+    numberdevsfront: 0,
+    numberdevsback: 0,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
@@ -50,8 +46,8 @@ const FormCreate = () => {
     });
   };
 
-  const handleInputChange = (
-    field: keyof Omit<FormState, "techsFronts">,
+  const handleInputText = (
+    field: keyof Pick<IntCodeConnect, "title" | "description">,
     value: string,
   ) => {
     setFormData((prev) => ({
@@ -60,10 +56,35 @@ const FormCreate = () => {
     }));
   };
 
-  const validateForm = (): boolean => {
-    const { title, techsFront, techsBack, description } = formData;
+  const handleInputsNumber = (
+    field: keyof Pick<IntCodeConnect, "numberdevsfront" | "numberdevsback">,
+    value: number,
+  ) => {
+    if (!isNaN(value) && value >= 0) {
+      setFormData((prev) => ({ ...prev, [field]: value }));
+    } else if (value === undefined) {
+      setFormData((prev) => ({ ...prev, [field]: 0 }));
+    }
+  };
 
-    if (!title.trim() || !techsFront || !techsBack || !description.trim()) {
+  const validateForm = (): boolean => {
+    const {
+      title,
+      techsFront,
+      techsBack,
+      description,
+      numberdevsfront,
+      numberdevsback,
+    } = formData;
+
+    if (
+      !title.trim() ||
+      !techsFront ||
+      !techsBack ||
+      !description.trim() ||
+      numberdevsfront <= 0 ||
+      numberdevsback <= 0
+    ) {
       toast.error("Completa tots els camps obligatoris.");
       return false;
     }
@@ -78,15 +99,14 @@ const FormCreate = () => {
 
     setIsSubmitting(true);
 
-    const formPayload = new FormData();
-    formPayload.append("title", formData.title);
-    formData.techsFront.forEach((item) => {
-      formPayload.append("techsFront[]", item);
-    });
-    formData.techsBack.forEach((item) => {
-      formPayload.append("techsBack[]", item);
-    });
-    formPayload.append("description", formData.description);
+    const formPayload = {
+      title: formData.title,
+      techsFront: formData.techsFront,
+      techsBack: formData.techsBack,
+      description: formData.description,
+      devsfront: formData.numberdevsfront,
+      devsback: formData.numberdevsback,
+    };
 
     try {
       const result = formPayload;
@@ -150,7 +170,7 @@ const FormCreate = () => {
           id="title"
           name="title"
           value={formData.title}
-          onChange={(e) => handleInputChange("title", e.target.value)}
+          onChange={(e) => handleInputText("title", e.target.value)}
           disabled={isSubmitting}
           className="p-2 border border-gray-600 focus:outline-none focus:ring-1 focus:ring-[#B91879] focus:border-[#B91879] rounded-lg mb-4"
           maxLength={65}
@@ -242,7 +262,7 @@ const FormCreate = () => {
             id="description"
             name="description"
             value={formData.description}
-            onChange={(e) => handleInputChange("description", e.target.value)}
+            onChange={(e) => handleInputText("description", e.target.value)}
             disabled={isSubmitting}
             maxLength={1000}
             className="w-full min-h-[350px] p-2 border border-gray-600 rounded-bl-lg rounded-br-lg border-t-0 mb-4 focus:outline-none focus:ring-1 focus:ring-[#B91879] focus:border-[#B91879]"
@@ -254,9 +274,10 @@ const FormCreate = () => {
       </div>
 
       <div className="lg:w-2/3">
-        <label htmlFor="roadmap" className="block my-4 mb-4 font-medium">
+        <label htmlFor="deadline" className="block my-4 mb-4 font-medium">
           Data límit d'inscripió *
         </label>
+        {/* <input id="deadline" type="date" value={formData.deadline} /> */}
       </div>
 
       <div className="lg:w-2/3">
@@ -266,15 +287,31 @@ const FormCreate = () => {
       </div>
 
       <div className="lg:w-2/3">
-        <label htmlFor="roadmap" className="block my-4 mb-4 font-medium">
+        <label htmlFor="devs-front" className="block my-4 mb-4 font-medium">
           Nombre de programadors frontend *
         </label>
+        <input
+          id="devs-front"
+          type="number"
+          value={formData.numberdevsfront}
+          onChange={(e) =>
+            handleInputsNumber("numberdevsfront", parseInt(e.target.value))
+          }
+        />
       </div>
 
       <div className="lg:w-2/3">
-        <label htmlFor="roadmap" className="block my-4 mb-4 font-medium">
+        <label htmlFor="devs-back" className="block my-4 mb-4 font-medium">
           Nombre de programadors backend *
         </label>
+        <input
+          id="devs-back"
+          type="number"
+          value={formData.numberdevsback}
+          onChange={(e) =>
+            handleInputsNumber("numberdevsback", parseInt(e.target.value))
+          }
+        />
       </div>
     </form>
   );

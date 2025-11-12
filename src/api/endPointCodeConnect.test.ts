@@ -29,25 +29,30 @@ describe("createCodeConnect", () => {
       status: "success",
     };
 
+    const mockNewCodeConnect = {
+      title: "Lorem ipsum",
+      techsFront: ["React", "Angular"],
+      techsBack: ["Spring", "Node", "Express"],
+      description: "Some ramdom text to describe lorem ipsum",
+      numberdevsfront: 3,
+      numberdevsback: 10,
+    };
+
     mockFetch.mockResolvedValueOnce({
       ok: true,
       status: 200,
-      json: async () => mockResponseData,
+      json: () => Promise.resolve(mockResponseData),
     });
 
-    const formData = new FormData();
-    formData.append("name", "test-connection");
-    formData.append("description", "Lorem ipsum lorem");
-    formData.append("roadmap", "Calar ipsum lorem");
-
-    const result = await createCodeConnect(formData);
+    const result = await createCodeConnect(mockNewCodeConnect);
 
     expect(mockFetch).toHaveBeenCalledTimes(1);
     expect(mockFetch).toHaveBeenCalledWith(
       "https://localhost:8000/codeconnect/create",
       expect.objectContaining({
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(mockNewCodeConnect),
         signal: undefined,
       }),
     );
@@ -68,10 +73,16 @@ describe("createCodeConnect", () => {
       json: async () => mockErrorData,
     });
 
-    const formData = new FormData();
-    formData.append("code", "invalid-code");
+    const mockNewCodeConnect = {
+      title: "Lorem ipsum",
+      techsFront: ["React", "Angular"],
+      techsBack: ["Spring", "Node", "Express"],
+      description: "Some ramdom text to describe lorem ipsum",
+      numberdevsfront: 3,
+      numberdevsback: 10,
+    };
 
-    await expect(createCodeConnect(formData)).rejects.toMatchObject({
+    await expect(createCodeConnect(mockNewCodeConnect)).rejects.toMatchObject({
       message: "Invalid code format",
       status: 400,
       code: "INVALID_FORMAT",
@@ -82,9 +93,16 @@ describe("createCodeConnect", () => {
 
   it("should throw an error on network failure", async () => {
     mockFetch.mockRejectedValueOnce(new TypeError("Failed to fetch"));
-    const formData = new FormData();
+    const mockNewCodeConnect = {
+      title: "Lorem ipsum",
+      techsFront: ["React", "Angular"],
+      techsBack: ["Spring", "Node", "Express"],
+      description: "Some ramdom text to describe lorem ipsum",
+      numberdevsfront: 3,
+      numberdevsback: 10,
+    };
 
-    await expect(createCodeConnect(formData)).rejects.toMatchObject({
+    await expect(createCodeConnect(mockNewCodeConnect)).rejects.toMatchObject({
       message: "Error de conexión. Verifica tu conexión a internet.",
       code: "NETWORK_ERROR",
     } as CodeConnectError);

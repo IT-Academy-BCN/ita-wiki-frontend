@@ -37,6 +37,15 @@ export interface IntResource {
   tags?: Tag[];
 }
 
+export interface IntCodeConnect {
+  title: string;
+  description: string;
+  techsFront: string[];
+  techsBack: string[];
+  numberdevsfront: number;
+  numberdevsback: number;
+}
+
 export type TypTechnologyResource =
   | "All"
   | "Node"
