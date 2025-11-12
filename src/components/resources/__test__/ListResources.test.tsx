@@ -48,7 +48,7 @@ const mockResources: IntResource[] = [
     like_count: 10,
     bookmark_count: 2,
     comment_count: 1,
-  } as unknown as IntResource,
+  } as IntResource,
   {
     id: 2,
     title: "Advanced JS",
@@ -59,7 +59,7 @@ const mockResources: IntResource[] = [
     like_count: 5,
     bookmark_count: 0,
     comment_count: 0,
-  } as unknown as IntResource,
+  } as IntResource,
 ];
 
 const category = Object.keys(categories)[0] as keyof typeof categories;

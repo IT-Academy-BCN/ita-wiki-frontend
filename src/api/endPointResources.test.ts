@@ -1,6 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
 import { getResources } from "./endPointResources";
-// import moock from "../moock/resources.json";
 import { IntResource } from "../types";
 
 const mockResources: IntResource[] = [
@@ -14,7 +13,7 @@ const mockResources: IntResource[] = [
     like_count: 0,
     bookmark_count: 0,
     comment_count: 0,
-  } as unknown as IntResource,
+  } as IntResource,
   {
     id: 2,
     title: "Recurso 2",
@@ -25,7 +24,7 @@ const mockResources: IntResource[] = [
     like_count: 0,
     bookmark_count: 0,
     comment_count: 0,
-  } as unknown as IntResource,
+  } as IntResource,
 ];
 
 describe("getResources", () => {
