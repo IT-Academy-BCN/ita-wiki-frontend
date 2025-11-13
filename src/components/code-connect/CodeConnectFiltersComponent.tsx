@@ -6,12 +6,12 @@ interface ButtonProps {
   icon: FC<SVGProps<SVGSVGElement>>;
   isSelected: boolean;
   handleSelect: (label: string) => void;
-};
+}
 
 interface FiltersProps {
   selected: string | null;
   onChange: (label: string | null) => void;
-};
+}
 
 const Button = ({
   label,
@@ -31,7 +31,6 @@ const Button = ({
     </button>
   );
 };
-
 
 const CodeConnectFiltersComponent = ({ selected, onChange }: FiltersProps) => {
   const handleSelect = (label: string) => {
