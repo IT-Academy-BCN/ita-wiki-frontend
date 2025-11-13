@@ -84,7 +84,9 @@ describe("ResourcesFilters", () => {
 
   it("calls navigate when clicking on an inactive category", () => {
     render(<ResourcesFilters />);
-    const categoryLabel = asideContent.find(item => item.label !== "JavaScript")?.label || "React";
+    const categoryLabel =
+      asideContent.find((item) => item.label !== "JavaScript")?.label ||
+      "React";
     const categoryButton = screen.getByText(categoryLabel);
 
     act(() => {
@@ -93,7 +95,7 @@ describe("ResourcesFilters", () => {
 
     expect(mockNavigate).toHaveBeenCalledWith(
       `/resources/${encodeURIComponent(categoryLabel)}`,
-      { replace: false }
+      { replace: false },
     );
   });
 
