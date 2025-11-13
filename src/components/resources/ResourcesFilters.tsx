@@ -1,6 +1,5 @@
-import { FC, useCallback, useRef, useState } from "react";
+import { FC, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router";
-import classNames from "classnames";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useResourcesFilters } from "../../context/ResourcesFiltersContext";
 import { resourceTypes } from "../../data/resourceTypes";
@@ -18,10 +17,6 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
   const location = useLocation();
   const navigate = useNavigate();
   const currentPath = location.pathname;
-
-  // Local state for hover - doesn't affect parent context
-  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
-  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const {
     selectedResourceTypes,
@@ -68,30 +63,6 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
     [currentPath],
   );
 
-  // Efficient hover handlers that don't cause re-render loops
-  const handleMouseEnter = useCallback((categoryLabel: string) => {
-    if (hoverTimeoutRef.current) {
-      clearTimeout(hoverTimeoutRef.current);
-    }
-    setHoveredCategory(categoryLabel);
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
-    // Small delay to prevent flicker when moving mouse between elements
-    hoverTimeoutRef.current = setTimeout(() => {
-      setHoveredCategory(null);
-    }, 100);
-  }, []);
-
-  // Cleanup timeout on unmount
-  useEffect(() => {
-    return () => {
-      if (hoverTimeoutRef.current) {
-        clearTimeout(hoverTimeoutRef.current);
-      }
-    };
-  }, []);
-
   const renderCategoryItem = useCallback(
     (
       item: {
@@ -103,57 +74,35 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
       const path = `/resources/${encodeURIComponent(item.label)}`;
       const isActivebyPath = isPathActive(path);
       const isClickExpanded = expandedCategories.has(item.label);
-      const isHovered = hoveredCategory === item.label;
-      const shouldShowDropdown = isClickExpanded || isHovered;
+      const shouldShowDropdown = isClickExpanded;
       const isActive = isActivebyPath || isClickExpanded;
       const IconComponent = item.icon;
 
       return (
         <div key={index} className="mb-2">
-          <div
-            className="overflow-hidden"
-            onMouseEnter={() => handleMouseEnter(item.label)}
-            onMouseLeave={handleMouseLeave}
-          >
+          <div className="overflow-hidden">
             <div
-              className={`flex items-center justify-between p-1 cursor-pointer transition-colors select-none ${
-                isActive || isHovered
-                  ? "text-[var(--color-primary)]"
-                  : "text-gray-500"
-              }`}
+              className={`flex items-center py-1 px-2 cursor-pointer text-[#282828] hover:bg-black/10 hover:text-[var(--color-primary)] rounded-md transition-colors select-none`}
               onClick={() => handleCategoryClick(item.label)}
             >
               <div className="flex items-center gap-2">
-                {(isActive || isHovered) && (
+                {isActive && (
                   <IconComponent className="text-[var(--color-primary)] transition-opacity duration-200" />
                 )}
                 <span
-                  className={classNames("transition-colors font-medium", {
-                    "text-[var(--color-primary)]": isActive || isHovered,
-                    "text-[#282828]": !isActive && !isHovered,
-                  })}
+                  className={`
+                    transition-colors ${isActive ? "font-bold" : "font-medium"}
+                  `}
                 >
                   {item.label}
                 </span>
               </div>
 
-              <div className="p-1 hover:bg-black/10 rounded transition-colors">
+              <div className="p-1 rounded transition-colors">
                 {shouldShowDropdown ? (
-                  <ChevronUp
-                    className={`w-4 h-4 transition-colors ${
-                      isActive || isHovered
-                        ? "text-[var(--color-primary)]"
-                        : "text-[#282828]"
-                    }`}
-                  />
+                  <ChevronUp className={`w-4 h-4`} />
                 ) : (
-                  <ChevronDown
-                    className={`w-4 h-4 transition-colors ${
-                      isActive || isHovered
-                        ? "text-[var(--color-primary)]"
-                        : "text-[#282828]"
-                    }`}
-                  />
+                  <ChevronDown className={`w-4 h-4`} />
                 )}
               </div>
             </div>
@@ -165,19 +114,21 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
                   : "max-h-0 opacity-0"
               }`}
             >
-              {shouldShowDropdown && (
-                <div className="px-3 pb-3">
-                  <div className="pt-1">
-                    <FilterResources
-                      resourceTypes={resourceTypes}
-                      selectedResourceTypes={selectedResourceTypes}
-                      setSelectedResourceTypes={setSelectedResourceTypes}
-                      selectedTags={selectedTags}
-                      setSelectedTags={setSelectedTags}
-                    />
+              <div className="w-full">
+                {shouldShowDropdown && (
+                  <div className="px-3 pb-3">
+                    <div className="pt-1">
+                      <FilterResources
+                        resourceTypes={resourceTypes}
+                        selectedResourceTypes={selectedResourceTypes}
+                        setSelectedResourceTypes={setSelectedResourceTypes}
+                        selectedTags={selectedTags}
+                        setSelectedTags={setSelectedTags}
+                      />
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -186,10 +137,7 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
     [
       isPathActive,
       expandedCategories,
-      hoveredCategory,
       handleCategoryClick,
-      handleMouseEnter,
-      handleMouseLeave,
       selectedResourceTypes,
       setSelectedResourceTypes,
       selectedTags,
@@ -201,8 +149,8 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
     <div
       className={
         isMobile
-          ? "sm:hidden mt-4 p-4 bg-gray-100 rounded-lg"
-          : "hidden sm:block"
+          ? "sm:hidden mt-4 p-4 bg-gray-100 rounded-lg w-full"
+          : "hidden sm:block flex-shrink-0 min-w-[256px]"
       }
     >
       <h2 className="text-[26px] text-[#282828] font-bold mb-8">Filtros</h2>
