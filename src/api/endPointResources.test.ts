@@ -2,29 +2,11 @@ import { describe, it, expect, vi } from "vitest";
 import { getResources } from "./endPointResources";
 import { IntResource } from "../types";
 
-const mockResources: IntResource[] = [
-  {
-    id: 1,
-    title: "Recurso 1",
-    description: "Desc 1",
-    type: "Video",
-    created_at: "2025-02-25 00:00:00",
-    updated_at: "2025-02-25 00:00:00",
-    like_count: 0,
-    bookmark_count: 0,
-    comment_count: 0,
-  } as IntResource,
-  {
-    id: 2,
-    title: "Recurso 2",
-    description: "Desc 2",
-    type: "Blog",
-    created_at: "2025-02-25 00:00:00",
-    updated_at: "2025-02-25 00:00:00",
-    like_count: 0,
-    bookmark_count: 0,
-    comment_count: 0,
-  } as IntResource,
+type MinimalResource = Pick<IntResource, "id" | "title" | "type">;
+
+const mockResources: MinimalResource[] = [
+  { id: 1, title: "Recurso 1", type: "Video" },
+  { id: 2, title: "Recurso 2", type: "Blog" },
 ];
 
 describe("getResources", () => {
@@ -91,18 +73,5 @@ describe("getResources", () => {
     expect(Array.isArray(resources)).toBe(true);
     expect(resources).toHaveLength(0);
     expect(fetch).toHaveBeenCalledTimes(1);
-  });
-
-  it("debería devolver la lista de recursos interna cuando la API devuelve un objeto", async () => {
-    global.fetch = vi.fn(() =>
-      Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve({ resources: mockResources }),
-      } as Response),
-    );
-
-    const resources = await getResources();
-    expect(resources).toEqual(mockResources);
-    expect(resources.length).toBeGreaterThanOrEqual(1);
   });
 });
