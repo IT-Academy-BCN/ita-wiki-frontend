@@ -56,7 +56,10 @@ const App: FC = () => {
               path="/resources/technical-test/all-tech-tests"
               element={<MyTechnicalTestsPage />}
             />
-            <Route path="/resources/technical-test/999" element={<TechnicalPage />} />
+            <Route
+              path="/resources/technical-test/999"
+              element={<TechnicalPage />}
+            />
           </Routes>
         </div>
       </div>

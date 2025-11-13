@@ -17,9 +17,12 @@ describe("Ruta /resources/technical-test/999", () => {
     render(
       <MemoryRouter initialEntries={["/resources/technical-test/999"]}>
         <Routes>
-          <Route path="/resources/technical-test/999" element={<TechnicalPage />} />
+          <Route
+            path="/resources/technical-test/999"
+            element={<TechnicalPage />}
+          />
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     // Comprobamos que el mock del componente está en el DOM

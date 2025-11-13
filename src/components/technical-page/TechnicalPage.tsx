@@ -1,10 +1,5 @@
-
 const TechnicalPage = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default TechnicalPage
+export default TechnicalPage;
