@@ -42,8 +42,8 @@ export interface IntCodeConnect {
   description: string;
   techsFront: string[];
   techsBack: string[];
-  numberdevsfront: number;
-  numberdevsback: number;
+  numberDevsFront: number;
+  numberDevsBack: number;
 }
 
 export type TypTechnologyResource =

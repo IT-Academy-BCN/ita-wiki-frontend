@@ -16,8 +16,8 @@ const FormCreate = () => {
     techsFront: [],
     techsBack: [],
     description: "",
-    numberdevsfront: 0,
-    numberdevsback: 0,
+    numberDevsFront: 0,
+    numberDevsBack: 0,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
@@ -57,7 +57,7 @@ const FormCreate = () => {
   };
 
   const handleInputsNumber = (
-    field: keyof Pick<IntCodeConnect, "numberdevsfront" | "numberdevsback">,
+    field: keyof Pick<IntCodeConnect, "numberDevsFront" | "numberDevsBack">,
     value: number,
   ) => {
     if (!isNaN(value) && value >= 0) {
@@ -73,8 +73,8 @@ const FormCreate = () => {
       techsFront,
       techsBack,
       description,
-      numberdevsfront,
-      numberdevsback,
+      numberDevsFront,
+      numberDevsBack,
     } = formData;
 
     if (
@@ -82,8 +82,8 @@ const FormCreate = () => {
       !techsFront ||
       !techsBack ||
       !description.trim() ||
-      numberdevsfront <= 0 ||
-      numberdevsback <= 0
+      numberDevsFront <= 0 ||
+      numberDevsBack <= 0
     ) {
       toast.error("Completa tots els camps obligatoris.");
       return false;
@@ -104,8 +104,8 @@ const FormCreate = () => {
       techsFront: formData.techsFront,
       techsBack: formData.techsBack,
       description: formData.description,
-      devsfront: formData.numberdevsfront,
-      devsback: formData.numberdevsback,
+      numberDevsFront: formData.numberDevsFront,
+      numberDevsBack: formData.numberDevsBack,
     };
 
     try {
@@ -293,9 +293,9 @@ const FormCreate = () => {
         <input
           id="devs-front"
           type="number"
-          value={formData.numberdevsfront}
+          value={formData.numberDevsFront}
           onChange={(e) =>
-            handleInputsNumber("numberdevsfront", parseInt(e.target.value))
+            handleInputsNumber("numberDevsFront", parseInt(e.target.value))
           }
         />
       </div>
@@ -307,9 +307,9 @@ const FormCreate = () => {
         <input
           id="devs-back"
           type="number"
-          value={formData.numberdevsback}
+          value={formData.numberDevsBack}
           onChange={(e) =>
-            handleInputsNumber("numberdevsback", parseInt(e.target.value))
+            handleInputsNumber("numberDevsBack", parseInt(e.target.value))
           }
         />
       </div>
