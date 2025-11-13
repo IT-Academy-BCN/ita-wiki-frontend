@@ -31,7 +31,10 @@ const CodeConnectPage = () => {
             <p className="text-black py-5">
               Vull practicar com a developer de:
             </p>
-            <CodeConnectFiltersComponent selected={filter} onChange={setFilter} />
+            <CodeConnectFiltersComponent
+              selected={filter}
+              onChange={setFilter}
+            />
             <ProjectList filter={filter} />
           </div>
         </div>

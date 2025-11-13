@@ -2,12 +2,19 @@ import ProjectCard from "../projectCard/ProjectCard";
 import type { Project } from "../projectCard/types/projectTypes";
 import projectsData from "../../../moock/projects.json";
 
-function ProjectList({ onCardClick, filter }: { onCardClick?: (id: number) => void; filter?: string | null }) {
+function ProjectList({
+  onCardClick,
+  filter,
+}: {
+  onCardClick?: (id: number) => void;
+  filter?: string | null;
+}) {
   const projects = (projectsData as Project[]).filter((p) => {
     if (!filter) return true;
     const f = filter.toLowerCase();
     return (
-      p.frontend?.tech?.toLowerCase() === f || p.backend?.tech?.toLowerCase() === f
+      p.frontend?.tech?.toLowerCase() === f ||
+      p.backend?.tech?.toLowerCase() === f
     );
   });
 
