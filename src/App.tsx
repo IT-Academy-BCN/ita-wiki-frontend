@@ -60,7 +60,7 @@ const App: FC = () => {
             <Route
               path="/resources/technical-test/999"
               element={<TechnicalPage />}
-
+            />
             <Route
               path="/codeconnect/create"
               element={<CodeConnectCreatePage />}
