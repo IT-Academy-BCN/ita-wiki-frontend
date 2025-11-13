@@ -12,6 +12,7 @@ import TechnicalTestCreatePage from "./pages/TechnicalTestCreatePage";
 import MyTechnicalTestsPage from "./pages/MyTechnicalTestsPage";
 import RequireAuth from "./components/RequireAuth";
 import CodeConnectPage from "./pages/CodeConnectPage";
+import CodeConnectCreatePage from "./pages/CodeConnectCreatePage";
 import CodeConnectDetails from "./pages/CodeConnectDetails";
 import TechnicalPage from "./components/technical-page/TechnicalPage";
 
@@ -59,6 +60,10 @@ const App: FC = () => {
             <Route
               path="/resources/technical-test/999"
               element={<TechnicalPage />}
+
+            <Route
+              path="/codeconnect/create"
+              element={<CodeConnectCreatePage />}
             />
           </Routes>
         </div>
