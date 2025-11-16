@@ -42,24 +42,24 @@ export default function HomePage() {
   return (
     <>
       <PageTitle title="" />
-      <Container className="!px-6">
+      <Container className="!px-6 md:!px-10 xl:!px-20 2xl:!px-6">
         <div className="h-full flex flex-col justify-center">
-          <header className="flex justify-center py-6 ">
+          <header className="flex justify-center py-9">
             <h1 className="text-2xl md:text-3xl lg:text-4xl text-black font-bold text-center">
-              Aprèn, practica i creix com a professional del desenvolupament
+              Aprèn, pràctica i creix com a professional del desenvolupament
             </h1>
           </header>
 
-          <main className="flex-1 grid grid-cols-1 md:grid-cols-2 w-fit xl:w-4/5 mx-auto py-6 md:grid-rows-2 gap-6">
+          <main className="flex-1 grid grid-cols-1 md:grid-cols-2 w-fit 2xl:w-4/5 mx-auto py-6 md:grid-rows-2 gap-6">
             <section className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center">
               <img
                 src={resourcesSrc}
-                className="mb-4 max-h-[75%] w-90 object-contain transform transition duration-300 hover:scale-110"
+                className="max-h-[75%] w-90 mb-2 object-contain transform transition duration-300 hover:scale-110"
               />
               <h2 className="font-semibold text-xl text-black mb-2 text-center">
                 Descobreix recursos
               </h2>
-              <p className="text-center text-black">
+              <p className="text-center text-sm text-black">
                 Troba vídeos, tutorials i guies per seguir millorant
               </p>
             </section>
@@ -72,7 +72,7 @@ export default function HomePage() {
               <h2 className="font-semibold text-xl text-black mb-2 text-center">
                 Entrena amb proves tècniques reals
               </h2>
-              <p className="text-center text-black">
+              <p className="text-center text-sm text-black">
                 Posa a prova les teves habilitats amb reptes del món real
               </p>
             </section>
@@ -80,12 +80,12 @@ export default function HomePage() {
             <section className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center">
               <img
                 src={codeconnectSrc}
-                className="mb-4 max-h-[75%] w-120 object-contain transform transition duration-300 hover:scale-110"
+                className="mb-4 max-h-[75%] w-102 2xl:w-120 object-contain transform transition duration-300 hover:scale-110"
               />
               <h2 className="font-semibold text-xl text-black mb-2 text-center">
                 Col·labora en projectes
               </h2>
-              <p className="text-center text-black">
+              <p className="text-center text-sm text-black">
                 Uneix-te a equips i crea projectes reals junts
               </p>
             </section>
@@ -98,7 +98,7 @@ export default function HomePage() {
               <h2 className="font-semibold text-xl text-black mb-3 text-center">
                 Competeix i millora
               </h2>
-              <p className="text-center text-black">
+              <p className="text-center text-sm text-black">
                 Guanya punts, puja al rànquing i diverteix-te aprenent
               </p>
             </section>
