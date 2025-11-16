@@ -54,7 +54,7 @@ export default function HomePage() {
             <section className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center">
               <img
                 src={resourcesSrc}
-                className="max-h-[75%] w-90 mb-2 object-contain transform transition duration-300 hover:scale-110"
+                className="max-h-[75%] w-90 mb-2 ml-3 object-contain transform transition duration-300 hover:scale-110"
               />
               <h2 className="font-semibold text-xl text-black mb-2 text-center">
                 Descobreix recursos
