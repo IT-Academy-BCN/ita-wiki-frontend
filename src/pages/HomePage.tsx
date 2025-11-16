@@ -1,22 +1,17 @@
-import folder from "../assets/new-folder-dynamic-color.svg";
-import puzzle from "../assets/puzzle-dynamic-color.svg";
-import ok from "../assets/thumb-up-dynamic-color.svg";
 import { useUserContext } from "../context/UserContext";
-import { useCallback, useEffect, useState } from "react";
-import ButtonComponent from "../components/atoms/ButtonComponent";
-import Card from "../components/ui/Card";
-import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
 import PageTitle from "../components/ui/PageTitle";
 import { getUserRole } from "../api/userApi";
 import Container from "../components/ui/Container";
+import resourcesSrc from "../assets/resources-items.svg";
+import technicalSrc from "../assets/technical-item.svg";
+import codeconnectSrc from "../assets/codeconnect-items.svg";
+import rankingSrc from "../assets/ranking-items.svg";
 
 export default function HomePage() {
-  const navigate = useNavigate();
   const { user } = useUserContext();
   const [userRole, setUserRole] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-
-  const DEFAULT_CATEGORY = "React";
 
   useEffect(() => {
     if (user && user.id) {
@@ -36,10 +31,6 @@ export default function HomePage() {
     }
   }, [user, userRole]);
 
-  const handleNavigate = useCallback(() => {
-    navigate(`/resources/${DEFAULT_CATEGORY}`);
-  }, [navigate]);
-
   if (loading) {
     return (
       <main className="flex justify-center items-center h-screen w-full">
@@ -52,39 +43,66 @@ export default function HomePage() {
     <>
       <PageTitle title="" />
       <Container className="!px-6">
-        <div className="flex flex-col gap-10 justify-center items-center h-full text-center">
-          <h1 className="font-bold text-3xl">
-            ¡Bienvenid@ a la wiki de la IT Academy!
-          </h1>
-          <div>
-            <ButtonComponent onClick={handleNavigate}>
-              Ver Recursos
-            </ButtonComponent>
-          </div>
-          <h2>Funcionalidades básicas que te ofrece esta plataforma:</h2>
-          <section className="flex flex-col gap-8 items-center md:items-stretch md:flex-row">
-            <Card
-              number={1}
-              imageSource={folder}
-              imageAlt="folder"
-              title="Guarda tus recursos favoritos"
-              text="Ten tus recursos bien organizados"
-            />
-            <Card
-              number={2}
-              imageSource={puzzle}
-              imageAlt="puzzle"
-              title="Colabora con tus compañer@s"
-              text="Recursos compartidos"
-            />
-            <Card
-              number={3}
-              imageSource={ok}
-              imageAlt="ok"
-              title="Vota los recursos"
-              text="La comunidad decide cuáles son más relevantes"
-            />
-          </section>
+        <div className="h-full flex flex-col pb-8 justify-center">
+          <header className="flex justify-center py-6 ">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl text-black font-bold text-center">
+              Aprèn, practica i creix com a professional del desenvolupament
+            </h1>
+          </header>
+
+          <main className="flex-1 grid grid-cols-1 lg:grid-cols-2 w-fit xl:w-4/5 mx-auto py-6 lg:grid-rows-2 gap-6">
+            <section className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center">
+              <img
+                src={resourcesSrc}
+                className="mb-4 max-h-[75%] w-100 object-contain"
+              />
+              <h2 className="font-semibold text-xl text-black mb-2 text-center">
+                Descobreix recursos
+              </h2>
+              <p className="text-center text-black">
+                Troba vídeos, tutorials i guies per seguir millorant
+              </p>
+            </section>
+
+            <section className="bg-gray-50 border  border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center">
+              <img
+                src={technicalSrc}
+                className="mb-4 max-h-[75%] w-100 object-contain"
+              />
+              <h2 className="font-semibold text-xl text-black mb-2 text-center">
+                Entrena amb proves tècniques reals
+              </h2>
+              <p className="text-center text-black">
+                Posa a prova les teves habilitats amb reptes del món real
+              </p>
+            </section>
+
+            <section className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center">
+              <img
+                src={codeconnectSrc}
+                className="mb-4 max-h-[75%] w-140 object-contain"
+              />
+              <h2 className="font-semibold text-xl text-black mb-2 text-center">
+                Col·labora en projectes
+              </h2>
+              <p className="text-center text-black">
+                Uneix-te a equips i crea projectes reals junts
+              </p>
+            </section>
+
+            <section className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center">
+              <img
+                src={rankingSrc}
+                className=" max-h-[75%] w-140 object-contain"
+              />
+              <h2 className="font-semibold text-xl text-black mb-3 text-center">
+                Competeix i millora
+              </h2>
+              <p className="text-center text-black">
+                Guanya punts, puja al rànquing i diverteix-te aprenent
+              </p>
+            </section>
+          </main>
         </div>
       </Container>
     </>
