@@ -43,18 +43,18 @@ export default function HomePage() {
     <>
       <PageTitle title="" />
       <Container className="!px-6">
-        <div className="h-full flex flex-col pb-8 justify-center">
+        <div className="h-full flex flex-col justify-center">
           <header className="flex justify-center py-6 ">
             <h1 className="text-2xl md:text-3xl lg:text-4xl text-black font-bold text-center">
               Aprèn, practica i creix com a professional del desenvolupament
             </h1>
           </header>
 
-          <main className="flex-1 grid grid-cols-1 lg:grid-cols-2 w-fit xl:w-4/5 mx-auto py-6 lg:grid-rows-2 gap-6">
+          <main className="flex-1 grid grid-cols-1 md:grid-cols-2 w-fit xl:w-4/5 mx-auto py-6 md:grid-rows-2 gap-6">
             <section className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center">
               <img
                 src={resourcesSrc}
-                className="mb-4 max-h-[75%] w-100 object-contain"
+                className="mb-4 max-h-[75%] w-90 object-contain transform transition duration-300 hover:scale-110"
               />
               <h2 className="font-semibold text-xl text-black mb-2 text-center">
                 Descobreix recursos
@@ -67,7 +67,7 @@ export default function HomePage() {
             <section className="bg-gray-50 border  border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center">
               <img
                 src={technicalSrc}
-                className="mb-4 max-h-[75%] w-100 object-contain"
+                className="mb-4 max-h-[75%] w-100 object-contain transform transition duration-300 hover:scale-110"
               />
               <h2 className="font-semibold text-xl text-black mb-2 text-center">
                 Entrena amb proves tècniques reals
@@ -80,7 +80,7 @@ export default function HomePage() {
             <section className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center">
               <img
                 src={codeconnectSrc}
-                className="mb-4 max-h-[75%] w-140 object-contain"
+                className="mb-4 max-h-[75%] w-120 object-contain transform transition duration-300 hover:scale-110"
               />
               <h2 className="font-semibold text-xl text-black mb-2 text-center">
                 Col·labora en projectes
@@ -93,7 +93,7 @@ export default function HomePage() {
             <section className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center">
               <img
                 src={rankingSrc}
-                className=" max-h-[75%] w-140 object-contain"
+                className=" max-h-[75%] w-110 mb-3 pt-3 object-contain transform transition duration-300 hover:scale-110"
               />
               <h2 className="font-semibold text-xl text-black mb-3 text-center">
                 Competeix i millora
