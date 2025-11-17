@@ -11,7 +11,7 @@ function ProjectCard({ project }: ProjectCardProps) {
   const availableBackend =
     project.backend.positions - project.backend.participants.length;
   return (
-    <div className="flex flex-col border border-gray-500 text-black items-center w-70 sm:w-76 xl:w-82 px-6 rounded-3xl py-7 pb-10">
+    <div className="flex flex-col border scale-95 sm:scale-none border-gray-500 text-black items-center w-70 sm:w-76 xl:w-82 px-6 rounded-3xl py-7 pb-10">
       <div className="w-full">
         <Link to={`/codeconnect/${project.id}`}>
           <h1 className="font-extrabold text-black w-fit hover:text-primary transition-colors duration-300 text-xl text-start">
