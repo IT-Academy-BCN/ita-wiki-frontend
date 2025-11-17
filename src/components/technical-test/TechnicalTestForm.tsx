@@ -100,7 +100,7 @@ export const TechnicalTestForm = () => {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-1/2 p-2 border border-[#B91879] rounded-lg mb-4"
+            className="sm:w-1/2 p-2 border border-[#B91879] rounded-lg mb-4"
             maxLength={65}
           />
           <div className="w-1/2 self-end me-10 text-sm text-gray-500">
