@@ -4,7 +4,7 @@ import {
   contentTechsBackCodeConnect,
 } from "../Layout/aside/asideContent";
 import { IntCodeConnect } from "../../types";
-// import { createCodeConnect } from "../../api/endPointCodeConnect";
+import { createCodeConnect } from "../../api/endPointCodeConnect";
 import { formatDocumentIcons } from "../../icons/formatDocumentIconsArray";
 import { ArrowLeftIcon } from "lucide-react";
 import { useNavigate } from "react-router";
@@ -130,12 +130,11 @@ const FormCreate = () => {
       numberDevsBack: formData.numberDevsBack,
       time: formData.time,
       unitTime: formData.unitTime,
+      deadline: formData.deadline,
     };
 
     try {
-      const result = formPayload;
-      // TODO remove console.log, uncomment result
-      // const result = await createCodeConnect(formPayload);
+      const result = await createCodeConnect(formPayload);
       console.log("Guardat:", result);
       toast.success("Code Connect publicat amb exit");
       navigate("/codeconnect");

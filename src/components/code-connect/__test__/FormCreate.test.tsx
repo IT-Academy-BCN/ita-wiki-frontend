@@ -21,21 +21,27 @@ vi.mock("react-router", async () => {
   };
 });
 
+import { createCodeConnect } from "../../../api/endPointCodeConnect";
+
 vi.mock("../../../api/endPointCodeConnect", () => ({
   createCodeConnect: vi.fn(),
 }));
+
+const mockCreateCodeConnect = vi.mocked(createCodeConnect);
 
 const renderWithRouter = (ui: React.ReactElement) => {
   return render(<MemoryRouter>{ui}</MemoryRouter>);
 };
 
 const fillCompleteForm = async (user: ReturnType<typeof userEvent.setup>) => {
-  const titleInput = screen.getByRole("textbox", { name: /títol/i });
+  const titleInput = screen.getByRole("textbox", {
+    name: /títol/i,
+  }) as HTMLInputElement;
   await user.type(titleInput, "Test Project");
 
   const descriptionTextarea = screen.getByRole("textbox", {
     name: /descripció/i,
-  });
+  }) as HTMLInputElement;
   await user.type(descriptionTextarea, "Test description");
 
   const reactCheckbox = screen.getByRole("checkbox", { name: /react/i });
@@ -44,36 +50,40 @@ const fillCompleteForm = async (user: ReturnType<typeof userEvent.setup>) => {
   const nodeCheckbox = screen.getByRole("checkbox", { name: /node/i });
   await user.click(nodeCheckbox);
 
-  const devsFrontInput = screen.getByLabelText(
-    /nombre de programadors frontend/i,
-  ) as HTMLInputElement;
-  await user.clear(devsFrontInput);
-  await user.type(devsFrontInput, "2");
-
-  const devsBackInput = screen.getByLabelText(
-    /nombre de programadors backend/i,
-  ) as HTMLInputElement;
-  await user.clear(devsBackInput);
-  await user.type(devsBackInput, "2");
-
   const deadlineInput = screen.getByLabelText(
     /data límit d'inscripció/i,
   ) as HTMLInputElement;
-  fireEvent.change(deadlineInput, { target: { value: "2025-11-20" } });
+  await user.type(deadlineInput, "2025-11-20");
 
   const timeInput = screen.getByLabelText(
     /durada del projecte/i,
   ) as HTMLInputElement;
-  await user.clear(timeInput);
-  await user.type(timeInput, "2");
+  await user.tripleClick(timeInput);
+  await user.keyboard("2");
 
   const unitTimeSelect = screen.getByLabelText(/tipus durada/i);
   await user.selectOptions(unitTimeSelect, "month");
 
+  const devsFrontInput = screen.getByLabelText(
+    /nombre de programadors frontend/i,
+  ) as HTMLInputElement;
+  await user.tripleClick(devsFrontInput);
+  await user.keyboard("2");
+
+  const devsBackInput = screen.getByLabelText(
+    /nombre de programadors backend/i,
+  ) as HTMLInputElement;
+  await user.tripleClick(devsBackInput);
+  await user.keyboard("2");
+
   await waitFor(() => {
+    expect(titleInput.value).toBe("Test Project");
+    expect(descriptionTextarea.value).toBe("Test description");
     expect(devsFrontInput.value).toBe("2");
     expect(devsBackInput.value).toBe("2");
     expect(timeInput.value).toBe("2");
+    expect((unitTimeSelect as HTMLSelectElement).value).toBe("month");
+    expect(deadlineInput.value).toBe("2025-11-20");
   });
 };
 
@@ -107,19 +117,45 @@ describe("FormCreateCodeConnect", () => {
   });
 
   describe("handleSubmit", () => {
-    // it("should navigate on successful submission", async () => {
-    //   const user = userEvent.setup();
-    //   renderWithRouter(<FormCreateCodeConnect />);
+    it("should navigate on successful submission", async () => {
+      const user = userEvent.setup();
 
-    //   await fillCompleteForm(user);
+      mockCreateCodeConnect.mockResolvedValueOnce({
+        id: "123",
+        title: "Test Project",
+        techsFront: ["React"],
+        techsBack: ["Node"],
+        description: "Test description",
+        numberDevsFront: 2,
+        numberDevsBack: 2,
+        time: 2,
+        unitTime: "month",
+      });
 
-    //   const submitButton = screen.getByRole("button", { name: /publicar/i });
-    //   await user.click(submitButton);
+      renderWithRouter(<FormCreateCodeConnect />);
 
-    //   await waitFor(() => {
-    //     expect(mockNavigate).toHaveBeenCalledWith("/codeconnect");
-    //   });
-    // });
+      await fillCompleteForm(user);
+
+      expect(toast.error).not.toHaveBeenCalled();
+
+      const form = screen
+        .getByRole("textbox", { name: /títol/i })
+        .closest("form");
+      if (!form) throw new Error("Form not found");
+      fireEvent.submit(form);
+
+      await waitFor(
+        () => {
+          expect(mockCreateCodeConnect).toHaveBeenCalled();
+        },
+        { timeout: 3000 },
+      );
+
+      expect(toast.success).toHaveBeenCalledWith(
+        "Code Connect publicat amb exit",
+      );
+      expect(mockNavigate).toHaveBeenCalledWith("/codeconnect");
+    });
 
     it("should prevent form submission when validation fails", async () => {
       const user = userEvent.setup();
