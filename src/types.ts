@@ -44,6 +44,9 @@ export interface IntCodeConnect {
   techsBack: string[];
   numberDevsFront: number;
   numberDevsBack: number;
+  time: number;
+  unitTime: string;
+  deadline: Date | string;
 }
 
 export type TypTechnologyResource =

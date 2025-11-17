@@ -18,6 +18,9 @@ const FormCreate = () => {
     description: "",
     numberDevsFront: 0,
     numberDevsBack: 0,
+    time: 0,
+    unitTime: "",
+    deadline: new Date(),
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
@@ -47,7 +50,7 @@ const FormCreate = () => {
   };
 
   const handleInputText = (
-    field: keyof Pick<IntCodeConnect, "title" | "description">,
+    field: keyof Pick<IntCodeConnect, "title" | "description" | "unitTime">,
     value: string,
   ) => {
     setFormData((prev) => ({
@@ -57,7 +60,10 @@ const FormCreate = () => {
   };
 
   const handleInputsNumber = (
-    field: keyof Pick<IntCodeConnect, "numberDevsFront" | "numberDevsBack">,
+    field: keyof Pick<
+      IntCodeConnect,
+      "numberDevsFront" | "numberDevsBack" | "time"
+    >,
     value: number,
   ) => {
     if (!isNaN(value) && value >= 0) {
@@ -65,6 +71,13 @@ const FormCreate = () => {
     } else if (value === undefined) {
       setFormData((prev) => ({ ...prev, [field]: 0 }));
     }
+  };
+
+  const handleDeadLine = (
+    field: keyof Pick<IntCodeConnect, "deadline">,
+    value: string,
+  ) => {
+    setFormData((prev) => ({ ...prev, [field]: new Date(value) }));
   };
 
   const validateForm = (): boolean => {
@@ -75,6 +88,9 @@ const FormCreate = () => {
       description,
       numberDevsFront,
       numberDevsBack,
+      time,
+      unitTime,
+      deadline,
     } = formData;
 
     if (
@@ -83,7 +99,10 @@ const FormCreate = () => {
       !techsBack ||
       !description.trim() ||
       numberDevsFront <= 0 ||
-      numberDevsBack <= 0
+      numberDevsBack <= 0 ||
+      time <= 0 ||
+      unitTime ||
+      deadline
     ) {
       toast.error("Completa tots els camps obligatoris.");
       return false;
@@ -106,6 +125,8 @@ const FormCreate = () => {
       description: formData.description,
       numberDevsFront: formData.numberDevsFront,
       numberDevsBack: formData.numberDevsBack,
+      time: formData.time,
+      unitTime: formData.unitTime,
     };
 
     try {
@@ -204,6 +225,7 @@ const FormCreate = () => {
                   checked={isSelected}
                   onChange={() => handleTechsFrontToggle(item.label)}
                   className="sr-only"
+                  required
                 />
                 <IconComponent className="w-5 h-5" />
                 <span className="text-sm font-medium">{item.label}</span>
@@ -236,6 +258,7 @@ const FormCreate = () => {
                   checked={isSelected}
                   onChange={() => handleTechsBackToggle(item.label)}
                   className="sr-only"
+                  required
                 />
                 <IconComponent className="w-5 h-5" />
                 <span className="text-sm font-medium">{item.label}</span>
@@ -266,6 +289,7 @@ const FormCreate = () => {
             disabled={isSubmitting}
             maxLength={1000}
             className="w-full min-h-[350px] p-2 border border-gray-600 rounded-bl-lg rounded-br-lg border-t-0 mb-4 focus:outline-none focus:ring-1 focus:ring-[#B91879] focus:border-[#B91879]"
+            required
           />
           <div className="flex w-full justify-end me-10 text-sm text-gray-500">
             <span className="self-end">{formData.description.length}/1000</span>
@@ -277,13 +301,46 @@ const FormCreate = () => {
         <label htmlFor="deadline" className="block my-4 mb-4 font-medium">
           Data límit d'inscripió *
         </label>
-        {/* <input id="deadline" type="date" value={formData.deadline} /> */}
+        <input
+          id="deadline"
+          type="date"
+          value={
+            formData.deadline instanceof Date
+              ? formData.deadline.toISOString().split("T")[0]
+              : ""
+          }
+          onChange={(e) => handleDeadLine("deadline", e.target.value)}
+          min="2023-01-01"
+          required
+        />
       </div>
 
       <div className="lg:w-2/3">
-        <label htmlFor="roadmap" className="block my-4 mb-4 font-medium">
+        <label htmlFor="time" className="block my-4 mb-4 font-medium">
           Durada del projecte *
         </label>
+        <input
+          id="time"
+          type="number"
+          value={formData.time}
+          onChange={(e) => handleInputsNumber("time", parseInt(e.target.value))}
+          required
+        />
+      </div>
+
+      <div className="lg:w-2/3">
+        <label htmlFor="unitTime" className="block my-4 mb-4 font-medium">
+          Tipus durada *
+        </label>
+        <select
+          id="unitTime"
+          value={formData.unitTime}
+          onChange={(e) => handleInputText("unitTime", e.target.value)}
+          required
+        >
+          <option value="month">Mes</option>
+          <option value="week">Setmana</option>
+        </select>
       </div>
 
       <div className="lg:w-2/3">
@@ -297,6 +354,7 @@ const FormCreate = () => {
           onChange={(e) =>
             handleInputsNumber("numberDevsFront", parseInt(e.target.value))
           }
+          required
         />
       </div>
 
@@ -311,6 +369,7 @@ const FormCreate = () => {
           onChange={(e) =>
             handleInputsNumber("numberDevsBack", parseInt(e.target.value))
           }
+          required
         />
       </div>
     </form>
