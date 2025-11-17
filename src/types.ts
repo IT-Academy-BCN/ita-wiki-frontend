@@ -46,7 +46,7 @@ export interface IntCodeConnect {
   numberDevsBack: number;
   time: number;
   unitTime: string;
-  deadline: Date | string;
+  deadline: "" | string;
 }
 
 export type TypTechnologyResource =

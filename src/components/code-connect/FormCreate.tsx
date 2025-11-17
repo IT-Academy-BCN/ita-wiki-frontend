@@ -20,7 +20,7 @@ const FormCreate = () => {
     numberDevsBack: 0,
     time: 0,
     unitTime: "",
-    deadline: new Date(),
+    deadline: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
@@ -64,12 +64,15 @@ const FormCreate = () => {
       IntCodeConnect,
       "numberDevsFront" | "numberDevsBack" | "time"
     >,
-    value: number,
+    rawValue: string,
   ) => {
+    if (rawValue === "") {
+      return setFormData((prev) => ({ ...prev, [field]: 0 }));
+    }
+
+    const value = Number(rawValue);
     if (!isNaN(value) && value >= 0) {
       setFormData((prev) => ({ ...prev, [field]: value }));
-    } else if (value === undefined) {
-      setFormData((prev) => ({ ...prev, [field]: 0 }));
     }
   };
 
@@ -77,7 +80,7 @@ const FormCreate = () => {
     field: keyof Pick<IntCodeConnect, "deadline">,
     value: string,
   ) => {
-    setFormData((prev) => ({ ...prev, [field]: new Date(value) }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const validateForm = (): boolean => {
@@ -164,6 +167,7 @@ const FormCreate = () => {
           <button
             onClick={() => navigate("/codeconnect")}
             disabled={isSubmitting}
+            type="button"
             className="px-4 py-2 mb-4 border border-gray-400 rounded-lg hover:shadow-md cursor-pointer lg:w-1/2 lg:mb-0"
           >
             Cancel·lar
@@ -304,11 +308,7 @@ const FormCreate = () => {
             id="deadline"
             className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border border-gray-600 focus:outline-none focus:ring-1 focus:ring-[#B91879] focus:border-[#B91879] rounded-lg py-2 px-4"
             type="date"
-            value={
-              formData.deadline instanceof Date
-                ? formData.deadline.toISOString().split("T")[0]
-                : ""
-            }
+            value={formData.deadline || ""}
             required
             disabled={isSubmitting}
             onChange={(e) => handleDeadLine("deadline", e.target.value)}
@@ -329,9 +329,7 @@ const FormCreate = () => {
               type="number"
               value={formData.time}
               required
-              onChange={(e) =>
-                handleInputsNumber("time", parseInt(e.target.value))
-              }
+              onChange={(e) => handleInputsNumber("time", e.target.value)}
             />
             <label
               htmlFor="unitTime"
@@ -369,7 +367,7 @@ const FormCreate = () => {
             value={formData.numberDevsFront}
             required
             onChange={(e) =>
-              handleInputsNumber("numberDevsFront", parseInt(e.target.value))
+              handleInputsNumber("numberDevsFront", e.target.value)
             }
           />
         </div>
@@ -387,7 +385,7 @@ const FormCreate = () => {
             value={formData.numberDevsBack}
             required
             onChange={(e) =>
-              handleInputsNumber("numberDevsBack", parseInt(e.target.value))
+              handleInputsNumber("numberDevsBack", e.target.value)
             }
           />
         </div>

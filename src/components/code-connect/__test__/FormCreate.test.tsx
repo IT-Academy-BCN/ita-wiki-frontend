@@ -47,12 +47,14 @@ const fillCompleteForm = async (user: ReturnType<typeof userEvent.setup>) => {
   const devsFrontInput = screen.getByLabelText(
     /nombre de programadors frontend/i,
   ) as HTMLInputElement;
-  fireEvent.change(devsFrontInput, { target: { value: "2" } });
+  await user.clear(devsFrontInput);
+  await user.type(devsFrontInput, "2");
 
   const devsBackInput = screen.getByLabelText(
     /nombre de programadors backend/i,
   ) as HTMLInputElement;
-  fireEvent.change(devsBackInput, { target: { value: "2" } });
+  await user.clear(devsBackInput);
+  await user.type(devsBackInput, "2");
 
   const deadlineInput = screen.getByLabelText(
     /data límit d'inscripció/i,
@@ -62,7 +64,8 @@ const fillCompleteForm = async (user: ReturnType<typeof userEvent.setup>) => {
   const timeInput = screen.getByLabelText(
     /durada del projecte/i,
   ) as HTMLInputElement;
-  fireEvent.change(timeInput, { target: { value: "2" } });
+  await user.clear(timeInput);
+  await user.type(timeInput, "2");
 
   const unitTimeSelect = screen.getByLabelText(/tipus durada/i);
   await user.selectOptions(unitTimeSelect, "month");
