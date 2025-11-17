@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { IntResource, IntBookmarkElement, Bookmark } from "../types";
 import { getResources } from "../api/endPointResources";
 import { getBookmarks } from "../api/endPointBookmark";
-import mock from "../moock/resources.json";
 import { useBookmarkToggle } from "../hooks/useBookmarkToggle";
 import { useUserContext } from "../context/UserContext";
 import { canBookmark } from "../data/permission/tempRolesPremission";
@@ -63,17 +62,7 @@ export const ResourcesProvider = ({
         });
         setBookmarkCounts(initialCounts);
       } catch (err) {
-        console.error("Error loading resources, using mock.", err);
-        const mockData = mock.resources as IntResource[];
-        setResources(mockData);
-
-        const initialCounts: Record<string | number, number> = {};
-        mockData.forEach((resource) => {
-          if (resource.id && resource.bookmark_count !== undefined) {
-            initialCounts[resource.id] = resource.bookmark_count;
-          }
-        });
-        setBookmarkCounts(initialCounts);
+        console.error("Error loading resources:", err);
       } finally {
         setIsLoading(false);
       }
