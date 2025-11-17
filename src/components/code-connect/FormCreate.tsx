@@ -95,14 +95,14 @@ const FormCreate = () => {
 
     if (
       !title.trim() ||
-      !techsFront ||
-      !techsBack ||
+      techsFront.length === 0 ||
+      techsBack.length === 0 ||
       !description.trim() ||
       numberDevsFront <= 0 ||
       numberDevsBack <= 0 ||
       time <= 0 ||
-      unitTime ||
-      deadline
+      !unitTime.trim() ||
+      !deadline
     ) {
       toast.error("Completa tots els camps obligatoris.");
       return false;
@@ -134,10 +134,8 @@ const FormCreate = () => {
       // TODO remove console.log, uncomment result
       // const result = await createCodeConnect(formPayload);
       console.log("Guardat:", result);
-      toast.success("Code Connect publicat amb èxit");
-      navigate("/codeconnect", {
-        state: { successMessage: "Code Connect publicat amb èxit" },
-      });
+      toast.success("Code Connect publicat amb exit");
+      navigate("/codeconnect");
     } catch (error) {
       console.error("Error:", error);
       toast.error("Error en publicar Code Connect");
@@ -191,11 +189,11 @@ const FormCreate = () => {
           id="title"
           name="title"
           value={formData.title}
+          required
           onChange={(e) => handleInputText("title", e.target.value)}
           disabled={isSubmitting}
           className="p-2 border border-gray-600 focus:outline-none focus:ring-1 focus:ring-[#B91879] focus:border-[#B91879] rounded-lg mb-4"
           maxLength={65}
-          required
         />
         <div className="self-end text-sm text-gray-500">
           <span>{formData.title.length}/65</span>
@@ -223,9 +221,9 @@ const FormCreate = () => {
                   name="techsFront[]"
                   value={item.label}
                   checked={isSelected}
+                  required
                   onChange={() => handleTechsFrontToggle(item.label)}
                   className="sr-only"
-                  required
                 />
                 <IconComponent className="w-5 h-5" />
                 <span className="text-sm font-medium">{item.label}</span>
@@ -256,9 +254,9 @@ const FormCreate = () => {
                   name="techsBack[]"
                   value={item.label}
                   checked={isSelected}
+                  required
                   onChange={() => handleTechsBackToggle(item.label)}
                   className="sr-only"
-                  required
                 />
                 <IconComponent className="w-5 h-5" />
                 <span className="text-sm font-medium">{item.label}</span>
@@ -285,11 +283,11 @@ const FormCreate = () => {
             id="description"
             name="description"
             value={formData.description}
+            required
             onChange={(e) => handleInputText("description", e.target.value)}
             disabled={isSubmitting}
             maxLength={1000}
             className="w-full min-h-[350px] p-2 border border-gray-600 rounded-bl-lg rounded-br-lg border-t-0 mb-4 focus:outline-none focus:ring-1 focus:ring-[#B91879] focus:border-[#B91879]"
-            required
           />
           <div className="flex w-full justify-end me-10 text-sm text-gray-500">
             <span className="self-end">{formData.description.length}/1000</span>
@@ -299,7 +297,7 @@ const FormCreate = () => {
 
       <div className="lg:w-2/3">
         <label htmlFor="deadline" className="block my-4 mb-4 font-medium">
-          Data límit d'inscripió *
+          Data límit d'inscripció *
         </label>
         <input
           id="deadline"
@@ -309,9 +307,10 @@ const FormCreate = () => {
               ? formData.deadline.toISOString().split("T")[0]
               : ""
           }
+          required
+          disabled={isSubmitting}
           onChange={(e) => handleDeadLine("deadline", e.target.value)}
           min="2023-01-01"
-          required
         />
       </div>
 
@@ -323,8 +322,8 @@ const FormCreate = () => {
           id="time"
           type="number"
           value={formData.time}
-          onChange={(e) => handleInputsNumber("time", parseInt(e.target.value))}
           required
+          onChange={(e) => handleInputsNumber("time", parseInt(e.target.value))}
         />
       </div>
 
@@ -335,9 +334,13 @@ const FormCreate = () => {
         <select
           id="unitTime"
           value={formData.unitTime}
-          onChange={(e) => handleInputText("unitTime", e.target.value)}
           required
+          disabled={isSubmitting}
+          onChange={(e) => handleInputText("unitTime", e.target.value)}
         >
+          <option value="" disabled>
+            Selecciona una opció
+          </option>
           <option value="month">Mes</option>
           <option value="week">Setmana</option>
         </select>
@@ -351,10 +354,10 @@ const FormCreate = () => {
           id="devs-front"
           type="number"
           value={formData.numberDevsFront}
+          required
           onChange={(e) =>
             handleInputsNumber("numberDevsFront", parseInt(e.target.value))
           }
-          required
         />
       </div>
 
@@ -366,10 +369,10 @@ const FormCreate = () => {
           id="devs-back"
           type="number"
           value={formData.numberDevsBack}
+          required
           onChange={(e) =>
             handleInputsNumber("numberDevsBack", parseInt(e.target.value))
           }
-          required
         />
       </div>
     </form>
