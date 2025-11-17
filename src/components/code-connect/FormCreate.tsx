@@ -160,18 +160,18 @@ const FormCreate = () => {
           </a>
           <h2 className="text-2xl font-semibold mt-2">Nou Code Connect</h2>
         </div>
-        <div className="flex items-center justify-end gap-4 mt-6 lg:mt-0">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-end lg:gap-4 mt-6 lg:mt-0">
           <button
             onClick={() => navigate("/codeconnect")}
             disabled={isSubmitting}
-            className="px-4 py-2 border border-gray-400 rounded-lg w-1/2 h-fit hover:shadow-md cursor-pointer"
+            className="px-4 py-2 mb-4 border border-gray-400 rounded-lg hover:shadow-md cursor-pointer lg:w-1/2 lg:mb-0"
           >
             Cancel·lar
           </button>
           <button
             type="submit"
             disabled={isSubmitting}
-            className="px-4 py-2 bg-primary text-white rounded-lg w-1/2 h-fit hover:shadow-md cursor-pointer"
+            className="px-4 py-2 bg-primary text-white rounded-lg hover:shadow-md cursor-pointer lg:w-1/2"
           >
             {isSubmitting ? "Publicant..." : "Publicar"}
           </button>
@@ -295,85 +295,102 @@ const FormCreate = () => {
         </div>
       </div>
 
-      <div className="lg:w-2/3">
-        <label htmlFor="deadline" className="block my-4 mb-4 font-medium">
-          Data límit d'inscripció *
-        </label>
-        <input
-          id="deadline"
-          type="date"
-          value={
-            formData.deadline instanceof Date
-              ? formData.deadline.toISOString().split("T")[0]
-              : ""
-          }
-          required
-          disabled={isSubmitting}
-          onChange={(e) => handleDeadLine("deadline", e.target.value)}
-          min="2023-01-01"
-        />
+      <div className="lg:w-2/3 my-4">
+        <div className="grid gap-4 lg:grid-cols-3 items-center">
+          <label htmlFor="deadline" className="block font-medium">
+            Data límit d'inscripció *
+          </label>
+          <input
+            id="deadline"
+            className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border border-gray-600 focus:outline-none focus:ring-1 focus:ring-[#B91879] focus:border-[#B91879] rounded-lg py-2 px-4"
+            type="date"
+            value={
+              formData.deadline instanceof Date
+                ? formData.deadline.toISOString().split("T")[0]
+                : ""
+            }
+            required
+            disabled={isSubmitting}
+            onChange={(e) => handleDeadLine("deadline", e.target.value)}
+            min="2023-01-01"
+          />
+        </div>
       </div>
 
-      <div className="lg:w-2/3">
-        <label htmlFor="time" className="block my-4 mb-4 font-medium">
-          Durada del projecte *
-        </label>
-        <input
-          id="time"
-          type="number"
-          value={formData.time}
-          required
-          onChange={(e) => handleInputsNumber("time", parseInt(e.target.value))}
-        />
+      <div className="lg:w-2/3 my-8">
+        <div className="grid gap-4 lg:grid-cols-3 items-center">
+          <label htmlFor="time" className="block font-medium">
+            Durada del projecte *
+          </label>
+          <div className="flex lg:col-start-2 lg:col-span-1">
+            <input
+              id="time"
+              className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-t border-b border-l border-gray-600 focus:outline-none focus:ring-1 focus:ring-[#B91879] focus:border-[#B91879] rounded-tl-lg rounded-bl-lg py-2 px-4 w-11"
+              type="number"
+              value={formData.time}
+              required
+              onChange={(e) =>
+                handleInputsNumber("time", parseInt(e.target.value))
+              }
+            />
+            <label
+              htmlFor="unitTime"
+              className="block my-4 mb-4 font-medium sr-only"
+            >
+              Tipus durada *
+            </label>
+            <select
+              id="unitTime"
+              className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none bg-gray-100 border border-gray-600 focus:outline-none focus:ring-1 focus:ring-[#B91879] focus:border-[#B91879] rounded-tr-lg rounded-br-lg py-2 px-4 w-full"
+              value={formData.unitTime}
+              required
+              disabled={isSubmitting}
+              onChange={(e) => handleInputText("unitTime", e.target.value)}
+            >
+              <option value="" disabled>
+                Selecciona
+              </option>
+              <option value="month">Mes</option>
+              <option value="week">Setmana</option>
+            </select>
+          </div>
+        </div>
       </div>
 
-      <div className="lg:w-2/3">
-        <label htmlFor="unitTime" className="block my-4 mb-4 font-medium">
-          Tipus durada *
-        </label>
-        <select
-          id="unitTime"
-          value={formData.unitTime}
-          required
-          disabled={isSubmitting}
-          onChange={(e) => handleInputText("unitTime", e.target.value)}
-        >
-          <option value="" disabled>
-            Selecciona una opció
-          </option>
-          <option value="month">Mes</option>
-          <option value="week">Setmana</option>
-        </select>
+      <div className="lg:w-2/3 my-8">
+        <div className="grid gap-4 items-center lg:grid-cols-3">
+          <label htmlFor="devs-front" className="block font-medium col-span-2">
+            Nombre de programadors frontend *
+          </label>
+          <input
+            id="devs-front"
+            className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border border-gray-600 focus:outline-none focus:ring-1 focus:ring-[#B91879] focus:border-[#B91879] rounded-lg py-2 px-4 w-full lg:w-11"
+            type="number"
+            value={formData.numberDevsFront}
+            required
+            onChange={(e) =>
+              handleInputsNumber("numberDevsFront", parseInt(e.target.value))
+            }
+          />
+        </div>
       </div>
 
-      <div className="lg:w-2/3">
-        <label htmlFor="devs-front" className="block my-4 mb-4 font-medium">
-          Nombre de programadors frontend *
-        </label>
-        <input
-          id="devs-front"
-          type="number"
-          value={formData.numberDevsFront}
-          required
-          onChange={(e) =>
-            handleInputsNumber("numberDevsFront", parseInt(e.target.value))
-          }
-        />
-      </div>
-
-      <div className="lg:w-2/3">
-        <label htmlFor="devs-back" className="block my-4 mb-4 font-medium">
-          Nombre de programadors backend *
-        </label>
-        <input
-          id="devs-back"
-          type="number"
-          value={formData.numberDevsBack}
-          required
-          onChange={(e) =>
-            handleInputsNumber("numberDevsBack", parseInt(e.target.value))
-          }
-        />
+      <div className="lg:w-2/3 my-8">
+        <div className="grid gap-4 items-center lg:grid-cols-3">
+          <label htmlFor="devs-back" className="block font-medium col-span-2">
+            Nombre de programadors backend *
+          </label>
+          <input
+            id="devs-back"
+            className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border border-gray-600 focus:outline-none focus:ring-1 focus:ring-[#B91879] focus:border-[#B91879] rounded-lg py-2 px-4 w-full lg:w-11"
+            type="number"
+            value={formData.numberDevsBack}
+            required
+            onChange={(e) =>
+              handleInputsNumber("numberDevsBack", parseInt(e.target.value))
+            }
+          />
+        </div>
       </div>
     </form>
   );
