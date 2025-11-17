@@ -2,14 +2,13 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import { ResourcesLayout } from "../ResourcesLayout";
 import { ResourcesFiltersProvider } from "../../../context/ResourcesFiltersContext";
-import moock from "../../../moock/resources.json";
 import { categories } from "../../../data/categories";
 import { IntResource } from "../../../types";
 import { describe, it, expect, vi } from "vitest";
 
 vi.mock("../../../hooks/useResourceFilter", () => ({
   useResourceFilter: () => ({
-    filteredResources: moockResources,
+    filteredResources: mockResources,
     selectedTags: [],
     setSelectedTags: vi.fn(),
     selectedResourceTypes: ["Video"],
@@ -27,10 +26,10 @@ vi.mock("../../../context/ResourcesContext", () => ({
   useResources: () => ({
     isBookmarked: vi.fn(),
     toggleBookmark: vi.fn(),
-    resources: moockResources,
+    resources: mockResources,
     isLoading: false,
     getBookmarkCount: (resourceId: number | string) => {
-      const resource = moockResources.find((r) => r.id === resourceId);
+      const resource = mockResources.find((r) => r.id === resourceId);
       return resource?.bookmark_count || 0;
     },
     bookmarkedResources: [],
@@ -38,14 +37,30 @@ vi.mock("../../../context/ResourcesContext", () => ({
   }),
 }));
 
-const moockResources = moock.resources.map(
-  (resource) =>
-    ({
-      ...resource,
-      created_at: "2025-02-25 00:00:00",
-      updated_at: "2025-02-25 00:00:00",
-    }) as IntResource,
-);
+const mockResources: IntResource[] = [
+  {
+    id: 1,
+    title: "React Basics",
+    description: "Learn React step-by-step",
+    type: "Video",
+    created_at: "2025-02-25 00:00:00",
+    updated_at: "2025-02-25 00:00:00",
+    like_count: 10,
+    bookmark_count: 2,
+    comment_count: 1,
+  } as IntResource,
+  {
+    id: 2,
+    title: "Advanced JS",
+    description: "Deep dive into JS",
+    type: "Blog",
+    created_at: "2025-02-25 00:00:00",
+    updated_at: "2025-02-25 00:00:00",
+    like_count: 5,
+    bookmark_count: 0,
+    comment_count: 0,
+  } as IntResource,
+];
 
 const category = Object.keys(categories)[0] as keyof typeof categories;
 
@@ -55,7 +70,7 @@ describe("ResourcesLayout Component", () => {
       <MemoryRouter>
         <ResourcesFiltersProvider>
           <ResourcesLayout
-            resources={moockResources}
+            resources={mockResources}
             category={String(category)}
           />
         </ResourcesFiltersProvider>
