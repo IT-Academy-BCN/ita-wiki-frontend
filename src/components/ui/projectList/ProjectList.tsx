@@ -7,7 +7,9 @@ function ProjectList({ onCardClick }: { onCardClick?: (id: number) => void }) {
 
   return (
     <>
-      <h2 className="text-2xl font-bold py-6 mb-6">Lista de proyectos</h2>
+      <h2 className="text-2xl font-bold py-6 text-black mb-6">
+        Llista de projectes
+      </h2>
       <div className="grid gap-10 grid-cols-[repeat(auto-fill,minmax(300px,1fr))] w-full">
         {projects.map((project) => (
           <ProjectCard
