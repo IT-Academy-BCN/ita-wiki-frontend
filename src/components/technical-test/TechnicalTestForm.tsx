@@ -103,7 +103,7 @@ export const TechnicalTestForm = () => {
             className="sm:w-1/2 p-2 border border-[#B91879] rounded-lg mb-4"
             maxLength={65}
           />
-          <div className="w-1/2 self-end me-10 text-sm text-gray-500">
+          <div className="sm:w-1/2 self-end sm:me-10 text-sm text-gray-500">
             <span>0/65</span>
           </div>
         </div>
