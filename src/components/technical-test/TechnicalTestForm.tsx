@@ -61,7 +61,7 @@ export const TechnicalTestForm = () => {
   return (
     <Container className="!p-0">
       <div className="py-10">
-        <div className="flex flex-row justify-between px-10">
+        <div className="flex sm:flex-row flex-col justify-between px-4 sm:px-10">
           <div>
             <a
               className="text-[#B91879] cursor-pointer"
@@ -75,7 +75,7 @@ export const TechnicalTestForm = () => {
             <h2 className="text-2xl font-semibold mb-">Nueva prueba técnica</h2>
           </div>
 
-          <div className="flex items-center justify-end gap-4">
+          <div className="flex items-center justify-end mt-4 sm:mt-0 gap-4">
             <button
               onClick={() =>
                 navigate("/resources/technical-test/all-tech-tests")
