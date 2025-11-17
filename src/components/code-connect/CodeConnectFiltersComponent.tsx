@@ -1,13 +1,17 @@
 import { FC, SVGProps } from "react";
-import { useState } from "react";
 import { filtersContent } from "./filtersContent";
 
-type ButtonProps = {
+interface ButtonProps {
   label: string;
   icon: FC<SVGProps<SVGSVGElement>>;
   isSelected: boolean;
   handleSelect: (label: string) => void;
-};
+}
+
+interface FiltersProps {
+  selected: string | null;
+  onChange: (label: string | null) => void;
+}
 
 const Button = ({
   label,
@@ -20,7 +24,7 @@ const Button = ({
       onClick={() => handleSelect(label)}
       aria-pressed={isSelected ? "true" : "false"}
       className={`flex items-center gap-2 px-6 py-4 rounded-lg border-2 transition-all hover:shadow-md
-              ${isSelected ? "border-[#B91879]" : "border-gray-400"} `}
+              ${isSelected ? "border-primary" : "border-gray-400"} `}
     >
       <Icon className="w-5 h-5" />
       <span className="text-sm font-medium">{label}</span>
@@ -28,17 +32,15 @@ const Button = ({
   );
 };
 
-const CodeConnectFiltersComponent = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
-
+const CodeConnectFiltersComponent = ({ selected, onChange }: FiltersProps) => {
   const handleSelect = (label: string) => {
-    setSelectedLanguage(label);
+    onChange(selected === label ? null : label);
   };
 
   return (
     <div className="flex flex-wrap gap-3 mb-4">
       {filtersContent.map(({ icon, label }) => {
-        const isSelected = selectedLanguage === label;
+        const isSelected = selected === label;
         return (
           <Button
             key={label}

@@ -3,9 +3,11 @@ import CodeConnectFiltersComponent from "../components/code-connect/CodeConnectF
 import ProjectList from "../components/ui/projectList/ProjectList";
 import { useNavigate } from "react-router";
 import ButtonComponent from "../components/atoms/ButtonComponent";
+import { useState } from "react";
 
 const CodeConnectPage = () => {
   const navigate = useNavigate();
+  const [filter, setFilter] = useState<string | null>(null);
 
   return (
     <>
@@ -29,8 +31,11 @@ const CodeConnectPage = () => {
             <p className="text-black py-5">
               Vull practicar com a developer de:
             </p>
-            <CodeConnectFiltersComponent />
-            <ProjectList />
+            <CodeConnectFiltersComponent
+              selected={filter}
+              onChange={setFilter}
+            />
+            <ProjectList filter={filter} />
           </div>
         </div>
       </div>

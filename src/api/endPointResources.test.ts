@@ -1,13 +1,13 @@
 import { describe, it, expect, vi } from "vitest";
 import { getResources } from "./endPointResources";
-import moock from "../moock/resources.json";
 import { IntResource } from "../types";
 
-const moockResources = moock.resources.map((resource) => ({
-  ...resource,
-  created_at: "2025-02-25 00:00:00",
-  updated_at: "2025-02-25 00:00:00",
-})) as IntResource[];
+type MinimalResource = Pick<IntResource, "id" | "title" | "type">;
+
+const mockResources: MinimalResource[] = [
+  { id: 1, title: "Recurso 1", type: "Video" },
+  { id: 2, title: "Recurso 2", type: "Blog" },
+];
 
 describe("getResources", () => {
   beforeEach(() => {
@@ -39,24 +39,20 @@ describe("getResources", () => {
 
     const resources = await getResources();
     expect(resources).toBeInstanceOf(Array);
+    expect(resources).toHaveLength(0);
   });
 
   it("debería devolver los datos de la API cuando la respuesta es exitosa", async () => {
-    const mockData = [
-      { id: 1, name: "Recurso 1" },
-      { id: 2, name: "Recurso 2" },
-    ];
-
     global.fetch = vi.fn(() =>
       Promise.resolve({
         ok: true,
-        json: () => Promise.resolve(mockData),
+        json: () => Promise.resolve(mockResources),
       } as Response),
     );
 
     const resources = await getResources();
 
-    expect(resources).toEqual(mockData);
+    expect(resources).toEqual(mockResources);
     expect(fetch).toHaveBeenCalledTimes(1);
     expect(fetch).toHaveBeenCalledWith(
       expect.stringContaining("resources/"),
@@ -74,8 +70,8 @@ describe("getResources", () => {
     );
 
     const resources = await getResources();
-
-    expect(resources).toEqual(moockResources);
+    expect(Array.isArray(resources)).toBe(true);
+    expect(resources).toHaveLength(0);
     expect(fetch).toHaveBeenCalledTimes(1);
   });
 });
