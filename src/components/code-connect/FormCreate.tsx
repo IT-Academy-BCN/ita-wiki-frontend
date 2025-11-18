@@ -134,8 +134,7 @@ const FormCreate = () => {
     };
 
     try {
-      const result = await createCodeConnect(formPayload);
-      console.log("Guardat:", result);
+      await createCodeConnect(formPayload);
       toast.success("Code Connect publicat amb exit");
       navigate("/codeconnect");
     } catch (error) {
