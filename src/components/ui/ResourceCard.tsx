@@ -87,7 +87,7 @@ const ResourceCard: FC<ResourceCardProps> = ({
                 !user
                   ? "Inicia sessió per desar recursos"
                   : !hasBookmarkPermission
-                    ? "No tens permís per desar recursos. Contacta amb un admin."
+                    ? "No tens permisos per desar recursos. Contacta amb un admin."
                     : undefined
               }
             >
