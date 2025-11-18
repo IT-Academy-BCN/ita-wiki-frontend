@@ -20,8 +20,8 @@ describe("ContentTypeBadge", () => {
   });
 
   it("applies the correct size to the icon", () => {
-    render(<ContentTypeBadge type="Video" size={16} />);
-    const img = screen.getByAltText("Video icon");
+    render(<ContentTypeBadge type="Vídeo" size={16} />);
+    const img = screen.getByAltText("Vídeo icon");
     expect(img).toHaveAttribute("width", "16");
     expect(img).toHaveAttribute("height", "16");
   });
@@ -30,6 +30,6 @@ describe("ContentTypeBadge", () => {
     // @ts-expect-error: purposely passing invalid type
     render(<ContentTypeBadge type="InvalidType" />);
     expect(screen.queryByRole("img")).not.toBeInTheDocument();
-    expect(screen.queryByText("InvalidType")).toBeInTheDocument();
+    expect(screen.getByText("InvalidType")).toBeInTheDocument();
   });
 });
