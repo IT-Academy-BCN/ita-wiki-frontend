@@ -4,9 +4,10 @@ import { describe, it, expect, vi } from "vitest";
 import { MemoryRouter } from "react-router";
 import TechnicalPage from "./TechnicalPage";
 
-// Mock parcial correcto
 vi.mock("react-router", async () => {
-  const actual = await vi.importActual<any>("react-router");
+  const actual: typeof import("react-router") =
+    await vi.importActual("react-router");
+
   return {
     ...actual,
     useNavigate: () => vi.fn(),
