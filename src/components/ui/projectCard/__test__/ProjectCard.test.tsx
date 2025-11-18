@@ -1,8 +1,9 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect } from "vitest";
 import "@testing-library/jest-dom/vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Project } from "../types/projectTypes";
 import ProjectCard from "../ProjectCard";
+import { MemoryRouter } from "react-router";
 
 function makeProject(partial: Partial<Project> = {}): Project {
   const base: Project = {
@@ -33,20 +34,28 @@ function makeProject(partial: Partial<Project> = {}): Project {
 describe("ProjectCard", () => {
   it("renders title, duration, and role labels", () => {
     const project = makeProject();
-    render(<ProjectCard project={project} />);
+    render(
+      <MemoryRouter>
+        <ProjectCard project={project} />
+      </MemoryRouter>,
+    );
 
     expect(screen.getByText(project.title)).toBeInTheDocument();
     expect(
-      screen.getByText((t) => t.includes(`Duración: ${project.duration}`)),
+      screen.getByText((t) => t.includes(`Durada: ${project.duration}`)),
     ).toBeInTheDocument();
     expect(screen.getByText("Frontend")).toBeInTheDocument();
     expect(screen.getByText("Backend")).toBeInTheDocument();
-    expect(screen.getByText("Inscripción")).toBeInTheDocument();
+    expect(screen.getByText("Inscripció")).toBeInTheDocument();
   });
 
   it("renders logos and participant avatars with correct alt text", () => {
     const project = makeProject();
-    render(<ProjectCard project={project} />);
+    render(
+      <MemoryRouter>
+        <ProjectCard project={project} />
+      </MemoryRouter>,
+    );
 
     const frontLogo = screen.getByAltText(
       project.frontend.tech,
@@ -70,18 +79,26 @@ describe("ProjectCard", () => {
     const availableBackend =
       project.backend.positions - project.backend.participants.length;
 
-    render(<ProjectCard project={project} />);
+    render(
+      <MemoryRouter>
+        <ProjectCard project={project} />
+      </MemoryRouter>,
+    );
 
     const addButtons = screen.getAllByRole("button", { name: "+" });
     expect(addButtons.length).toBe(availableFrontend + availableBackend);
   });
 
-  it("invokes onClick with project id when clicked", () => {
+  it("renders a link to the project details route", () => {
     const project = makeProject();
-    const onClick = vi.fn();
-    render(<ProjectCard project={project} onClick={onClick} />);
+    render(
+      <MemoryRouter>
+        <ProjectCard project={project} />
+      </MemoryRouter>,
+    );
 
-    fireEvent.click(screen.getByText(project.title));
-    expect(onClick).toHaveBeenCalledWith(project.id);
+    const link = screen.getByRole("link");
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute("href", `/codeconnect/${project.id}`);
   });
 });

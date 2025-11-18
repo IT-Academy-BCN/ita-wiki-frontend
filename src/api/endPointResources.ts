@@ -1,38 +1,42 @@
 import { API_URL, END_POINTS } from "../config";
 import { IntResource } from "../types";
-import moock from "../moock/resources.json";
 
-const moockResources = moock.resources.map(
-  (resource) =>
-    ({
-      ...resource,
-      created_at: "2025-02-25 00:00:00",
-      updated_at: "2025-02-25 00:00:00",
-    }) as IntResource,
-);
-
-const getResources = async (): Promise<IntResource[]> => {
+/**
+ * Fetch resources. If timeoutMs > 0 the request will be aborted after that many ms.
+ * Default 0 => no automatic timeout (caller must pass timeout to enable abort).
+ */
+const getResources = async (timeoutMs = 0): Promise<IntResource[]> => {
   const controller = new AbortController();
   const signal = controller.signal;
+  let timeoutId: ReturnType<typeof setTimeout> | null = null;
+
+  if (timeoutMs > 0) {
+    timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+  }
+
   try {
     const url = `${API_URL}${END_POINTS.resources.lists}`;
     const response = await fetch(url, { signal });
 
     if (!response.ok) {
       console.warn(`Error ${response.status}: ${response.statusText}`);
-      return moockResources;
+      return [];
     }
 
     const data = await response.json();
 
-    return Array.isArray(data) && data.length ? data : moockResources;
+    if (Array.isArray(data) && data.length) return data as IntResource[];
+
+    return [];
   } catch (error) {
     if (error instanceof DOMException && error.name === "AbortError") {
       console.warn("Petición cancelada.");
-      return moockResources;
+      return [];
     }
     console.error("Error en getResources:", error);
     throw new Error("Error al obtener los recursos");
+  } finally {
+    if (timeoutId) clearTimeout(timeoutId);
   }
 };
 
