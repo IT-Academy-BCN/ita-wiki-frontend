@@ -106,7 +106,7 @@ export default function CreateResourcePage() {
 
   return (
     <>
-      <PageTitle title="Create Resource" />
+      <PageTitle title="Crear recurs" />
       <Container>
         <div className="md:flex justify-between items-center">
           <div className="flex flex-col gap-3">
@@ -115,9 +115,9 @@ export default function CreateResourcePage() {
               className="text-md font-medium text-primary flex items-center gap-2 cursor-pointer hover:opacity-80"
             >
               <img className="w-4 h-4" src={arrowLeft} alt="Arrow Left" />
-              <span>Volver a recursos</span>
+              <span>Tornar a recursos</span>
             </button>
-            <h1 className="text-[26px] font-black ">Nuevo recurso</h1>
+            <h1 className="text-[26px] font-black ">Nou recurs</h1>
           </div>
           <div className="flex  ">
             <ButtonComponent
@@ -125,7 +125,7 @@ export default function CreateResourcePage() {
               onClick={() => window.history.back()}
               className="min-w-[8rem] max-h-[2.75rem] mr-4"
             >
-              Cancelar
+              Cancel·lar
             </ButtonComponent>
             <ButtonComponent
               type="button"
@@ -141,7 +141,7 @@ export default function CreateResourcePage() {
 
         <div className="flex mt-6 overflow-y-scroll">
           <form onSubmit={handleSubmit(onSubmit)} className="w-full ">
-            <h2 className="text-sm text-black font-medium mb-3">Título</h2>
+            <h2 className="text-sm text-black font-medium mb-3">Títol</h2>
             <FormInput
               id="title"
               placeholder=""
@@ -171,7 +171,7 @@ export default function CreateResourcePage() {
               }}
             />
 
-            <h2 className="text-sm text-black font-medium mb-2">Lenguaje</h2>
+            <h2 className="text-sm text-black font-medium mb-2">Llenguatge</h2>
             <div className="flex flex-wrap gap-3">
               {asideContent.map((cat) => {
                 const IconComponent = cat.icon as unknown as React.FC<
@@ -206,7 +206,7 @@ export default function CreateResourcePage() {
               )}
             </div>
             <h2 className="text-sm text-black font-medium mb-4">
-              Tipo de recurso
+              Tipus de recurs
             </h2>
             <div className="flex justify-start gap-x-10 mb-1">
               <div className="ml-1 flex gap-2 md:text-xl">
@@ -225,7 +225,7 @@ export default function CreateResourcePage() {
                 <input
                   type="radio"
                   id="curso"
-                  value="Cursos"
+                  value="Curs"
                   className="scale-150 accent-[#B91879]"
                   {...register("type", { required: true })}
                 />
@@ -265,10 +265,10 @@ export default function CreateResourcePage() {
               <hr className="w-full border-t border-gray-300 mt-3" />
 
               <h2 className="text-base font-semibold mt-6 mb-6">
-                Información adicional
+                Informació addicional
               </h2>
               <h2 className="text-sm text-black font-medium mt-2 mb-2">
-                Descripción
+                Descripció
               </h2>
               <FormInput
                 id="description"
