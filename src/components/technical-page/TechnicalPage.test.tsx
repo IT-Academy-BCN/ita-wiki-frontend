@@ -19,18 +19,16 @@ describe("TechnicalPage", () => {
     render(
       <MemoryRouter>
         <TechnicalPage />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
-    expect(
-      screen.getByText("← Tornar a Proves Tècniques")
-    ).toBeInTheDocument();
+    expect(screen.getByText("← Tornar a Proves Tècniques")).toBeInTheDocument();
   });
 
   it("renderiza el título principal", () => {
     render(
       <MemoryRouter>
         <TechnicalPage />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     expect(screen.getByText("Cifrado César")).toBeInTheDocument();
   });
@@ -39,7 +37,7 @@ describe("TechnicalPage", () => {
     render(
       <MemoryRouter>
         <TechnicalPage />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     expect(screen.getByText("20 Dic 2024")).toBeInTheDocument();
     expect(screen.getByText("JavaScript")).toBeInTheDocument();
@@ -49,10 +47,10 @@ describe("TechnicalPage", () => {
     render(
       <MemoryRouter>
         <TechnicalPage />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     expect(
-      screen.getByText(/Debes diseñar una función de encriptado/i)
+      screen.getByText(/Debes diseñar una función de encriptado/i),
     ).toBeInTheDocument();
   });
 
@@ -60,7 +58,7 @@ describe("TechnicalPage", () => {
     render(
       <MemoryRouter>
         <TechnicalPage />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     expect(screen.getByText(/cifrar\("hola", 3\)/i)).toBeInTheDocument();
   });
