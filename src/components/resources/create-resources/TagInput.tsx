@@ -97,7 +97,7 @@ const TagInput: React.FC<TagInputProps> = ({
           setFilteredTags([]);
         }
       } else {
-        console.error("El valor ingresado no es válido.");
+        console.error("El valor introduït no és vàlid.");
       }
     }
   };
@@ -145,7 +145,7 @@ const TagInput: React.FC<TagInputProps> = ({
           onBlur={() => {
             setIsFocused(false);
           }}
-          placeholder="Escribe un tag..."
+          placeholder="Escriu una etiqueta..."
           className="w-full border-none outline-none bg-transparent px-2 py-1"
         />
       </div>
