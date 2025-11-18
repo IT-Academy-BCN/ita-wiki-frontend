@@ -1,179 +1,174 @@
 export const TermsAndConditionsData = () => {
   return (
     <section className="text-gray-800">
-      <h2 className="text-2xl font-bold mb-4">Términos y Condiciones de Uso</h2>
+      <h2 className="text-2xl font-bold mb-4">Termes i Condicions d'Ús</h2>
 
       <h3 className="font-semibold mt-6 mb-2">
-        1. Aceptación de las condiciones
+        1. Acceptació de les condicions
       </h3>
       <p className="mb-4">
-        1. El acceso y/o uso de la Wiki atribuye la condición de “Usuario” y
-        supone la aceptación plena de estos términos.
+        1. L'accés i/o ús de la Wiki atorga la condició d’“Usuari” i suposa
+        l'acceptació plena d’aquests termes.
       </p>
 
-      <h3 className="font-semibold mt-6 mb-2">
-        2. Naturaleza de los contenidos
-      </h3>
+      <h3 className="font-semibold mt-6 mb-2">2. Naturalesa dels continguts</h3>
       <p className="mb-2">
-        Los Usuarios comparten únicamente enlaces externos; no se permite la
-        carga directa de contenidos protegidos por derechos de autor.
+        Els Usuaris comparteixen únicament enllaços externs; no es permet la
+        càrrega directa de continguts protegits per drets d'autor.
       </p>
       <p className="mb-4">
-        La Academia no edita ni modera previamente los enlaces publicados.
+        L'Acadèmia no edita ni modera prèviament els enllaços publicats.
       </p>
 
-      <h3 className="font-semibold mt-6 mb-2">3. Registro y acceso</h3>
+      <h3 className="font-semibold mt-6 mb-2">3. Registre i accés</h3>
       <p className="mb-2">
-        El alta está limitada a estudiantes y personal docente de la Academia.
+        L'alta està limitada a estudiants i personal docent de l'Acadèmia.
       </p>
-      <p className="mb-4">Las credenciales son personales e intransferibles.</p>
+      <p className="mb-4">Les credencials són personals i intransferibles.</p>
 
-      <h3 className="font-semibold mt-6 mb-2">4. Prohibiciones específicas</h3>
+      <h3 className="font-semibold mt-6 mb-2">4. Prohibicions específiques</h3>
       <ul className="list-disc list-inside mb-4">
         <li>
-          Publicar enlaces a contenidos ilícitos, difamatorios, violentos,
-          discriminatorios o que infrinjan derechos de terceros.
+          Publicar enllaços a continguts il·legals, difamatoris, violents,
+          discriminadors o que infringeixin drets de tercers.
         </li>
         <li>
-          Realizar spam o cualquier uso que dificulte el normal funcionamiento
-          de la Wiki.
+          Realitzar spam o qualsevol ús que dificulti el funcionament normal de
+          la Wiki.
         </li>
       </ul>
 
-      <h3 className="font-semibold mt-6 mb-2">5. Co-responsabilidad</h3>
+      <h3 className="font-semibold mt-6 mb-2">5. Co-responsabilitat</h3>
       <p className="mb-4">
-        El Usuario se compromete a comprobar la legitimidad y licitud de los
-        enlaces que comparta, actuando co-responsablemente con la Academia para
-        mantener un entorno seguro y respetuoso.
+        L'Usuari es compromet a comprovar la legitimitat i legalitat dels
+        enllaços que comparteixi, actuant co-responsablement amb l'Acadèmia per
+        mantenir un entorn segur i respectuós.
       </p>
 
       <h2 className="text-2xl font-bold mt-8 mb-4">
-        Política de Privacidad (RGPD / LOPDGDD)
+        Política de Privacitat (RGPD / LOPDGDD)
       </h2>
 
-      <h3 className="font-semibold mt-6 mb-2">Datos recogidos:</h3>
+      <h3 className="font-semibold mt-6 mb-2">Dades recollides:</h3>
       <p className="mb-4">
-        Nombre, apellidos, dirección de correo institucional y registros de
-        actividad (logs).
+        Nom, cognoms, adreça de correu institucional i registres d'activitat
+        (logs).
       </p>
 
-      <h3 className="font-semibold mt-6 mb-2">Finalidad:</h3>
+      <h3 className="font-semibold mt-6 mb-2">Finalitat:</h3>
       <p className="mb-4">
-        Gestión de cuentas de usuario y trazabilidad de las contribuciones.
+        Gestió de comptes d'usuari i traçabilitat de les contribucions.
       </p>
 
       <h3 className="font-semibold mt-6 mb-2">Base jurídica:</h3>
       <p className="mb-4">
-        Relación contractual (art. 6.1.b RGPD) y obligación legal (art. 6.1.c
+        Relació contractual (art. 6.1.b RGPD) i obligació legal (art. 6.1.c
         RGPD).
       </p>
 
-      <h3 className="font-semibold mt-6 mb-2">Cesiones / Encargados:</h3>
+      <h3 className="font-semibold mt-6 mb-2">Cessions / Encàrrecs:</h3>
       <p className="mb-4">
-        Proveedores de alojamiento y servicios tecnológicos, con los contratos
-        de encargo correspondientes.
+        Proveïdors d'allotjament i serveis tecnològics, amb els contractes
+        d'encàrrec corresponents.
       </p>
 
-      <h3 className="font-semibold mt-6 mb-2">Conservación:</h3>
+      <h3 className="font-semibold mt-6 mb-2">Conservació:</h3>
       <p className="mb-4">
-        Mientras la cuenta esté activa y, tras la baja, el plazo necesario para
-        atender posibles responsabilidades (máx. 5 años).
+        Mentre el compte estigui actiu i, després de la baixa, el termini
+        necessari per atendre possibles responsabilitats (màx. 5 anys).
       </p>
 
-      <h3 className="font-semibold mt-6 mb-2">Derechos:</h3>
+      <h3 className="font-semibold mt-6 mb-2">Drets:</h3>
       <p className="mb-4">
-        Acceder, rectificar, suprimir, limitar u oponerse al tratamiento y
-        portabilidad; reclamación ante la AEPD.
+        Accedir, rectificar, suprimir, limitar o oposar-se al tractament i
+        portabilitat; reclamació davant l’AEPD.
       </p>
 
-      <h3 className="font-semibold mt-6 mb-2">Medidas de seguridad:</h3>
+      <h3 className="font-semibold mt-6 mb-2">Mesures de seguretat:</h3>
       <p className="mb-4">
-        Cifrado de contraseñas, control de accesos y auditorías periódicas.
+        Xifrat de contrasenyes, control d'accessos i auditories periòdiques.
       </p>
 
       <h2 className="text-2xl font-bold mt-8 mb-4">Política de Cookies</h2>
       <p className="mb-4">
-        La Wiki utiliza únicamente cookies técnicas imprescindibles para la
-        autenticación y el mantenimiento de sesión. No se emplean cookies
-        analíticas ni publicitarias. Al acceder y continuar navegando, el
-        Usuario consiente su uso.
+        La Wiki utilitza únicament cookies tècniques imprescindibles per a
+        l'autenticació i el manteniment de sessió. No s'empren cookies
+        analítiques ni publicitàries. En accedir i continuar navegant, l'Usuari
+        consenteix el seu ús.
       </p>
 
       <h2 className="text-2xl font-bold mt-8 mb-4">
-        Política de Enlaces y Exención de Responsabilidad
+        Política d'Enllaços i Exempció de Responsabilitat
       </h2>
 
-      <h3 className="font-semibold mt-6 mb-2">Responsabilidad limitada</h3>
+      <h3 className="font-semibold mt-6 mb-2">Responsabilitat limitada</h3>
       <p className="mb-4">
-        La Academia no controla los contenidos enlazados y, por tanto, no asume
-        responsabilidad por la disponibilidad, legalidad o veracidad de dichos
-        destinos externos.
+        L'Acadèmia no controla els continguts enllaçats i, per tant, no assumeix
+        responsabilitat per la disponibilitat, legalitat o veracitat d'aquests
+        destinacions externes.
       </p>
 
-      <h3 className="font-semibold mt-6 mb-2">Notificación de infracciones</h3>
+      <h3 className="font-semibold mt-6 mb-2">Notificació d'infraccions</h3>
       <p className="mb-4">
-        Cualquier persona que detecte un enlace ilícito o lesivo puede
-        comunicarlo a través de [correo de abuso], indicando: URL, motivo de la
-        denuncia y datos de contacto.
+        Qualsevol persona que detecti un enllaç il·legal o perjudicial pot
+        comunicar-ho a través de [correu d'abús], indicant: URL, motiu de la
+        denúncia i dades de contacte.
       </p>
 
       <h3 className="font-semibold mt-6 mb-2">Retirada expeditiva</h3>
       <p className="mb-4">
-        Previa verificación, la Academia procederá a la despublicación del
-        enlace en un plazo razonable.
+        Previa verificació, l'Acadèmia procedirà a la despublicació de l'enllaç
+        en un termini raonable.
       </p>
 
       <h2 className="text-2xl font-bold mt-8 mb-4">
-        Normas de Participación (“Código de Conducta”)
+        Normes de Participació (“Codi de Conducta”)
       </h2>
       <ul className="list-disc list-inside mb-4">
-        <li>Respeto y cortesía en los comentarios y resúmenes de enlace.</li>
-        <li>Uso de títulos descriptivos y aportación de contexto educativo.</li>
-        <li>No duplicar recursos existentes; buscar antes de publicar.</li>
+        <li>Respecte i cortesia en els comentaris i resums d'enllaços.</li>
+        <li>Ús de títols descriptius i aportació de context educatiu.</li>
+        <li>No duplicar recursos existents; buscar abans de publicar.</li>
+        <li>Etiquetar els enllaços amb la categoria/eina/curs corresponent.</li>
         <li>
-          Etiquetar los enlaces con la categoría/herramienta/curso
-          correspondiente.
-        </li>
-        <li>
-          Abstenerse de compartir material que requiera licencias no
-          autorizadas.
+          Abstindre's de compartir material que requereixi llicències no
+          autoritzades.
         </li>
       </ul>
 
-      <h2 className="text-2xl font-bold mt-8 mb-4">Propiedad Intelectual</h2>
+      <h2 className="text-2xl font-bold mt-8 mb-4">Propietat Intel·lectual</h2>
       <p className="mb-4">
-        Los textos propios de la Wiki (documentación, guías internas, etc.) se
-        publican, salvo indicación en contrario, bajo licencia Creative Commons
-        Reconocimiento-CompartirIgual 4.0 Internacional (CC BY-SA 4.0).
+        Els textos propis de la Wiki (documentació, guies internes, etc.) es
+        publiquen, llevat indicació en contrari, sota llicència Creative Commons
+        Reconeixement-CompartirIgual 4.0 Internacional (CC BY-SA 4.0).
       </p>
       <p className="mb-4">
-        Los enlaces no transfieren derechos sobre las obras enlazadas; los
-        titulares conservan todas sus facultades.
+        Els enllaços no transfereixen drets sobre les obres enllaçades; els
+        titulars conserven totes les seves facultats.
       </p>
 
       <h2 className="text-2xl font-bold mt-8 mb-4">
-        Procedimiento de “Notificación y Retirada” (Notice & Takedown)
+        Procediment de “Notificació i Retirada” (Notice & Takedown)
       </h2>
       <ul className="list-disc list-inside mb-4">
         <li>
-          Comunicación escrita con los datos del reclamante, identificación del
-          enlace controvertido y fundamento jurídico de la infracción alegada.
+          Comunicació escrita amb les dades del reclamant, identificació de
+          l'enllaç controvertit i fonament jurídic de la infracció al·legada.
         </li>
-        <li>Evaluación preliminar en un máximo de 72 horas hábiles.</li>
-        <li>Retirada o mantenimiento motivado del enlace.</li>
-        <li>Derecho de réplica del usuario que lo publicó.</li>
+        <li>Avaluació preliminar en un màxim de 72 hores hàbils.</li>
+        <li>Retirada o manteniment motivat de l'enllaç.</li>
+        <li>Dret de rèplica de l'usuari que el va publicar.</li>
       </ul>
 
       <h2 className="text-2xl font-bold mt-8 mb-4">
-        Limitación de Responsabilidad
+        Limitació de Responsabilitat
       </h2>
       <ul className="list-disc list-inside mb-4">
         <li>
-          Falta de disponibilidad de la plataforma por causas técnicas o de
-          mantenimiento.
+          Falta de disponibilitat de la plataforma per causes tècniques o de
+          manteniment.
         </li>
-        <li>Uso indebido por parte de los Usuarios.</li>
-        <li>Contenidos de terceros accesibles a través de enlaces.</li>
+        <li>Ús indegut per part dels Usuaris.</li>
+        <li>Continguts de tercers accessibles a través d'enllaços.</li>
       </ul>
     </section>
   );

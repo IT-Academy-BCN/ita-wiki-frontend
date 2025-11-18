@@ -36,14 +36,14 @@ function PdfUploadComponent({ onFileSelect }: PdfUploadComponentProps) {
     const isSizeOk = file.size <= maxPdfSize;
 
     if (!isPdf) {
-      alert("Por favor selecciona un archivo PDF.");
+      alert("Si us plau, selecciona un fitxer PDF.");
       resetState();
       return;
     }
 
     if (!isSizeOk) {
       alert(
-        "El archivo elegido es demasiado pesado. Puedes subir archivos de hasta 5MB.",
+        "El fitxer triat és massa gran. Pots pujar fitxers de fins a 5 MB.",
       );
       resetState();
       return;
@@ -70,7 +70,7 @@ function PdfUploadComponent({ onFileSelect }: PdfUploadComponentProps) {
               className={`${isLoading ? "text-white" : "text-primary"} mr-1`}
             />
           )}
-          {fileName ? fileName : "No file selected"}
+          {fileName ? fileName : "Cap fitxer seleccionat"}
         </span>
 
         <div className="ml-2">
@@ -85,7 +85,7 @@ function PdfUploadComponent({ onFileSelect }: PdfUploadComponentProps) {
               onClick={handleClick}
               className="p-3 bg-primary text-white text-sm rounded-[12px]"
             >
-              Browse
+              Cerca
             </button>
           )}
         </div>

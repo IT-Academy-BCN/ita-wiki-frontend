@@ -6,10 +6,10 @@ describe("SearchComponent", () => {
   it("debe renderizar el input y el ícono", () => {
     render(<SearchComponent onSearch={() => {}} resetTrigger="" />);
 
-    const input = screen.getByPlaceholderText(/buscar recurso/i);
+    const input = screen.getByPlaceholderText(/cercar recurs/i);
     expect(input).toBeInTheDocument();
 
-    const icon = screen.getByAltText(/buscar/i);
+    const icon = screen.getByAltText(/cerca/i);
     expect(icon).toBeInTheDocument();
   });
 
@@ -17,7 +17,7 @@ describe("SearchComponent", () => {
     const mockOnSearch = vi.fn();
     render(<SearchComponent onSearch={mockOnSearch} resetTrigger="" />);
 
-    const input = screen.getByPlaceholderText(/buscar recurso/i);
+    const input = screen.getByPlaceholderText(/cercar recurs/i);
     fireEvent.change(input, { target: { value: "React" } });
 
     expect(input).toHaveValue("React");
@@ -30,7 +30,7 @@ describe("SearchComponent", () => {
       <SearchComponent onSearch={mockOnSearch} resetTrigger="initial" />,
     );
 
-    const input = screen.getByPlaceholderText(/buscar recurso/i);
+    const input = screen.getByPlaceholderText(/cercar recurs/i);
     fireEvent.change(input, { target: { value: "React" } });
     expect(input).toHaveValue("React");
 
