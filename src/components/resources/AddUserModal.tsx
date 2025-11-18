@@ -71,7 +71,7 @@ export const AddUsersModal: React.FC<AddUsersModalProps> = ({
               type="text"
               id="username"
               className="w-full px-3 py-2 border border-gray-300 rounded-md"
-              placeholder="Ingrese su ID"
+              placeholder="Ingresi el seu ID"
               value={githubId}
               onChange={(e) => setGithubId(e.target.value)}
               required
@@ -92,7 +92,7 @@ export const AddUsersModal: React.FC<AddUsersModalProps> = ({
               onChange={(e) => setSelectedRole(e.target.value)}
               required
             >
-              <option value="">Seleccioni el seu ID</option>
+              <option value="">Seleccioni el seu role</option>
               {availableRoles.map((role) => (
                 <option key={role} value={role}>
                   {role}

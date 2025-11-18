@@ -83,7 +83,7 @@ export const ResourcesList: FC<ResourcesListProps> = ({
           <div className="text-center py-8 text-gray-500">
             {categoryFilteredResources.length === 0
               ? "No hi ha recursos disponibles per a aquesta categoria."
-              : "No s'han trobat recursos que coincideixin amb la teva cerca."}
+              : "No s'han trobat recursos que coincideixin amb la cerca."}
           </div>
         </div>
       ) : (
