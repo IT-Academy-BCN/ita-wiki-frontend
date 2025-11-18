@@ -59,13 +59,13 @@ export const ResourcesList: FC<ResourcesListProps> = ({
   }, [sortedResources, searchTerm]);
 
   if (showLoader) {
-    return <LoadingImage text="Cargando recursos..." />;
+    return <LoadingImage text="Carregant recursos..." />;
   }
   // Early return if no resources
   if (!resources?.length) {
     return (
       <div className="text-center py-8 text-gray-500">
-        No hay recursos disponibles.
+        No hi ha recursos disponibles.
       </div>
     );
   }
@@ -82,8 +82,8 @@ export const ResourcesList: FC<ResourcesListProps> = ({
         <div className="flex flex-col gap-2 py-8">
           <div className="text-center py-8 text-gray-500">
             {categoryFilteredResources.length === 0
-              ? "No hay recursos disponibles para esta categoría."
-              : "No se encontraron recursos que coincidan con tu búsqueda."}
+              ? "No hi ha recursos disponibles per a aquesta categoria."
+              : "No s'han trobat recursos que coincideixin amb la cerca."}
           </div>
         </div>
       ) : (
