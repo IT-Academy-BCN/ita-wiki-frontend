@@ -11,18 +11,18 @@ vi.mock("react-router", () => ({
 describe("TechnicalTestForm UI", () => {
   it("renders heading and back link", () => {
     render(<TechnicalTestForm />);
-    expect(screen.getByText("Nueva prueba técnica")).toBeInTheDocument();
-    expect(screen.getByText("Volver a pruebas técnicas")).toBeInTheDocument();
+    expect(screen.getByText("Nova prova tècnica")).toBeInTheDocument();
+    expect(screen.getByText("Tornar a proves tècniques")).toBeInTheDocument();
   });
 
   it("renders title input", () => {
     render(<TechnicalTestForm />);
-    expect(screen.getByText("Título *")).toBeInTheDocument();
+    expect(screen.getByText("Títol *")).toBeInTheDocument();
   });
 
   it("renders language selection buttons", () => {
     render(<TechnicalTestForm />);
-    expect(screen.getByText("Lenguaje *")).toBeInTheDocument();
+    expect(screen.getByText("Llenguatge *")).toBeInTheDocument();
     expect(screen.getAllByRole("button")).toEqual(
       expect.arrayContaining([expect.objectContaining({})]),
     );
@@ -30,14 +30,14 @@ describe("TechnicalTestForm UI", () => {
 
   it("renders content type toggle buttons", () => {
     render(<TechnicalTestForm />);
-    expect(screen.getByRole("button", { name: "Texto" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Archivo" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Text" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Fitxer" })).toBeInTheDocument();
   });
 
   it("renders Cancel and Publicar buttons", () => {
     render(<TechnicalTestForm />);
     expect(
-      screen.getByRole("button", { name: "Cancelar" }),
+      screen.getByRole("button", { name: "Cancel·lar" }),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: "Publicar" }),
