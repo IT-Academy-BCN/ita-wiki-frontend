@@ -18,7 +18,7 @@ const BookmarksPage: FC = () => {
 
   return (
     <>
-      <PageTitle title="Recursos guardats a la teva llista de lectura" />
+      <PageTitle title="Recursos desats a la teva llista de lectura" />
       {isLoading ? (
         <div className="w-full max-w-screen-xl px-4 mx-auto py-10 text-center">
           Obtenint els recursos...

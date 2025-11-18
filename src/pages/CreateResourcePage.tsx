@@ -115,7 +115,7 @@ export default function CreateResourcePage() {
               className="text-md font-medium text-primary flex items-center gap-2 cursor-pointer hover:opacity-80"
             >
               <img className="w-4 h-4" src={arrowLeft} alt="Arrow Left" />
-              <span>Tornar als recursos</span>
+              <span>Tornar a recursos</span>
             </button>
             <h1 className="text-[26px] font-black ">Nou recurs</h1>
           </div>
