@@ -13,8 +13,8 @@ interface ContentTypeBadgeProps {
 }
 
 const iconMap: Record<ContentType, string> = {
-  Video: VideoIcon,
-  Cursos: CourseIcon,
+  Vídeo: VideoIcon,
+  Curs: CourseIcon,
   Blog: BlogIcon,
 };
 

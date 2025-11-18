@@ -28,6 +28,6 @@ describe("FilterResources Component", () => {
 
     render(<FilterResources {...mockProps} />);
 
-    expect(screen.getByText("No hay temas disponibles.")).toBeInTheDocument();
+    expect(screen.getByText("No hi ha temes disponibles.")).toBeInTheDocument();
   });
 });

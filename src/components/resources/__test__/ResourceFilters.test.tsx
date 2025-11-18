@@ -43,7 +43,7 @@ describe("ResourcesFilters", () => {
   it("renders filter headings", () => {
     render(<ResourcesFilters />);
     expect(screen.getByText("Filtros")).toBeInTheDocument();
-    expect(screen.getByText("Lenguaje")).toBeInTheDocument();
+    expect(screen.getByText("Llenguatge")).toBeInTheDocument();
     expect(screen.getByText("Tipo")).toBeInTheDocument();
   });
 

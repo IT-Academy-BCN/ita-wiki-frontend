@@ -120,7 +120,7 @@ test("bookmark icon is not clickable when user role has no permission", () => {
   );
 
   const bookmarkContainer = screen.getByTitle(
-    "No tienes permiso para guardar recursos. Contacta con un admin.",
+    "No tens permisos per desar recursos. Contacta amb un admin.",
   );
   expect(bookmarkContainer.className).toContain("cursor-not-allowed");
   bookmarkContainer.click();
