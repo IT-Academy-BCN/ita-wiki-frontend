@@ -7,7 +7,7 @@ const useTechnicalTests = () => {
   const [error, setError] = useState<Error | null>(null);
 
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000/api";
-  const API_URL_TECHNICAL_TESTS = `${API_URL}/technical-tests`;
+  const API_URL_TECHNICAL_TESTS = `${API_URL}technical-tests`;
 
   useEffect(() => {
     const fetchData = async () => {
