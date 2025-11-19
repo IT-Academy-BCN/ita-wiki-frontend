@@ -5,7 +5,7 @@ import { IntResource } from "../types";
 type MinimalResource = Pick<IntResource, "id" | "title" | "type">;
 
 const mockResources: MinimalResource[] = [
-  { id: 1, title: "Recurso 1", type: "Vídeo" },
+  { id: 1, title: "Recurso 1", type: "Video" },
   { id: 2, title: "Recurso 2", type: "Blog" },
 ];
 
