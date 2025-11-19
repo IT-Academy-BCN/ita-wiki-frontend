@@ -16,8 +16,8 @@ type EndPoints =
 
 const END_POINTS = {
   resources: {
-    lists: "resources/" as EndPoints,
-    post: "v2/resources/" as EndPoints,
+    lists: "resources" as EndPoints,
+    post: "resources" as EndPoints,
   },
   bookmarks: {
     get: "bookmarks" as EndPoints,
