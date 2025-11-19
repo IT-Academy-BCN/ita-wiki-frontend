@@ -6,7 +6,6 @@ import FormInput from "../components/resources/create-resources/FormInput";
 import { createResource } from "../api/endPointResources";
 import { toast } from "sonner";
 import ButtonComponent from "../components/atoms/ButtonComponent";
-import { useUser } from "../hooks/useUser";
 import PageTitle from "../components/ui/PageTitle";
 import TagInput from "../components/resources/create-resources/TagInput";
 import { useState, useCallback } from "react";
@@ -14,10 +13,11 @@ import arrowLeft from "../assets/arrow-left.svg";
 import { useNavigate } from "react-router";
 import Container from "../components/ui/Container";
 import { asideContent } from "../components/Layout/aside/asideContent";
+import { useResources } from "../context/ResourcesContext";
 
 export default function CreateResourcePage() {
-  const { user } = useUser();
   const navigate = useNavigate();
+  const { refreshResources } = useResources();
 
   const {
     register,
@@ -61,29 +61,30 @@ export default function CreateResourcePage() {
   };
 
   const onSubmit = async (data: Partial<IntResource>) => {
-    // Cambio nombres para ids
-    let tagsWithIds;
-    if (data.tags && data.tags.length) {
-      tagsWithIds = [];
-      data.tags.forEach((tag) => {
-        tagsWithIds.push(tag.id);
-      });
-    }
+    // TODO - Fix Tags management
+    // let tagsWithIds;
+    // if (data.tags && data.tags.length) {
+    //   tagsWithIds = [];
+    //   data.tags.forEach((tag) => {
+    //     tagsWithIds.push(tag.id);
+    //   });
+    // }
 
-    // todo manual porque si no typescript se pone a gritar
-    const resourceWithGithubId = {
+    const newResource = {
+      // TODO - Remove hardcoded values
       title: data.title,
       description: data.description,
       url: data.url,
       category: data.category,
-      tags: tagsWithIds,
+      tags: ["intermedio"],
       type: data.type,
-      github_id: user?.id,
+      github_id: 39952,
     };
 
     try {
-      await createResource(resourceWithGithubId);
+      await createResource(newResource);
       toast.success("¡Recurso creado con éxito!");
+      refreshResources();
       setTimeout(() => {
         navigate(`/resources/${data?.category}`);
       }, 1000);
@@ -100,7 +101,7 @@ export default function CreateResourcePage() {
     if (window.history.length > 2) {
       navigate(-1);
     } else {
-      navigate("/resources/node");
+      navigate("/resources/");
     }
   };
 
@@ -225,7 +226,7 @@ export default function CreateResourcePage() {
                 <input
                   type="radio"
                   id="curso"
-                  value="Curs"
+                  value="Cursos"
                   className="scale-150 accent-[#B91879]"
                   {...register("type", { required: true })}
                 />
