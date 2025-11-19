@@ -21,9 +21,7 @@ describe("TechnicalPage", () => {
         <TechnicalPage />
       </MemoryRouter>,
     );
-    expect(
-      screen.getByText("← Tornar a Proves Tècniques"),
-    ).toBeInTheDocument();
+    expect(screen.getByText("← Tornar a Proves Tècniques")).toBeInTheDocument();
   });
 
   it("renderitza el títol principal", () => {
