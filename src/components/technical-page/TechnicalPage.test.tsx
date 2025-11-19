@@ -15,46 +15,48 @@ vi.mock("react-router", async () => {
 });
 
 describe("TechnicalPage", () => {
-  it("renderiza el botón de volver", () => {
-    render(
-      <MemoryRouter>
-        <TechnicalPage />
-      </MemoryRouter>,
-    );
-    expect(screen.getByText("← Tornar a Proves Tècniques")).toBeInTheDocument();
-  });
-
-  it("renderiza el título principal", () => {
-    render(
-      <MemoryRouter>
-        <TechnicalPage />
-      </MemoryRouter>,
-    );
-    expect(screen.getByText("Cifrado César")).toBeInTheDocument();
-  });
-
-  it("renderiza la fecha y lenguaje", () => {
-    render(
-      <MemoryRouter>
-        <TechnicalPage />
-      </MemoryRouter>,
-    );
-    expect(screen.getByText("20 Dic 2024")).toBeInTheDocument();
-    expect(screen.getByText("JavaScript")).toBeInTheDocument();
-  });
-
-  it("renderiza parte del contenido descriptivo", () => {
+  it("renderitza el botó de tornar", () => {
     render(
       <MemoryRouter>
         <TechnicalPage />
       </MemoryRouter>,
     );
     expect(
-      screen.getByText(/Debes diseñar una función de encriptado/i),
+      screen.getByText("← Tornar a Proves Tècniques"),
     ).toBeInTheDocument();
   });
 
-  it("renderiza los ejemplos finales", () => {
+  it("renderitza el títol principal", () => {
+    render(
+      <MemoryRouter>
+        <TechnicalPage />
+      </MemoryRouter>,
+    );
+    expect(screen.getByText("Xifratge Cèsar")).toBeInTheDocument();
+  });
+
+  it("renderitza la data i llenguatge", () => {
+    render(
+      <MemoryRouter>
+        <TechnicalPage />
+      </MemoryRouter>,
+    );
+    expect(screen.getByText("20 Des 2024")).toBeInTheDocument();
+    expect(screen.getByText("JavaScript")).toBeInTheDocument();
+  });
+
+  it("renderitza part del contingut descriptiu", () => {
+    render(
+      <MemoryRouter>
+        <TechnicalPage />
+      </MemoryRouter>,
+    );
+    expect(
+      screen.getByText(/Has de dissenyar una funció d'encriptació/i),
+    ).toBeInTheDocument();
+  });
+
+  it("renderitza els exemples finals", () => {
     render(
       <MemoryRouter>
         <TechnicalPage />
