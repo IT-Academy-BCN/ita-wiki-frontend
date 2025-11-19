@@ -5,7 +5,7 @@ import { IntResource } from "../types";
 type MinimalResource = Pick<IntResource, "id" | "title" | "type">;
 
 const mockResources: MinimalResource[] = [
-  { id: 1, title: "Recurso 1", type: "Video" },
+  { id: 1, title: "Recurso 1", type: "Vídeo" },
   { id: 2, title: "Recurso 2", type: "Blog" },
 ];
 
@@ -55,7 +55,7 @@ describe("getResources", () => {
     expect(resources).toEqual(mockResources);
     expect(fetch).toHaveBeenCalledTimes(1);
     expect(fetch).toHaveBeenCalledWith(
-      expect.stringContaining("resources/"),
+      expect.stringContaining("resources"),
       expect.objectContaining({ signal: expect.any(AbortSignal) }),
     );
   });

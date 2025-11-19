@@ -1,1 +1,1 @@
-export const resourceTypes = ["Vídeo", "Curs", "Blog"] as const;
+export const resourceTypes = ["Video", "Cursos", "Blog"] as const;
