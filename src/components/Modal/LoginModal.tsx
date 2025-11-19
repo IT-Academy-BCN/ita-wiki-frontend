@@ -28,13 +28,13 @@ const LoginModal: React.FC<ModalProps> = ({ visible, onClose }) => {
           />
         </button>
         <h2 className="text-xl font-semibold mb-6 mt-5 mx-2">
-          Para acceder a esta sección necesitas iniciar sesión
+          Per accedir a aquesta secció cal iniciar sessió
         </h2>
         <button
           onClick={onClose}
           className="bg-primary text-white px-6 py-3 rounded-[12px] mb-4 mt-2"
         >
-          De acuerdo
+          D'acord
         </button>
       </div>
     </div>
