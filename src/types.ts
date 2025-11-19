@@ -34,7 +34,19 @@ export interface IntResource {
   like_count?: number;
   bookmark_count?: number;
   comment_count?: number;
-  tags?: Tag[];
+  tags?: Tag[] | string[];
+}
+
+export interface IntCodeConnect {
+  title: string;
+  description: string;
+  techsFront: string[];
+  techsBack: string[];
+  numberDevsFront: number;
+  numberDevsBack: number;
+  time: number;
+  unitTime: string;
+  deadline: "" | string;
 }
 
 export type TypTechnologyResource =

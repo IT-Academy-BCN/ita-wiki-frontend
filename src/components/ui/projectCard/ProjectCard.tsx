@@ -11,7 +11,7 @@ function ProjectCard({ project }: ProjectCardProps) {
   const availableBackend =
     project.backend.positions - project.backend.participants.length;
   return (
-    <div className="flex flex-col border border-gray-500 text-black items-center w-70 sm:w-76 xl:w-82 px-6 rounded-3xl py-7 pb-10">
+    <div className="flex flex-col border scale-95 sm:scale-none border-gray-500 text-black items-center w-70 sm:w-76 xl:w-82 px-6 rounded-3xl py-7 pb-10">
       <div className="w-full">
         <Link to={`/codeconnect/${project.id}`}>
           <h1 className="font-extrabold text-black w-fit hover:text-primary transition-colors duration-300 text-xl text-start">
@@ -19,7 +19,7 @@ function ProjectCard({ project }: ProjectCardProps) {
           </h1>
         </Link>
         <p className="text-sm font-bold text-gray-500 text-start">
-          Duración: {project.duration}
+          Durada: {project.duration}
         </p>
       </div>
       <div className="flex w-full gap-4 mt-5">
@@ -77,9 +77,9 @@ function ProjectCard({ project }: ProjectCardProps) {
         </div>
       </div>
       <div className="w-full">
-        <h2 className="text-sm mt-10 font-bold text-start mb-2">Inscripción</h2>
+        <h2 className="text-sm mt-10 font-bold text-start mb-2">Inscripció</h2>
         <ProgressBar
-          title="Progreso del proyecto"
+          title="Progrés del projecte"
           startDate={project.startDate}
           endDate={project.endDate}
         />
