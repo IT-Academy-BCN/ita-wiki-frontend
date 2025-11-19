@@ -34,7 +34,7 @@ export interface IntResource {
   like_count?: number;
   bookmark_count?: number;
   comment_count?: number;
-  tags?: Tag[];
+  tags?: Tag[] | string[];
 }
 
 export type TypTechnologyResource =
