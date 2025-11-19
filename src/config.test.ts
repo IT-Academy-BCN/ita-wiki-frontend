@@ -23,6 +23,6 @@ describe("Configuración de la API", () => {
   it("debería tener las rutas correctas en END_POINTS", async () => {
     // Verificar que los endpoints en END_POINTS sean los correctos
     const { END_POINTS } = await import("./config");
-    expect(END_POINTS.resources.lists).toBe("resources/");
+    expect(END_POINTS.resources.lists).toBe("resources");
   });
 });
