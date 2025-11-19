@@ -86,7 +86,7 @@ export const TechnicalTestFilter: FC<TechnicalTestFilterProps> = ({
       />
 
       <FilterGroup
-        title="Dificultad"
+        title="Dificultat"
         options={difficulties}
         selectedValues={selectedDifficulties}
         onToggle={handleDifficultyToggle}

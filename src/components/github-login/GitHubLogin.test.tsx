@@ -5,7 +5,7 @@ import { vi } from "vitest";
 describe("Renderizado inicial", () => {
   it("debe renderizar el botón con el texto correcto", () => {
     render(<GitHubLogin />);
-    const texto = screen.getByText(/Sign in with GitHub/i);
+    const texto = screen.getByText(/Inicia sessió amb GitHub/i);
 
     expect(texto).toBeInTheDocument();
   });
@@ -14,7 +14,7 @@ describe("Renderizado inicial", () => {
     const onClickMock = vi.fn();
     render(<GitHubLogin onClick={onClickMock} />);
 
-    const boton = screen.getByText(/Sign in with GitHub/i);
+    const boton = screen.getByText(/Inicia sessió amb GitHub/i);
     boton.click();
 
     expect(onClickMock).toHaveBeenCalled();
