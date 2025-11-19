@@ -5,8 +5,8 @@ import { getUserRole } from "../api/userApi";
 import Container from "../components/ui/Container";
 import resourcesSrc from "../assets/resources-items.svg";
 import technicalSrc from "../assets/technical-item.svg";
-import codeconnectSrc from "../assets/codeconnect-items.svg";
-import rankingSrc from "../assets/ranking-items.svg";
+import codeconnectSrc from "../assets/codeconnect-items.png";
+import rankingSrc from "../assets/ranking-items.png";
 
 export default function HomePage() {
   const { user } = useUserContext();

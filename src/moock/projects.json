@@ -8,8 +8,8 @@
       "logo": "../assets/angular.svg",
       "positions": 3,
       "participants": [
-        { "name": "Natasha", "avatar": "../assets/project-avatar.svg" },
-        { "name": "Roman", "avatar": "../assets/project-avatar4.svg" }
+        { "name": "Natasha", "avatar": "../assets/project-avatar.jpg" },
+        { "name": "Roman", "avatar": "../assets/project-avatar4.jpg" }
       ]
     },
     "backend": {
@@ -30,8 +30,8 @@
       "logo": "../assets/react.svg",
       "positions": 3,
       "participants": [
-        { "name": "Natasha", "avatar": "../assets/project-avatar.svg" },
-        { "name": "Jordi", "avatar": "../assets/project-avatar2.svg" }
+        { "name": "Natasha", "avatar": "../assets/project-avatar.jpg" },
+        { "name": "Jordi", "avatar": "../assets/project-avatar2.jpg" }
       ]
     },
     "backend": {
@@ -39,7 +39,7 @@
       "logo": "../assets/logo-php 1.svg",
       "positions": 4,
       "participants": [
-        { "name": "Aina", "avatar": "../assets/project-avatar3.svg" }
+        { "name": "Aina", "avatar": "../assets/project-avatar3.jpg" }
       ]
     },
     "startDate": "10-12-2025",
@@ -54,8 +54,8 @@
       "logo": "../assets/angular.svg",
       "positions": 2,
       "participants": [
-        { "name": "Natasha", "avatar": "../assets/project-avatar.svg" },
-        { "name": "Roman", "avatar": "../assets/project-avatar4.svg" }
+        { "name": "Natasha", "avatar": "../assets/project-avatar.jpg" },
+        { "name": "Roman", "avatar": "../assets/project-avatar4.jpg" }
       ]
     },
     "backend": {
@@ -76,8 +76,8 @@
       "logo": "../assets/angular.svg",
       "positions": 2,
       "participants": [
-        { "name": "Natasha", "avatar": "../assets/project-avatar.svg" },
-        { "name": "Jordi", "avatar": "../assets/project-avatar2.svg" }
+        { "name": "Natasha", "avatar": "../assets/project-avatar.jpg" },
+        { "name": "Jordi", "avatar": "../assets/project-avatar2.jpg" }
       ]
     },
     "backend": {
@@ -98,8 +98,8 @@
       "logo": "../assets/react.svg",
       "positions": 3,
       "participants": [
-        { "name": "Natasha", "avatar": "../assets/project-avatar.svg" },
-        { "name": "Jordi", "avatar": "../assets/project-avatar2.svg" }
+        { "name": "Natasha", "avatar": "../assets/project-avatar.jpg" },
+        { "name": "Jordi", "avatar": "../assets/project-avatar2.jpg" }
       ]
     },
     "backend": {
@@ -107,7 +107,7 @@
       "logo": "../assets/logo-php 1.svg",
       "positions": 2,
       "participants": [
-        { "name": "Aina", "avatar": "../assets/project-avatar3.svg" }
+        { "name": "Aina", "avatar": "../assets/project-avatar3.jpg" }
       ]
     },
     "startDate": "10-12-2025",
@@ -122,8 +122,8 @@
       "logo": "../assets/angular.svg",
       "positions": 2,
       "participants": [
-        { "name": "Natasha", "avatar": "../assets/project-avatar.svg" },
-        { "name": "Roman", "avatar": "../assets/project-avatar4.svg" }
+        { "name": "Natasha", "avatar": "../assets/project-avatar.jpg" },
+        { "name": "Roman", "avatar": "../assets/project-avatar4.jpg" }
       ]
     },
     "backend": {
@@ -131,7 +131,7 @@
       "logo": "../assets/logo-java 1.svg",
       "positions": 4,
       "participants": [
-        { "name": "Aina", "avatar": "../assets/project-avatar3.svg" }
+        { "name": "Aina", "avatar": "../assets/project-avatar3.jpg" }
       ]
     },
     "startDate": "10-29-2025",
@@ -146,8 +146,8 @@
       "logo": "../assets/react.svg",
       "positions": 4,
       "participants": [
-        { "name": "Natasha", "avatar": "../assets/project-avatar.svg" },
-        { "name": "Jordi", "avatar": "../assets/project-avatar2.svg" }
+        { "name": "Natasha", "avatar": "../assets/project-avatar.jpg" },
+        { "name": "Jordi", "avatar": "../assets/project-avatar2.jpg" }
       ]
     },
     "backend": {
@@ -155,8 +155,8 @@
       "logo": "../assets/logo-php 1.svg",
       "positions": 4,
       "participants": [
-        { "name": "Aina", "avatar": "../assets/project-avatar3.svg" },
-        { "name": "Roman", "avatar": "../assets/project-avatar4.svg" }
+        { "name": "Aina", "avatar": "../assets/project-avatar3.jpg" },
+        { "name": "Roman", "avatar": "../assets/project-avatar4.jpg" }
       ]
     },
     "startDate": "10-12-2025",
@@ -171,8 +171,8 @@
       "logo": "../assets/angular.svg",
       "positions": 3,
       "participants": [
-        { "name": "Natasha", "avatar": "../assets/project-avatar.svg" },
-        { "name": "Aina", "avatar": "../assets/project-avatar3.svg" }
+        { "name": "Natasha", "avatar": "../assets/project-avatar.jpg" },
+        { "name": "Aina", "avatar": "../assets/project-avatar3.jpg" }
       ]
     },
     "backend": {
@@ -180,7 +180,7 @@
       "logo": "../assets/logo-java 1.svg",
       "positions": 3,
       "participants": [
-        { "name": "Roman", "avatar": "../assets/project-avatar4.svg" }
+        { "name": "Roman", "avatar": "../assets/project-avatar4.jpg" }
       ]
     },
     "startDate": "10-29-2025",
@@ -195,8 +195,8 @@
       "logo": "../assets/react.svg",
       "positions": 4,
       "participants": [
-        { "name": "Roman", "avatar": "../assets/project-avatar4.svg" },
-        { "name": "Jordi", "avatar": "../assets/project-avatar2.svg" }
+        { "name": "Roman", "avatar": "../assets/project-avatar4.jpg" },
+        { "name": "Jordi", "avatar": "../assets/project-avatar2.jpg" }
       ]
     },
     "backend": {
@@ -204,8 +204,8 @@
       "logo": "../assets/logo-php 1.svg",
       "positions": 4,
       "participants": [
-        { "name": "Aina", "avatar": "../assets/project-avatar3.svg" },
-        { "name": "Natasha", "avatar": "../assets/project-avatar.svg" }
+        { "name": "Aina", "avatar": "../assets/project-avatar3.jpg" },
+        { "name": "Natasha", "avatar": "../assets/project-avatar.jpg" }
       ]
     },
     "startDate": "10-10-2025",

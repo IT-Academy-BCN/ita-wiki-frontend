@@ -6,9 +6,9 @@ import Container from "../components/ui/Container";
 
 import react from "../assets/react.svg";
 import php from "../assets/logo-php 1.svg";
-import avatar1 from "../assets/project-avatar.svg";
-import avatar2 from "../assets/project-avatar2.svg";
-import avatar3 from "../assets/project-avatar3.svg";
+import avatar1 from "../assets/project-avatar.jpg";
+import avatar2 from "../assets/project-avatar2.jpg";
+import avatar3 from "../assets/project-avatar3.jpg";
 
 const CodeConnectDetails: FC = () => {
   const { title, description, roadmap } = moockData.details[0];
