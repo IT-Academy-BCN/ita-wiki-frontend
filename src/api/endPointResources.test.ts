@@ -55,7 +55,7 @@ describe("getResources", () => {
     expect(resources).toEqual(mockResources);
     expect(fetch).toHaveBeenCalledTimes(1);
     expect(fetch).toHaveBeenCalledWith(
-      expect.stringContaining("resources/"),
+      expect.stringContaining("resources"),
       expect.objectContaining({ signal: expect.any(AbortSignal) }),
     );
   });

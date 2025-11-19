@@ -23,11 +23,11 @@ export const TechnicalTestFilter: FC<TechnicalTestFilterProps> = ({
     "2024",
   ]);
   const [selectedDifficulties, setSelectedDifficulties] = useState<string[]>([
-    "Básica",
+    "Bàsica",
   ]);
 
   const years = ["2025", "2024", "2023"];
-  const difficulties = ["Básica", "Intermedia", "Difícil"];
+  const difficulties = ["Bàsica", "Intermèdia", "Difícil"];
   const languages = asideContentForTechnicalTest.map((item) => item.label);
 
   const toggleLanguage = useArrayToggle(setSelectedLanguages);
@@ -68,25 +68,25 @@ export const TechnicalTestFilter: FC<TechnicalTestFilterProps> = ({
   };
 
   return (
-    <div className="w-1/3 ps-10 pt-4">
-      <h2 className="text-[26px] text-[#282828] font-bold mb-8">Filtros</h2>
+    <div className="md:w-1/3 w-full pt-4">
+      <h2 className="text-[26px] text-[#282828] font-bold mb-8">Filtres</h2>
 
       <FilterGroup
-        title="Lenguaje"
+        title="Llenguatge"
         options={languages}
         selectedValues={selectedLanguages}
         onToggle={handleLanguageToggle}
       />
 
       <FilterGroup
-        title="Año"
+        title="Any"
         options={years}
         selectedValues={selectedYears}
         onToggle={handleYearToggle}
       />
 
       <FilterGroup
-        title="Dificultad"
+        title="Dificultat"
         options={difficulties}
         selectedValues={selectedDifficulties}
         onToggle={handleDifficultyToggle}

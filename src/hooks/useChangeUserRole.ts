@@ -21,14 +21,14 @@ export function useChangeUserRole() {
 
       if (response && response.role) {
         saveUser({ ...user, role: newRole });
-        toast.success(`Rol cambiado a ${newRole}`);
+        toast.success(`Rol canviat a ${newRole}`);
         return true;
       }
 
       return false;
     } catch (error) {
       console.error("Error changing role:", error);
-      toast.error("No se pudo cambiar el rol");
+      toast.error("No s’ha pogut canviar el rol");
       return false;
     } finally {
       setIsChanging(false);

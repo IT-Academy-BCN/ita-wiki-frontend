@@ -30,6 +30,6 @@ describe("ContentTypeBadge", () => {
     // @ts-expect-error: purposely passing invalid type
     render(<ContentTypeBadge type="InvalidType" />);
     expect(screen.queryByRole("img")).not.toBeInTheDocument();
-    expect(screen.queryByText("InvalidType")).toBeInTheDocument();
+    expect(screen.getByText("InvalidType")).toBeInTheDocument();
   });
 });

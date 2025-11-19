@@ -20,10 +20,10 @@ function ProjectList({
 
   return (
     <>
-      <h2 className="text-2xl font-bold py-6 text-black mb-6">
+      <h2 className="text-2xl font-bold  py-4 sm:py-6 text-black sm:mb-4">
         Llista de projectes
       </h2>
-      <div className="grid gap-10 grid-cols-[repeat(auto-fill,minmax(300px,1fr))] w-full">
+      <div className="grid justify-center ml-3 sm:ml-0 gap-1 sm:gap-10 grid-cols-[repeat(auto-fill,minmax(300px,1fr))] w-full">
         {projects.map((project) => (
           <ProjectCard
             key={project.id}

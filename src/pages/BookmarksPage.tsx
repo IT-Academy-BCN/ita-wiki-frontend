@@ -18,10 +18,10 @@ const BookmarksPage: FC = () => {
 
   return (
     <>
-      <PageTitle title="Recursos guardados en tu lista de lectura" />
+      <PageTitle title="Recursos desats a la teva llista de lectura" />
       {isLoading ? (
         <div className="w-full max-w-screen-xl px-4 mx-auto py-10 text-center">
-          Obteniendo los recursos...
+          Obtenint els recursos...
         </div>
       ) : (
         <div className="w-full max-w-screen-xl px-4 mx-auto grow lg:flex-1 gap-x-6 sm:bg-white lg:bg-transparent">
@@ -29,7 +29,7 @@ const BookmarksPage: FC = () => {
             <div className="lg:flex-1 overflow-y-auto h-[calc(100vh-90px)] px-4 py-6 lg:pl-8 xl:pl-6">
               <div className="flex flex-col justify-between items-center">
                 <h2 className="text-[26px] font-bold text-center">
-                  Tu lista de lectura
+                  La teva llista de lectura
                 </h2>
                 {bookmarkedResources.length > 0 ? (
                   <ListBookmarks
@@ -44,10 +44,11 @@ const BookmarksPage: FC = () => {
                       <Bookmark className="h-5 w-5 text-yellow-500 mr-3" />
                       <div>
                         <h3 className="text-lg font-medium text-yellow-800">
-                          No has agregado ningún recurso a tu lista de lectura
+                          No has afegit cap recurs a la teva llista de lectura
                         </h3>
                         <p className="text-yellow-700 mt-1">
-                          Agrega recursos a tu lista de lectura para verlos aquí
+                          Afegeix recursos a la teva llista de lectura per
+                          veure'ls aquí
                         </p>
                       </div>
                     </div>

@@ -14,15 +14,15 @@ vi.mock("../Layout/aside/asideContent", () => ({
 describe("TechnicalTestFilter", () => {
   it("renders filter title", () => {
     render(<TechnicalTestFilter />);
-    expect(screen.getByText("Filtros")).toBeInTheDocument();
+    expect(screen.getByText("Filtres")).toBeInTheDocument();
   });
 
   it("renders all filter sections", () => {
     render(<TechnicalTestFilter />);
 
-    expect(screen.getByText("Lenguaje")).toBeInTheDocument();
-    expect(screen.getByText("Año")).toBeInTheDocument();
-    expect(screen.getByText("Dificultad")).toBeInTheDocument();
+    expect(screen.getByText("Llenguatge")).toBeInTheDocument();
+    expect(screen.getByText("Any")).toBeInTheDocument();
+    expect(screen.getByText("Dificultat")).toBeInTheDocument();
   });
 
   it("renders language options", () => {
@@ -44,8 +44,8 @@ describe("TechnicalTestFilter", () => {
   it("renders difficulty options", () => {
     render(<TechnicalTestFilter />);
 
-    expect(screen.getByText("Básica")).toBeInTheDocument();
-    expect(screen.getByText("Intermedia")).toBeInTheDocument();
+    expect(screen.getByText("Bàsica")).toBeInTheDocument();
+    expect(screen.getByText("Intermèdia")).toBeInTheDocument();
     expect(screen.getByText("Difícil")).toBeInTheDocument();
   });
 
@@ -65,7 +65,7 @@ describe("TechnicalTestFilter", () => {
     expect(year2024Checkbox).toBeChecked();
 
     // Check default selected difficulty
-    const basicCheckbox = screen.getByLabelText("Básica");
+    const basicCheckbox = screen.getByLabelText("Bàsica");
     expect(basicCheckbox).toBeChecked();
   });
 
@@ -79,7 +79,7 @@ describe("TechnicalTestFilter", () => {
     expect(mockOnFiltersChange).toHaveBeenCalledWith({
       languages: ["JavaScript", "Java", "Python"],
       years: ["2025", "2024"],
-      difficulties: ["Básica"],
+      difficulties: ["Bàsica"],
     });
   });
 
@@ -93,7 +93,7 @@ describe("TechnicalTestFilter", () => {
     expect(mockOnFiltersChange).toHaveBeenCalledWith({
       languages: ["JavaScript", "Java"],
       years: ["2025", "2024", "2023"],
-      difficulties: ["Básica"],
+      difficulties: ["Bàsica"],
     });
   });
 
@@ -101,13 +101,13 @@ describe("TechnicalTestFilter", () => {
     const mockOnFiltersChange = vi.fn();
     render(<TechnicalTestFilter onFiltersChange={mockOnFiltersChange} />);
 
-    const intermediateCheckbox = screen.getByLabelText("Intermedia");
+    const intermediateCheckbox = screen.getByLabelText("Intermèdia");
     fireEvent.click(intermediateCheckbox);
 
     expect(mockOnFiltersChange).toHaveBeenCalledWith({
       languages: ["JavaScript", "Java"],
       years: ["2025", "2024"],
-      difficulties: ["Básica", "Intermedia"],
+      difficulties: ["Bàsica", "Intermèdia"],
     });
   });
 
@@ -121,7 +121,7 @@ describe("TechnicalTestFilter", () => {
     expect(mockOnFiltersChange).toHaveBeenCalledWith({
       languages: ["Java"], // JavaScript removed
       years: ["2025", "2024"],
-      difficulties: ["Básica"],
+      difficulties: ["Bàsica"],
     });
   });
 

@@ -37,18 +37,18 @@ export const useResourceSort = ({ resources }: UseResourceSortProps) => {
       }
 
       const months: { [key: string]: number } = {
-        enero: 0,
-        febrero: 1,
-        marzo: 2,
+        gener: 0,
+        febrer: 1,
+        març: 2,
         abril: 3,
-        mayo: 4,
-        junio: 5,
-        julio: 6,
-        agosto: 7,
-        septiembre: 8,
+        maig: 4,
+        juny: 5,
+        juliol: 6,
+        agost: 7,
+        setembre: 8,
         octubre: 9,
-        noviembre: 10,
-        diciembre: 11,
+        novembre: 10,
+        desembre: 11,
       };
 
       const regex = /(\d{1,2}) (\w+) de (\d{4})/;

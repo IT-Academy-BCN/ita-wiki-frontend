@@ -106,9 +106,9 @@ const GenericModal: React.FC<GenericModalProps> = ({
           <button
             className="absolute top-6 right-6 hover:opacity-70 transition-opacity focus:outline-none focus:opacity-70 cursor-pointer"
             onClick={onClose}
-            aria-label="Cerrar"
+            aria-label="Tancar"
           >
-            <img src={closeIcon} alt="Cerrar" className="w-[21px] h-[19px]" />
+            <img src={closeIcon} alt="Tancar" className="w-[21px] h-[19px]" />
           </button>
         )}
 

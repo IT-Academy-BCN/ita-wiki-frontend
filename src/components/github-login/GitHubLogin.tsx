@@ -27,7 +27,7 @@ const GitHubLogin: FC<{ onClick?: () => void; isLoading?: boolean }> = ({
               ></path>
             </svg>
           </i>
-          Sign in with GitHub
+          Inicia sessió amb GitHub
         </>
       )}
     </button>

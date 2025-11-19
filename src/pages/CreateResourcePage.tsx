@@ -6,7 +6,6 @@ import FormInput from "../components/resources/create-resources/FormInput";
 import { createResource } from "../api/endPointResources";
 import { toast } from "sonner";
 import ButtonComponent from "../components/atoms/ButtonComponent";
-import { useUser } from "../hooks/useUser";
 import PageTitle from "../components/ui/PageTitle";
 import TagInput from "../components/resources/create-resources/TagInput";
 import { useState, useCallback } from "react";
@@ -14,10 +13,11 @@ import arrowLeft from "../assets/arrow-left.svg";
 import { useNavigate } from "react-router";
 import Container from "../components/ui/Container";
 import { asideContent } from "../components/Layout/aside/asideContent";
+import { useResources } from "../context/ResourcesContext";
 
 export default function CreateResourcePage() {
-  const { user } = useUser();
   const navigate = useNavigate();
+  const { refreshResources } = useResources();
 
   const {
     register,
@@ -61,29 +61,30 @@ export default function CreateResourcePage() {
   };
 
   const onSubmit = async (data: Partial<IntResource>) => {
-    // Cambio nombres para ids
-    let tagsWithIds;
-    if (data.tags && data.tags.length) {
-      tagsWithIds = [];
-      data.tags.forEach((tag) => {
-        tagsWithIds.push(tag.id);
-      });
-    }
+    // TODO - Fix Tags management
+    // let tagsWithIds;
+    // if (data.tags && data.tags.length) {
+    //   tagsWithIds = [];
+    //   data.tags.forEach((tag) => {
+    //     tagsWithIds.push(tag.id);
+    //   });
+    // }
 
-    // todo manual porque si no typescript se pone a gritar
-    const resourceWithGithubId = {
+    const newResource = {
+      // TODO - Remove hardcoded values
       title: data.title,
       description: data.description,
       url: data.url,
       category: data.category,
-      tags: tagsWithIds,
+      tags: ["intermedio"],
       type: data.type,
-      github_id: user?.id,
+      github_id: 39952,
     };
 
     try {
-      await createResource(resourceWithGithubId);
+      await createResource(newResource);
       toast.success("¡Recurso creado con éxito!");
+      refreshResources();
       setTimeout(() => {
         navigate(`/resources/${data?.category}`);
       }, 1000);
@@ -100,13 +101,13 @@ export default function CreateResourcePage() {
     if (window.history.length > 2) {
       navigate(-1);
     } else {
-      navigate("/resources/node");
+      navigate("/resources/");
     }
   };
 
   return (
     <>
-      <PageTitle title="Create Resource" />
+      <PageTitle title="Crear recurs" />
       <Container>
         <div className="md:flex justify-between items-center">
           <div className="flex flex-col gap-3">
@@ -115,9 +116,9 @@ export default function CreateResourcePage() {
               className="text-md font-medium text-primary flex items-center gap-2 cursor-pointer hover:opacity-80"
             >
               <img className="w-4 h-4" src={arrowLeft} alt="Arrow Left" />
-              <span>Volver a recursos</span>
+              <span>Tornar a recursos</span>
             </button>
-            <h1 className="text-[26px] font-black ">Nuevo recurso</h1>
+            <h1 className="text-[26px] font-black ">Nou recurs</h1>
           </div>
           <div className="flex  ">
             <ButtonComponent
@@ -125,7 +126,7 @@ export default function CreateResourcePage() {
               onClick={() => window.history.back()}
               className="min-w-[8rem] max-h-[2.75rem] mr-4"
             >
-              Cancelar
+              Cancel·lar
             </ButtonComponent>
             <ButtonComponent
               type="button"
@@ -141,7 +142,7 @@ export default function CreateResourcePage() {
 
         <div className="flex mt-6 overflow-y-scroll">
           <form onSubmit={handleSubmit(onSubmit)} className="w-full ">
-            <h2 className="text-sm text-black font-medium mb-3">Título</h2>
+            <h2 className="text-sm text-black font-medium mb-3">Títol</h2>
             <FormInput
               id="title"
               placeholder=""
@@ -171,7 +172,7 @@ export default function CreateResourcePage() {
               }}
             />
 
-            <h2 className="text-sm text-black font-medium mb-2">Lenguaje</h2>
+            <h2 className="text-sm text-black font-medium mb-2">Llenguatge</h2>
             <div className="flex flex-wrap gap-3">
               {asideContent.map((cat) => {
                 const IconComponent = cat.icon as unknown as React.FC<
@@ -206,7 +207,7 @@ export default function CreateResourcePage() {
               )}
             </div>
             <h2 className="text-sm text-black font-medium mb-4">
-              Tipo de recurso
+              Tipus de recurs
             </h2>
             <div className="flex justify-start gap-x-10 mb-1">
               <div className="ml-1 flex gap-2 md:text-xl">
@@ -265,10 +266,10 @@ export default function CreateResourcePage() {
               <hr className="w-full border-t border-gray-300 mt-3" />
 
               <h2 className="text-base font-semibold mt-6 mb-6">
-                Información adicional
+                Informació addicional
               </h2>
               <h2 className="text-sm text-black font-medium mt-2 mb-2">
-                Descripción
+                Descripció
               </h2>
               <FormInput
                 id="description"

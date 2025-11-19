@@ -10,8 +10,8 @@ beforeEach(() => {
 describe("PdfUploadComponent", () => {
   it("muestra el texto inicial", () => {
     render(<PdfUploadComponent onFileSelect={() => {}} />);
-    expect(screen.getByText(/no file selected/i)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /browse/i })).toBeInTheDocument();
+    expect(screen.getByText(/Cap fitxer seleccionat/i)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /cerca/i })).toBeInTheDocument();
   });
 
   it("muestra el nombre del archivo PDF tras seleccionarlo", async () => {
@@ -44,7 +44,7 @@ describe("PdfUploadComponent", () => {
     fireEvent.change(input, { target: { files: [file] } });
 
     expect(window.alert).toHaveBeenCalledWith(
-      "Por favor selecciona un archivo PDF.",
+      "Si us plau, selecciona un fitxer PDF.",
     );
   });
   it("lanza alerta si el archivo excede el límite de 5MB", () => {
@@ -64,7 +64,7 @@ describe("PdfUploadComponent", () => {
     fireEvent.change(input, { target: { files: [largeFile] } });
 
     expect(window.alert).toHaveBeenCalledWith(
-      "El archivo elegido es demasiado pesado. Puedes subir archivos de hasta 5MB.",
+      "El fitxer triat és massa gran. Pots pujar fitxers de fins a 5 MB.",
     );
   });
   it("llama a onFileSelect cuando se selecciona un archivo PDF válido", async () => {

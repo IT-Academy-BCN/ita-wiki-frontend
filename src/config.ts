@@ -12,12 +12,13 @@ type EndPoints =
   | "feature-flags/"
   | "feature-flags/role-self-assignment"
   | "tags/by-category"
-  | "technical-tests";
+  | "technical-tests"
+  | "codeconnect";
 
 const END_POINTS = {
   resources: {
-    lists: "resources/" as EndPoints,
-    post: "v2/resources/" as EndPoints,
+    lists: "resources" as EndPoints,
+    post: "resources" as EndPoints,
   },
   bookmarks: {
     get: "bookmarks" as EndPoints,
@@ -45,6 +46,9 @@ const END_POINTS = {
   technicaltests: {
     create: "technical-tests" as EndPoints,
     get: "technical-tests" as EndPoints,
+  },
+  codeconnect: {
+    post: "codeconnect" as EndPoints,
   },
 };
 

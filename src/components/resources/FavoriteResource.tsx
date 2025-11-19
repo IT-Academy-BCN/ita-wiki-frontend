@@ -12,7 +12,7 @@ export const FavoriteResource: FC<FavoriteResourceProps> = ({ favorite }) => {
         {favorite ? (
           "❤"
         ) : (
-          <img src={heart} width={28} height={28} alt="Icono corazon" />
+          <img src={heart} width={28} height={28} alt="Icona cor" />
         )}
       </i>
     </div>

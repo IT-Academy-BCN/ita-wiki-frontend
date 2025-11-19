@@ -153,11 +153,13 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
           : "hidden sm:block flex-shrink-0 min-w-[256px]"
       }
     >
-      <h2 className="text-[26px] text-[#282828] font-bold mb-8">Filtros</h2>
+      <h2 className="text-[26px] text-[#282828] font-bold mb-8">Filtres</h2>
 
       {/* Languages */}
       <div className="mb-6">
-        <h3 className="text-[16px] text-[#282828] font-bold mb-6">Lenguaje</h3>
+        <h3 className="text-[16px] text-[#282828] font-bold mb-6">
+          Llenguatge
+        </h3>
         <div className="space-y-2">
           {asideContent.map((item, index) => renderCategoryItem(item, index))}
         </div>
@@ -165,7 +167,7 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
 
       {/* Resource Types */}
       <div className="mb-6">
-        <h3 className="text-[16px] text-[#282828] font-bold mb-3">Tipo</h3>
+        <h3 className="text-[16px] text-[#282828] font-bold mb-3">Tipus</h3>
         <div className="space-y-2">
           {resourceTypes.map((type) => {
             const isSelected = selectedResourceTypes.includes(type);
