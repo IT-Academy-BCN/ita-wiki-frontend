@@ -8,23 +8,23 @@ const TechnicalPage = () => {
   return (
     <div className="w-full flex justify-center">
       <div className="w-full max-w-7xl p-6">
-        {/* TARJETA BLANCA */}
+        {/* TARGETA BLANCA */}
         <div className="bg-white rounded-xl shadow-sm p-8 min-h-[600px]">
-          {/* BOTÓN DE VOLVER */}
+          {/* BOTÓ DE TORNAR */}
           <button
             onClick={() => navigate(-1)}
-            className="text-pink-600 font-weight: bold text-sm mb-4 flex items-center hover:underline"
+            className="text-pink-600 font-bold text-sm mb-4 flex items-center hover:underline"
           >
             ← Tornar a Proves Tècniques
           </button>
 
-          <h1 className="text-2xl font-bold mb-2">Cifrado César</h1>
+          <h1 className="text-2xl font-bold mb-2">Xifratge Cèsar</h1>
 
-          {/* FECHA + LENGUAJE */}
+          {/* DATA + LLENGUATGE */}
           <div className="flex items-center gap-6 mb-6">
             <div className="flex items-center gap-2 text-gray-600 text-sm">
-              <img src={CalendarIcon} alt="Calendar" className="w-4 h-4" />
-              <span>20 Dic 2024</span>
+              <img src={CalendarIcon} alt="Calendari" className="w-4 h-4" />
+              <span>20 Des 2024</span>
             </div>
 
             <div className="flex items-center gap-2 text-gray-600 text-sm">
@@ -35,36 +35,36 @@ const TechnicalPage = () => {
 
           <div className="pt-5 space-y-4 text-gray-700 leading-relaxed mb-6">
             <p>
-              Debes diseñar una función de encriptado que reciba una frase y la
-              codifique con el algoritmo de César, que consiste en sustituir
-              cada letra por otra obtenida desplazando la posición de la actual
-              un determinado número de posiciones dentro del abecedario. Ese
-              desplazamiento es la clave del cifrado.
+              Has de dissenyar una funció d'encriptació que rebi una frase i la
+              codifiqui amb l'algoritme del Cèsar, que consisteix a substituir
+              cada lletra per una altra obtinguda desplaçant la posició de
+              l'actual un determinat nombre de posicions dins de l'abecedari.
+              Aquest desplaçament és la clau del xifrat.
             </p>
 
             <p>
-              Si al desplazar la letra actual llegamos a la posición 0, seguimos
-              por la última letra del alfabeto.
+              Si en desplaçar la lletra actual arribem a la posició 0, continuem
+              per l'última lletra de l'alfabet.
             </p>
 
             <p>
-              La función{" "}
+              La funció{" "}
               <code className="bg-gray-200 px-1 rounded">
-                cifrar(frase, clave)
+                cifrar(frase, clau)
               </code>{" "}
-              lleva dos argumentos: el primero la frase a cifrar y el segundo la
-              clave. Debe devolver la frase cifrada.
+              rep dos arguments: el primer és la frase a xifrar i el segon és la
+              clau. Ha de retornar la frase xifrada.
             </p>
 
-            <p>Se acepta que todas las frases deberán ir en minúsculas.</p>
+            <p>S'accepta que totes les frases han d'anar en minúscules.</p>
 
             <p>
-              Para comprobar el funcionamiento deberías crear la función{" "}
-              <code className="bg-gray-200 px-1 rounded">descifrar()</code>.
+              Per comprovar el funcionament hauries de crear la funció{" "}
+              <code className="bg-gray-200 px-1 rounded">desxifrar()</code>.
             </p>
           </div>
 
-          {/* EJEMPLOS */}
+          {/* EXEMPLES */}
           <div className="bg-gray-100 p-4 rounded-md text-sm">
             <p className="mb-2">
               <code>cifrar("casa blanca", 3)</code> → zxpx yixkzx
