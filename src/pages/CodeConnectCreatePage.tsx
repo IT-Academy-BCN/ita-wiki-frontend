@@ -1,6 +1,6 @@
 import PageTitle from "../components/ui/PageTitle";
 import Container from "../components/ui/Container";
-import CodeConnectFormCreate from "../components/code-connect/CodeConnectFormCreate";
+import CodeConnectFormCreate from "../components/code-connect/FormCreate";
 
 const CodeConnectCreatePage = () => {
   return (
