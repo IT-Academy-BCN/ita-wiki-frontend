@@ -22,7 +22,7 @@ describe("TechnicalTestFilter", () => {
 
     expect(screen.getByText("Llenguatge")).toBeInTheDocument();
     expect(screen.getByText("Any")).toBeInTheDocument();
-    expect(screen.getByText("Dificultad")).toBeInTheDocument();
+    expect(screen.getByText("Dificultat")).toBeInTheDocument();
   });
 
   it("renders language options", () => {

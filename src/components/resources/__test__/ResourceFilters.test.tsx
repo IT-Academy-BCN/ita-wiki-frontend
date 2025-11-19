@@ -42,9 +42,9 @@ describe("ResourcesFilters", () => {
 
   it("renders filter headings", () => {
     render(<ResourcesFilters />);
-    expect(screen.getByText("Filtros")).toBeInTheDocument();
+    expect(screen.getByText("Filtres")).toBeInTheDocument();
     expect(screen.getByText("Llenguatge")).toBeInTheDocument();
-    expect(screen.getByText("Tipo")).toBeInTheDocument();
+    expect(screen.getByText("Tipus")).toBeInTheDocument();
   });
 
   it("renders all resource types as checkboxes", () => {
