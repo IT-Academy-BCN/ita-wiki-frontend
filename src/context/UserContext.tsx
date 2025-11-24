@@ -23,7 +23,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const saveUser = (user: IntUser) => {
     setUser(user);
   };
-  const signIn = async () => {};
+  const signIn = async () => {
+    // 2025-11-24
+    // This function is currently empty due to changes being made to the login system.
+  };
 
   const signOut = () => {
     setUser(null);
