@@ -52,11 +52,7 @@ const AsideComponent: React.FC = () => {
       <LoginModal visible={isLoginModalOpen} onClose={handleLoginModalClose} />
       <section className="w-[200px] my-5">
         <Link to="/resources/add" className="block w-full">
-          <ButtonComponent
-            className="w-full"
-            type="button"
-            variant="primary"
-          >
+          <ButtonComponent className="w-full" type="button" variant="primary">
             Crear recurs
           </ButtonComponent>
         </Link>
