@@ -37,15 +37,6 @@ const AsideComponent: React.FC = () => {
     );
   };
 
-  const handleProtectedClick = (path: string) => {
-    if (user) {
-      navigate(path);
-    } else {
-      setRedirectPath(path);
-      setIsLoginModalOpen(true);
-    }
-  };
-
   const handleLoginModalClose = () => {
     setIsLoginModalOpen(false);
 
@@ -59,15 +50,16 @@ const AsideComponent: React.FC = () => {
     <aside className="flex flex-col px-6 lg:w-56 py-4">
       <SearchComponent onSearch={handleSearch} resetTrigger={resource} />
       <LoginModal visible={isLoginModalOpen} onClose={handleLoginModalClose} />
-      <section className="w-[200px]">
-        <ButtonComponent
-          className="my-5 w-full"
-          type="button"
-          variant="primary"
-          onClick={() => handleProtectedClick("/resources/add")}
-        >
-          Crear recurs
-        </ButtonComponent>
+      <section className="w-[200px] my-5">
+        <Link to="/resources/add" className="block w-full">
+          <ButtonComponent
+            className="w-full"
+            type="button"
+            variant="primary"
+          >
+            Crear recurs
+          </ButtonComponent>
+        </Link>
       </section>
 
       <section>
@@ -143,7 +135,7 @@ const AsideComponent: React.FC = () => {
 
         <div className="flex flex-col gap-4">
           <div
-            onClick={() => handleProtectedClick("/resources/bookmarks")}
+            onClick={() => navigate("/resources/bookmarks")}
             className="flex items-center space-x-3 py-1 cursor-pointer"
           >
             <img src={Bookmark} alt="Bookmark icon" className="w-6 h-6" />
@@ -160,7 +152,7 @@ const AsideComponent: React.FC = () => {
           </div>
 
           <div
-            onClick={() => handleProtectedClick("/resources/my-resources")}
+            onClick={() => navigate("/resources/my-resources")}
             className="flex items-center space-x-3 py-1 cursor-pointer"
           >
             <img
