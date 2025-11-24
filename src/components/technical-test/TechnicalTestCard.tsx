@@ -13,6 +13,17 @@ const TechnicalTestCard = ({ test }: TechnicalTestCardProps) => {
   );
   const IconComponent = language?.icon;
 
+  const formattedDate =
+    typeof test.updated_at === "string" && isNaN(Date.parse(test.updated_at))
+      ? test.updated_at
+      : test.updated_at
+        ? new Date(test.updated_at).toLocaleDateString("ca-ES", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+          })
+        : "Data desconeguda";
+
   return (
     <li className="flex flex-col w-full py-4 px-2 rounded-2xl shadow-xs border border-[#7E7E7E]">
       <div className="flex justify-between">
@@ -24,7 +35,7 @@ const TechnicalTestCard = ({ test }: TechnicalTestCardProps) => {
           </h3>
           <span className="text-sm text-gray-500 flex items-center gap-2">
             <img src={XnixCalendar} alt="XnixCalendar" />
-            <p>{test.created_at}</p>
+            <p>{formattedDate}</p>
           </span>
         </div>
         {IconComponent && (
