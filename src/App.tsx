@@ -58,7 +58,7 @@ const App: FC = () => {
               element={<MyTechnicalTestsPage />}
             />
             <Route
-              path="/resources/technical-test/999"
+              path="/resources/technical-test/:projectId"
               element={<TechnicalPage />}
             />
             <Route
