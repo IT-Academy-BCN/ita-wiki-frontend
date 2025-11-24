@@ -64,7 +64,7 @@ const AsideComponent: React.FC = () => {
           className="my-5 w-full"
           type="button"
           variant="primary"
-          onClick={() => handleProtectedClick("/resources/add")}
+          onClick={() => navigate("/resources/add")}
         >
           Crear recurs
         </ButtonComponent>
