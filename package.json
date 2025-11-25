@@ -18,7 +18,6 @@
     "axios": "^1.10.0",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
-    "firebase": "^11.8.1",
     "lucide-react": "^0.487.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

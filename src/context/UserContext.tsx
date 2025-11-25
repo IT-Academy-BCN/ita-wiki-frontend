@@ -1,7 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import { IntUser } from "../types";
-import { signInWithGitHub } from "../api/firebase";
-import { getUserRole } from "../api/userApi";
 
 interface UserContextType {
   user: IntUser | null;
@@ -26,27 +24,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     setUser(user);
   };
   const signIn = async () => {
-    try {
-      const newUser = await signInWithGitHub();
-      setUser(newUser);
-      await handleSetRole(newUser);
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("Unknown error during sign in");
-      }
-    }
-  };
-
-  const handleSetRole = async (user: IntUser) => {
-    try {
-      const userRole = await getUserRole(user.id);
-      const updatedUser = { ...user, role: userRole };
-      setUser(updatedUser);
-    } catch (error) {
-      console.error("Error setting user role:", error);
-    }
+    // 2025-11-24
+    // This function is currently empty due to changes being made to the login system.
   };
 
   const signOut = () => {

@@ -14,7 +14,7 @@ The ITA Wiki Frontend provides the following core functionality:
 
 ## System Architecture
 
-The application follows a component-based architecture built with React, using context API for state management and Firebase for authentication.
+The application follows a component-based architecture built with React, using context API for state management.
 
 <img src="./src/assets/diagrams/system-architecture.svg" alt="System Architecture" width="650"/>
 
