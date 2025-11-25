@@ -44,6 +44,11 @@ The application uses React Context for state management. There are three main co
 
 ## Authentication Flow
 
+**2025-11-24 Current status**: The authentication system is in transition.
+
+- **Previously**: Firebase Authentication
+- **Current**: Without authentication
+
 The application uses GitHub for authentication:
 
 <img src="./src/assets/diagrams/authentication-flow.svg" alt="Authentication Flow" width="775"/>
