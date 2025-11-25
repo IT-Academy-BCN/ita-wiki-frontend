@@ -28,7 +28,7 @@ const App: FC = () => {
             {/* Public routes */}
             <Route path="/" element={<HomePage />} />
             <Route path="/resources/:category" element={<ResourcesPage />} />
-
+            <Route path="/resources/add" element={<CreateResourcePage />} />
             <Route path="/codeconnect" element={<CodeConnectPage />} />
             <Route
               path="/codeconnect/:projectId"
@@ -42,7 +42,6 @@ const App: FC = () => {
                 path="/resources/my-resources"
                 element={<MyResourcesPage />}
               />
-              <Route path="/resources/add" element={<CreateResourcePage />} />
             </Route>
 
             {/* Fallback route */}

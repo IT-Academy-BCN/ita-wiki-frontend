@@ -25,6 +25,17 @@ export const asideContent: { icon: SvgIcon; label: Category }[] = [
   { icon: CircleIcon, label: "BBDD" },
 ];
 
+export const asideContentResourcesForm: { icon: SvgIcon; label: Category }[] = [
+  { icon: node_vector, label: "Node" },
+  { icon: react_vector, label: "React" },
+  { icon: angular_vector, label: "Angular" },
+  { icon: js_vector, label: "JavaScript" },
+  { icon: java_vector, label: "Java" },
+  { icon: php_vector, label: "PHP" },
+  { icon: python_vector, label: "Data Science" },
+  { icon: sql_vector, label: "BBDD" },
+];
+
 export const asideContentForTechnicalTest: { icon: SvgIcon; label: string }[] =
   [
     { icon: react_vector, label: "React" },

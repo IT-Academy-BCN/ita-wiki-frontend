@@ -12,7 +12,7 @@ import { useState, useCallback } from "react";
 import arrowLeft from "../assets/arrow-left.svg";
 import { useNavigate } from "react-router";
 import Container from "../components/ui/Container";
-import { asideContent } from "../components/Layout/aside/asideContent";
+import { asideContentResourcesForm } from "../components/Layout/aside/asideContent";
 import { useResources } from "../context/ResourcesContext";
 
 export default function CreateResourcePage() {
@@ -174,7 +174,7 @@ export default function CreateResourcePage() {
 
             <h2 className="text-sm text-black font-medium mb-2">Llenguatge</h2>
             <div className="flex flex-wrap gap-3">
-              {asideContent.map((cat) => {
+              {asideContentResourcesForm.map((cat) => {
                 const IconComponent = cat.icon as unknown as React.FC<
                   React.SVGProps<SVGSVGElement>
                 >;
@@ -192,7 +192,7 @@ export default function CreateResourcePage() {
                     key={cat.label}
                   >
                     <div className="flex justify-center items-center gap-1 h-fit">
-                      <IconComponent className="w-7" />
+                      <IconComponent className="w-5 h-5" />
                       <h1 className="text-sm font-medium">{cat.label}</h1>
                     </div>
                   </ButtonComponent>
