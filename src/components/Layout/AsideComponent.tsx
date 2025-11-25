@@ -5,7 +5,7 @@ import classNames from "classnames";
 
 import Bookmark from "../../assets/Bookmark.svg";
 import CreatedResources from "../../assets/CreatedResources.svg";
-
+import "@testing-library/jest-dom/vitest";
 import SearchComponent from "./header/SearchComponent";
 import ButtonComponent from "../atoms/ButtonComponent";
 import LoginModal from "../Modal/LoginModal";
