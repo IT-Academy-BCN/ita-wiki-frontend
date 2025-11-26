@@ -16,8 +16,9 @@ export const getTags = async (): Promise<Tag[]> => {
     if (!response.ok) {
       return [];
     }
-    const tags = await response.json();
-
+    const json = await response.json();
+    const tags = Array.isArray(json?.data) ? json.data : [];
+    
     return tags;
   } catch (error) {
     console.error("Error fetching tags:", error);
