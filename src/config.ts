@@ -36,9 +36,9 @@ const END_POINTS = {
     delete: "likes" as EndPoints,
   },
   tags: {
-    get: "tags/" as EndPoints,
-    categoryFrequency: "tags/category-frequency" as EndPoints,
-    byCategory: "tags/by-category" as EndPoints,
+    get: "/tags/" as EndPoints,
+    categoryFrequency: "/tags/category-frequency" as EndPoints,
+    byCategory: "/tags/by-category" as EndPoints,
   },
   devTools: {
     roleChange: "feature-flags/role-self-assignment" as EndPoints,
