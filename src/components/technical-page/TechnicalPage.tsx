@@ -5,7 +5,7 @@ import PageTitle from "../ui/PageTitle";
 import Container from "../ui/Container";
 import { ArrowLeftIcon } from "lucide-react";
 import ButtonComponent from "../atoms/ButtonComponent";
-
+import UiCheckbox from "../ui/shared-ui/UiCheckbox";
 const TechnicalPage = () => {
   const navigate = useNavigate();
 
@@ -83,6 +83,34 @@ const TechnicalPage = () => {
               <p>
                 <code>cifrar("hola", 3)</code> → elix
               </p>
+            </div>
+
+            <div>
+              <h2 className="text-xl font-bold mt-8 mb-5">Requisits</h2>
+              <ul>
+                <li>
+                  <UiCheckbox
+                    label="Implementar la funció xifrar(frase, clau) exactament amb
+                      dos paràmetres."
+                    checked={false}
+                    onChange={() => {}}
+                  />
+                </li>
+                <li>
+                  <UiCheckbox
+                    label="Ha d'aplicar correctament el xifratge César sobre cada lletra."
+                    checked={false}
+                    onChange={() => {}}
+                  />
+                </li>
+                <li>
+                  <UiCheckbox
+                    label="Ha de mantenir els espais tal qual apareixen."
+                    checked={false}
+                    onChange={() => {}}
+                  />
+                </li>
+              </ul>
             </div>
           </div>
           <div>
