@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
 import { describe, it, expect, vi } from "vitest";
-import { MemoryRouter, Routes, Route, useParams } from "react-router";
+import { MemoryRouter, Routes, Route, useParams, useNavigate } from "react-router";
+import userEvent from "@testing-library/user-event";
 import TechnicalPage from "./TechnicalPage";
 
 vi.mock("react-router", async () => {
@@ -9,6 +10,7 @@ vi.mock("react-router", async () => {
   return {
     ...actual,
     useParams: vi.fn(),
+    useNavigate: vi.fn(),
   };
 });
 
@@ -55,5 +57,26 @@ describe("TechnicalPage", () => {
 
     expect(screen.getByTestId("mock-page-title")).toBeInTheDocument();
     expect(screen.getByTestId("mock-container")).toBeInTheDocument();
+  });
+
+  it("navigates to all tech tests page when back link is clicked", async () => {
+    const mockNavigate = vi.fn();
+    vi.mocked(useNavigate).mockReturnValue(mockNavigate);
+    vi.mocked(useParams).mockReturnValue({});
+
+    const user = userEvent.setup();
+
+    render(
+      <MemoryRouter>
+        <TechnicalPage />
+      </MemoryRouter>,
+    );
+
+    const backLink = screen.getByText("Tornar a Proves Tècniques");
+    await user.click(backLink);
+
+    expect(mockNavigate).toHaveBeenCalledWith(
+      "/resources/technical-test/all-tech-tests",
+    );
   });
 });
