@@ -175,9 +175,7 @@ export default function CreateResourcePage() {
             <h2 className="text-sm text-black font-medium mb-2">Llenguatge</h2>
             <div className="flex flex-wrap gap-3">
               {asideContentResourcesForm.map((cat) => {
-                const IconComponent = cat.icon as unknown as React.FC<
-                  React.SVGProps<SVGSVGElement>
-                >;
+                const IconComponent = cat.icon;
 
                 return (
                   <ButtonComponent
