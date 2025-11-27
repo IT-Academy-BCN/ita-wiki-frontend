@@ -43,4 +43,38 @@ describe("TechnicalTestForm UI", () => {
       screen.getByRole("button", { name: "Publicar" }),
     ).toBeInTheDocument();
   });
+
+  it("renders duration input field", () => {
+    render(<TechnicalTestForm />);
+    expect(screen.getByText("Durada (minuts)")).toBeInTheDocument();
+    const durationInput = screen.getByRole("spinbutton");
+    expect(durationInput).toBeInTheDocument();
+    expect(durationInput).toHaveAttribute("type", "number");
+    expect(durationInput).toHaveAttribute("min", "1");
+  });
+
+  it("renders difficulty select field with correct options", () => {
+    render(<TechnicalTestForm />);
+    expect(screen.getByText("Dificultat")).toBeInTheDocument();
+    const difficultySelect = screen.getByLabelText("Dificultat");
+    expect(difficultySelect).toBeInTheDocument();
+    expect(difficultySelect).toHaveValue("easy");
+    
+    expect(screen.getByRole("option", { name: "Fàcil" })).toBeInTheDocument();
+    expect(screen.getByRole("option", { name: "Mitjana" })).toBeInTheDocument();
+    expect(screen.getByRole("option", { name: "Difícil" })).toBeInTheDocument();
+    expect(screen.getByRole("option", { name: "Expert" })).toBeInTheDocument();
+  });
+
+  it("renders exercises section with 4 textareas", () => {
+    render(<TechnicalTestForm />);
+    expect(screen.getByText("Exercicis")).toBeInTheDocument();
+    
+    const exerciseTextareas = screen.getAllByPlaceholderText(/Exercici \d/);
+    expect(exerciseTextareas).toHaveLength(4);
+    expect(screen.getByPlaceholderText("Exercici 1")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Exercici 2")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Exercici 3")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Exercici 4")).toBeInTheDocument();
+  });
 });
