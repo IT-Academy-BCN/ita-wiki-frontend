@@ -13,7 +13,9 @@ export const TechnicalTestForm = () => {
   const [title, setTitle] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [duration, setDuration] = useState<number | "">("");
-  const [difficultyLevel, setDifficultyLevel] = useState<"easy" | "medium" | "hard" | "expert">("easy");
+  const [difficultyLevel, setDifficultyLevel] = useState<
+    "easy" | "medium" | "hard" | "expert"
+  >("easy");
   const [contentType, setContentType] = useState("text"); // 'text' o 'file'
   const [content, setContent] = useState("");
   const [file, setFile] = useState<File | null>(null);
@@ -140,7 +142,7 @@ export const TechnicalTestForm = () => {
           })}
         </div>
 
-                <div className="flex flex-col px-10 mb-6">
+        <div className="flex flex-col px-10 mb-6">
           <label className="font-medium mb-2">Durada (minuts)</label>
           <input
             type="number"
@@ -152,11 +154,17 @@ export const TechnicalTestForm = () => {
         </div>
 
         <div className="flex flex-col px-10 mb-6">
-          <label htmlFor="difficulty" className="font-medium mb-2">Dificultat</label>
+          <label htmlFor="difficulty" className="font-medium mb-2">
+            Dificultat
+          </label>
           <select
             id="difficulty"
             value={difficultyLevel}
-            onChange={(e) => setDifficultyLevel(e.target.value as "easy" | "medium" | "hard" | "expert")}
+            onChange={(e) =>
+              setDifficultyLevel(
+                e.target.value as "easy" | "medium" | "hard" | "expert",
+              )
+            }
             className="sm:w-1/4 p-2 border border-gray-300 rounded-lg"
           >
             <option value="easy">Fàcil</option>
@@ -228,16 +236,15 @@ export const TechnicalTestForm = () => {
       <div className="flex flex-col px-10 mb-6">
         <label className="font-medium mb-2">Exercicis</label>
         {exercises.map((ex, index) => (
-           <textarea
-             key={index}
-             value={ex}
-             onChange={(e) => handleExerciseChange(index, e.target.value)}
-             placeholder={`Exercici ${index + 1}`}
-             className="w-full p-2 mb-3 border border-gray-300 rounded-lg min-h-[80px]"
-           />
-         ))}
+          <textarea
+            key={index}
+            value={ex}
+            onChange={(e) => handleExerciseChange(index, e.target.value)}
+            placeholder={`Exercici ${index + 1}`}
+            className="w-full p-2 mb-3 border border-gray-300 rounded-lg min-h-[80px]"
+          />
+        ))}
       </div>
-
     </Container>
   );
 };

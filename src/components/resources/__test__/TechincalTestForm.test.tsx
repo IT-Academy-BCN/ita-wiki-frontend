@@ -59,7 +59,7 @@ describe("TechnicalTestForm UI", () => {
     const difficultySelect = screen.getByLabelText("Dificultat");
     expect(difficultySelect).toBeInTheDocument();
     expect(difficultySelect).toHaveValue("easy");
-    
+
     expect(screen.getByRole("option", { name: "Fàcil" })).toBeInTheDocument();
     expect(screen.getByRole("option", { name: "Mitjana" })).toBeInTheDocument();
     expect(screen.getByRole("option", { name: "Difícil" })).toBeInTheDocument();
@@ -69,7 +69,7 @@ describe("TechnicalTestForm UI", () => {
   it("renders exercises section with 4 textareas", () => {
     render(<TechnicalTestForm />);
     expect(screen.getByText("Exercicis")).toBeInTheDocument();
-    
+
     const exerciseTextareas = screen.getAllByPlaceholderText(/Exercici \d/);
     expect(exerciseTextareas).toHaveLength(4);
     expect(screen.getByPlaceholderText("Exercici 1")).toBeInTheDocument();
