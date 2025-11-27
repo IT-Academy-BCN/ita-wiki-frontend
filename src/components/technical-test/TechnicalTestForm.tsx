@@ -12,10 +12,21 @@ import Container from "../ui/Container";
 export const TechnicalTestForm = () => {
   const [title, setTitle] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("");
+  const [duration, setDuration] = useState<number | "">("");
+  const [difficultyLevel, setDifficultyLevel] = useState<
+    "easy" | "medium" | "hard" | "expert"
+  >("easy");
   const [contentType, setContentType] = useState("text"); // 'text' o 'file'
   const [content, setContent] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [exercises, setExercises] = useState(["", "", "", ""]);
   const navigate = useNavigate();
+
+  const handleExerciseChange = (index: number, value: string) => {
+    const newExercises = [...exercises];
+    newExercises[index] = value;
+    setExercises(newExercises);
+  };
 
   const handleSubmit = async () => {
     if (!title || !selectedLanguage) {
@@ -131,6 +142,38 @@ export const TechnicalTestForm = () => {
           })}
         </div>
 
+        <div className="flex flex-col px-10 mb-6">
+          <label className="font-medium mb-2">Durada (minuts)</label>
+          <input
+            type="number"
+            min={1}
+            value={duration}
+            onChange={(e) => setDuration(Number(e.target.value))}
+            className="sm:w-1/4 p-2 border border-gray-300 rounded-lg"
+          />
+        </div>
+
+        <div className="flex flex-col px-10 mb-6">
+          <label htmlFor="difficulty" className="font-medium mb-2">
+            Dificultat
+          </label>
+          <select
+            id="difficulty"
+            value={difficultyLevel}
+            onChange={(e) =>
+              setDifficultyLevel(
+                e.target.value as "easy" | "medium" | "hard" | "expert",
+              )
+            }
+            className="sm:w-1/4 p-2 border border-gray-300 rounded-lg"
+          >
+            <option value="easy">Fàcil</option>
+            <option value="medium">Mitjana</option>
+            <option value="hard">Difícil</option>
+            <option value="expert">Expert</option>
+          </select>
+        </div>
+
         <div className="border-t border-gray-300 my-8"></div>
 
         <label className="block my-4 px-10 mb-8 font-medium">
@@ -186,6 +229,21 @@ export const TechnicalTestForm = () => {
             <PdfUploadComponent onFileSelect={setFile} />
           </div>
         )}
+      </div>
+
+      <div className="border-t border-gray-300 my-8"></div>
+
+      <div className="flex flex-col px-10 mb-6">
+        <label className="font-medium mb-2">Exercicis</label>
+        {exercises.map((ex, index) => (
+          <textarea
+            key={index}
+            value={ex}
+            onChange={(e) => handleExerciseChange(index, e.target.value)}
+            placeholder={`Exercici ${index + 1}`}
+            className="w-full p-2 mb-3 border border-gray-300 rounded-lg min-h-[80px]"
+          />
+        ))}
       </div>
     </Container>
   );
