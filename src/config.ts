@@ -39,7 +39,7 @@ const END_POINTS = {
     get: "tags/" as EndPoints,
     categoryFrequency: "tags/category-frequency" as EndPoints,
     byCategory: "tags/by-category" as EndPoints,
-},
+  },
   devTools: {
     roleChange: "feature-flags/role-self-assignment" as EndPoints,
   },
