@@ -17,7 +17,14 @@ export const TechnicalTestForm = () => {
   const [contentType, setContentType] = useState("text"); // 'text' o 'file'
   const [content, setContent] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [exercises, setExercises] = useState(["", "", "", ""]);
   const navigate = useNavigate();
+
+  const handleExerciseChange = (index: number, value: string) => {
+    const newExercises = [...exercises];
+    newExercises[index] = value;
+    setExercises(newExercises);
+  };
 
   const handleSubmit = async () => {
     if (!title || !selectedLanguage) {
@@ -215,6 +222,22 @@ export const TechnicalTestForm = () => {
           </div>
         )}
       </div>
+
+      <div className="border-t border-gray-300 my-8"></div>
+
+      <div className="flex flex-col px-10 mb-6">
+        <label className="font-medium mb-2">Exercicis</label>
+        {exercises.map((ex, index) => (
+           <textarea
+             key={index}
+             value={ex}
+             onChange={(e) => handleExerciseChange(index, e.target.value)}
+             placeholder={`Exercici ${index + 1}`}
+             className="w-full p-2 mb-3 border border-gray-300 rounded-lg min-h-[80px]"
+           />
+         ))}
+      </div>
+
     </Container>
   );
 };
