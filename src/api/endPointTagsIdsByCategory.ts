@@ -10,5 +10,8 @@ export const fetchTagsIdsByCategory = async (): Promise<TagsIdsByCategory> => {
     throw new Error("Failed to fetch tags by category");
   }
 
-  return await response.json();
+  const json = await response.json();
+  const data = json?.data;
+
+  return (data ?? {}) as TagsIdsByCategory;
 };

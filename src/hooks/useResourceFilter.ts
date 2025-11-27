@@ -21,6 +21,9 @@ export const useResourceFilter = ({
     if (!resources) return [];
 
     return resources.filter((resource) => {
+      const normalize = (value: string) =>
+        value.trim().toLowerCase().replace(/\s+/g, "-");
+
       const categoryMatch = !category || resource.category === category;
       const typeMatch =
         selectedResourceTypes.length === 0 ||
@@ -36,7 +39,7 @@ export const useResourceFilter = ({
         selectedTags.some((tag) =>
           resource.tags?.some((t) => {
             const tagName = typeof t === "string" ? t : t.name;
-            return tagName === tag;
+            return normalize(tagName) === normalize(tag);
           }),
         );
 
