@@ -12,6 +12,8 @@ import Container from "../ui/Container";
 export const TechnicalTestForm = () => {
   const [title, setTitle] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("");
+  const [duration, setDuration] = useState<number | "">("");
+  const [difficultyLevel, setDifficultyLevel] = useState<"easy" | "medium" | "hard" | "expert">("easy");
   const [contentType, setContentType] = useState("text"); // 'text' o 'file'
   const [content, setContent] = useState("");
   const [file, setFile] = useState<File | null>(null);
@@ -129,6 +131,32 @@ export const TechnicalTestForm = () => {
               </button>
             );
           })}
+        </div>
+
+                <div className="flex flex-col px-10 mb-6">
+          <label className="font-medium mb-2">Durada (minuts)</label>
+          <input
+            type="number"
+            min={1}
+            value={duration}
+            onChange={(e) => setDuration(Number(e.target.value))}
+            className="sm:w-1/4 p-2 border border-gray-300 rounded-lg"
+          />
+        </div>
+
+        <div className="flex flex-col px-10 mb-6">
+          <label htmlFor="difficulty" className="font-medium mb-2">Dificultat</label>
+          <select
+            id="difficulty"
+            value={difficultyLevel}
+            onChange={(e) => setDifficultyLevel(e.target.value as "easy" | "medium" | "hard" | "expert")}
+            className="sm:w-1/4 p-2 border border-gray-300 rounded-lg"
+          >
+            <option value="easy">Fàcil</option>
+            <option value="medium">Mitjana</option>
+            <option value="hard">Difícil</option>
+            <option value="expert">Expert</option>
+          </select>
         </div>
 
         <div className="border-t border-gray-300 my-8"></div>
