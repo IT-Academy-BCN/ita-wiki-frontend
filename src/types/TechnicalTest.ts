@@ -3,5 +3,11 @@ export interface TechnicalTest {
   title: string;
   language: string;
   description: string;
+  file_path?: string;
+  file_original_name?: string;
   tags: Array<string>;
+  bookmark_count?: number;
+  like_count?: number;
+  created_at: string;
+  updated_at: string;
 }
