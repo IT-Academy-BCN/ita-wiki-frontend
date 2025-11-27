@@ -34,7 +34,7 @@ vi.mock("../../../context/TagsContext", async () => {
 import { createResource } from "../../../api/endPointResources";
 
 describe("CreateResourcePage", () => {
-  it.skip("POST includes tag IDs not names (TODO: fix test)", async () => {
+  it("POST includes tag IDs not names", async () => {
     render(
       <UserProvider>
         <MemoryRouter>
