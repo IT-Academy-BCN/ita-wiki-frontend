@@ -1,7 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
 import { describe, it, expect, vi } from "vitest";
-import { MemoryRouter, Routes, Route, useParams, useNavigate } from "react-router";
+import {
+  MemoryRouter,
+  Routes,
+  Route,
+  useParams,
+  useNavigate,
+} from "react-router";
 import userEvent from "@testing-library/user-event";
 import TechnicalPage from "./TechnicalPage";
 
