@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router";
-import { useUserContext } from "../../context/UserContext";
 import classNames from "classnames";
 
 import Bookmark from "../../assets/Bookmark.svg";
@@ -8,7 +7,6 @@ import CreatedResources from "../../assets/CreatedResources.svg";
 
 import SearchComponent from "./header/SearchComponent";
 import ButtonComponent from "../atoms/ButtonComponent";
-import LoginModal from "../Modal/LoginModal";
 
 const AsideComponent: React.FC = () => {
   const location = useLocation();
@@ -16,9 +14,6 @@ const AsideComponent: React.FC = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [resource] = useState("");
-  const { user } = useUserContext();
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const [redirectPath, setRedirectPath] = useState<string | null>(null);
 
   const handleSearch = (query: string) => {
     const params = new URLSearchParams(searchParams);
@@ -26,48 +21,22 @@ const AsideComponent: React.FC = () => {
     navigate(`?${params.toString()}`);
   };
 
-  const isPathActive = (path: string) => {
-    return currentPath === path;
-  };
+  const isPathActive = (path: string) => currentPath === path;
 
-  const isResourcesPathActive = (generalPath: string) => {
-    return (
-      location.pathname.startsWith(generalPath) &&
-      !location.pathname.includes("technical")
-    );
-  };
-
-  const handleProtectedClick = (path: string) => {
-    if (user) {
-      navigate(path);
-    } else {
-      setRedirectPath(path);
-      setIsLoginModalOpen(true);
-    }
-  };
-
-  const handleLoginModalClose = () => {
-    setIsLoginModalOpen(false);
-
-    if (user && redirectPath) {
-      navigate(redirectPath);
-      setRedirectPath(null);
-    }
-  };
+  const isResourcesPathActive = (generalPath: string) =>
+    location.pathname.startsWith(generalPath) &&
+    !location.pathname.includes("technical");
 
   return (
     <aside className="flex flex-col px-6 lg:w-56 py-4">
       <SearchComponent onSearch={handleSearch} resetTrigger={resource} />
-      <LoginModal visible={isLoginModalOpen} onClose={handleLoginModalClose} />
-      <section className="w-[200px]">
-        <ButtonComponent
-          className="my-5 w-full"
-          type="button"
-          variant="primary"
-          onClick={() => navigate("/resources/add")}
-        >
-          Crear recurs
-        </ButtonComponent>
+
+      <section className="w-[200px] my-5">
+        <Link to="/resources/add" className="block w-full">
+          <ButtonComponent className="w-full" type="button" variant="primary">
+            Crear recurs
+          </ButtonComponent>
+        </Link>
       </section>
 
       <section>
@@ -86,6 +55,7 @@ const AsideComponent: React.FC = () => {
               Inici
             </Link>
           </li>
+
           <li className="flex items-center space-x-3 mb-5">
             {isResourcesPathActive("/resources/") && (
               <span className="w-3 h-3 rounded-full bg-primary" />
@@ -119,6 +89,7 @@ const AsideComponent: React.FC = () => {
               Proves tècniques
             </Link>
           </li>
+
           <li className="flex items-center space-x-3 mb-5">
             {isResourcesPathActive("/codeconnect") && (
               <span className="w-3 h-3 rounded-full bg-primary" />
@@ -143,7 +114,7 @@ const AsideComponent: React.FC = () => {
 
         <div className="flex flex-col gap-4">
           <div
-            onClick={() => handleProtectedClick("/resources/bookmarks")}
+            onClick={() => navigate("/resources/bookmarks")}
             className="flex items-center space-x-3 py-1 cursor-pointer"
           >
             <img src={Bookmark} alt="Bookmark icon" className="w-6 h-6" />
@@ -160,7 +131,7 @@ const AsideComponent: React.FC = () => {
           </div>
 
           <div
-            onClick={() => handleProtectedClick("/resources/my-resources")}
+            onClick={() => navigate("/resources/my-resources")}
             className="flex items-center space-x-3 py-1 cursor-pointer"
           >
             <img
