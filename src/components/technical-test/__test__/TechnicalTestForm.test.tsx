@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { TechnicalTestForm } from "../../../components/technical-test/TechnicalTestForm";
+import { TechnicalTestForm } from "../TechnicalTestForm";
 import { vi } from "vitest";
 import "@testing-library/jest-dom";
 

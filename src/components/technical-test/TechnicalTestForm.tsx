@@ -28,21 +28,38 @@ export const TechnicalTestForm = () => {
     setExercises(newExercises);
   };
 
-  const handleSubmit = async () => {
-    if (!title || !selectedLanguage) {
-      toast.error("Completa tots els camps obligatoris.");
-      return;
+  const validateForm = () => {
+    if (!title.trim()) {
+      toast.error("El títol és obligatori.");
+      return false;
+    }
+
+    if (!selectedLanguage) {
+      toast.error("Selecciona un llenguatge.");
+      return false;
+    }
+
+    if (!duration || duration < 1) {
+      toast.error("La durada ha de ser un número positiu.");
+      return false;
     }
 
     if (contentType === "text" && !content.trim()) {
-      toast.error("La descripció no pot estar buida");
-      return;
+      toast.error("La descripció no pot estar buida.");
+      return false;
     }
 
     if (contentType === "file" && !file) {
       toast.error("Si us plau, selecciona un fitxer PDF.");
-      return;
+      return false;
     }
+
+    return true;
+  };
+  const handleSubmit = async () => {
+    const isValid = validateForm();
+    if (!isValid) return;
+    
     const formData = new FormData();
     formData.append("title", title);
     formData.append("language", selectedLanguage);
@@ -115,16 +132,14 @@ export const TechnicalTestForm = () => {
             maxLength={65}
           />
           <div className="sm:w-1/2 self-end sm:me-10 text-sm text-gray-500">
-            <span>0/65</span>
+            <span>{title.length}/65</span>
           </div>
         </div>
 
         <label className="block mb-2 font-medium px-10">Llenguatge *</label>
         <div className="flex flex-wrap gap-3 mb-4 px-10">
           {asideContentForTechnicalTest.map((cat) => {
-            const IconComponent = cat.icon as unknown as React.FC<
-              React.SVGProps<SVGSVGElement>
-            >;
+            const IconComponent = cat.icon;
             return (
               <button
                 key={cat.label}
@@ -221,7 +236,7 @@ export const TechnicalTestForm = () => {
               className="w-full min-h-[350px] p-2 border border-gray-300 rounded-bl-lg rounded-br-lg border-t-0 mb-4"
             />
             <div className="flex w-full justify-end me-10 text-sm text-gray-500">
-              <span className="self-end">0/1000</span>
+              <span className="self-end">{content.length}/1000</span>
             </div>
           </div>
         ) : (
