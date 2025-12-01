@@ -29,7 +29,7 @@ describe("contentResourcesForm Tests", () => {
   test("has correct length and all items have required properties", () => {
     expect(contentResourcesForm).toHaveLength(8);
 
-    contentResourcesForm.forEach((item, index) => {
+    contentResourcesForm.forEach((item) => {
       expect(item).toHaveProperty("icon");
       expect(item).toHaveProperty("label");
       expect(typeof item.icon).toBe("function");
