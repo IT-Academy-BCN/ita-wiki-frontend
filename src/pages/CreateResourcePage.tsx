@@ -12,7 +12,7 @@ import { useState, useCallback } from "react";
 import arrowLeft from "../assets/arrow-left.svg";
 import { useNavigate } from "react-router";
 import Container from "../components/ui/Container";
-import { asideContentResourcesForm } from "../components/Layout/aside/asideContent";
+import { contentResourcesForm } from "../components/ui/shared-ui/languagesLabels";
 import { useResources } from "../context/ResourcesContext";
 
 export default function CreateResourcePage() {
@@ -174,7 +174,7 @@ export default function CreateResourcePage() {
 
             <h2 className="text-sm text-black font-medium mb-2">Llenguatge</h2>
             <div className="flex flex-wrap gap-3">
-              {asideContentResourcesForm.map((cat) => {
+              {contentResourcesForm.map((cat) => {
                 const IconComponent = cat.icon;
 
                 return (
