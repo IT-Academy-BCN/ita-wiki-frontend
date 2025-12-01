@@ -13,7 +13,7 @@ const TechnicalPage = () => {
     <>
       <PageTitle title="Xifratge Cèsar" />
       <Container className="px-4 py-6 lg:pl-8 xl:pl-6">
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <div className="flex flex-col lg:flex-row justify-between">
               <div>
@@ -33,19 +33,30 @@ const TechnicalPage = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-6 my-3">
-              <div className="flex items-center gap-2 text-gray-600 text-sm">
-                <img src={CalendarIcon} alt="Calendari" className="w-4 h-4" />
-                <span>20 Des 2024</span>
-              </div>
+            <div className="my-3">
+              <div className="flex items-center gap-6">
+                <div className="flex items-center gap-2 text-gray-600 text-sm">
+                  <img src={CalendarIcon} alt="Calendari" className="w-4 h-4" />
+                  <span>20 Des 2024</span>
+                </div>
 
-              <div className="flex items-center gap-2 text-gray-600 text-sm">
-                <img src={JSIcon} alt="JavaScript" className="w-4 h-4" />
-                <span>JavaScript</span>
+                <div className="flex items-center gap-2 text-gray-600 text-sm">
+                  <img src={JSIcon} alt="JavaScript" className="w-4 h-4" />
+                  <span>JavaScript</span>
+                </div>
               </div>
             </div>
 
-            <p className="text-[16px] mb-6 whitespace-pre-line">
+            <div className="my-6 flex gap-3">
+              <span className="inline px-2 py-1 rounded-lg border-2 border-gray-300 bg-white text-sm font-medium">
+                ORM
+              </span>
+              <span className="inline px-2 py-1 rounded-lg border-2 border-gray-300 bg-white text-sm font-medium">
+                Testing
+              </span>
+            </div>
+
+            <p className="text-[16px] mb-6">
               Has de dissenyar una funció d'encriptació que rebi una frase i la
               codifiqui amb l'algoritme del Cèsar, que consisteix a substituir
               cada lletra per una altra obtinguda desplaçant la posició de
@@ -53,12 +64,12 @@ const TechnicalPage = () => {
               Aquest desplaçament és la clau del xifrat.
             </p>
 
-            <p className="text-[16px] mb-6 whitespace-pre-line">
+            <p className="text-[16px] mb-6">
               Si en desplaçar la lletra actual arribem a la posició 0, continuem
               per l'última lletra de l'alfabet.
             </p>
 
-            <p className="text-[16px] mb-6 whitespace-pre-line">
+            <p className="text-[16px] mb-6">
               La funció{" "}
               <code className="bg-gray-200 px-1 rounded">
                 cifrar(frase, clau)
@@ -67,11 +78,11 @@ const TechnicalPage = () => {
               clau. Ha de retornar la frase xifrada.
             </p>
 
-            <p className="text-[16px] mb-6 whitespace-pre-line">
+            <p className="text-[16px] mb-6">
               S'accepta que totes les frases han d'anar en minúscules.
             </p>
 
-            <p className="text-[16px] mb-6 whitespace-pre-line">
+            <p className="text-[16px] mb-6">
               Per comprovar el funcionament hauries de crear la funció{" "}
               <code className="bg-gray-200 px-1 rounded">desxifrar()</code>.
             </p>
@@ -88,7 +99,7 @@ const TechnicalPage = () => {
             <div>
               <h2 className="text-xl font-bold mt-8 mb-5">Requisits</h2>
               <ul>
-                <li>
+                <li className="my-3">
                   <UiCheckbox
                     label="Implementar la funció xifrar(frase, clau) exactament amb
                       dos paràmetres."
@@ -96,14 +107,14 @@ const TechnicalPage = () => {
                     onChange={() => {}}
                   />
                 </li>
-                <li>
+                <li className="my-3">
                   <UiCheckbox
                     label="Ha d'aplicar correctament el xifratge César sobre cada lletra."
                     checked={false}
                     onChange={() => {}}
                   />
                 </li>
-                <li>
+                <li className="my-3">
                   <UiCheckbox
                     label="Ha de mantenir els espais tal qual apareixen."
                     checked={false}
