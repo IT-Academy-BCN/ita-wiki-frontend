@@ -6,6 +6,7 @@ import Container from "../ui/Container";
 import { ArrowLeftIcon } from "lucide-react";
 import ButtonComponent from "../atoms/ButtonComponent";
 import UiCheckbox from "../ui/shared-ui/UiCheckbox";
+
 const TechnicalPage = () => {
   const navigate = useNavigate();
 
