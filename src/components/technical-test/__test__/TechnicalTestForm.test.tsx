@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { TechnicalTestForm } from "../TechnicalTestForm";
 import { vi } from "vitest";
 import "@testing-library/jest-dom";
@@ -51,6 +52,26 @@ describe("TechnicalTestForm UI", () => {
     expect(durationInput).toBeInTheDocument();
     expect(durationInput).toHaveAttribute("type", "number");
     expect(durationInput).toHaveAttribute("min", "1");
+  });
+
+  it("updates duration input when user enters a number", async () => {
+    const user = userEvent.setup();
+    render(<TechnicalTestForm />);
+    
+    const durationInput = screen.getByRole("spinbutton");
+    await user.type(durationInput, "60");
+    
+    expect(durationInput).toHaveValue(60);
+  });
+
+  it("changes difficulty level when selecting from dropdown", async () => {
+    const user = userEvent.setup();
+    render(<TechnicalTestForm />);
+    
+    const difficultySelect = screen.getByLabelText("Dificultat");
+    await user.selectOptions(difficultySelect, "hard");
+    
+    expect(difficultySelect).toHaveValue("hard");
   });
 
   it("renders difficulty select field with correct options", () => {
