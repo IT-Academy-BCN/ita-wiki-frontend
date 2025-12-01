@@ -12,7 +12,6 @@ import { FC, SVGProps } from "react";
 
 type SvgIcon = FC<SVGProps<SVGSVGElement>>;
 
-
 export const contentResourcesForm: { icon: SvgIcon; label: Category }[] = [
   { icon: node_vector, label: "Node" },
   { icon: react_vector, label: "React" },

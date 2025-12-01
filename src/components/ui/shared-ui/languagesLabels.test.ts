@@ -16,11 +16,12 @@ describe("contentResourcesForm Tests", () => {
 
     iconLabelMap.forEach(({ label, iconName }, index) => {
       expect(contentResourcesForm[index].label).toBe(label);
-      
+
       expect(typeof contentResourcesForm[index].icon).toBe("function");
-      
-      expect(contentResourcesForm[index].icon, 
-        `${label} should use ${iconName} icon`
+
+      expect(
+        contentResourcesForm[index].icon,
+        `${label} should use ${iconName} icon`,
       ).toBeDefined();
     });
   });

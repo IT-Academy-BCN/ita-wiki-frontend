@@ -25,7 +25,6 @@ export const asideContent: { icon: SvgIcon; label: Category }[] = [
   { icon: CircleIcon, label: "BBDD" },
 ];
 
-
 export const asideContentForTechnicalTest: { icon: SvgIcon; label: string }[] =
   [
     { icon: react_vector, label: "React" },
