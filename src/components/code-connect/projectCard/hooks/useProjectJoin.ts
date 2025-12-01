@@ -21,7 +21,8 @@ export function useProjectJoin(projectId: number) {
       setPendingSlots((prev) => {
         if (
           prev.some(
-            (p) => p.area === selectedSlot.area && p.index === selectedSlot.index,
+            (p) =>
+              p.area === selectedSlot.area && p.index === selectedSlot.index,
           )
         ) {
           return prev;

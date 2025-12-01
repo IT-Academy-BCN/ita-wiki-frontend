@@ -3,7 +3,7 @@ import ProgressBar from "./ProgressBar";
 import { resolveAsset } from "../../../utils/resolveAsset";
 import GenericModal from "../../ui/Modal/GenericModal";
 import avatarPlaceholder from "../../../assets/project-avatar3.jpg";
-import type { ProjectCardProps} from "./types/projectTypes";
+import type { ProjectCardProps } from "./types/projectTypes";
 export type { Participant } from "./types/projectTypes";
 import { Link } from "react-router";
 import { useProjectJoin } from "./hooks/useProjectJoin";
