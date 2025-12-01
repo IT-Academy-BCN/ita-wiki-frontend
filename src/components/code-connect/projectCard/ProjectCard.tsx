@@ -1,11 +1,24 @@
 import ProjectButton from "./ProjectButton";
 import ProgressBar from "./ProgressBar";
 import { resolveAsset } from "../../../utils/resolveAsset";
-import type { ProjectCardProps } from "./types/projectTypes";
-export type { Participant, Role } from "./types/projectTypes";
+import GenericModal from "../../ui/Modal/GenericModal";
+import avatarPlaceholder from "../../../assets/project-avatar3.jpg";
+import type { ProjectCardProps} from "./types/projectTypes";
+export type { Participant } from "./types/projectTypes";
 import { Link } from "react-router";
+import { useProjectJoin } from "./hooks/useProjectJoin";
 
 function ProjectCard({ project }: ProjectCardProps) {
+  const {
+    modalOpen,
+    selectedSlot,
+    isSubmitting,
+    handleOpenModal,
+    handleConfirmJoin,
+    isSlotPending,
+    setModalOpen,
+  } = useProjectJoin(project.id);
+
   const availableFrontend =
     project.frontend.positions - project.frontend.participants.length;
   const availableBackend =
@@ -54,9 +67,45 @@ function ProjectCard({ project }: ProjectCardProps) {
               </figcaption>
             </figure>
           ))}
-          {[...Array(availableFrontend)].map((_, i) => (
-            <ProjectButton key={`front-${i}`}>+</ProjectButton>
-          ))}
+          {[...Array(availableFrontend)].map((_, i) => {
+            const index = project.frontend.participants.length + i;
+            const pending = isSlotPending("frontend", index);
+
+            if (pending) {
+              return (
+                <figure
+                  key={`front-pending-${index}`}
+                  className="flex flex-col items-center"
+                >
+                  <div className="w-12 h-12 rounded-full border-2 border-orange-500 overflow-hidden flex items-center justify-center">
+                    <img
+                      className="w-full h-full object-cover grayscale"
+                      src={avatarPlaceholder}
+                      alt="Pending contributor"
+                    />
+                  </div>
+                  <figcaption className="text-xs mt-1 font-bold text-gray-500">
+                    Pending
+                  </figcaption>
+                </figure>
+              );
+            }
+
+            return (
+              <ProjectButton
+                key={`front-${index}`}
+                onClick={() =>
+                  handleOpenModal({
+                    area: "frontend",
+                    index,
+                    role: "Frontend Developer",
+                  })
+                }
+              >
+                +
+              </ProjectButton>
+            );
+          })}
         </div>
         <div className="w-full grid grid-cols-2 justify-items-center grid-rows-2 pl-1 gap-4">
           {project.backend.participants.map((p, i) => (
@@ -71,9 +120,45 @@ function ProjectCard({ project }: ProjectCardProps) {
               </figcaption>
             </figure>
           ))}
-          {[...Array(availableBackend)].map((_, i) => (
-            <ProjectButton key={`back-${i}`}>+</ProjectButton>
-          ))}
+          {[...Array(availableBackend)].map((_, i) => {
+            const index = project.backend.participants.length + i;
+            const pending = isSlotPending("backend", index);
+
+            if (pending) {
+              return (
+                <figure
+                  key={`back-pending-${index}`}
+                  className="flex flex-col items-center"
+                >
+                  <div className="w-12 h-12 rounded-full border-2 border-orange-500 overflow-hidden flex items-center justify-center">
+                    <img
+                      className="w-full h-full object-cover grayscale"
+                      src={avatarPlaceholder}
+                      alt="Pending contributor"
+                    />
+                  </div>
+                  <figcaption className="text-xs mt-1 font-bold text-gray-500">
+                    Pending
+                  </figcaption>
+                </figure>
+              );
+            }
+
+            return (
+              <ProjectButton
+                key={`back-${index}`}
+                onClick={() =>
+                  handleOpenModal({
+                    area: "backend",
+                    index,
+                    role: "Backend Developer",
+                  })
+                }
+              >
+                +
+              </ProjectButton>
+            );
+          })}
         </div>
       </div>
       <div className="w-full">
@@ -84,6 +169,22 @@ function ProjectCard({ project }: ProjectCardProps) {
           endDate={project.endDate}
         />
       </div>
+      <GenericModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        title="Unir-te al projecte"
+        showPrimaryButton
+        primaryButtonText={isSubmitting ? "Enviant..." : "Confirmar"}
+        primaryButtonAction={isSubmitting ? undefined : handleConfirmJoin}
+        showSecondaryButton
+        secondaryButtonText="Cancel·lar"
+        secondaryButtonAction={() => setModalOpen(false)}
+      >
+        <p>
+          Vols unir-te com a {selectedSlot?.role ?? "participant"} al projecte "
+          {project.title}"?
+        </p>
+      </GenericModal>
     </div>
   );
 }
