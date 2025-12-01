@@ -15,7 +15,7 @@ describe("fetchTagsIdsByCategory", () => {
 
     globalAny.fetch.mockResolvedValueOnce({
       ok: true,
-      json: async () => mockData,
+      json: async () => ({ data: mockData }),
     });
 
     const result = await fetchTagsIdsByCategory();
