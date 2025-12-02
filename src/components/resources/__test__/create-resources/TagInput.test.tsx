@@ -26,8 +26,7 @@ vi.mock("../../../../context/TagsContext", () => ({
       return mockTags.filter((tag) => ids.includes(tag.id));
     },
     refreshTags: vi.fn(),
-    getTagNameById: (id: number) =>
-      mockTags.find((t) => t.id === id)?.name,
+    getTagNameById: (id: number) => mockTags.find((t) => t.id === id)?.name,
   }),
 }));
 

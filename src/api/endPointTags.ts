@@ -22,7 +22,7 @@ export const getTags = async (): Promise<Tag[]> => {
       console.error(
         "Error fetching tags: response not ok",
         response.status,
-        response.statusText
+        response.statusText,
       );
       return [];
     }
