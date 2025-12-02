@@ -4,7 +4,6 @@ import { MemoryRouter } from "react-router";
 import CreateResourcePage from "../../../pages/CreateResourcePage";
 import UserProvider from "../../../context/UserContext";
 
-// mock estable para tags
 const mockTags = [
   { id: 18, name: "node", created_at: "", updated_at: "" },
   { id: 23, name: "react", created_at: "", updated_at: "" },
@@ -46,37 +45,30 @@ test("POST includes tag IDs not names", async () => {
     </UserProvider>,
   );
 
-  // Title
   fireEvent.change(screen.getAllByRole("textbox")[0], {
     target: { value: "My Resource" },
   });
 
-  // URL
   fireEvent.change(screen.getAllByRole("textbox")[1], {
     target: { value: "http://example.com" },
   });
 
-  // Category (React)
   fireEvent.click(screen.getByRole("button", { name: /react/i }));
 
-  // Resource type
   fireEvent.click(screen.getByLabelText("Blog"));
 
-  // Seleccionar tag desde el <select>
   const tagSelect = screen.getByLabelText("Tags");
 
   fireEvent.change(tagSelect, {
-    target: { value: "23" }, // id del tag "react"
+    target: { value: "23" },
   });
 
-  // Submit
   fireEvent.click(screen.getByText("Publicar"));
 
   await waitFor(() => {
     expect(createResource).toHaveBeenCalled();
     const payload = (createResource as Mock).mock.calls[0][0];
 
-    // ahora esperamos IDs (como strings), no nombres
     expect(payload.tags).toEqual(["23"]);
   });
 });

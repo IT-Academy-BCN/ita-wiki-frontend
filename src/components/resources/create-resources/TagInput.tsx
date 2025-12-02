@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { Tag } from "../../../types";
 import { formatText } from "../../../utils/formatText";
@@ -5,7 +6,7 @@ import { useTags } from "../../../context/TagsContext";
 
 interface TagInputProps {
   selectedTags: Tag[];
-  setselectedTags: (tag: Tag[]) => void;
+  setselectedTags: (tags: Tag[]) => void;
   selectedCategory: string | null;
 }
 
@@ -25,11 +26,7 @@ const TagInput: React.FC<TagInputProps> = ({
 
     const normalized = Array.isArray(source) ? source : [];
     setAvailableTags(normalized);
-
-    // cuando cambia la categoría, vaciamos los tags seleccionados
     setselectedTags([]);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCategory]);
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

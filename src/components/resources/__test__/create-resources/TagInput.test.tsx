@@ -3,6 +3,7 @@ import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
 import TagInput from "../../create-resources/TagInput";
 import type { Tag } from "../../../../types";
+import type { ReactNode } from "react";
 
 const mockTags: Tag[] = [
   { id: 1, name: "React", created_at: "", updated_at: "" },
@@ -15,7 +16,7 @@ const tagsByCategory: Record<string, number[]> = {
 };
 
 vi.mock("../../../../context/TagsContext", () => ({
-  TagsProvider: ({ children }: { children: React.ReactNode }) => children,
+  TagsProvider: ({ children }: { children: ReactNode }) => children,
   useTags: () => ({
     tags: mockTags,
     tagsByCategory,
@@ -69,7 +70,7 @@ describe("TagInput component (dropdown)", () => {
     await screen.findByText("React");
 
     fireEvent.change(select, {
-      target: { value: "1" }, // id del tag React
+      target: { value: "1" },
     });
 
     expect(setSelectedTags).toHaveBeenCalledWith([

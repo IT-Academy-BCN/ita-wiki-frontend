@@ -29,11 +29,8 @@ export const TagsProvider = ({ children }: { children: React.ReactNode }) => {
 
   const refreshTags = async () => {
     try {
-      // 1) Siempre intentamos cargar TODOS los tags
       const allTags = await getTags();
 
-      // 2) Intentamos cargar el mapa por categoría, pero si falla,
-      //    no rompemos la carga de tags
       let tagsByCat: Record<string, number[]> = {};
       try {
         tagsByCat = await fetchTagsIdsByCategory();
@@ -42,7 +39,6 @@ export const TagsProvider = ({ children }: { children: React.ReactNode }) => {
         tagsByCat = {};
       }
 
-      // Ordenamos globalmente los tags por nombre
       const sortedTags = allTags.sort((a, b) =>
         a.name.localeCompare(b.name, "es", { sensitivity: "base" }),
       );

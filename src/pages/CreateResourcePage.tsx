@@ -61,7 +61,6 @@ export default function CreateResourcePage() {
   };
 
   const onSubmit = async (data: Partial<IntResource>) => {
-    // Convertimos los Tag[] seleccionados a IDs en formato string
     const tagsWithIds =
       Array.isArray(data.tags) && data.tags.length
         ? data.tags.map((tag) =>
@@ -74,10 +73,8 @@ export default function CreateResourcePage() {
       description: data.description,
       url: data.url,
       category: data.category,
-      // ahora mandamos IDs (como strings), no nombres
       tags: tagsWithIds,
       type: data.type,
-      // TODO - quitar hardcode cuando toque
       github_id: 39952,
     };
 
