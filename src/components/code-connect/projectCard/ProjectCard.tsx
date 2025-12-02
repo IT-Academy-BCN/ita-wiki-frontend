@@ -86,7 +86,7 @@ function ProjectCard({ project }: ProjectCardProps) {
                   onClick={() => handleOpenDecisionModal("frontend", index)}
                 >
                   <div
-                    className={`w-12 h-12 rounded-full border-2 overflow-hidden flex items-center justify-center ${accepted ? "border-transparent" : "border-orange-500"}`}
+                    className={`w-12 h-12 rounded-full border-2 cursor-pointer overflow-hidden flex items-center justify-center ${accepted ? "border-transparent" : "border-orange-500"}`}
                   >
                     <img
                       className={`w-full h-full object-cover ${accepted ? "" : "grayscale"}`}
@@ -143,7 +143,7 @@ function ProjectCard({ project }: ProjectCardProps) {
                   onClick={() => handleOpenDecisionModal("backend", index)}
                 >
                   <div
-                    className={`w-12 h-12 rounded-full border-2 overflow-hidden flex items-center justify-center ${accepted ? "border-transparent" : "border-orange-500"}`}
+                    className={`w-12 h-12 rounded-full cursor-pointer border-2 overflow-hidden flex items-center justify-center ${accepted ? "border-transparent" : "border-orange-500"}`}
                   >
                     <img
                       className={`w-full h-full object-cover ${accepted ? "" : "grayscale"}`}
