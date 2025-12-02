@@ -18,7 +18,7 @@ const TechnicalTestCard = ({ test }: TechnicalTestCardProps) => {
       ? test.updated_at
       : test.updated_at
         ? new Date(test.updated_at).toLocaleDateString("ca-ES", {
-            day: "numeric",
+            day: "2-digit",
             month: "short",
             year: "numeric",
           })
@@ -30,7 +30,7 @@ const TechnicalTestCard = ({ test }: TechnicalTestCardProps) => {
         <div className="flex flex-col gap-2 m-2">
           <h3 className="text-lg font-bold">
             <Link to={`/resources/technical-test/${test.id}`}>
-              {test.title}
+              <span className="text-black">{test.title}</span>
             </Link>
           </h3>
           <span className="text-sm text-gray-500 flex items-center gap-2">
