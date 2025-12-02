@@ -29,16 +29,24 @@ export const TagsProvider = ({ children }: { children: React.ReactNode }) => {
 
   const refreshTags = async () => {
     try {
-      const [allTags, tagsByCat] = await Promise.all([
-        getTags(),
-        fetchTagsIdsByCategory(),
-      ]);
+      // 1) Siempre intentamos cargar TODOS los tags
+      const allTags = await getTags();
 
-      // He movido la lógica de ordenamiento de Lini al contexto
-      // para que los tags se ordenen globalmente
+      // 2) Intentamos cargar el mapa por categoría, pero si falla,
+      //    no rompemos la carga de tags
+      let tagsByCat: Record<string, number[]> = {};
+      try {
+        tagsByCat = await fetchTagsIdsByCategory();
+      } catch (err) {
+        console.error("Error fetching tags by category:", err);
+        tagsByCat = {};
+      }
+
+      // Ordenamos globalmente los tags por nombre
       const sortedTags = allTags.sort((a, b) =>
         a.name.localeCompare(b.name, "es", { sensitivity: "base" }),
       );
+
       setTags(sortedTags);
       setTagsByCategory(tagsByCat);
     } catch (err) {
