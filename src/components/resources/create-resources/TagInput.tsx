@@ -27,7 +27,7 @@ const TagInput: React.FC<TagInputProps> = ({
     const normalized = Array.isArray(source) ? source : [];
     setAvailableTags(normalized);
     setselectedTags([]);
-  }, [selectedCategory]);
+  }, [selectedCategory, allTags]);
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { selectedOptions, value } = event.target;
@@ -58,7 +58,7 @@ const TagInput: React.FC<TagInputProps> = ({
         multiple
         value={selectedValues}
         onChange={handleSelectChange}
-        className="w-full border border-gray-200 rounded-md p-2 text-sm focus:outline-none focus:border-[#B91879] min-h-[80px]"
+        className="w-full border border-gray-200 rounded-md p-2 text-sm focus:outline-none focus:border-[#B91879] min-h-[180px]"
         aria-label="Tags"
       >
         {availableTags.map((tag) => (
