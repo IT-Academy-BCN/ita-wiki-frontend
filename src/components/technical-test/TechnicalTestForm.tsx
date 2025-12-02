@@ -59,7 +59,7 @@ export const TechnicalTestForm = () => {
   const handleSubmit = async () => {
     const isValid = validateForm();
     if (!isValid) return;
-    
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("language", selectedLanguage);

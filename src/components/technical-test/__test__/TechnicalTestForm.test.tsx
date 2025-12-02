@@ -57,20 +57,20 @@ describe("TechnicalTestForm UI", () => {
   it("updates duration input when user enters a number", async () => {
     const user = userEvent.setup();
     render(<TechnicalTestForm />);
-    
+
     const durationInput = screen.getByRole("spinbutton");
     await user.type(durationInput, "60");
-    
+
     expect(durationInput).toHaveValue(60);
   });
 
   it("changes difficulty level when selecting from dropdown", async () => {
     const user = userEvent.setup();
     render(<TechnicalTestForm />);
-    
+
     const difficultySelect = screen.getByLabelText("Dificultat");
     await user.selectOptions(difficultySelect, "hard");
-    
+
     expect(difficultySelect).toHaveValue("hard");
   });
 
