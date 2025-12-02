@@ -26,8 +26,11 @@ const TagInput: React.FC<TagInputProps> = ({
     const normalized = Array.isArray(source) ? source : [];
     setAvailableTags(normalized);
 
+    // cuando cambia la categoría, vaciamos los tags seleccionados
     setselectedTags([]);
-  }, [selectedCategory, allTags, getTagsByCategory, setselectedTags]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedCategory]);
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { selectedOptions, value } = event.target;
@@ -61,7 +64,6 @@ const TagInput: React.FC<TagInputProps> = ({
         className="w-full border border-gray-200 rounded-md p-2 text-sm focus:outline-none focus:border-[#B91879] min-h-[80px]"
         aria-label="Tags"
       >
-        {}
         {availableTags.map((tag) => (
           <option key={tag.id} value={String(tag.id)}>
             {formatText(tag.name)}

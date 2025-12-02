@@ -2,8 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
 import TagInput from "../../create-resources/TagInput";
-import { Tag } from "../../../../types";
-import { TagsProvider } from "../../../../context/TagsContext";
+import type { Tag } from "../../../../types";
 
 const mockTags: Tag[] = [
   { id: 1, name: "React", created_at: "", updated_at: "" },
@@ -11,16 +10,25 @@ const mockTags: Tag[] = [
   { id: 3, name: "CSS", created_at: "", updated_at: "" },
 ];
 
-vi.mock("../../../../api/endPointTags", () => ({
-  getTags: vi.fn(() => Promise.resolve(mockTags)),
-}));
+const tagsByCategory: Record<string, number[]> = {
+  Frontend: [1, 2, 3],
+};
 
-vi.mock("../../../../api/endPointTagsIdsByCategory", () => ({
-  fetchTagsIdsByCategory: vi.fn(() =>
-    Promise.resolve({
-      Frontend: [1, 2, 3],
-    }),
-  ),
+vi.mock("../../../../context/TagsContext", () => ({
+  TagsProvider: ({ children }: { children: React.ReactNode }) => children,
+  useTags: () => ({
+    tags: mockTags,
+    tagsByCategory,
+    getTagsByCategory: (category: string | null) => {
+      if (!category) return [];
+      const ids = tagsByCategory[category];
+      if (!ids) return [];
+      return mockTags.filter((tag) => ids.includes(tag.id));
+    },
+    refreshTags: vi.fn(),
+    getTagNameById: (id: number) =>
+      mockTags.find((t) => t.id === id)?.name,
+  }),
 }));
 
 describe("TagInput component (dropdown)", () => {
@@ -28,13 +36,11 @@ describe("TagInput component (dropdown)", () => {
     const setSelectedTags = vi.fn();
 
     render(
-      <TagsProvider>
-        <TagInput
-          selectedTags={[]}
-          setselectedTags={setSelectedTags}
-          selectedCategory="Frontend"
-        />
-      </TagsProvider>,
+      <TagInput
+        selectedTags={[]}
+        setselectedTags={setSelectedTags}
+        selectedCategory="Frontend"
+      />,
     );
 
     const select = screen.getByLabelText("Tags");
@@ -52,13 +58,11 @@ describe("TagInput component (dropdown)", () => {
     const setSelectedTags = vi.fn();
 
     render(
-      <TagsProvider>
-        <TagInput
-          selectedTags={[]}
-          setselectedTags={setSelectedTags}
-          selectedCategory="Frontend"
-        />
-      </TagsProvider>,
+      <TagInput
+        selectedTags={[]}
+        setselectedTags={setSelectedTags}
+        selectedCategory="Frontend"
+      />,
     );
 
     const select = screen.getByLabelText("Tags") as HTMLSelectElement;

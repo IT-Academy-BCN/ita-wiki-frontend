@@ -1,33 +1,40 @@
+import { vi, expect, test, type Mock } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import CreateResourcePage from "../../../pages/CreateResourcePage";
 import UserProvider from "../../../context/UserContext";
-import { vi, expect, test, type Mock } from "vitest";
 
-vi.mock("../../../api/endPointResources", async () => {
-  return {
-    createResource: vi.fn(),
-  };
-});
+// mock estable para tags
+const mockTags = [
+  { id: 18, name: "node", created_at: "", updated_at: "" },
+  { id: 23, name: "react", created_at: "", updated_at: "" },
+];
 
-// Mock tag context
+const mockGetTagsByCategory = (category: string) => {
+  if (category === "React") {
+    return mockTags;
+  }
+  return [];
+};
+
 vi.mock("../../../context/TagsContext", async () => {
   const actual = await vi.importActual("../../../context/TagsContext");
   return {
     ...actual,
     useTags: () => ({
-      getTagsByCategory: (category: string) => {
-        if (category === "React") {
-          return [
-            { id: 18, name: "node", created_at: "", updated_at: "" },
-            { id: 23, name: "react", created_at: "", updated_at: "" },
-          ];
-        }
-        return [];
-      },
+      tags: mockTags,
+      tagsByCategory: { React: [18, 23] },
+      getTagsByCategory: mockGetTagsByCategory,
+      refreshTags: vi.fn(),
+      getTagNameById: (id: number) =>
+        mockTags.find((t) => t.id === id)?.name,
     }),
   };
 });
+
+vi.mock("../../../api/endPointResources", () => ({
+  createResource: vi.fn(),
+}));
 
 test("POST includes tag IDs not names", async () => {
   const { createResource } = await import("../../../api/endPointResources");
@@ -40,34 +47,28 @@ test("POST includes tag IDs not names", async () => {
     </UserProvider>,
   );
 
-  // Fill title (1st input)
+  // Title
   fireEvent.change(screen.getAllByRole("textbox")[0], {
     target: { value: "My Resource" },
   });
 
-  // Fill URL (2nd input)
+  // URL
   fireEvent.change(screen.getAllByRole("textbox")[1], {
     target: { value: "http://example.com" },
   });
 
-  // Select category
+  // Category (React)
   fireEvent.click(screen.getByRole("button", { name: /react/i }));
 
-  // Select resource type
+  // Resource type
   fireEvent.click(screen.getByLabelText("Blog"));
 
-  // Select tag
-  fireEvent.change(screen.getByPlaceholderText("Escriu una etiqueta..."), {
-    target: { value: "react" },
-  });
+  // Seleccionar tag desde el <select>
+  const tagSelect = screen.getByLabelText("Tags");
 
-  await waitFor(() => {
-    fireEvent.click(screen.getAllByText("React")[1]);
+  fireEvent.change(tagSelect, {
+    target: { value: "23" }, // id del tag "react"
   });
-
-  screen
-    .getAllByText("React")
-    .forEach((el, i) => console.log(`React match ${i}:`, el.outerHTML));
 
   // Submit
   fireEvent.click(screen.getByText("Publicar"));
@@ -75,7 +76,8 @@ test("POST includes tag IDs not names", async () => {
   await waitFor(() => {
     expect(createResource).toHaveBeenCalled();
     const payload = (createResource as Mock).mock.calls[0][0];
-    // TODO - Update test to match real tags
-    expect(payload.tags).toEqual(["intermedio"]);
+
+    // ahora esperamos IDs (como strings), no nombres
+    expect(payload.tags).toEqual(["23"]);
   });
 });
