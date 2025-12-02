@@ -40,10 +40,7 @@ const UiCheckbox: FC<UiCheckboxProps> = ({ checked, onChange, label }) => {
       />
       {CheckboxVisual}
       {label && (
-        <span
-          className="text-gray-800 max-w-[120px] truncate inline-block"
-          title={label}
-        >
+        <span className="text-gray-800 truncate inline-block" title={label}>
           {label}
         </span>
       )}
