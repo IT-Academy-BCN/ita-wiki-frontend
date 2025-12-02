@@ -1,7 +1,7 @@
 import { API_URL, END_POINTS } from "../config";
 import { Tag } from "../types";
 
-// possible shapes of the API response
+// Posibles formas de respuesta del API
 type TagsApiResponse = Tag[] | { data: Tag[] } | { tags: Tag[] };
 
 export const getTags = async (): Promise<Tag[]> => {
@@ -19,22 +19,27 @@ export const getTags = async (): Promise<Tag[]> => {
     });
 
     if (!response.ok) {
-      console.error("Error fetching tags: response not ok", response.status);
+      console.error(
+        "Error fetching tags: response not ok",
+        response.status,
+        response.statusText
+      );
       return [];
     }
 
+    // Usamos tu sistema mejorado para soportar múltiples formatos
     const data: TagsApiResponse = await response.json();
 
     let tags: Tag[] | undefined;
 
     if (Array.isArray(data)) {
-      // API returns a plain array: [ {id, name, ...}, ... ]
+      // API devuelve array plano: [ { id, name, ... } ]
       tags = data;
     } else if ("data" in data && Array.isArray(data.data)) {
-      // API returns { data: [ ... ] }
+      // API devuelve { data: [...] }
       tags = data.data;
     } else if ("tags" in data && Array.isArray(data.tags)) {
-      // API returns { tags: [ ... ] }
+      // API devuelve { tags: [...] }
       tags = data.tags;
     }
 
