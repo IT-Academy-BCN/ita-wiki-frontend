@@ -223,9 +223,7 @@ export const TechnicalTestForm = () => {
           <div className="flex flex-col px-10">
             <span className="w-full flex gap-10 p-2 px-5 border border-gray-300 rounded-tl-lg rounded-tr-lg">
               {formatDocumentIcons.map((btn) => {
-                const IconComponent = btn.icon as unknown as React.FC<
-                  React.SVGProps<SVGSVGElement>
-                >;
+                const IconComponent = btn.icon
                 return <IconComponent key={btn.label} className="w-5 h-5" />;
               })}
             </span>
