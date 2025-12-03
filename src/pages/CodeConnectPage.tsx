@@ -1,6 +1,6 @@
 import PageTitle from "../components/ui/PageTitle";
 import CodeConnectFiltersComponent from "../components/code-connect/CodeConnectFiltersComponent";
-import ProjectList from "../components/ui/projectList/ProjectList";
+import ProjectList from "../components/code-connect/projectList/ProjectList";
 import { useNavigate } from "react-router";
 import ButtonComponent from "../components/atoms/ButtonComponent";
 import { useState } from "react";

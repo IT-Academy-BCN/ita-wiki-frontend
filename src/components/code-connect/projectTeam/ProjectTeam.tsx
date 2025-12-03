@@ -1,5 +1,5 @@
-import ProjectButton from "../projectCard/ProjectButton";
-import ProgressBar from "../projectCard/ProgressBar";
+import ProjectButton from "../../code-connect/projectCard/ProjectButton";
+import ProgressBar from "../../code-connect/projectCard/ProgressBar";
 import ButtonComponent from "../../atoms/ButtonComponent";
 
 interface ProjectTeamProps {

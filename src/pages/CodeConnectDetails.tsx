@@ -1,7 +1,7 @@
 import { FC } from "react";
 import PageTitle from "../components/ui/PageTitle";
 import moockData from "../moock/projectDetails.json";
-import ProjectTeam from "../components/ui/projectTeam/ProjectTeam";
+import ProjectTeam from "../components/code-connect/projectTeam/ProjectTeam";
 import Container from "../components/ui/Container";
 
 import react from "../assets/react.svg";
