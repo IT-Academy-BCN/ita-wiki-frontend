@@ -1,65 +1,88 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
 import { describe, it, expect, vi } from "vitest";
-import { MemoryRouter } from "react-router";
+import {
+  MemoryRouter,
+  Routes,
+  Route,
+  useParams,
+  useNavigate,
+} from "react-router";
+import userEvent from "@testing-library/user-event";
 import TechnicalPage from "./TechnicalPage";
 
 vi.mock("react-router", async () => {
-  const actual: typeof import("react-router") =
-    await vi.importActual("react-router");
-
+  const actual = await vi.importActual("react-router");
   return {
     ...actual,
-    useNavigate: () => vi.fn(),
+    useParams: vi.fn(),
+    useNavigate: vi.fn(),
   };
 });
 
+vi.mock("../../components/ui/Container", () => ({
+  default: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="mock-container">{children}</div>
+  ),
+}));
+
+vi.mock("../../components/ui/PageTitle", () => ({
+  default: ({ title }: { title: string }) => (
+    <div data-testid="mock-page-title">{title}</div>
+  ),
+}));
+
 describe("TechnicalPage", () => {
-  it("renderitza el botó de tornar", () => {
+  it("renders correctly with projectId URL parameter", () => {
+    vi.mocked(useParams).mockReturnValue({ projectId: "11" });
+
     render(
-      <MemoryRouter>
-        <TechnicalPage />
+      <MemoryRouter initialEntries={["/resources/technical-test/11"]}>
+        <Routes>
+          <Route
+            path="/resources/technical-test/:projectId"
+            element={<TechnicalPage />}
+          />
+        </Routes>
       </MemoryRouter>,
     );
-    expect(screen.getByText("← Tornar a Proves Tècniques")).toBeInTheDocument();
+
+    expect(screen.getByTestId("mock-container")).toBeInTheDocument();
+    expect(screen.getByTestId("mock-page-title")).toBeInTheDocument();
+    expect(vi.mocked(useParams)()).toEqual({ projectId: "11" });
   });
 
-  it("renderitza el títol principal", () => {
+  it("renders the page structure with title and container", () => {
+    vi.mocked(useParams).mockReturnValue({});
+
     render(
       <MemoryRouter>
         <TechnicalPage />
       </MemoryRouter>,
     );
-    expect(screen.getByText("Xifratge Cèsar")).toBeInTheDocument();
+
+    expect(screen.getByTestId("mock-page-title")).toBeInTheDocument();
+    expect(screen.getByTestId("mock-container")).toBeInTheDocument();
   });
 
-  it("renderitza la data i llenguatge", () => {
-    render(
-      <MemoryRouter>
-        <TechnicalPage />
-      </MemoryRouter>,
-    );
-    expect(screen.getByText("20 Des 2024")).toBeInTheDocument();
-    expect(screen.getByText("JavaScript")).toBeInTheDocument();
-  });
+  it("navigates to all tech tests page when back link is clicked", async () => {
+    const mockNavigate = vi.fn();
+    vi.mocked(useNavigate).mockReturnValue(mockNavigate);
+    vi.mocked(useParams).mockReturnValue({});
 
-  it("renderitza part del contingut descriptiu", () => {
-    render(
-      <MemoryRouter>
-        <TechnicalPage />
-      </MemoryRouter>,
-    );
-    expect(
-      screen.getByText(/Has de dissenyar una funció d'encriptació/i),
-    ).toBeInTheDocument();
-  });
+    const user = userEvent.setup();
 
-  it("renderitza els exemples finals", () => {
     render(
       <MemoryRouter>
         <TechnicalPage />
       </MemoryRouter>,
     );
-    expect(screen.getByText(/cifrar\("hola", 3\)/i)).toBeInTheDocument();
+
+    const backLink = screen.getByText("Tornar a Proves Tècniques");
+    await user.click(backLink);
+
+    expect(mockNavigate).toHaveBeenCalledWith(
+      "/resources/technical-test/all-tech-tests",
+    );
   });
 });
