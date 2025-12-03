@@ -1,8 +1,10 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { vi } from "vitest";
 import { MemoryRouter } from "react-router";
 import CreateResourcePage from "../../../pages/CreateResourcePage";
 import type { Mock } from "vitest";
 import UserProvider from "../../../context/UserContext";
+import "@testing-library/jest-dom";
 
 vi.mock("../../../api/endPointResources", async () => {
   return {
@@ -78,4 +80,48 @@ test("POST includes tag IDs not names", async () => {
     // TODO - Update test to match real tags
     expect(payload.tags).toEqual(["intermedio"]);
   });
+});
+
+vi.mock("../../../assets/sqlVector.svg?react", () => ({
+  default: () => <svg data-testid="sql-icon" />,
+}));
+vi.mock("../../../assets/pythonVector.svg?react", () => ({
+  default: () => <svg data-testid="python-icon" />,
+}));
+vi.mock("../../../assets/javascript.svg?react", () => ({
+  default: () => <svg data-testid="js-icon" />,
+}));
+vi.mock("../../../assets/logo-java 1.svg?react", () => ({
+  default: () => <svg data-testid="java-icon" />,
+}));
+vi.mock("../../../assets/logo-php 1.svg?react", () => ({
+  default: () => <svg data-testid="php-icon" />,
+}));
+vi.mock("../../../assets/angular.svg?react", () => ({
+  default: () => <svg data-testid="angular-icon" />,
+}));
+vi.mock("../../../assets/react.svg?react", () => ({
+  default: () => <svg data-testid="react-icon" />,
+}));
+vi.mock("../../../assets/logo-node 1.svg?react", () => ({
+  default: () => <svg data-testid="node-icon" />,
+}));
+
+test("renders all technology icons as SVG elements", () => {
+  render(
+    <UserProvider>
+      <MemoryRouter>
+        <CreateResourcePage />
+      </MemoryRouter>
+    </UserProvider>,
+  );
+
+  expect(screen.getByTestId("node-icon")).toBeInTheDocument();
+  expect(screen.getByTestId("react-icon")).toBeInTheDocument();
+  expect(screen.getByTestId("angular-icon")).toBeInTheDocument();
+  expect(screen.getByTestId("js-icon")).toBeInTheDocument();
+  expect(screen.getByTestId("java-icon")).toBeInTheDocument();
+  expect(screen.getByTestId("php-icon")).toBeInTheDocument();
+  expect(screen.getByTestId("python-icon")).toBeInTheDocument();
+  expect(screen.getByTestId("sql-icon")).toBeInTheDocument();
 });
