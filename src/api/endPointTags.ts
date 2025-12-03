@@ -14,11 +14,21 @@ export const getTags = async (): Promise<Tag[]> => {
       signal,
     });
     if (!response.ok) {
+      console.warn(
+        "Error fetching tags: response not ok",
+        response.status,
+        response.statusText,
+      );
       return [];
     }
-    const tags = await response.json();
+    const json = await response.json();
 
-    return tags;
+    if (!json?.data || !Array.isArray(json.data)) {
+      console.warn("Invalid tags response format:", json);
+      return [];
+    }
+
+    return json.data;
   } catch (error) {
     console.error("Error fetching tags:", error);
     return [];
