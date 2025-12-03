@@ -7,7 +7,7 @@ import { createResource } from "../api/endPointResources";
 import { toast } from "sonner";
 import ButtonComponent from "../components/atoms/ButtonComponent";
 import PageTitle from "../components/ui/PageTitle";
-import TagInput from "../components/resources/create-resources/TagInput";
+import TagInput from "../components/forms/TagInput";
 import { useState, useCallback } from "react";
 import arrowLeft from "../assets/arrow-left.svg";
 import { useNavigate } from "react-router";

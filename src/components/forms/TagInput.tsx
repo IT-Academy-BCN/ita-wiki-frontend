@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import { Tag } from "../../../types";
-import { formatText } from "../../../utils/formatText";
-import { useTags } from "../../../context/TagsContext";
+import { Tag } from "../../types";
+import { formatText } from "../../utils/formatText";
+import { useTags } from "../../context/TagsContext";
 
 interface TagInputProps {
   selectedTags: Tag[];

@@ -1,8 +1,8 @@
 import { describe, it, expect, vi } from "vitest";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
-import TagInput from "../../create-resources/TagInput";
-import type { Tag } from "../../../../types";
+import TagInput from "../TagInput";
+import type { Tag } from "../../../types";
 import type { ReactNode } from "react";
 
 const mockTags: Tag[] = [

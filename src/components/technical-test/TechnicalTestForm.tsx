@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { asideContentForTechnicalTest } from "../Layout/aside/asideContent";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { createTechnicalTest } from "../../api/endPointTechnicalTests";
 import { API_URL, END_POINTS } from "../../config";
 import { formatDocumentIcons } from "../../icons/formatDocumentIconsArray";
@@ -8,6 +9,9 @@ import { useNavigate } from "react-router";
 import PdfUploadComponent from "../atoms/PdfUploadComponent";
 import { toast } from "sonner";
 import Container from "../ui/Container";
+import TagInput from "../forms/TagInput";
+import { Tag } from "../../types";
+import { useForm } from "react-hook-form";
 
 export const TechnicalTestForm = () => {
   const [title, setTitle] = useState("");
@@ -15,7 +19,17 @@ export const TechnicalTestForm = () => {
   const [contentType, setContentType] = useState("text"); // 'text' o 'file'
   const [content, setContent] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [selectedTags, setselectedTags] = useState<Tag[]>([]);
+
   const navigate = useNavigate();
+
+  const handleTagChange = useCallback(
+    (tags: Tag[]) => {
+      setselectedTags(tags);
+      setValue("tags", tags);
+    },
+    [setValue],
+  );
 
   const handleSubmit = async () => {
     if (!title || !selectedLanguage) {
@@ -136,13 +150,7 @@ export const TechnicalTestForm = () => {
         <label className="block my-4 px-10 mb-8 font-medium">
           Contingut de la prova
         </label>
-        <div
-          className="flex gap-2 mx-10 mb-10
-      border-2 border-gray-500
-      shadow-sm w-fit
-      rounded-full p-1
-      "
-        >
+        <div className="flex gap-2 mx-10 mb-10 border-2 border-gray-500 shadow-sm w-fit rounded-full p-1 ">
           <button
             className={`px-8 py-2 rounded-full cursor-pointer ${
               contentType === "text" ? "bg-[#B91879] text-white" : "bg-white"
@@ -186,6 +194,17 @@ export const TechnicalTestForm = () => {
             <PdfUploadComponent onFileSelect={setFile} />
           </div>
         )}
+
+        <TagInput
+          selectedTags={selectedTags}
+          setselectedTags={handleTagChange}
+          selectedCategory={selectedCategory}
+        />
+        <div className="h-6">
+          {errors.tags && (
+            <p className="text-red-500 text-xs">{errors.tags.message}</p>
+          )}
+        </div>
       </div>
     </Container>
   );
