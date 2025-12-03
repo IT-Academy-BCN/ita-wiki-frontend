@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { asideContentForTechnicalTest } from "../Layout/aside/asideContent";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createTechnicalTest } from "../../api/endPointTechnicalTests";
-import { API_URL, END_POINTS } from "../../config";
 import { formatDocumentIcons } from "../../icons/formatDocumentIconsArray";
 import { ArrowLeftIcon } from "lucide-react";
 import { useNavigate } from "react-router";
@@ -11,17 +10,42 @@ import { toast } from "sonner";
 import Container from "../ui/Container";
 import TagInput from "../forms/TagInput";
 import { Tag } from "../../types";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
+import { technicalTestSchema } from "../../validations/technicalTestSchema";
+import { z } from "zod";
+
+type TechnicalTestFormData = z.infer<typeof technicalTestSchema>;
 
 export const TechnicalTestForm = () => {
-  const [title, setTitle] = useState("");
+  const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit: hookFormHandleSubmit,
+    setValue,
+    reset,
+    control,
+    formState: { errors },
+  } = useForm<TechnicalTestFormData>({
+    resolver: zodResolver(technicalTestSchema),
+  });
+
+  const titleValue = useWatch({
+    control,
+    name: "title",
+    defaultValue: "",
+  });
+
+  const descriptionValue = useWatch({
+    control,
+    name: "description",
+    defaultValue: "",
+  });
+
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [contentType, setContentType] = useState("text"); // 'text' o 'file'
-  const [content, setContent] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [selectedTags, setselectedTags] = useState<Tag[]>([]);
-
-  const navigate = useNavigate();
 
   const handleTagChange = useCallback(
     (tags: Tag[]) => {
@@ -31,37 +55,44 @@ export const TechnicalTestForm = () => {
     [setValue],
   );
 
-  const handleSubmit = async () => {
-    if (!title || !selectedLanguage) {
-      toast.error("Completa tots els camps obligatoris.");
-      return;
-    }
+  const handleLanguageSelect = (language: string) => {
+    setSelectedLanguage(language);
+    setValue("language", language as TechnicalTestFormData["language"]);
+  };
 
-    if (contentType === "text" && !content.trim()) {
-      toast.error("La descripció no pot estar buida");
-      return;
-    }
-
+  const onSubmit = async (data: TechnicalTestFormData) => {
     if (contentType === "file" && !file) {
       toast.error("Si us plau, selecciona un fitxer PDF.");
       return;
     }
+
     const formData = new FormData();
-    formData.append("title", title);
-    formData.append("language", selectedLanguage);
+    formData.append("title", data.title || "");
+    formData.append("language", data.language || "");
 
     if (contentType === "text") {
-      formData.append("description", content);
+      formData.append("description", data.description || "");
     } else if (file) {
       formData.append("file", file);
     }
 
-    const url = `${API_URL}${END_POINTS.technicaltests.create}`;
-    console.log("Enviando a:", url);
+    if (data.tags && Array.isArray(data.tags)) {
+      const tagIds = data.tags.map((tag) => String(tag.id));
+      tagIds.forEach((tagId) => {
+        formData.append("tags[]", tagId);
+      });
+    }
 
     try {
       const result = await createTechnicalTest(formData);
       console.log("Guardado:", result);
+      toast.success("Prova tècnica publicada amb èxit!");
+
+      reset();
+      setFile(null);
+      setSelectedLanguage("");
+      setselectedTags([]);
+      setContentType("text");
 
       navigate("/resources/technical-test/all-tech-tests", {
         state: { successMessage: "Prueba técnica publicada con éxito" },
@@ -71,6 +102,9 @@ export const TechnicalTestForm = () => {
       toast.error("Error al publicar la prueba técnica");
     }
   };
+
+  const charLimitTitle = 65;
+  const charLimitDescription = 1000;
 
   return (
     <Container className="!p-0">
@@ -99,7 +133,7 @@ export const TechnicalTestForm = () => {
               Cancel·lar
             </button>
             <button
-              onClick={handleSubmit}
+              onClick={hookFormHandleSubmit(onSubmit)}
               className="px-4 py-2 bg-primary text-white rounded-lg w-1/2 h-fit hover:shadow-md cursor-pointer"
             >
               Publicar
@@ -108,103 +142,126 @@ export const TechnicalTestForm = () => {
         </div>
 
         <div className="border-t border-gray-300 my-8"></div>
-        <div className="flex flex-col px-10">
-          <label className="block mb-2 mt-8 font-medium">Títol *</label>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="sm:w-1/2 p-2 border border-[#B91879] rounded-lg mb-4"
-            maxLength={65}
-          />
-          <div className="sm:w-1/2 self-end sm:me-10 text-sm text-gray-500">
-            <span>0/65</span>
-          </div>
-        </div>
 
-        <label className="block mb-2 font-medium px-10">Llenguatge *</label>
-        <div className="flex flex-wrap gap-3 mb-4 px-10">
-          {asideContentForTechnicalTest.map((cat) => {
-            const IconComponent = cat.icon as unknown as React.FC<
-              React.SVGProps<SVGSVGElement>
-            >;
-            return (
-              <button
-                key={cat.label}
-                onClick={() => setSelectedLanguage(cat.label)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg border-2 hover:shadow-md cursor-pointer ${
-                  selectedLanguage === cat.label
-                    ? "border-3 border-[#B91879] bg-white text-black"
-                    : "border-gray-300 bg-white text-black"
-                }`}
-              >
-                <IconComponent className="w-5 h-5" />
-                <span className="text-sm font-medium">{cat.label}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="border-t border-gray-300 my-8"></div>
-
-        <label className="block my-4 px-10 mb-8 font-medium">
-          Contingut de la prova
-        </label>
-        <div className="flex gap-2 mx-10 mb-10 border-2 border-gray-500 shadow-sm w-fit rounded-full p-1 ">
-          <button
-            className={`px-8 py-2 rounded-full cursor-pointer ${
-              contentType === "text" ? "bg-[#B91879] text-white" : "bg-white"
-            }`}
-            onClick={() => setContentType("text")}
-          >
-            Text
-          </button>
-          <button
-            className={`px-6 py-2 rounded-full cursor-pointer ${
-              contentType === "file" ? "bg-[#B91879] text-white" : "bg-white"
-            }`}
-            onClick={() => setContentType("file")}
-          >
-            Fitxer
-          </button>
-        </div>
-
-        {contentType === "text" ? (
+        <form onSubmit={hookFormHandleSubmit(onSubmit)}>
           <div className="flex flex-col px-10">
-            <span className="w-full flex gap-10 p-2 px-5 border border-gray-300 rounded-tl-lg rounded-tr-lg">
-              {formatDocumentIcons.map((btn) => {
-                const IconComponent = btn.icon as unknown as React.FC<
-                  React.SVGProps<SVGSVGElement>
-                >;
-                return <IconComponent key={btn.label} className="w-5 h-5" />;
-              })}
-            </span>
-            <textarea
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              maxLength={1000}
-              className="w-full min-h-[350px] p-2 border border-gray-300 rounded-bl-lg rounded-br-lg border-t-0 mb-4"
+            <label className="block mb-2 mt-8 font-medium">Títol *</label>
+            <input
+              type="text"
+              {...register("title")}
+              onChange={(e) => setValue("title", e.target.value)}
+              className="sm:w-1/2 p-2 border border-[#B91879] rounded-lg mb-4"
+              maxLength={charLimitTitle}
             />
-            <div className="flex w-full justify-end me-10 text-sm text-gray-500">
-              <span className="self-end">0/1000</span>
+            <div className="sm:w-1/2 self-end sm:me-10 text-sm text-gray-500">
+              <span>
+                {titleValue?.length || 0}/{charLimitTitle}
+              </span>
+            </div>
+            <div className="h-6">
+              {errors.title && (
+                <p className="text-red-500 text-xs">{errors.title.message}</p>
+              )}
             </div>
           </div>
-        ) : (
-          <div className="my-3">
-            <PdfUploadComponent onFileSelect={setFile} />
-          </div>
-        )}
 
-        <TagInput
-          selectedTags={selectedTags}
-          setselectedTags={handleTagChange}
-          selectedCategory={selectedCategory}
-        />
-        <div className="h-6">
-          {errors.tags && (
-            <p className="text-red-500 text-xs">{errors.tags.message}</p>
+          <label className="block mb-2 font-medium px-10">Llenguatge *</label>
+          <div className="flex flex-wrap gap-3 mb-4 px-10">
+            {asideContentForTechnicalTest.map((cat) => {
+              const IconComponent = cat.icon;
+              return (
+                <button
+                  key={cat.label}
+                  type="button"
+                  onClick={() => handleLanguageSelect(cat.label)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg border-2 hover:shadow-md cursor-pointer ${
+                    selectedLanguage === cat.label
+                      ? "border-3 border-[#B91879] bg-white text-black"
+                      : "border-gray-300 bg-white text-black"
+                  }`}
+                >
+                  <IconComponent className="w-5 h-5" />
+                  <span className="text-sm font-medium">{cat.label}</span>
+                </button>
+              );
+            })}
+          </div>
+          <div className="h-6 px-10">
+            {errors.language && (
+              <p className="text-red-500 text-xs">{errors.language.message}</p>
+            )}
+          </div>
+
+          <div className="border-t border-gray-300 my-8"></div>
+
+          <label className="block my-4 px-10 mb-8 font-medium">
+            Contingut de la prova
+          </label>
+          <div className="flex gap-2 mx-10 mb-10 border-2 border-gray-500 shadow-sm w-fit rounded-full p-1 ">
+            <button
+              type="button"
+              className={`px-8 py-2 rounded-full cursor-pointer ${
+                contentType === "text" ? "bg-[#B91879] text-white" : "bg-white"
+              }`}
+              onClick={() => setContentType("text")}
+            >
+              Text
+            </button>
+            <button
+              type="button"
+              className={`px-6 py-2 rounded-full cursor-pointer ${
+                contentType === "file" ? "bg-[#B91879] text-white" : "bg-white"
+              }`}
+              onClick={() => setContentType("file")}
+            >
+              Fitxer
+            </button>
+          </div>
+
+          {contentType === "text" ? (
+            <div className="flex flex-col px-10">
+              <span className="w-full flex gap-10 p-2 px-5 border border-gray-300 rounded-tl-lg rounded-tr-lg">
+                {formatDocumentIcons.map((btn) => {
+                  const IconComponent = btn.icon;
+                  return <IconComponent key={btn.label} className="w-5 h-5" />;
+                })}
+              </span>
+              <textarea
+                {...register("description")}
+                onChange={(e) => setValue("description", e.target.value)}
+                maxLength={charLimitDescription}
+                className="w-full min-h-[350px] p-2 border border-gray-300 rounded-bl-lg rounded-br-lg border-t-0 mb-4"
+              />
+              <div className="flex w-full justify-end me-10 text-sm text-gray-500">
+                <span className="self-end">
+                  {descriptionValue?.length || 0}/{charLimitDescription}
+                </span>
+              </div>
+              <div className="h-6">
+                {errors.description && (
+                  <p className="text-red-500 text-xs">
+                    {errors.description.message}
+                  </p>
+                )}
+              </div>
+            </div>
+          ) : (
+            <div className="my-3">
+              <PdfUploadComponent onFileSelect={setFile} />
+            </div>
           )}
-        </div>
+
+          <TagInput
+            selectedTags={selectedTags}
+            setselectedTags={handleTagChange}
+            selectedCategory={selectedLanguage}
+          />
+          <div className="h-6 px-10">
+            {errors.tags && (
+              <p className="text-red-500 text-xs">{errors.tags.message}</p>
+            )}
+          </div>
+        </form>
       </div>
     </Container>
   );
