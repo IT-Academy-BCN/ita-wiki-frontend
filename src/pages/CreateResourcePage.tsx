@@ -26,7 +26,7 @@ export default function CreateResourcePage() {
     reset,
     control,
     formState: { errors },
-  } = useForm({
+  } = useForm<Partial<IntResource>>({
     resolver: zodResolver(resourceSchema),
   });
 
@@ -61,22 +61,19 @@ export default function CreateResourcePage() {
   };
 
   const onSubmit = async (data: Partial<IntResource>) => {
-    // TODO - Fix Tags management
-    // let tagsWithIds;
-    // if (data.tags && data.tags.length) {
-    //   tagsWithIds = [];
-    //   data.tags.forEach((tag) => {
-    //     tagsWithIds.push(tag.id);
-    //   });
-    // }
+    const tagsWithIds =
+      Array.isArray(data.tags) && data.tags.length
+        ? data.tags.map((tag) =>
+            typeof tag === "string" ? tag : String(tag.id),
+          )
+        : [];
 
     const newResource = {
-      // TODO - Remove hardcoded values
       title: data.title,
       description: data.description,
       url: data.url,
       category: data.category,
-      tags: ["intermedio"],
+      tags: tagsWithIds,
       type: data.type,
       github_id: 39952,
     };
@@ -94,6 +91,7 @@ export default function CreateResourcePage() {
       toast.error("Hubo un error al crear el recurso");
     }
   };
+
   const charLimitTitle = 65;
   const charLimitDescription = 120;
 
@@ -120,7 +118,7 @@ export default function CreateResourcePage() {
             </button>
             <h1 className="text-[26px] font-black ">Nou recurs</h1>
           </div>
-          <div className="flex  ">
+          <div className="flex">
             <ButtonComponent
               variant="secondary"
               onClick={() => window.history.back()}
@@ -131,7 +129,7 @@ export default function CreateResourcePage() {
             <ButtonComponent
               type="button"
               variant="primary"
-              className="min-w-[8rem] max-h-[2.75rem] "
+              className="min-w-[8rem] max-h-[2.75rem]"
               onClick={handleSubmit(onSubmit)}
             >
               Publicar
@@ -204,6 +202,7 @@ export default function CreateResourcePage() {
                 </p>
               )}
             </div>
+
             <h2 className="text-sm text-black font-medium mb-4">
               Tipus de recurs
             </h2>
@@ -250,6 +249,7 @@ export default function CreateResourcePage() {
                 <p className="text-red-500 text-xs">{errors.type.message}</p>
               )}
             </div>
+
             <TagInput
               selectedTags={selectedTags}
               setselectedTags={handleTagChange}
@@ -260,6 +260,7 @@ export default function CreateResourcePage() {
                 <p className="text-red-500 text-xs">{errors.tags.message}</p>
               )}
             </div>
+
             <div>
               <hr className="w-full border-t border-gray-300 mt-3" />
 
