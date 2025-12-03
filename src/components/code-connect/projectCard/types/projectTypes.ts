@@ -1,4 +1,11 @@
 import type { ReactNode } from "react";
+import type { ProgrammingRole } from "../../../../api/endPointJoinProject";
+
+export type PendingSlot = {
+  area: "frontend" | "backend";
+  index: number;
+  role: ProgrammingRole;
+};
 
 export interface Participant {
   name: string;
