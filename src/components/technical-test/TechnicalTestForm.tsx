@@ -69,6 +69,8 @@ export const TechnicalTestForm = () => {
     const formData = new FormData();
     formData.append("title", data.title || "");
     formData.append("language", data.language || "");
+    formData.append("duration", String(data.duration));
+    formData.append("difficulty", data.difficulty);
 
     if (contentType === "text") {
       formData.append("description", data.description || "");
@@ -192,6 +194,43 @@ export const TechnicalTestForm = () => {
             {errors.language && (
               <p className="text-red-500 text-xs">{errors.language.message}</p>
             )}
+          </div>
+
+          <div className="flex flex-col px-10 mt-6">
+            <label className="block mb-2 font-medium">Durada (minuts) *</label>
+            <input
+              type="number"
+              {...register("duration", { valueAsNumber: true })}
+              className="sm:w-1/2 p-2 border border-[#B91879] rounded-lg mb-4"
+              min="1"
+              placeholder="Ex: 60"
+            />
+            <div className="h-6">
+              {errors.duration && (
+                <p className="text-red-500 text-xs">{errors.duration.message}</p>
+              )}
+            </div>
+          </div>
+
+          <div className="flex flex-col px-10">
+            <label className="block mb-2 font-medium">Dificultat *</label>
+            <select
+              {...register("difficulty")}
+              className="sm:w-1/2 p-2 border border-[#B91879] rounded-lg mb-4 bg-white"
+            >
+              <option value="">Selecciona una dificultat</option>
+              <option value="Easy">Fàcil</option>
+              <option value="Medium">Mitjà</option>
+              <option value="Hard">Difícil</option>
+              <option value="Expert">Expert</option>
+            </select>
+            <div className="h-6">
+              {errors.difficulty && (
+                <p className="text-red-500 text-xs">
+                  {errors.difficulty.message}
+                </p>
+              )}
+            </div>
           </div>
 
           <div className="border-t border-gray-300 my-8"></div>

@@ -10,6 +10,8 @@ const technicalTestLanguages = [
   "Python",
 ] as const;
 
+const technicalTestDifficulties = ["Easy", "Medium", "Hard", "Expert"] as const;
+
 const tagSchema = z.object({
   id: z.number(),
   name: z.string(),
@@ -38,4 +40,13 @@ export const technicalTestSchema = z.object({
     .array(tagSchema)
     .max(10, { message: "No pots afegir més de 10 etiquetes." })
     .optional(),
+
+  duration: z
+    .number({ invalid_type_error: "La durada ha de ser un número" })
+    .positive({ message: "La durada ha de ser major que 0" })
+    .int({ message: "La durada ha de ser un número enter" }),
+
+  difficulty: z.enum(technicalTestDifficulties, {
+    message: "Si us plau, selecciona una dificultat vàlida.",
+  }),
 });

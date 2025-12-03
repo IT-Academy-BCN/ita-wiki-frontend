@@ -15,7 +15,7 @@ const tagsByCategory: Record<string, number[]> = {
   Frontend: [1, 2, 3],
 };
 
-vi.mock("../../../../context/TagsContext", () => ({
+vi.mock("../../../context/TagsContext", () => ({
   TagsProvider: ({ children }: { children: ReactNode }) => children,
   useTags: () => ({
     tags: mockTags,
