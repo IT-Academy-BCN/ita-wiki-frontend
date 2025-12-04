@@ -1,6 +1,5 @@
 import { vi, expect, test, type Mock } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { vi } from "vitest";
 import { MemoryRouter } from "react-router";
 import CreateResourcePage from "../../../pages/CreateResourcePage";
 import UserProvider from "../../../context/UserContext";

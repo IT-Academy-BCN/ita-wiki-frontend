@@ -45,11 +45,11 @@ export const TechnicalTestForm = () => {
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [contentType, setContentType] = useState("text"); // 'text' o 'file'
   const [file, setFile] = useState<File | null>(null);
-  const [selectedTags, setselectedTags] = useState<Tag[]>([]);
+  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
 
   const handleTagChange = useCallback(
     (tags: Tag[]) => {
-      setselectedTags(tags);
+      setSelectedTags(tags);
       setValue("tags", tags);
     },
     [setValue],
@@ -93,7 +93,7 @@ export const TechnicalTestForm = () => {
       reset();
       setFile(null);
       setSelectedLanguage("");
-      setselectedTags([]);
+      setSelectedTags([]);
       setContentType("text");
 
       navigate("/resources/technical-test/all-tech-tests", {
@@ -296,7 +296,7 @@ export const TechnicalTestForm = () => {
 
           <TagInput
             selectedTags={selectedTags}
-            setselectedTags={handleTagChange}
+            setSelectedTags={handleTagChange}
             selectedCategory={selectedLanguage}
           />
           <div className="h-6 px-10">

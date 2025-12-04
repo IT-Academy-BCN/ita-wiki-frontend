@@ -45,11 +45,11 @@ export default function CreateResourcePage() {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(
     null,
   );
-  const [selectedTags, setselectedTags] = useState<Tag[]>([]);
+  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
 
   const handleTagChange = useCallback(
     (tags: Tag[]) => {
-      setselectedTags(tags);
+      setSelectedTags(tags);
       setValue("tags", tags);
     },
     [setValue],
@@ -252,7 +252,7 @@ export default function CreateResourcePage() {
 
             <TagInput
               selectedTags={selectedTags}
-              setselectedTags={handleTagChange}
+              setSelectedTags={handleTagChange}
               selectedCategory={selectedCategory}
             />
             <div className="h-6">
