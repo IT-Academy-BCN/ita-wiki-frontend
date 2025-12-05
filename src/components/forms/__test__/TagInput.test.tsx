@@ -1,8 +1,8 @@
 import { describe, it, expect, vi } from "vitest";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
-import TagInput from "../../create-resources/TagInput";
-import type { Tag } from "../../../../types";
+import TagInput from "../TagInput";
+import type { Tag } from "../../../types";
 import type { ReactNode } from "react";
 
 const mockTags: Tag[] = [
@@ -15,7 +15,7 @@ const tagsByCategory: Record<string, number[]> = {
   Frontend: [1, 2, 3],
 };
 
-vi.mock("../../../../context/TagsContext", () => ({
+vi.mock("../../../context/TagsContext", () => ({
   TagsProvider: ({ children }: { children: ReactNode }) => children,
   useTags: () => ({
     tags: mockTags,
