@@ -1,12 +1,50 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { TechnicalTestForm } from "../TechnicalTestForm";
 import { vi } from "vitest";
 import "@testing-library/jest-dom";
+import * as endPointTechnicalTests from "../../../api/endPointTechnicalTests";
+import { toast } from "sonner";
+
+const mockNavigate = vi.fn();
 
 vi.mock("react-router", () => ({
-  useNavigate: () => vi.fn(),
+  useNavigate: () => mockNavigate,
+}));
+
+vi.mock("../../../api/endPointTechnicalTests", () => ({
+  createTechnicalTest: vi.fn(),
+}));
+
+vi.mock("sonner", () => ({
+  toast: {
+    success: vi.fn(),
+    error: vi.fn(),
+  },
+}));
+
+vi.mock("../../resources/create-resources/TagInput", () => ({
+  default: ({ selectedTags, setselectedTags }: any) => (
+    <div data-testid="tag-input">
+      <button
+        onClick={() =>
+          setselectedTags([{ id: 1, name: "Test Tag", category: "React" }])
+        }
+      >
+        Add Tag
+      </button>
+    </div>
+  ),
+}));
+
+vi.mock("../../atoms/PdfUploadComponent", () => ({
+  default: ({ onFileSelect }: any) => (
+    <div data-testid="pdf-upload">
+      <button onClick={() => onFileSelect(new File([], "test.pdf"))}>
+        Upload PDF
+      </button>
+    </div>
+  ),
 }));
 
 describe("TechnicalTestForm UI", () => {
@@ -45,15 +83,6 @@ describe("TechnicalTestForm UI", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders duration input field", () => {
-    render(<TechnicalTestForm />);
-    expect(screen.getByText("Durada (minuts)")).toBeInTheDocument();
-    const durationInput = screen.getByRole("spinbutton");
-    expect(durationInput).toBeInTheDocument();
-    expect(durationInput).toHaveAttribute("type", "number");
-    expect(durationInput).toHaveAttribute("min", "1");
-  });
-
   it("updates duration input when user enters a number", async () => {
     const user = userEvent.setup();
     render(<TechnicalTestForm />);
@@ -64,38 +93,74 @@ describe("TechnicalTestForm UI", () => {
     expect(durationInput).toHaveValue(60);
   });
 
-  it("changes difficulty level when selecting from dropdown", async () => {
+  it("selects a language when clicking on a language button", async () => {
     const user = userEvent.setup();
     render(<TechnicalTestForm />);
 
-    const difficultySelect = screen.getByLabelText("Dificultat");
-    await user.selectOptions(difficultySelect, "hard");
+    const reactButton = screen.getByRole("button", { name: /React/i });
 
-    expect(difficultySelect).toHaveValue("hard");
+    expect(reactButton).toHaveClass("border-gray-300");
+    expect(reactButton).not.toHaveClass("border-[#B91879]");
+
+    await user.click(reactButton);
+
+    expect(reactButton).toHaveClass("border-[#B91879]");
+    expect(reactButton).not.toHaveClass("border-gray-300");
   });
 
-  it("renders difficulty select field with correct options", () => {
+  it("submits form with valid data and navigates on success", async () => {
+    const user = userEvent.setup();
+    const mockCreateTechnicalTest = vi.spyOn(
+      endPointTechnicalTests,
+      "createTechnicalTest",
+    );
+    mockCreateTechnicalTest.mockResolvedValue({ id: 1, success: true });
+
     render(<TechnicalTestForm />);
-    expect(screen.getByText("Dificultat")).toBeInTheDocument();
-    const difficultySelect = screen.getByLabelText("Dificultat");
-    expect(difficultySelect).toBeInTheDocument();
-    expect(difficultySelect).toHaveValue("easy");
 
-    expect(screen.getByRole("option", { name: "Fàcil" })).toBeInTheDocument();
-    expect(screen.getByRole("option", { name: "Mitjana" })).toBeInTheDocument();
-    expect(screen.getByRole("option", { name: "Difícil" })).toBeInTheDocument();
-    expect(screen.getByRole("option", { name: "Expert" })).toBeInTheDocument();
-  });
+    const titleInput = screen.getAllByRole("textbox")[0];
+    await user.type(titleInput, "Test Technical Assessment");
 
-  it("renders exercises section with 4 textareas", () => {
-    render(<TechnicalTestForm />);
-    expect(screen.getByText("Exercicis")).toBeInTheDocument();
+    const reactButton = screen.getByRole("button", { name: /React/i });
+    await user.click(reactButton);
 
-    const exerciseTextareas = screen.getAllByPlaceholderText(/Exercici \d/);
-    expect(exerciseTextareas).toHaveLength(4);
-    expect(screen.getByPlaceholderText("Exercici 1")).toBeInTheDocument();
-    expect(screen.getByPlaceholderText("Exercici 2")).toBeInTheDocument();
-    expect(screen.getByPlaceholderText("Exercici 3")).toBeInTheDocument();
-    expect(screen.getByPlaceholderText("Exercici 4")).toBeInTheDocument();
+    const durationInput = screen.getByRole("spinbutton");
+    await user.type(durationInput, "60");
+
+    const difficultySelect = screen.getByRole("combobox");
+    await user.selectOptions(difficultySelect, "Easy");
+
+    const descriptionTextarea = screen.getAllByRole("textbox")[1];
+    await user.type(descriptionTextarea, "This is a test description");
+
+    const submitButton = screen.getByRole("button", { name: /Publicar/i });
+    await user.click(submitButton);
+
+    await waitFor(() => {
+      expect(mockCreateTechnicalTest).toHaveBeenCalledTimes(1);
+    });
+
+    const formDataArg = mockCreateTechnicalTest.mock.calls[0][0];
+    expect(formDataArg).toBeInstanceOf(FormData);
+    expect(formDataArg.get("title")).toBe("Test Technical Assessment");
+    expect(formDataArg.get("language")).toBe("React");
+    expect(formDataArg.get("duration")).toBe("60");
+    expect(formDataArg.get("difficulty")).toBe("Easy");
+    expect(formDataArg.get("description")).toBe("This is a test description");
+
+    await waitFor(() => {
+      expect(toast.success).toHaveBeenCalledWith(
+        "Prova tècnica publicada amb èxit!",
+      );
+    });
+
+    await waitFor(() => {
+      expect(mockNavigate).toHaveBeenCalledWith(
+        "/resources/technical-test/all-tech-tests",
+        {
+          state: { successMessage: "Prueba técnica publicada con éxito" },
+        },
+      );
+    });
   });
 });

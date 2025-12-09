@@ -1,17 +1,35 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FaCheck, FaSpinner } from "react-icons/fa";
 import FileUploadIcon from "../../icons/FileUploadIcon";
 
 interface PdfUploadComponentProps {
+  value?: FileList | File[] | null;
   onFileSelect: (file: File | null) => void;
 }
 
-function PdfUploadComponent({ onFileSelect }: PdfUploadComponentProps) {
+function PdfUploadComponent({ value, onFileSelect }: PdfUploadComponentProps) {
   const [fileName, setFileName] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isUploaded, setIsUploaded] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const maxPdfSize = 5 * 1024 * 1024;
+
+  useEffect(() => {
+    const file = value instanceof FileList ? value[0] : value?.[0];
+
+    if (!file) {
+      setFileName(null);
+      setIsLoading(false);
+      setIsUploaded(false);
+      if (inputRef.current) {
+        inputRef.current.value = "";
+      }
+    } else {
+      setFileName(file.name);
+      setIsLoading(false);
+      setIsUploaded(true);
+    }
+  }, [value]);
 
   const resetState = () => {
     onFileSelect(null);
@@ -60,7 +78,7 @@ function PdfUploadComponent({ onFileSelect }: PdfUploadComponentProps) {
   };
 
   return (
-    <div className="max-w-sm mx-auto">
+    <div className="max-w-sm">
       <div className="flex items-center justify-between border border-gray-300 rounded-[12px] p-2">
         <span
           className={`truncate text-sm p-2 rounded-[12px] w-3/4 flex items-center ${isLoading && "bg-primary text-white"} ${isUploaded && "text-black"}`}
