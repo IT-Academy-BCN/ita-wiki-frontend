@@ -70,16 +70,22 @@ describe("HomePage Navigation", () => {
   it("should navigate to technical tests page when clicking technical section", async () => {
     renderWithRouter(<HomePage />);
 
-    const technicalSection = await screen.findByText("Entrena amb proves tècniques reals");
+    const technicalSection = await screen.findByText(
+      "Entrena amb proves tècniques reals",
+    );
     await userEvent.click(technicalSection.closest("section")!);
 
-    expect(mockNavigate).toHaveBeenCalledWith("/resources/technical-test/all-tech-tests");
+    expect(mockNavigate).toHaveBeenCalledWith(
+      "/resources/technical-test/all-tech-tests",
+    );
   });
 
   it("should navigate to codeconnect page when clicking codeconnect section", async () => {
     renderWithRouter(<HomePage />);
 
-    const codeconnectSection = await screen.findByText("Col·labora en projectes");
+    const codeconnectSection = await screen.findByText(
+      "Col·labora en projectes",
+    );
     await userEvent.click(codeconnectSection.closest("section")!);
 
     expect(mockNavigate).toHaveBeenCalledWith("/codeconnect");
