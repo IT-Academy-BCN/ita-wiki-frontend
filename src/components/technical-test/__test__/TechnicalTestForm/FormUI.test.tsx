@@ -1,9 +1,9 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { TechnicalTestForm } from "../TechnicalTestForm";
+import { TechnicalTestForm } from "../../TechnicalTestForm";
 import { vi } from "vitest";
 import "@testing-library/jest-dom";
-import * as endPointTechnicalTests from "../../../api/endPointTechnicalTests";
+import * as endPointTechnicalTests from "../../../../api/endPointTechnicalTests";
 import { toast } from "sonner";
 
 const mockNavigate = vi.fn();
@@ -12,7 +12,7 @@ vi.mock("react-router", () => ({
   useNavigate: () => mockNavigate,
 }));
 
-vi.mock("../../../api/endPointTechnicalTests", () => ({
+vi.mock("../../../../api/endPointTechnicalTests", () => ({
   createTechnicalTest: vi.fn(),
 }));
 
@@ -21,30 +21,6 @@ vi.mock("sonner", () => ({
     success: vi.fn(),
     error: vi.fn(),
   },
-}));
-
-vi.mock("../../resources/create-resources/TagInput", () => ({
-  default: ({ selectedTags, setselectedTags }: any) => (
-    <div data-testid="tag-input">
-      <button
-        onClick={() =>
-          setselectedTags([{ id: 1, name: "Test Tag", category: "React" }])
-        }
-      >
-        Add Tag
-      </button>
-    </div>
-  ),
-}));
-
-vi.mock("../../atoms/PdfUploadComponent", () => ({
-  default: ({ onFileSelect }: any) => (
-    <div data-testid="pdf-upload">
-      <button onClick={() => onFileSelect(new File([], "test.pdf"))}>
-        Upload PDF
-      </button>
-    </div>
-  ),
 }));
 
 describe("TechnicalTestForm UI", () => {
