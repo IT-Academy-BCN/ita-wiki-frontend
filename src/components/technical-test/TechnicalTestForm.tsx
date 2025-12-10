@@ -8,8 +8,11 @@ import { useNavigate } from "react-router";
 import PdfUploadComponent from "../atoms/PdfUploadComponent";
 import { toast } from "sonner";
 import Container from "../ui/Container";
+import { useForm } from "react-hook-form";
+import FieldExercise from "../forms/FieldExercise";
 
 export const TechnicalTestForm = () => {
+  const { control } = useForm();
   const [title, setTitle] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [duration, setDuration] = useState<number | "">("");
@@ -19,14 +22,7 @@ export const TechnicalTestForm = () => {
   const [contentType, setContentType] = useState("text"); // 'text' o 'file'
   const [content, setContent] = useState("");
   const [file, setFile] = useState<File | null>(null);
-  const [exercises, setExercises] = useState(["", "", "", ""]);
   const navigate = useNavigate();
-
-  const handleExerciseChange = (index: number, value: string) => {
-    const newExercises = [...exercises];
-    newExercises[index] = value;
-    setExercises(newExercises);
-  };
 
   const validateForm = () => {
     if (!title.trim()) {
@@ -246,17 +242,9 @@ export const TechnicalTestForm = () => {
 
       <div className="border-t border-gray-300 my-8"></div>
 
-      <div className="flex flex-col px-10 mb-6">
-        <label className="font-medium mb-2">Exercicis</label>
-        {exercises.map((ex, index) => (
-          <textarea
-            key={index}
-            value={ex}
-            onChange={(e) => handleExerciseChange(index, e.target.value)}
-            placeholder={`Exercici ${index + 1}`}
-            className="w-full p-2 mb-3 border border-gray-300 rounded-lg min-h-[80px]"
-          />
-        ))}
+      <div className="flex flex-col px-10 my-8">
+        <label className="block mb-2 mt-8 font-medium">Exercicis *</label>
+        <FieldExercise control={control} />
       </div>
     </Container>
   );
