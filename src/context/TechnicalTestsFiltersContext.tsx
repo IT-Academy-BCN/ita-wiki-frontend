@@ -14,7 +14,11 @@ interface TechnicalTestsFiltersContextType {
 const TechnicalTestsFiltersContext =
   createContext<TechnicalTestsFiltersContextType | null>(null);
 
-export const TechnicalTestsFiltersProvider = ({ children }: { children: ReactNode }) => {
+export const TechnicalTestsFiltersProvider = ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
   const [filters, setFilters] = useState<TechnicalTestsFilters>({
     languages: ["JavaScript", "Java"],
     years: ["2025", "2024"],
@@ -30,6 +34,7 @@ export const TechnicalTestsFiltersProvider = ({ children }: { children: ReactNod
 
 export const useTechnicalTestsFilters = () => {
   const ctx = useContext(TechnicalTestsFiltersContext);
-  if (!ctx) throw new Error("useTechnicalTestsFilters must be used inside provider");
+  if (!ctx)
+    throw new Error("useTechnicalTestsFilters must be used inside provider");
   return ctx;
 };
