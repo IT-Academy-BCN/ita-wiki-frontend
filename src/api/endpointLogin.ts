@@ -10,7 +10,6 @@ const AUTH = END_POINTS.auth;
 
 export const login = async () => {
     const url = `${API_URL}${AUTH.login}`;
-    const controller = new AbortController();
 
     try {
         const response: Response = await fetch(url, {
@@ -18,10 +17,9 @@ export const login = async () => {
             headers: {
                 "Content-Type": "application/json",
             },
-            signal: controller.signal,
         });
 
-        if (!response.ok) throw new Error(`Error en iniciar sessió, status: ${response.status}`);
+        if (!response.ok) throw new Error(`Error ${response.status}`);
     
         const data: LoginResponse = await response.json();
 
