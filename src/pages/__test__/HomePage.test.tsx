@@ -1,6 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
+import { BrowserRouter } from "react-router";
 import HomePage from "../HomePage";
+import userEvent from "@testing-library/user-event";
+
+//Mock navigate
+const mockNavigate = vi.fn();
 
 // Mock context and API to render without side effects
 vi.mock("../../context/UserContext", () => ({
@@ -9,6 +14,17 @@ vi.mock("../../context/UserContext", () => ({
 vi.mock("../../api/userApi", () => ({
   getUserRole: vi.fn(),
 }));
+vi.mock("react-router", async () => {
+  const actual = await vi.importActual("react-router");
+  return {
+    ...actual,
+    useNavigate: () => mockNavigate,
+  };
+});
+
+const renderWithRouter = (component: React.ReactElement) => {
+  return render(<BrowserRouter>{component}</BrowserRouter>);
+};
 
 describe("HomePage", () => {
   it("renders a header element with the main headline", async () => {
@@ -34,5 +50,19 @@ describe("HomePage", () => {
 
     const images = container.querySelectorAll("section img");
     expect(images.length).toBe(4);
+  });
+});
+
+describe("HomePage Navigation", () => {
+  beforeEach(() => {
+    mockNavigate.mockClear();
+  });
+  it("should navigate to ranking page when clicking ranking section", async () => {
+    renderWithRouter(<HomePage />);
+
+    const rankingSection = await screen.findByText("Competeix i millora");
+    await userEvent.click(rankingSection.closest("section")!);
+
+    expect(mockNavigate).toHaveBeenCalledWith("/ranking");
   });
 });
