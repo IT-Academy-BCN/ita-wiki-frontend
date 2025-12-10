@@ -29,20 +29,26 @@ export const TagsProvider = ({ children }: { children: React.ReactNode }) => {
 
   const refreshTags = async () => {
     try {
-      const [allTags, tagsByCat] = await Promise.all([
-        getTags(),
-        fetchTagsIdsByCategory(),
-      ]);
+      const allTags = await getTags();
 
-      // He movido la lógica de ordenamiento de Lini al contexto
-      // para que los tags se ordenen globalmente
+      let tagsByCat: Record<string, number[]> = {};
+      try {
+        tagsByCat = await fetchTagsIdsByCategory();
+      } catch (err) {
+        console.error("Error fetching tags by category:", err);
+        tagsByCat = {};
+      }
+
       const sortedTags = allTags.sort((a, b) =>
         a.name.localeCompare(b.name, "es", { sensitivity: "base" }),
       );
+
       setTags(sortedTags);
       setTagsByCategory(tagsByCat);
     } catch (err) {
       console.error("Error fetching tags:", err);
+      setTags([]);
+      setTagsByCategory({});
     }
   };
 

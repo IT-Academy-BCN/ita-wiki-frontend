@@ -1,3 +1,4 @@
+import { Tag } from "../../types";
 import { useState } from "react";
 import { asideContentForTechnicalTest } from "../Layout/aside/asideContent";
 import { createTechnicalTest } from "../../api/endPointTechnicalTests";
@@ -8,30 +9,64 @@ import { useNavigate } from "react-router";
 import PdfUploadComponent from "../atoms/PdfUploadComponent";
 import { toast } from "sonner";
 import Container from "../ui/Container";
+import TagInput from "../forms/TagInput";
 
 export const TechnicalTestForm = () => {
   const [title, setTitle] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("");
+  const [duration, setDuration] = useState<number | "">("");
+  const [difficultyLevel, setDifficultyLevel] = useState<
+    "easy" | "medium" | "hard" | "expert"
+  >("easy");
   const [contentType, setContentType] = useState("text"); // 'text' o 'file'
   const [content, setContent] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [exercises, setExercises] = useState(["", "", "", ""]);
   const navigate = useNavigate();
+  const [selectedTags, setselectedTags] = useState<Tag[]>([]);
 
-  const handleSubmit = async () => {
-    if (!title || !selectedLanguage) {
-      toast.error("Completa tots els camps obligatoris.");
-      return;
+  const handleTagChange = (tags: Tag[]) => {
+    setselectedTags(tags);
+  };
+
+  const handleExerciseChange = (index: number, value: string) => {
+    const newExercises = [...exercises];
+    newExercises[index] = value;
+    setExercises(newExercises);
+  };
+
+  const validateForm = () => {
+    if (!title.trim()) {
+      toast.error("El títol és obligatori.");
+      return false;
+    }
+
+    if (!selectedLanguage) {
+      toast.error("Selecciona un llenguatge.");
+      return false;
+    }
+
+    if (!duration || duration < 1) {
+      toast.error("La durada ha de ser un número positiu.");
+      return false;
     }
 
     if (contentType === "text" && !content.trim()) {
-      toast.error("La descripció no pot estar buida");
-      return;
+      toast.error("La descripció no pot estar buida.");
+      return false;
     }
 
     if (contentType === "file" && !file) {
       toast.error("Si us plau, selecciona un fitxer PDF.");
-      return;
+      return false;
     }
+
+    return true;
+  };
+  const handleSubmit = async () => {
+    const isValid = validateForm();
+    if (!isValid) return;
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("language", selectedLanguage);
@@ -104,16 +139,14 @@ export const TechnicalTestForm = () => {
             maxLength={65}
           />
           <div className="sm:w-1/2 self-end sm:me-10 text-sm text-gray-500">
-            <span>0/65</span>
+            <span>{title.length}/65</span>
           </div>
         </div>
 
         <label className="block mb-2 font-medium px-10">Llenguatge *</label>
         <div className="flex flex-wrap gap-3 mb-4 px-10">
           {asideContentForTechnicalTest.map((cat) => {
-            const IconComponent = cat.icon as unknown as React.FC<
-              React.SVGProps<SVGSVGElement>
-            >;
+            const IconComponent = cat.icon;
             return (
               <button
                 key={cat.label}
@@ -131,18 +164,44 @@ export const TechnicalTestForm = () => {
           })}
         </div>
 
+        <div className="flex flex-col px-10 mb-6">
+          <label className="font-medium mb-2">Durada (minuts)</label>
+          <input
+            type="number"
+            min={1}
+            value={duration}
+            onChange={(e) => setDuration(Number(e.target.value))}
+            className="sm:w-1/4 p-2 border border-gray-300 rounded-lg"
+          />
+        </div>
+
+        <div className="flex flex-col px-10 mb-6">
+          <label htmlFor="difficulty" className="font-medium mb-2">
+            Dificultat
+          </label>
+          <select
+            id="difficulty"
+            value={difficultyLevel}
+            onChange={(e) =>
+              setDifficultyLevel(
+                e.target.value as "easy" | "medium" | "hard" | "expert",
+              )
+            }
+            className="sm:w-1/4 p-2 border border-gray-300 rounded-lg"
+          >
+            <option value="easy">Fàcil</option>
+            <option value="medium">Mitjana</option>
+            <option value="hard">Difícil</option>
+            <option value="expert">Expert</option>
+          </select>
+        </div>
+
         <div className="border-t border-gray-300 my-8"></div>
 
         <label className="block my-4 px-10 mb-8 font-medium">
           Contingut de la prova
         </label>
-        <div
-          className="flex gap-2 mx-10 mb-10
-      border-2 border-gray-500
-      shadow-sm w-fit
-      rounded-full p-1
-      "
-        >
+        <div className="flex gap-2 mx-10 mb-10 border-2 border-gray-500 shadow-sm w-fit rounded-full p-1 ">
           <button
             className={`px-8 py-2 rounded-full cursor-pointer ${
               contentType === "text" ? "bg-[#B91879] text-white" : "bg-white"
@@ -165,9 +224,7 @@ export const TechnicalTestForm = () => {
           <div className="flex flex-col px-10">
             <span className="w-full flex gap-10 p-2 px-5 border border-gray-300 rounded-tl-lg rounded-tr-lg">
               {formatDocumentIcons.map((btn) => {
-                const IconComponent = btn.icon as unknown as React.FC<
-                  React.SVGProps<SVGSVGElement>
-                >;
+                const IconComponent = btn.icon;
                 return <IconComponent key={btn.label} className="w-5 h-5" />;
               })}
             </span>
@@ -178,7 +235,7 @@ export const TechnicalTestForm = () => {
               className="w-full min-h-[350px] p-2 border border-gray-300 rounded-bl-lg rounded-br-lg border-t-0 mb-4"
             />
             <div className="flex w-full justify-end me-10 text-sm text-gray-500">
-              <span className="self-end">0/1000</span>
+              <span className="self-end">{content.length}/1000</span>
             </div>
           </div>
         ) : (
@@ -186,6 +243,29 @@ export const TechnicalTestForm = () => {
             <PdfUploadComponent onFileSelect={setFile} />
           </div>
         )}
+      </div>
+
+      <div className="border-t border-gray-300 my-8"></div>
+
+      <div className="flex flex-col px-10 mb-6">
+        <label className="font-medium mb-2">Exercicis</label>
+        {exercises.map((ex, index) => (
+          <textarea
+            key={index}
+            value={ex}
+            onChange={(e) => handleExerciseChange(index, e.target.value)}
+            placeholder={`Exercici ${index + 1}`}
+            className="w-full p-2 mb-3 border border-gray-300 rounded-lg min-h-[80px]"
+          />
+        ))}
+      </div>
+
+      <div className="flex flex-col px-10 mb-6">
+        <TagInput
+          selectedTags={selectedTags}
+          setselectedTags={handleTagChange}
+          selectedCategory=""
+        />
       </div>
     </Container>
   );
