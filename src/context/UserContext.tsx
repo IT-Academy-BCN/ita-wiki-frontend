@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import { IntUser } from "../types";
+import { login } from "../api/endpointLogin";
 
 interface UserContextType {
   user: IntUser | null;
@@ -10,6 +11,8 @@ interface UserContextType {
   saveUser: (user: IntUser) => void;
   error: string | null;
   setError: (error: string | null) => void;
+  loading: boolean;
+  setIsLoading: (loading: boolean) => void;
 }
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -19,13 +22,27 @@ export const UserContext = createContext<UserContextType | undefined>(
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<IntUser | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setIsLoading] = useState<boolean>(false);
 
   const saveUser = (user: IntUser) => {
     setUser(user);
   };
+
   const signIn = async () => {
-    // 2025-11-24
-    // This function is currently empty due to changes being made to the login system.
+    setError(null);
+    setIsLoading(true);
+    try {
+      const redirect = await login();
+
+      if (redirect) {
+        window.location.href = redirect;
+      }
+    } catch (e) {
+      console.error('Error en iniciar la sessió:', (e as Error).message);
+      setError((e as Error).message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const signOut = () => {
@@ -46,6 +63,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         isAuthenticated,
         error,
         setError,
+        loading,
+        setIsLoading,
       }}
     >
       {children}
