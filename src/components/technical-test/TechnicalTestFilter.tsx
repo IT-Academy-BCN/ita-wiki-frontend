@@ -1,7 +1,6 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { asideContentForTechnicalTest } from "../Layout/aside/asideContent";
 import FilterGroup from "../ui/FilterGroup";
-import { useArrayToggle } from "../../hooks/useArrayToggle";
 
 interface TechnicalTestFilterProps {
   onFiltersChange?: (filters: {
@@ -30,42 +29,67 @@ export const TechnicalTestFilter: FC<TechnicalTestFilterProps> = ({
   const difficulties = ["Bàsica", "Intermèdia", "Difícil"];
   const languages = asideContentForTechnicalTest.map((item) => item.label);
 
-  const toggleLanguage = useArrayToggle(setSelectedLanguages);
-  const toggleYear = useArrayToggle(setSelectedYears);
-  const toggleDifficulty = useArrayToggle(setSelectedDifficulties);
+  const toggleValue = (
+    value: string,
+    selected: string[],
+    setSelected: (values: string[]) => void,
+  ) => {
+    let updated: string[];
+    if (selected.includes(value)) {
+      updated = selected.filter((v) => v !== value);
+    } else {
+      updated = [...selected, value];
+    }
+    setSelected(updated);
+    return updated;
+  };
 
   const handleLanguageToggle = (language: string) => {
-    toggleLanguage(language);
+    const updatedLanguages = toggleValue(
+      language,
+      selectedLanguages,
+      setSelectedLanguages,
+    );
+
     onFiltersChange?.({
-      languages: selectedLanguages.includes(language)
-        ? selectedLanguages.filter((l) => l !== language)
-        : [...selectedLanguages, language],
+      languages: updatedLanguages,
       years: selectedYears,
       difficulties: selectedDifficulties,
     });
   };
 
   const handleYearToggle = (year: string) => {
-    toggleYear(year);
+    const updatedYears = toggleValue(year, selectedYears, setSelectedYears);
+
     onFiltersChange?.({
       languages: selectedLanguages,
-      years: selectedYears.includes(year)
-        ? selectedYears.filter((y) => y !== year)
-        : [...selectedYears, year],
+      years: updatedYears,
       difficulties: selectedDifficulties,
     });
   };
 
   const handleDifficultyToggle = (difficulty: string) => {
-    toggleDifficulty(difficulty);
+    const updatedDifficulties = toggleValue(
+      difficulty,
+      selectedDifficulties,
+      setSelectedDifficulties,
+    );
+
     onFiltersChange?.({
       languages: selectedLanguages,
       years: selectedYears,
-      difficulties: selectedDifficulties.includes(difficulty)
-        ? selectedDifficulties.filter((d) => d !== difficulty)
-        : [...selectedDifficulties, difficulty],
+      difficulties: updatedDifficulties,
     });
   };
+
+  useEffect(() => {
+    onFiltersChange?.({
+      languages: selectedLanguages,
+      years: selectedYears,
+      difficulties: selectedDifficulties,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="md:w-1/3 w-full pt-4">
