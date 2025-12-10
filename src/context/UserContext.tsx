@@ -38,7 +38,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         window.location.href = redirect;
       }
     } catch (e) {
-      console.error('Error en iniciar la sessió:', (e as Error).message);
+      console.error("Error en iniciar la sessió:", (e as Error).message);
       setError((e as Error).message);
     } finally {
       setIsLoading(false);
