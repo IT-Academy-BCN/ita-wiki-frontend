@@ -60,7 +60,7 @@ export const technicalTestSchema = z.object({
         const file = files instanceof FileList ? files[0] : files[0];
         return file ? file.size <= 5 * 1024 * 1024 : true;
       },
-      { message: "El fitxer ha de ser menys de 5 MB" }
+      { message: "El fitxer ha de ser menys de 5 MB" },
     )
     .refine(
       (files) => {
@@ -68,6 +68,6 @@ export const technicalTestSchema = z.object({
         const file = files instanceof FileList ? files[0] : files[0];
         return file ? file.type === "application/pdf" : true;
       },
-      { message: "El fitxer ha de ser un PDF" }
+      { message: "El fitxer ha de ser un PDF" },
     ),
 });
