@@ -1,5 +1,6 @@
 import { useUserContext } from "../context/UserContext";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import PageTitle from "../components/ui/PageTitle";
 import { getUserRole } from "../api/userApi";
 import Container from "../components/ui/Container";
@@ -10,6 +11,7 @@ import rankingSrc from "../assets/ranking-items.png";
 
 export default function HomePage() {
   const { user } = useUserContext();
+  const navigate = useNavigate();
   const [userRole, setUserRole] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -90,7 +92,9 @@ export default function HomePage() {
               </p>
             </section>
 
-            <section className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center">
+            <section 
+            onClick={() => navigate("/ranking")}
+            className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center">
               <img
                 src={rankingSrc}
                 className=" max-h-[75%] w-110 mb-3 pt-3 object-contain transform transition duration-300 hover:scale-110"
