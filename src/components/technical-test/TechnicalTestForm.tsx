@@ -11,8 +11,20 @@ import Container from "../ui/Container";
 import { useForm } from "react-hook-form";
 import FieldExercise from "../forms/FieldExercise";
 
+type ExerciseItem = {
+  name: string;
+};
+
+type FormValues = {
+  exercises: ExerciseItem[];
+};
+
 export const TechnicalTestForm = () => {
-  const { control } = useForm();
+  const { control } = useForm<FormValues>({
+    defaultValues: {
+      exercises: [],
+    },
+  });
   const [title, setTitle] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [duration, setDuration] = useState<number | "">("");
