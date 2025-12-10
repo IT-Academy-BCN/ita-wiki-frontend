@@ -11,20 +11,16 @@ const AUTH = END_POINTS.auth;
 export const login = async () => {
   const url = `${API_URL}${AUTH.login}`;
 
-  try {
-    const response: Response = await fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+  const response: Response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
-    if (!response.ok) throw new Error(`Error ${response.status}`);
+  if (!response.ok) throw new Error(`Error ${response.status}`);
 
-    const data: LoginResponse = await response.json();
+  const data: LoginResponse = await response.json();
 
-    return data.redirect_url;
-  } catch (e) {
-    throw e;
-  }
+  return data.redirect_url;
 };

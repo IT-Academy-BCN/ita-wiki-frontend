@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
 import { login } from "../endpointLogin";
-import { IntUser } from "../../types";
 
 const mockLoginResponse = {
   success: true,
