@@ -94,7 +94,7 @@ export default function HomePage() {
 
             <section
               onClick={() => navigate("/ranking")}
-              className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center"
+              className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center cursor-pointer"
             >
               <img
                 src={rankingSrc}
