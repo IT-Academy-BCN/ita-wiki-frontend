@@ -2,6 +2,15 @@ import { describe, it, expect, beforeEach, vi } from "vitest";
 import { captureAuthToken } from "../captureAuthToken";
 
 describe("captureAuthToken", () => {
+  // Helper function to mock window.location
+  const mockLocation = (url: string) => {
+    Object.defineProperty(window, "location", {
+      value: new URL(url),
+      writable: true,
+      configurable: true,
+    });
+  };
+
   beforeEach(() => {
     // Limpiar localStorage antes de cada test
     localStorage.clear();
@@ -13,10 +22,7 @@ describe("captureAuthToken", () => {
   it("captures token from URL and stores it in localStorage", () => {
     // Simular URL con token: http://example.com/?token=abc123
     const mockToken = "mock-oauth-token-xyz789";
-    delete (window as any).location;
-    (window as any).location = new URL(
-      `http://localhost:5173/?token=${mockToken}`,
-    );
+    mockLocation(`http://localhost:5173/?token=${mockToken}`);
 
     // Mock de history.replaceState
     const replaceStateSpy = vi.spyOn(window.history, "replaceState");
@@ -36,8 +42,7 @@ describe("captureAuthToken", () => {
 
   it("does not store anything if there is no token in URL", () => {
     // Simular URL sin token: http://example.com/
-    delete (window as any).location;
-    (window as any).location = new URL("http://localhost:5173/");
+    mockLocation("http://localhost:5173/");
 
     const replaceStateSpy = vi.spyOn(window.history, "replaceState");
 
@@ -53,8 +58,7 @@ describe("captureAuthToken", () => {
   it("handles URL with other query parameters", () => {
     // Simular URL con token y otros params: http://example.com/?token=abc&foo=bar
     const mockToken = "mock-oauth-token-xyz789";
-    delete (window as any).location;
-    (window as any).location = new URL(
+    mockLocation(
       `http://localhost:5173/?token=${mockToken}&redirect=/dashboard`,
     );
 
@@ -70,8 +74,7 @@ describe("captureAuthToken", () => {
     localStorage.setItem("auth_token", existingToken);
 
     // URL sin token
-    delete (window as any).location;
-    (window as any).location = new URL("http://localhost:5173/");
+    mockLocation("http://localhost:5173/");
 
     captureAuthToken();
 
@@ -86,10 +89,7 @@ describe("captureAuthToken", () => {
 
     // URL con nuevo token
     const newToken = "new-token-456";
-    delete (window as any).location;
-    (window as any).location = new URL(
-      `http://localhost:5173/?token=${newToken}`,
-    );
+    mockLocation(`http://localhost:5173/?token=${newToken}`);
 
     captureAuthToken();
 
