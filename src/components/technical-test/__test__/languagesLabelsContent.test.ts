@@ -1,5 +1,5 @@
 import { describe, test, expect } from "vitest";
-import { contentResourcesForm } from "./languagesLabels";
+import { contentForTechnicalTest } from "../languageLabelsContent";
 
 const iconLabelMap = [
   { label: "Node", iconName: "node_vector" },
@@ -15,21 +15,21 @@ const iconLabelMap = [
 describe("contentResourcesForm Tests", () => {
   test("verifies each technology has the correct icon assigned", () => {
     iconLabelMap.forEach(({ label, iconName }, index) => {
-      expect(contentResourcesForm[index].label).toBe(label);
+      expect(contentForTechnicalTest[index].label).toBe(label);
 
-      expect(typeof contentResourcesForm[index].icon).toBe("function");
+      expect(typeof contentForTechnicalTest[index].icon).toBe("function");
 
       expect(
-        contentResourcesForm[index].icon,
+        contentForTechnicalTest[index].icon,
         `${label} should use ${iconName} icon`,
       ).toBeDefined();
     });
   });
 
   test("has correct length and all items have required properties", () => {
-    expect(contentResourcesForm).toHaveLength(iconLabelMap.length);
+    expect(contentForTechnicalTest).toHaveLength(iconLabelMap.length);
 
-    contentResourcesForm.forEach((item) => {
+    contentForTechnicalTest.forEach((item) => {
       expect(item).toHaveProperty("icon");
       expect(item).toHaveProperty("label");
       expect(typeof item.icon).toBe("function");

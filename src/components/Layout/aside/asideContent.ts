@@ -25,30 +25,3 @@ export const asideContent: { icon: SvgIcon; label: Category }[] = [
   { icon: CircleIcon, label: "BBDD" },
 ];
 
-export const asideContentForTechnicalTest: { icon: SvgIcon; label: string }[] =
-  [
-    { icon: react_vector, label: "React" },
-    { icon: sql_vector, label: "SQL" },
-    { icon: js_vector, label: "JavaScript" },
-    { icon: ts_vector, label: "TypeScript" },
-    { icon: java_vector, label: "Java" },
-    { icon: php_vector, label: "PHP" },
-    { icon: python_vector, label: "Python" },
-  ];
-
-export const contentTechsFrontCodeConnect: { icon: SvgIcon; label: string }[] =
-  [
-    { icon: react_vector, label: "React" },
-    { icon: angular_vector, label: "Angular" },
-    { icon: js_vector, label: "Svelte" },
-    { icon: js_vector, label: "Vue" },
-    { icon: js_vector, label: "Java" },
-  ];
-
-export const contentTechsBackCodeConnect: { icon: SvgIcon; label: string }[] = [
-  { icon: node_vector, label: "Spring" },
-  { icon: node_vector, label: "Laravel" },
-  { icon: node_vector, label: "Node" },
-  { icon: node_vector, label: "Rails" },
-  { icon: node_vector, label: "Express" },
-];
