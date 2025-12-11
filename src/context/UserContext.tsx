@@ -75,7 +75,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     if (token) {
       try {
         await logout(token);
-      } catch (e) {
+      } catch {
         // Ignorar errores de logout, limpiar sesión de todos modos
       }
     }

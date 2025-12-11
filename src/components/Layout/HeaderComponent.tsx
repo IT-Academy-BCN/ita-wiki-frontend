@@ -136,7 +136,7 @@ const HeaderComponent = () => {
     try {
       await signIn();
       setIsModalOpen(false);
-    } catch (e) {
+    } catch {
       setLoginError(true);
     }
     setIsLoading(false);
