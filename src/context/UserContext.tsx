@@ -1,6 +1,6 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { IntUser } from "../types";
-import { login } from "../api/endpointLogin";
+import { login, getNewUser, logout } from "../api/endpointLogin";
 
 interface UserContextType {
   user: IntUser | null;
@@ -24,6 +24,26 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setIsLoading] = useState<boolean>(false);
 
+  useEffect(() => {
+    const initializeAuth = async () => {
+      // El token de la URL ya fue capturado en main.tsx
+      // Solo necesitamos verificar si existe en localStorage
+      const tokenFromStorage = localStorage.getItem('auth_token');
+      
+      if (tokenFromStorage) {
+        try {
+          const userData = await getNewUser(tokenFromStorage);
+          setUser(userData);
+        } catch (e) {
+          localStorage.removeItem('auth_token');
+          setError((e as Error).message);
+        }
+      }
+    };
+
+    initializeAuth();
+  }, []);
+
   const saveUser = (user: IntUser) => {
     setUser(user);
   };
@@ -38,14 +58,22 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         window.location.href = redirect;
       }
     } catch (e) {
-      console.error("Error en iniciar la sessió:", (e as Error).message);
       setError((e as Error).message);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const signOut = () => {
+  const signOut = async () => {
+    const token = localStorage.getItem('auth_token');
+    if (token) {
+      try {
+        await logout(token);
+      } catch (e) {
+        // Ignorar errores de logout, limpiar sesión de todos modos
+      }
+    }
+    localStorage.removeItem('auth_token');
     setUser(null);
     setError(null);
   };
