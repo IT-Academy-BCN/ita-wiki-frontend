@@ -99,7 +99,7 @@ export default function CreateResourcePage() {
     if (window.history.length > 2) {
       navigate(-1);
     } else {
-      navigate("/resources/");
+      navigate("/resources/React");
     }
   };
 
@@ -114,7 +114,7 @@ export default function CreateResourcePage() {
               className="text-md font-medium text-primary flex items-center gap-2 cursor-pointer hover:opacity-80"
             >
               <img className="w-4 h-4" src={arrowLeft} alt="Arrow Left" />
-              <span>Tornar a recursos</span>
+              <span>Tornar enrere</span>
             </button>
             <h1 className="text-[26px] font-black ">Nou recurs</h1>
           </div>
