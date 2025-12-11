@@ -103,7 +103,7 @@ export default function HomePage() {
               </p>
             </section>
 
-            <section className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center cursor-pointer">
+            <section className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center">
               <img
                 src={rankingSrc}
                 className=" max-h-[75%] w-110 mb-3 pt-3 object-contain transform transition duration-300 hover:scale-110"
