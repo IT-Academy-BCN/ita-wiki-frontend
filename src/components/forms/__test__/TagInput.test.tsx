@@ -115,21 +115,4 @@ describe("TagInput component (dropdown)", () => {
     expect(screen.getByText("JavaScript")).toBeInTheDocument();
     expect(screen.getByText("CSS")).toBeInTheDocument();
   });
-
-  it("muestra mensaje de carga cuando allTags está vacío", () => {
-    mockTagsData = [];
-    const setSelectedTags = vi.fn();
-
-    render(
-      <TagInput
-        selectedTags={[]}
-        setselectedTags={setSelectedTags}
-        selectedCategory={null}
-      />,
-    );
-
-    expect(screen.getByText("Carregant etiquetes...")).toBeInTheDocument();
-    const select = screen.getByLabelText("Tags");
-    expect(select).toBeDisabled();
-  });
 });

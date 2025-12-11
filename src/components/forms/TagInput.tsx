@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { Tag } from "../../types";
 import { formatText } from "../../utils/formatText";
 import { useTags } from "../../context/TagsContext";
@@ -9,6 +8,31 @@ interface TagInputProps {
   selectedCategory: string | null;
 }
 
+interface TagOptionsProps {
+  availableTags: Tag[];
+  selectedCategory: string | null;
+}
+
+const TagOptions = ({ availableTags, selectedCategory }: TagOptionsProps) => {
+  return (
+    <>
+      {availableTags.length === 0 ? (
+        <option disabled>
+          {selectedCategory
+            ? "No hi ha etiquetes disponibles per aquesta categoria"
+            : "No hi ha etiquetes disponibles"}
+        </option>
+      ) : (
+        availableTags.map((tag) => (
+          <option key={tag.id} value={String(tag.id)}>
+            {formatText(tag.name)}
+          </option>
+        ))
+      )}
+    </>
+  );
+};
+
 const TagInput = ({
   selectedTags,
   setselectedTags,
@@ -16,9 +40,9 @@ const TagInput = ({
 }: TagInputProps) => {
   const { tags: allTags, getTagsByCategory } = useTags();
 
-  const availableTags = useMemo(() => {
-    return selectedCategory ? getTagsByCategory(selectedCategory) : allTags;
-  }, [selectedCategory, allTags, getTagsByCategory]);
+  const availableTags = selectedCategory
+    ? getTagsByCategory(selectedCategory)
+    : allTags;
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { selectedOptions, value } = event.target;
@@ -51,25 +75,14 @@ const TagInput = ({
         className="w-full border border-gray-200 rounded-md p-2 text-sm focus:outline-none focus:border-[#B91879] min-h-[180px]"
         aria-label="Tags"
       >
-        {allTags.length === 0 ? (
-          <option disabled>Carregant etiquetes...</option>
-        ) : availableTags.length === 0 ? (
-          <option disabled>
-            {selectedCategory
-              ? "No hi ha etiquetes disponibles per aquesta categoria"
-              : "No hi ha etiquetes disponibles"}
-          </option>
-        ) : (
-          availableTags.map((tag) => (
-            <option key={tag.id} value={String(tag.id)}>
-              {formatText(tag.name)}
-            </option>
-          ))
-        )}
+        <TagOptions
+          availableTags={availableTags}
+          selectedCategory={selectedCategory}
+        />
       </select>
       <p className="mt-1 text-xs text-gray-500">
         Mantén premuda la tecla Ctrl (Windows) o Cmd (Mac) per seleccionar més
-        d&apos;un tag.
+        d'un tag.
       </p>
     </div>
   );
