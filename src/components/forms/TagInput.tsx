@@ -14,21 +14,21 @@ interface TagOptionsProps {
 }
 
 const TagOptions = ({ availableTags, selectedCategory }: TagOptionsProps) => {
+  if (availableTags.length === 0) {
+    const message = selectedCategory
+      ? "No hi ha etiquetes disponibles per aquesta categoria"
+      : "No hi ha etiquetes disponibles";
+
+    return <option disabled>{message}</option>;
+  }
+
   return (
     <>
-      {availableTags.length === 0 ? (
-        <option disabled>
-          {selectedCategory
-            ? "No hi ha etiquetes disponibles per aquesta categoria"
-            : "No hi ha etiquetes disponibles"}
+      {availableTags.map((tag) => (
+        <option key={tag.id} value={String(tag.id)}>
+          {formatText(tag.name)}
         </option>
-      ) : (
-        availableTags.map((tag) => (
-          <option key={tag.id} value={String(tag.id)}>
-            {formatText(tag.name)}
-          </option>
-        ))
-      )}
+      ))}
     </>
   );
 };
