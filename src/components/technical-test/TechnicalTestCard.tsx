@@ -38,7 +38,9 @@ const TechnicalTestCard = ({ test }: TechnicalTestCardProps) => {
           <div className="flex flex-col gap-1">
             <h3>
               <Link to={`/resources/technical-test/${test.id}`}>
-                <span className="text-lg font-bold text-black hover:text-primary transition-colors duration-300">{test.title}</span>
+                <span className="text-lg font-bold text-black hover:text-primary transition-colors duration-300">
+                  {test.title}
+                </span>
               </Link>
             </h3>
             <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-sm text-gray-500 mt-2 sm:mt-2">
