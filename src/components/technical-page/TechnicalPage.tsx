@@ -8,6 +8,7 @@ import ButtonComponent from "../atoms/ButtonComponent";
 import UiCheckbox from "../ui/shared-ui/UiCheckbox";
 
 const TechnicalPage = () => {
+
   const navigate = useNavigate();
 
   return (
