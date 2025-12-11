@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { asideContentForTechnicalTest } from "../Layout/aside/asideContent";
+import { contentForTechnicalTest} from "../technical-test/languageLabelsContent";
 import { createTechnicalTest } from "../../api/endPointTechnicalTests";
 import { API_URL, END_POINTS } from "../../config";
 import { formatDocumentIcons } from "../../icons/formatDocumentIconsArray";
@@ -138,7 +138,7 @@ export const TechnicalTestForm = () => {
 
         <label className="block mb-2 font-medium px-10">Llenguatge *</label>
         <div className="flex flex-wrap gap-3 mb-4 px-10">
-          {asideContentForTechnicalTest.map((cat) => {
+          {contentForTechnicalTest.map((cat) => {
             const IconComponent = cat.icon;
             return (
               <button

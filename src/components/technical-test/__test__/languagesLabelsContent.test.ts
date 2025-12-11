@@ -2,14 +2,13 @@ import { describe, test, expect } from "vitest";
 import { contentForTechnicalTest } from "../languageLabelsContent";
 
 const iconLabelMap = [
-  { label: "Node", iconName: "node_vector" },
   { label: "React", iconName: "react_vector" },
-  { label: "Angular", iconName: "angular_vector" },
+  { label: "SQL", iconName: "sql_vector" },
   { label: "JavaScript", iconName: "js_vector" },
+  { label: "TypeScript", iconName: "ts_vector" },
   { label: "Java", iconName: "java_vector" },
   { label: "PHP", iconName: "php_vector" },
-  { label: "Data Science", iconName: "python_vector" },
-  { label: "BBDD", iconName: "sql_vector" },
+  { label: "Python", iconName: "python_vector" },
 ];
 
 describe("contentResourcesForm Tests", () => {

@@ -1,6 +1,6 @@
 import { TechnicalTest } from "../../types/TechnicalTest";
 import XnixCalendar from "../../assets/xnix-calendar.svg";
-import { asideContentForTechnicalTest } from "../Layout/aside/asideContent";
+import { contentForTechnicalTest } from "../technical-test/languageLabelsContent";
 import { Link } from "react-router";
 
 interface TechnicalTestCardProps {
@@ -8,7 +8,7 @@ interface TechnicalTestCardProps {
 }
 
 const TechnicalTestCard = ({ test }: TechnicalTestCardProps) => {
-  const language = asideContentForTechnicalTest.find(
+  const language = contentForTechnicalTest.find(
     (item) => item.label === test.language,
   );
   const IconComponent = language?.icon;

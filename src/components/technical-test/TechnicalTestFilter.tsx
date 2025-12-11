@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { asideContentForTechnicalTest } from "../Layout/aside/asideContent";
+import { contentForTechnicalTest } from "../technical-test/languageLabelsContent";
 import FilterGroup from "../ui/FilterGroup";
 import { useArrayToggle } from "../../hooks/useArrayToggle";
 
@@ -28,7 +28,7 @@ export const TechnicalTestFilter: FC<TechnicalTestFilterProps> = ({
 
   const years = ["2025", "2024", "2023"];
   const difficulties = ["Bàsica", "Intermèdia", "Difícil"];
-  const languages = asideContentForTechnicalTest.map((item) => item.label);
+  const languages = contentForTechnicalTest.map((item) => item.label);
 
   const toggleLanguage = useArrayToggle(setSelectedLanguages);
   const toggleYear = useArrayToggle(setSelectedYears);
