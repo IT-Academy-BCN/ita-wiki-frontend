@@ -235,10 +235,7 @@ const HeaderComponent = () => {
             {showDropdown && (
               <div className="absolute right-0 mt-2 bg-white border border-gray-300 rounded-xl shadow-lg z-50 px-2 py-2 flex flex-col gap-2">
                 {/*Username*/}
-                <DropdownButtonComponent
-                  title={user.name}
-                  disabled={true}
-                />
+                <DropdownButtonComponent title={user.name} disabled={true} />
                 <hr className="h-px -mx-2 bg-gray-300 border-0" />
                 {/*Role*/}
                 {devMode ? (

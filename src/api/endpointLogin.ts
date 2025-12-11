@@ -30,10 +30,10 @@ export const getNewUser = async (token: string) => {
   const url = `${API_URL}${AUTH.getCurrentUser}`;
 
   const response: Response = await fetch(url, {
-    method: 'GET',
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 
@@ -42,18 +42,18 @@ export const getNewUser = async (token: string) => {
   const data: IntUser = await response.json();
 
   return data;
-}
+};
 
 export const logout = async (token: string) => {
   const url = `${API_URL}${AUTH.logout}`;
 
   await fetch(url, {
-    method: 'POST',
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 
-  localStorage.removeItem('auth_token');
-}
+  localStorage.removeItem("auth_token");
+};

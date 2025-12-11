@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 import { IntUser } from "../types";
 import { login, getNewUser, logout } from "../api/endpointLogin";
 
@@ -28,14 +34,14 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     const initializeAuth = async () => {
       // El token de la URL ya fue capturado en main.tsx
       // Solo necesitamos verificar si existe en localStorage
-      const tokenFromStorage = localStorage.getItem('auth_token');
-      
+      const tokenFromStorage = localStorage.getItem("auth_token");
+
       if (tokenFromStorage) {
         try {
           const userData = await getNewUser(tokenFromStorage);
           setUser(userData);
         } catch (e) {
-          localStorage.removeItem('auth_token');
+          localStorage.removeItem("auth_token");
           setError((e as Error).message);
         }
       }
@@ -65,7 +71,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signOut = async () => {
-    const token = localStorage.getItem('auth_token');
+    const token = localStorage.getItem("auth_token");
     if (token) {
       try {
         await logout(token);
@@ -73,7 +79,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         // Ignorar errores de logout, limpiar sesión de todos modos
       }
     }
-    localStorage.removeItem('auth_token');
+    localStorage.removeItem("auth_token");
     setUser(null);
     setError(null);
   };

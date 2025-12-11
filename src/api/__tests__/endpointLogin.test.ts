@@ -14,7 +14,7 @@ const mockCurrentUser = {
   name: "Mock Name",
   email: "mockmail@mockmail.com",
   password: "FakePassword232435",
-}
+};
 
 describe("login using GitHub", () => {
   afterEach(() => {
@@ -60,7 +60,7 @@ describe("get current user data", () => {
 
   it("returns user data when token is valid", async () => {
     const mockToken = "mock-bearer-token-12345";
-    
+
     vi.spyOn(global, "fetch").mockResolvedValueOnce({
       ok: true,
       status: 200,
@@ -69,22 +69,22 @@ describe("get current user data", () => {
     } as Response);
 
     const result = await getNewUser(mockToken);
-    
+
     expect(result).toEqual(mockCurrentUser);
     expect(fetch).toHaveBeenCalledWith(
       expect.stringContaining("auth/me"),
       expect.objectContaining({
         method: "GET",
         headers: expect.objectContaining({
-          "Authorization": `Bearer ${mockToken}`
-        })
-      })
+          Authorization: `Bearer ${mockToken}`,
+        }),
+      }),
     );
   });
 
   it("throws an error when response is not ok", async () => {
     const mockToken = "mock-bearer-token-12345";
-    
+
     vi.spyOn(global, "fetch").mockResolvedValueOnce({
       ok: false,
       status: 401,
@@ -106,10 +106,10 @@ describe("logout", () => {
 
   it("calls logout endpoint and removes token from localStorage", async () => {
     const mockToken = "mock-bearer-token-12345";
-    
+
     // Simular que hay un token en localStorage
-    localStorage.setItem('auth_token', mockToken);
-    
+    localStorage.setItem("auth_token", mockToken);
+
     vi.spyOn(global, "fetch").mockResolvedValueOnce({
       ok: true,
       status: 200,
@@ -117,27 +117,27 @@ describe("logout", () => {
     } as Response);
 
     await logout(mockToken);
-    
+
     // Verificar que llamó al endpoint correcto
     expect(fetch).toHaveBeenCalledWith(
       expect.stringContaining("auth/logout"),
       expect.objectContaining({
         method: "POST",
         headers: expect.objectContaining({
-          "Authorization": `Bearer ${mockToken}`
-        })
-      })
+          Authorization: `Bearer ${mockToken}`,
+        }),
+      }),
     );
-    
+
     // Verificar que eliminó el token de localStorage
-    expect(localStorage.getItem('auth_token')).toBeNull();
+    expect(localStorage.getItem("auth_token")).toBeNull();
   });
 
   it("removes token from localStorage even if server request fails", async () => {
     const mockToken = "mock-bearer-token-12345";
-    
-    localStorage.setItem('auth_token', mockToken);
-    
+
+    localStorage.setItem("auth_token", mockToken);
+
     vi.spyOn(global, "fetch").mockResolvedValueOnce({
       ok: false,
       status: 500,
@@ -145,7 +145,7 @@ describe("logout", () => {
 
     // No debería lanzar error, debe limpiar localStorage de todos modos
     await logout(mockToken);
-    
-    expect(localStorage.getItem('auth_token')).toBeNull();
+
+    expect(localStorage.getItem("auth_token")).toBeNull();
   });
-})
+});
