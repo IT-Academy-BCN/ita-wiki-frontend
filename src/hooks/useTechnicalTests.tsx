@@ -12,7 +12,6 @@ const useTechnicalTests = () => {
       try {
         setIsLoading(true);
         const data = await fetchTechnicalTests();
-        console.log("Fetched technical tests:", data);
         if (!data) throw new Error("No data received");
         setTechnicalTests(data);
       } catch (err: unknown) {
