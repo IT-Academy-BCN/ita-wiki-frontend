@@ -14,10 +14,11 @@ export type TypChildren = {
 
 export interface IntUser {
   id: number;
-  displayName: string | null;
-  photoURL: string | undefined;
-  role?: string;
-  github_id?: number;
+  github_username: string | null;
+  github_id: number;
+  name: string;
+  email: string;
+  password: string;
 }
 
 export interface IntResource {
