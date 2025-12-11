@@ -68,8 +68,8 @@ export const TechnicalTestFilter: FC<TechnicalTestFilterProps> = ({
   };
 
   return (
-    <div className="md:w-1/3 w-full pt-4">
-      <h2 className="text-[26px] text-[#282828] font-bold mb-8">Filtres</h2>
+    <div className="md:w-2/7 w-full pt-4">
+      <h2 className="text-[26px] text-black font-bold mb-8">Filtres</h2>
 
       <FilterGroup
         title="Llenguatge"

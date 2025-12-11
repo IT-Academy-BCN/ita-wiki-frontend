@@ -13,7 +13,7 @@ const TechnicalTestList = () => {
   return (
     <div className=" w-full flex flex-col sm:m-4">
       <div className="flex justify-start md:justify-between items-center mb-8 flex-wrap gap-4">
-        <h2 className="text-2xl font-bold">Proves tècniques</h2>
+        <h2 className="text-2xl text-black font-bold">Proves tècniques</h2>
         <div>
           <ButtonComponent
             variant="primary"
