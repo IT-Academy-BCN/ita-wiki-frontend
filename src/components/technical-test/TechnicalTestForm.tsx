@@ -1,3 +1,4 @@
+import { Tag } from "../../types";
 import { useState } from "react";
 import { asideContentForTechnicalTest } from "../Layout/aside/asideContent";
 import { createTechnicalTest } from "../../api/endPointTechnicalTests";
@@ -8,6 +9,7 @@ import { useNavigate } from "react-router";
 import PdfUploadComponent from "../atoms/PdfUploadComponent";
 import { toast } from "sonner";
 import Container from "../ui/Container";
+import TagInput from "../forms/TagInput";
 
 export const TechnicalTestForm = () => {
   const [title, setTitle] = useState("");
@@ -21,6 +23,11 @@ export const TechnicalTestForm = () => {
   const [file, setFile] = useState<File | null>(null);
   const [exercises, setExercises] = useState(["", "", "", ""]);
   const navigate = useNavigate();
+  const [selectedTags, setselectedTags] = useState<Tag[]>([]);
+
+  const handleTagChange = (tags: Tag[]) => {
+    setselectedTags(tags);
+  };
 
   const handleExerciseChange = (index: number, value: string) => {
     const newExercises = [...exercises];
@@ -194,13 +201,7 @@ export const TechnicalTestForm = () => {
         <label className="block my-4 px-10 mb-8 font-medium">
           Contingut de la prova
         </label>
-        <div
-          className="flex gap-2 mx-10 mb-10
-      border-2 border-gray-500
-      shadow-sm w-fit
-      rounded-full p-1
-      "
-        >
+        <div className="flex gap-2 mx-10 mb-10 border-2 border-gray-500 shadow-sm w-fit rounded-full p-1 ">
           <button
             className={`px-8 py-2 rounded-full cursor-pointer ${
               contentType === "text" ? "bg-[#B91879] text-white" : "bg-white"
@@ -257,6 +258,14 @@ export const TechnicalTestForm = () => {
             className="w-full p-2 mb-3 border border-gray-300 rounded-lg min-h-[80px]"
           />
         ))}
+      </div>
+
+      <div className="flex flex-col px-10 mb-6">
+        <TagInput
+          selectedTags={selectedTags}
+          setselectedTags={handleTagChange}
+          selectedCategory=""
+        />
       </div>
     </Container>
   );

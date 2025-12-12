@@ -1,8 +1,8 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
-import TagInput from "../../create-resources/TagInput";
-import type { Tag } from "../../../../types";
+import TagInput from "../TagInput";
+import type { Tag } from "../../../types";
 import type { ReactNode } from "react";
 
 const mockTags: Tag[] = [
@@ -15,23 +15,29 @@ const tagsByCategory: Record<string, number[]> = {
   Frontend: [1, 2, 3],
 };
 
-vi.mock("../../../../context/TagsContext", () => ({
+let mockTagsData = mockTags;
+
+vi.mock("../../../context/TagsContext", () => ({
   TagsProvider: ({ children }: { children: ReactNode }) => children,
   useTags: () => ({
-    tags: mockTags,
+    tags: mockTagsData,
     tagsByCategory,
     getTagsByCategory: (category: string | null) => {
       if (!category) return [];
       const ids = tagsByCategory[category];
       if (!ids) return [];
-      return mockTags.filter((tag) => ids.includes(tag.id));
+      return mockTagsData.filter((tag) => ids.includes(tag.id));
     },
     refreshTags: vi.fn(),
-    getTagNameById: (id: number) => mockTags.find((t) => t.id === id)?.name,
+    getTagNameById: (id: number) => mockTagsData.find((t) => t.id === id)?.name,
   }),
 }));
 
 describe("TagInput component (dropdown)", () => {
+  beforeEach(() => {
+    mockTagsData = mockTags;
+  });
+
   it("muestra los tags disponibles en el dropdown", async () => {
     const setSelectedTags = vi.fn();
 
@@ -76,5 +82,37 @@ describe("TagInput component (dropdown)", () => {
     expect(setSelectedTags).toHaveBeenCalledWith([
       { id: 1, name: "React", created_at: "", updated_at: "" },
     ]);
+  });
+
+  it("muestra mensaje cuando no hay tags disponibles para la categoría", () => {
+    const setSelectedTags = vi.fn();
+
+    render(
+      <TagInput
+        selectedTags={[]}
+        setselectedTags={setSelectedTags}
+        selectedCategory="Backend"
+      />,
+    );
+
+    expect(
+      screen.getByText("No hi ha etiquetes disponibles per aquesta categoria"),
+    ).toBeInTheDocument();
+  });
+
+  it("muestra todos los tags cuando no hay categoría seleccionada", () => {
+    const setSelectedTags = vi.fn();
+
+    render(
+      <TagInput
+        selectedTags={[]}
+        setselectedTags={setSelectedTags}
+        selectedCategory={null}
+      />,
+    );
+
+    expect(screen.getByText("React")).toBeInTheDocument();
+    expect(screen.getByText("JavaScript")).toBeInTheDocument();
+    expect(screen.getByText("CSS")).toBeInTheDocument();
   });
 });
