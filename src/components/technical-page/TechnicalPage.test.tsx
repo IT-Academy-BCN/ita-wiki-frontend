@@ -1,7 +1,13 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
 import { describe, it, expect, vi, beforeEach, type Mock } from "vitest";
-import { MemoryRouter, Routes, Route, useParams, useNavigate } from "react-router";
+import {
+  MemoryRouter,
+  Routes,
+  Route,
+  useParams,
+  useNavigate,
+} from "react-router";
 import userEvent from "@testing-library/user-event";
 import TechnicalPage from "./TechnicalPage";
 import { fetchTechnicalTestById } from "../../api/endPointTechnicalTests";
@@ -61,13 +67,13 @@ describe("TechnicalPage", () => {
             element={<TechnicalPage />}
           />
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     expect(fetchTechnicalTestById).toHaveBeenCalledWith(11);
 
     expect(await screen.findByTestId("mock-page-title")).toBeInTheDocument();
-    
+
     expect(await screen.findByText("Prova React Junior")).toBeInTheDocument();
   });
 
@@ -75,7 +81,7 @@ describe("TechnicalPage", () => {
     const mockNavigate = vi.fn();
     vi.mocked(useNavigate).mockReturnValue(mockNavigate);
     vi.mocked(useParams).mockReturnValue({ projectId: "11" });
-    
+
     (fetchTechnicalTestById as Mock).mockResolvedValue(mockTechnicalTest);
 
     const user = userEvent.setup();
@@ -83,15 +89,15 @@ describe("TechnicalPage", () => {
     render(
       <MemoryRouter>
         <TechnicalPage />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     const backLink = await screen.findByText("Tornar a Proves Tècniques");
-    
+
     await user.click(backLink);
 
     expect(mockNavigate).toHaveBeenCalledWith(
-      "/resources/technical-test/all-tech-tests"
+      "/resources/technical-test/all-tech-tests",
     );
   });
 });
