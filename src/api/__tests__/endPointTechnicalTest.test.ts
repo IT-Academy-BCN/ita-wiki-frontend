@@ -1,5 +1,16 @@
-import { describe, it, expect, vi, beforeEach, afterEach, type Mock } from "vitest";
-import { createTechnicalTest, fetchTechnicalTestById } from "../endPointTechnicalTests";
+import {
+  describe,
+  it,
+  expect,
+  vi,
+  beforeEach,
+  afterEach,
+  type Mock,
+} from "vitest";
+import {
+  createTechnicalTest,
+  fetchTechnicalTestById,
+} from "../endPointTechnicalTests";
 import { API_URL, END_POINTS } from "../../config";
 
 describe("createTechnicalTest", () => {
@@ -51,33 +62,31 @@ describe("createTechnicalTest", () => {
   });
 });
 
-
-vi.mock('../../config', () => ({
-  API_URL: 'https://api.fake',
+vi.mock("../../config", () => ({
+  API_URL: "https://api.fake",
   END_POINTS: {
-    technicaltests: { get: '/tests' }
-  }
+    technicaltests: { get: "/tests" },
+  },
 }));
 
 const TEST_ID = 123;
 const MOCK_DATA = {
   data: {
     id: 123,
-    title: 'Prova tècnica React',
-    language: 'TypeScript',
-    description: 'Desenvolupa una aplicació React senzilla.',
-    tags: [ "database", "frontend"],
-  }
+    title: "Prova tècnica React",
+    language: "TypeScript",
+    description: "Desenvolupa una aplicació React senzilla.",
+    tags: ["database", "frontend"],
+  },
 };
 
-describe('fetchTechnicalTestById', () => {
+describe("fetchTechnicalTestById", () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     global.fetch = vi.fn();
   });
 
-  it('hauria de retornar les dades quan la resposta és correcta (ok)', async () => {
-
+  it("hauria de retornar les dades quan la resposta és correcta (ok)", async () => {
     (global.fetch as Mock).mockResolvedValue({
       ok: true,
       json: async () => MOCK_DATA,
@@ -86,18 +95,17 @@ describe('fetchTechnicalTestById', () => {
     const result = await fetchTechnicalTestById(TEST_ID);
 
     expect(global.fetch).toHaveBeenCalledTimes(1);
-    
+
     expect(global.fetch).toHaveBeenCalledWith(
-      expect.stringContaining('/tests/123'),
-      expect.objectContaining({ signal: expect.any(AbortSignal) })
+      expect.stringContaining("/tests/123"),
+      expect.objectContaining({ signal: expect.any(AbortSignal) }),
     );
 
     expect(result).toEqual(MOCK_DATA.data);
   });
 
-  it('hauria de llançar un error i fer console.error quan la resposta no és ok', async () => {
-
-    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+  it("hauria de llançar un error i fer console.error quan la resposta no és ok", async () => {
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
 
     (global.fetch as Mock).mockResolvedValue({
       ok: false,
@@ -107,24 +115,25 @@ describe('fetchTechnicalTestById', () => {
     const result = await fetchTechnicalTestById(TEST_ID);
 
     expect(result).toBeUndefined();
-    
+
     expect(consoleSpy).toHaveBeenCalledWith(expect.any(Error));
-    
-    expect(consoleSpy.mock.calls[0][0].message).toBe("Failed to fetch technical tests");
+
+    expect(consoleSpy.mock.calls[0][0].message).toBe(
+      "Failed to fetch technical tests",
+    );
 
     consoleSpy.mockRestore();
   });
 
-
-  it('hauria de gestionar excepcions de xarxa (ex: servidor caigut)', async () => {
-    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+  it("hauria de gestionar excepcions de xarxa (ex: servidor caigut)", async () => {
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
 
     (global.fetch as Mock).mockRejectedValue(new Error("Network Error"));
 
     await fetchTechnicalTestById(TEST_ID);
 
     expect(consoleSpy).toHaveBeenCalledWith(expect.any(Error));
-    
+
     consoleSpy.mockRestore();
   });
 });
