@@ -3,11 +3,11 @@ import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { resourceSchema } from "../validations/resourceSchema";
 import FormInput from "../components/resources/create-resources/FormInput";
+import TagInput from "../components/forms/TagInput";
 import { createResource } from "../api/endPointResources";
 import { toast } from "sonner";
 import ButtonComponent from "../components/atoms/ButtonComponent";
 import PageTitle from "../components/ui/PageTitle";
-import TagInput from "../components/resources/create-resources/TagInput";
 import { useState, useCallback } from "react";
 import arrowLeft from "../assets/arrow-left.svg";
 import { useNavigate } from "react-router";
@@ -99,7 +99,7 @@ export default function CreateResourcePage() {
     if (window.history.length > 2) {
       navigate(-1);
     } else {
-      navigate("/resources/");
+      navigate("/resources/React");
     }
   };
 
@@ -114,7 +114,7 @@ export default function CreateResourcePage() {
               className="text-md font-medium text-primary flex items-center gap-2 cursor-pointer hover:opacity-80"
             >
               <img className="w-4 h-4" src={arrowLeft} alt="Arrow Left" />
-              <span>Tornar a recursos</span>
+              <span>Tornar enrere</span>
             </button>
             <h1 className="text-[26px] font-black ">Nou recurs</h1>
           </div>

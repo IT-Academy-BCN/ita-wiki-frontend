@@ -9,7 +9,7 @@ import { createTechnicalTest } from "../../api/endPointTechnicalTests";
 import { formatDocumentIcons } from "../../icons/formatDocumentIconsArray";
 import PdfUploadComponent from "../atoms/PdfUploadComponent";
 import Container from "../ui/Container";
-import TagInput from "../resources/create-resources/TagInput";
+import TagInput from "../forms/TagInput";
 import { technicalTestSchema } from "../../validations/technicalTestSchema";
 
 type TechnicalTestFormData = z.infer<typeof technicalTestSchema>;
