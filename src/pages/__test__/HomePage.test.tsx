@@ -64,5 +64,37 @@ describe("HomePage Navigation", () => {
     await userEvent.click(rankingSection.closest("section")!);
 
     expect(mockNavigate).toHaveBeenCalledWith("/ranking");
+
+  it("should navigate to resources page when clicking resources section", async () => {
+    renderWithRouter(<HomePage />);
+
+    const resourcesSection = await screen.findByText("Descobreix recursos");
+    await userEvent.click(resourcesSection.closest("section")!);
+
+    expect(mockNavigate).toHaveBeenCalledWith("/resources/React");
+  });
+
+  it("should navigate to technical tests page when clicking technical section", async () => {
+    renderWithRouter(<HomePage />);
+
+    const technicalSection = await screen.findByText(
+      "Entrena amb proves tècniques reals",
+    );
+    await userEvent.click(technicalSection.closest("section")!);
+
+    expect(mockNavigate).toHaveBeenCalledWith(
+      "/resources/technical-test/all-tech-tests",
+    );
+  });
+
+  it("should navigate to codeconnect page when clicking codeconnect section", async () => {
+    renderWithRouter(<HomePage />);
+
+    const codeconnectSection = await screen.findByText(
+      "Col·labora en projectes",
+    );
+    await userEvent.click(codeconnectSection.closest("section")!);
+
+    expect(mockNavigate).toHaveBeenCalledWith("/codeconnect");
   });
 });
