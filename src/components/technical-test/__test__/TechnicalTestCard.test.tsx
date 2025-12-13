@@ -5,7 +5,6 @@ import { BrowserRouter } from "react-router";
 import TechnicalTestCard from "../TechnicalTestCard";
 import { TechnicalTest } from "../../../types/TechnicalTest";
 
-
 vi.mock("../languageLabelsContent", () => ({
   contentForTechnicalTest: [
     {

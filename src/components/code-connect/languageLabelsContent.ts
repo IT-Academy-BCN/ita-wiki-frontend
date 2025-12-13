@@ -15,7 +15,7 @@ export const contentTechsFrontCodeConnect: { icon: SvgIcon; label: string }[] =
     { icon: js_vector, label: "Java" },
   ];
 
-  export const contentTechsBackCodeConnect: { icon: SvgIcon; label: string }[] = [
+export const contentTechsBackCodeConnect: { icon: SvgIcon; label: string }[] = [
   { icon: node_vector, label: "Spring" },
   { icon: node_vector, label: "Laravel" },
   { icon: node_vector, label: "Node" },

@@ -1,5 +1,8 @@
 import { describe, test, expect } from "vitest";
-import { contentTechsFrontCodeConnect, contentTechsBackCodeConnect } from "../languageLabelsContent";
+import {
+  contentTechsFrontCodeConnect,
+  contentTechsBackCodeConnect,
+} from "../languageLabelsContent";
 
 const frontIconLabelMap = [
   { label: "React", iconName: "react_vector" },

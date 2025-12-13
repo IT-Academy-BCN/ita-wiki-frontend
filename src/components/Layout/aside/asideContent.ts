@@ -15,4 +15,3 @@ export const asideContent: { icon: SvgIcon; label: Category }[] = [
   { icon: CircleIcon, label: "Data Science" },
   { icon: CircleIcon, label: "BBDD" },
 ];
-

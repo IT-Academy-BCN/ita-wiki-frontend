@@ -105,9 +105,7 @@ describe("AsideComponent Tests", () => {
 
     render(
       <MemoryRouter>
-        <AsideComponent
-          contentForTechnicalTest={contentForTechnicalTestMock}
-        />
+        <AsideComponent contentForTechnicalTest={contentForTechnicalTestMock} />
       </MemoryRouter>,
     );
 
@@ -133,9 +131,7 @@ describe("AsideComponent Tests", () => {
 
     render(
       <MemoryRouter>
-        <AsideComponent
-          contentForTechnicalTest={contentForTechnicalTestMock}
-        />
+        <AsideComponent contentForTechnicalTest={contentForTechnicalTestMock} />
       </MemoryRouter>,
     );
 
@@ -161,9 +157,7 @@ describe("AsideComponent Tests", () => {
 
     render(
       <MemoryRouter>
-        <AsideComponent
-          contentForTechnicalTest={contentForTechnicalTestMock}
-        />
+        <AsideComponent contentForTechnicalTest={contentForTechnicalTestMock} />
       </MemoryRouter>,
     );
 
@@ -187,9 +181,7 @@ describe("AsideComponent Tests", () => {
 
     render(
       <MemoryRouter>
-        <AsideComponent
-          contentForTechnicalTest={contentForTechnicalTestMock}
-        />
+        <AsideComponent contentForTechnicalTest={contentForTechnicalTestMock} />
       </MemoryRouter>,
     );
 
@@ -212,9 +204,7 @@ describe("AsideComponent Tests", () => {
 
     render(
       <MemoryRouter>
-        <AsideComponent
-          contentForTechnicalTest={contentForTechnicalTestMock}
-        />
+        <AsideComponent contentForTechnicalTest={contentForTechnicalTestMock} />
       </MemoryRouter>,
     );
 
@@ -235,9 +225,7 @@ describe("AsideComponent Tests", () => {
 
     render(
       <MemoryRouter>
-        <AsideComponent
-          contentForTechnicalTest={contentForTechnicalTestMock}
-        />
+        <AsideComponent contentForTechnicalTest={contentForTechnicalTestMock} />
       </MemoryRouter>,
     );
 
@@ -262,9 +250,7 @@ describe("AsideComponent Tests", () => {
 
     render(
       <MemoryRouter initialEntries={["/"]}>
-        <AsideComponent
-          contentForTechnicalTest={contentForTechnicalTestMock}
-        />
+        <AsideComponent contentForTechnicalTest={contentForTechnicalTestMock} />
         <Routes>
           <Route path="/codeconnect" element={<div>Code Connect Page</div>} />
         </Routes>

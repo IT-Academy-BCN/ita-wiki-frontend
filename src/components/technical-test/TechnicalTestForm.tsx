@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { contentForTechnicalTest} from "../technical-test/languageLabelsContent";
+import { contentForTechnicalTest } from "../technical-test/languageLabelsContent";
 import { createTechnicalTest } from "../../api/endPointTechnicalTests";
 import { API_URL, END_POINTS } from "../../config";
 import { formatDocumentIcons } from "../../icons/formatDocumentIconsArray";
