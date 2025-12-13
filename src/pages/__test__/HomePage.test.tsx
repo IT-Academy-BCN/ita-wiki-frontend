@@ -64,7 +64,8 @@ describe("HomePage Navigation", () => {
     await userEvent.click(rankingSection.closest("section")!);
 
     expect(mockNavigate).toHaveBeenCalledWith("/ranking");
-
+  });
+  
   it("should navigate to resources page when clicking resources section", async () => {
     renderWithRouter(<HomePage />);
 
