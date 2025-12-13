@@ -4,7 +4,7 @@ import { MemoryRouter, Routes, Route } from "react-router";
 import { vi, describe, test, expect, beforeEach } from "vitest";
 import AsideComponent from "../AsideComponent";
 import { useUserContext } from "../../../context/UserContext";
-import { asideContentForTechnicalTest } from "../aside/asideContent";
+import { contentForTechnicalTest } from "../../technical-test/languageLabelsContent";
 import userEvent from "@testing-library/user-event";
 
 import sql_vector from "../../../assets/sqlVector.svg?react";
@@ -70,7 +70,7 @@ vi.mock("react-router-dom", () => {
   };
 });
 
-const asideContentForTechnicalTestMock = [
+const contentForTechnicalTestMock = [
   { icon: MockIcon, label: "React" },
   { icon: MockIcon, label: "Node" },
 ];
@@ -105,9 +105,7 @@ describe("AsideComponent Tests", () => {
 
     render(
       <MemoryRouter>
-        <AsideComponent
-          asideContentForTechnicalTest={asideContentForTechnicalTestMock}
-        />
+        <AsideComponent contentForTechnicalTest={contentForTechnicalTestMock} />
       </MemoryRouter>,
     );
 
@@ -133,9 +131,7 @@ describe("AsideComponent Tests", () => {
 
     render(
       <MemoryRouter>
-        <AsideComponent
-          asideContentForTechnicalTest={asideContentForTechnicalTestMock}
-        />
+        <AsideComponent contentForTechnicalTest={contentForTechnicalTestMock} />
       </MemoryRouter>,
     );
 
@@ -161,9 +157,7 @@ describe("AsideComponent Tests", () => {
 
     render(
       <MemoryRouter>
-        <AsideComponent
-          asideContentForTechnicalTest={asideContentForTechnicalTestMock}
-        />
+        <AsideComponent contentForTechnicalTest={contentForTechnicalTestMock} />
       </MemoryRouter>,
     );
 
@@ -187,9 +181,7 @@ describe("AsideComponent Tests", () => {
 
     render(
       <MemoryRouter>
-        <AsideComponent
-          asideContentForTechnicalTest={asideContentForTechnicalTestMock}
-        />
+        <AsideComponent contentForTechnicalTest={contentForTechnicalTestMock} />
       </MemoryRouter>,
     );
 
@@ -212,9 +204,7 @@ describe("AsideComponent Tests", () => {
 
     render(
       <MemoryRouter>
-        <AsideComponent
-          asideContentForTechnicalTest={asideContentForTechnicalTestMock}
-        />
+        <AsideComponent contentForTechnicalTest={contentForTechnicalTestMock} />
       </MemoryRouter>,
     );
 
@@ -235,9 +225,7 @@ describe("AsideComponent Tests", () => {
 
     render(
       <MemoryRouter>
-        <AsideComponent
-          asideContentForTechnicalTest={asideContentForTechnicalTestMock}
-        />
+        <AsideComponent contentForTechnicalTest={contentForTechnicalTestMock} />
       </MemoryRouter>,
     );
 
@@ -262,9 +250,7 @@ describe("AsideComponent Tests", () => {
 
     render(
       <MemoryRouter initialEntries={["/"]}>
-        <AsideComponent
-          asideContentForTechnicalTest={asideContentForTechnicalTestMock}
-        />
+        <AsideComponent contentForTechnicalTest={contentForTechnicalTestMock} />
         <Routes>
           <Route path="/codeconnect" element={<div>Code Connect Page</div>} />
         </Routes>
@@ -278,7 +264,7 @@ describe("AsideComponent Tests", () => {
     expect(await screen.findByText("Code Connect Page")).toBeInTheDocument();
   });
 
-  test("asideContentForTechnicalTest has correct labels and length", () => {
+  test("contentForTechnicalTest has correct labels and length", () => {
     const expectedLabels = [
       "React",
       "SQL",
@@ -289,15 +275,15 @@ describe("AsideComponent Tests", () => {
       "Python",
     ];
 
-    expect(asideContentForTechnicalTest).toHaveLength(expectedLabels.length);
+    expect(contentForTechnicalTest).toHaveLength(expectedLabels.length);
 
     expectedLabels.forEach((label, index) => {
-      expect(asideContentForTechnicalTest[index].label).toBe(label);
-      expect(typeof asideContentForTechnicalTest[index].icon).toBe("function");
+      expect(contentForTechnicalTest[index].label).toBe(label);
+      expect(typeof contentForTechnicalTest[index].icon).toBe("function");
     });
   });
 
-  test("asideContentForTechnicalTest icons are correctly assigned", () => {
+  test("contentForTechnicalTest icons are correctly assigned", () => {
     const expectedIcons = [
       react_vector,
       sql_vector,
@@ -308,7 +294,7 @@ describe("AsideComponent Tests", () => {
       python_vector,
     ];
 
-    asideContentForTechnicalTest.forEach((item, index) => {
+    contentForTechnicalTest.forEach((item, index) => {
       expect(item.icon).toBe(expectedIcons[index]);
     });
   });

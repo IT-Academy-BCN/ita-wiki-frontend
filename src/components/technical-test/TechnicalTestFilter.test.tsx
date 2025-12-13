@@ -4,7 +4,7 @@ import { TechnicalTestFilter } from "./TechnicalTestFilter";
 
 // Mock the aside content
 vi.mock("../Layout/aside/asideContent", () => ({
-  asideContentForTechnicalTest: [
+  contentForTechnicalTest: [
     { label: "JavaScript", icon: vi.fn() },
     { label: "Java", icon: vi.fn() },
     { label: "Python", icon: vi.fn() },

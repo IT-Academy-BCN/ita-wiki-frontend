@@ -1,5 +1,5 @@
 import { describe, test, expect } from "vitest";
-import { contentResourcesForm } from "./languagesLabels";
+import { contentResourcesForm } from "../create-resources/languagesLabelsContent";
 
 const iconLabelMap = [
   { label: "Node", iconName: "node_vector" },
