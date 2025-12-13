@@ -15,6 +15,7 @@ import CodeConnectPage from "./pages/CodeConnectPage";
 import CodeConnectCreatePage from "./pages/CodeConnectCreatePage";
 import CodeConnectDetails from "./pages/CodeConnectDetails";
 import TechnicalPage from "./components/technical-page/TechnicalPage";
+import RankingsPage from "./pages/RankingsPage";
 
 const App: FC = () => {
   return (
@@ -34,6 +35,7 @@ const App: FC = () => {
               path="/codeconnect/:projectId"
               element={<CodeConnectDetails />}
             />
+            <Route path="/ranking" element={<RankingsPage />} />
 
             {/* Protected routes */}
             <Route element={<RequireAuth />}>
