@@ -1,5 +1,6 @@
 import { useUserContext } from "../context/UserContext";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import PageTitle from "../components/ui/PageTitle";
 import { getUserRole } from "../api/userApi";
 import Container from "../components/ui/Container";
@@ -10,6 +11,7 @@ import rankingSrc from "../assets/ranking-items.png";
 
 export default function HomePage() {
   const { user } = useUserContext();
+  const navigate = useNavigate();
   const [userRole, setUserRole] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -51,7 +53,10 @@ export default function HomePage() {
           </header>
 
           <main className="flex-1 grid grid-cols-1 md:grid-cols-2 w-fit 2xl:w-4/5 mx-auto py-6 md:grid-rows-2 gap-6">
-            <section className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center">
+            <section
+              onClick={() => navigate("/resources/React")}
+              className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center cursor-pointer"
+            >
               <img
                 src={resourcesSrc}
                 className="max-h-[75%] w-90 mb-2 ml-3 object-contain transform transition duration-300 hover:scale-110"
@@ -64,7 +69,12 @@ export default function HomePage() {
               </p>
             </section>
 
-            <section className="bg-gray-50 border  border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center">
+            <section
+              onClick={() =>
+                navigate("/resources/technical-test/all-tech-tests")
+              }
+              className="bg-gray-50 border  border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center cursor-pointer"
+            >
               <img
                 src={technicalSrc}
                 className="mb-4 max-h-[75%] w-100 object-contain transform transition duration-300 hover:scale-110"
@@ -77,7 +87,10 @@ export default function HomePage() {
               </p>
             </section>
 
-            <section className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center">
+            <section
+              onClick={() => navigate("/codeconnect")}
+              className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col justify-center items-center cursor-pointer"
+            >
               <img
                 src={codeconnectSrc}
                 className="mb-4 max-h-[75%] w-102 2xl:w-120 object-contain transform transition duration-300 hover:scale-110"
