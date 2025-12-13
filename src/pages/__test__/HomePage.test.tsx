@@ -57,6 +57,14 @@ describe("HomePage Navigation", () => {
   beforeEach(() => {
     mockNavigate.mockClear();
   });
+  it("should navigate to ranking page when clicking ranking section", async () => {
+    renderWithRouter(<HomePage />);
+
+    const rankingSection = await screen.findByText("Competeix i millora");
+    await userEvent.click(rankingSection.closest("section")!);
+
+    expect(mockNavigate).toHaveBeenCalledWith("/ranking");
+  });
 
   it("should navigate to resources page when clicking resources section", async () => {
     renderWithRouter(<HomePage />);
