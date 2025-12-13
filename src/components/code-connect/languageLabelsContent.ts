@@ -1,7 +1,7 @@
-import js_vector from "../../../assets/javascript.svg?react";
-import angular_vector from "../../../assets/angular.svg?react";
-import react_vector from "../../../assets/react.svg?react";
-import node_vector from "../../../assets/logo-node 1.svg?react";
+import js_vector from "../../assets/javascript.svg?react";
+import angular_vector from "../../assets/angular.svg?react";
+import react_vector from "../../assets/react.svg?react";
+import node_vector from "../../assets/logo-node 1.svg?react";
 import { FC, SVGProps } from "react";
 
 type SvgIcon = FC<SVGProps<SVGSVGElement>>;

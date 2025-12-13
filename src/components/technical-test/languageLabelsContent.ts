@@ -1,10 +1,10 @@
-import sql_vector from "../../../assets/sqlVector.svg?react";
-import python_vector from "../../../assets/pythonVector.svg?react";
-import ts_vector from "../../../assets/TypescriptVector.svg?react";
-import js_vector from "../../../assets/javascript.svg?react";
-import java_vector from "../../../assets/logo-java 1.svg?react";
-import php_vector from "../../../assets/logo-php 1.svg?react";
-import react_vector from "../../../assets/react.svg?react";
+import sql_vector from "../../assets/sqlVector.svg?react";
+import python_vector from "../../assets/pythonVector.svg?react";
+import ts_vector from "../../assets/TypescriptVector.svg?react";
+import js_vector from "../../assets/javascript.svg?react";
+import java_vector from "../../assets/logo-java 1.svg?react";
+import php_vector from "../../assets/logo-php 1.svg?react";
+import react_vector from "../../assets/react.svg?react";
 
 
 import { FC, SVGProps } from "react";
