@@ -1,6 +1,6 @@
 import { vi, expect, test, type Mock } from "vitest";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { vi } from "vitest";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router";
 import CreateResourcePage from "../../../pages/CreateResourcePage";
 import UserProvider from "../../../context/UserContext";
@@ -37,6 +37,7 @@ vi.mock("../../../api/endPointResources", () => ({
 }));
 
 test("POST includes tag IDs not names", async () => {
+  const user = userEvent.setup();
   const { createResource } = await import("../../../api/endPointResources");
 
   render(
@@ -47,30 +48,27 @@ test("POST includes tag IDs not names", async () => {
     </UserProvider>,
   );
 
-  fireEvent.change(screen.getAllByRole("textbox")[0], {
-    target: { value: "My Resource" },
+  const textboxes = screen.getAllByRole("textbox");
+  await user.type(textboxes[0], "My Resource");
+  await user.type(textboxes[1], "http://example.com");
+
+  await user.click(screen.getByRole("button", { name: /react/i }));
+  await user.click(screen.getByLabelText("Blog"));
+
+  const tagInput = screen.getByPlaceholderText("Escriu per buscar etiquetes...");
+  await user.click(tagInput);
+
+  await waitFor(async () => {
+    const dropdownItems = screen.getAllByText("React");
+    const reactTagOption = dropdownItems[dropdownItems.length - 1];
+    await user.click(reactTagOption);
   });
 
-  fireEvent.change(screen.getAllByRole("textbox")[1], {
-    target: { value: "http://example.com" },
-  });
-
-  fireEvent.click(screen.getByRole("button", { name: /react/i }));
-
-  fireEvent.click(screen.getByLabelText("Blog"));
-
-  const tagSelect = screen.getByLabelText("Tags");
-
-  fireEvent.change(tagSelect, {
-    target: { value: "23" },
-  });
-
-  fireEvent.click(screen.getByText("Publicar"));
+  await user.click(screen.getByText("Publicar"));
 
   await waitFor(() => {
     expect(createResource).toHaveBeenCalled();
     const payload = (createResource as Mock).mock.calls[0][0];
-
     expect(payload.tags).toEqual(["23"]);
   });
 });

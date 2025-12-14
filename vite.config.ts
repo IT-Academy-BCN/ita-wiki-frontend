@@ -27,7 +27,7 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/api": "http://localhost:8000",
+      "/api": "https://ita-wiki-backend-production.up.railway.app",
     },
   },
 });
