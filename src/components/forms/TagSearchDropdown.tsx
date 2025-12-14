@@ -1,5 +1,5 @@
-import { Tag } from "../../../types";
-import { formatText } from "../../../utils/formatText";
+import { Tag } from "../../types";
+import { formatText } from "../../utils/formatText";
 
 interface TagSearchDropdownProps {
   searchTerm: string;

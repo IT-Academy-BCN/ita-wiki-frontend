@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { SelectedTagsContainer } from "./SelectedTagsContainer";
+import { SelectedTagsContainer } from "../SelectedTagsContainer";
 import type { Tag } from "../../../types";
 describe("SelectedTagsContainer", () => {
   const mockTags: Tag[] = [

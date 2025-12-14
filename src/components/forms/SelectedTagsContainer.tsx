@@ -1,6 +1,6 @@
-import { Tag } from "../../../types";
-import { formatText } from "../../../utils/formatText";
-import { UiButton } from "../../ui/shared-ui/UiButton";
+import { Tag } from "../../types";
+import { formatText } from "../../utils/formatText";
+import { UiButton } from "../ui/shared-ui/UiButton";
 
 interface SelectedTagsContainerProps {
   tags: Tag[];

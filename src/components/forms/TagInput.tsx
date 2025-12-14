@@ -1,8 +1,8 @@
 import { useMemo, useState, useRef, useEffect } from "react";
 import { Tag } from "../../types";
 import { useTags } from "../../context/TagsContext";
-import { SelectedTagsContainer } from "./tag-input/SelectedTagsContainer";
-import { TagSearchDropdown } from "./tag-input/TagSearchDropdown";
+import { SelectedTagsContainer } from "./SelectedTagsContainer";
+import { TagSearchDropdown } from "./TagSearchDropdown";
 
 interface TagInputProps {
   selectedTags: Tag[];

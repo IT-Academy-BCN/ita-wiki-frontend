@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { TagSearchDropdown } from "./TagSearchDropdown";
+import { TagSearchDropdown } from "../TagSearchDropdown";
 import type { Tag } from "../../../types";
 import { createRef } from "react";
 describe("TagSearchDropdown", () => {
