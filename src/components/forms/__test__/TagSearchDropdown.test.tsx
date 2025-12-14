@@ -32,7 +32,10 @@ describe("TagSearchDropdown", () => {
 
     const input = screen.getByLabelText("Buscar tags");
     expect(input).toBeInTheDocument();
-    expect(input).toHaveAttribute("placeholder", "Escriu per buscar etiquetes...");
+    expect(input).toHaveAttribute(
+      "placeholder",
+      "Escriu per buscar etiquetes...",
+    );
   });
 
   it("muestra placeholder de carga cuando no hay tags", () => {
@@ -42,7 +45,7 @@ describe("TagSearchDropdown", () => {
         allTags={[]}
         availableTags={[]}
         filteredTags={[]}
-      />
+      />,
     );
 
     const input = screen.getByLabelText("Buscar tags");
@@ -54,7 +57,9 @@ describe("TagSearchDropdown", () => {
     const user = userEvent.setup();
     const onInputChange = vi.fn();
 
-    render(<TagSearchDropdown {...defaultProps} onInputChange={onInputChange} />);
+    render(
+      <TagSearchDropdown {...defaultProps} onInputChange={onInputChange} />,
+    );
 
     const input = screen.getByLabelText("Buscar tags");
     await user.type(input, "react");
@@ -80,7 +85,7 @@ describe("TagSearchDropdown", () => {
         {...defaultProps}
         showSuggestions={true}
         filteredTags={mockAllTags}
-      />
+      />,
     );
 
     expect(screen.getByText("React")).toBeInTheDocument();
@@ -94,7 +99,7 @@ describe("TagSearchDropdown", () => {
         {...defaultProps}
         showSuggestions={false}
         filteredTags={mockAllTags}
-      />
+      />,
     );
 
     expect(screen.queryByText("React")).not.toBeInTheDocument();
@@ -109,7 +114,7 @@ describe("TagSearchDropdown", () => {
         {...defaultProps}
         showSuggestions={true}
         onSelectTag={onSelectTag}
-      />
+      />,
     );
 
     const reactTag = screen.getByText("React");
@@ -126,7 +131,7 @@ describe("TagSearchDropdown", () => {
         searchTerm="xyz"
         showSuggestions={true}
         filteredTags={[]}
-      />
+      />,
     );
 
     expect(screen.getByText("No s'han trobat etiquetes")).toBeInTheDocument();
@@ -139,11 +144,11 @@ describe("TagSearchDropdown", () => {
         searchTerm=""
         showSuggestions={true}
         filteredTags={[]}
-      />
+      />,
     );
 
     expect(
-      screen.getByText("Totes les etiquetes ja estan seleccionades")
+      screen.getByText("Totes les etiquetes ja estan seleccionades"),
     ).toBeInTheDocument();
   });
 

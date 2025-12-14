@@ -17,7 +17,7 @@ describe("SelectedTagsContainer", () => {
     render(<SelectedTagsContainer tags={[]} onRemove={onRemove} />);
 
     expect(
-      screen.getByText("No hi ha etiquetes seleccionades")
+      screen.getByText("No hi ha etiquetes seleccionades"),
     ).toBeInTheDocument();
   });
 

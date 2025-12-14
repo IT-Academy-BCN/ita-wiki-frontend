@@ -56,7 +56,9 @@ describe("TagInput Component", () => {
       );
 
       expect(screen.getByText("Etiquetes")).toBeInTheDocument();
-      expect(screen.getByPlaceholderText("Escriu per buscar etiquetes...")).toBeInTheDocument();
+      expect(
+        screen.getByPlaceholderText("Escriu per buscar etiquetes..."),
+      ).toBeInTheDocument();
     });
 
     it("muestra mensaje cuando no hay tags disponibles", () => {
@@ -70,8 +72,12 @@ describe("TagInput Component", () => {
         />,
       );
 
-      expect(screen.getByPlaceholderText("Carregant etiquetes...")).toBeDisabled();
-      expect(screen.getByText("Esperant que es carreguin les etiquetes...")).toBeInTheDocument();
+      expect(
+        screen.getByPlaceholderText("Carregant etiquetes..."),
+      ).toBeDisabled();
+      expect(
+        screen.getByText("Esperant que es carreguin les etiquetes..."),
+      ).toBeInTheDocument();
     });
 
     it("muestra mensaje cuando no hay tags seleccionados", () => {
@@ -83,7 +89,9 @@ describe("TagInput Component", () => {
         />,
       );
 
-      expect(screen.getByText("No hi ha etiquetes seleccionades")).toBeInTheDocument();
+      expect(
+        screen.getByText("No hi ha etiquetes seleccionades"),
+      ).toBeInTheDocument();
     });
   });
 
@@ -99,7 +107,9 @@ describe("TagInput Component", () => {
         />,
       );
 
-      const input = screen.getByPlaceholderText("Escriu per buscar etiquetes...");
+      const input = screen.getByPlaceholderText(
+        "Escriu per buscar etiquetes...",
+      );
       await user.click(input);
 
       await waitFor(() => {
@@ -121,7 +131,9 @@ describe("TagInput Component", () => {
         />,
       );
 
-      const input = screen.getByPlaceholderText("Escriu per buscar etiquetes...");
+      const input = screen.getByPlaceholderText(
+        "Escriu per buscar etiquetes...",
+      );
       await user.type(input, "react");
 
       await waitFor(() => {
@@ -142,7 +154,9 @@ describe("TagInput Component", () => {
         />,
       );
 
-      const input = screen.getByPlaceholderText("Escriu per buscar etiquetes...");
+      const input = screen.getByPlaceholderText(
+        "Escriu per buscar etiquetes...",
+      );
       await user.type(input, "REACT");
 
       await waitFor(() => {
@@ -161,11 +175,15 @@ describe("TagInput Component", () => {
         />,
       );
 
-      const input = screen.getByPlaceholderText("Escriu per buscar etiquetes...");
+      const input = screen.getByPlaceholderText(
+        "Escriu per buscar etiquetes...",
+      );
       await user.type(input, "xyz123");
 
       await waitFor(() => {
-        expect(screen.getByText("No s'han trobat etiquetes")).toBeInTheDocument();
+        expect(
+          screen.getByText("No s'han trobat etiquetes"),
+        ).toBeInTheDocument();
       });
     });
   });
@@ -182,7 +200,9 @@ describe("TagInput Component", () => {
         />,
       );
 
-      const input = screen.getByPlaceholderText("Escriu per buscar etiquetes...");
+      const input = screen.getByPlaceholderText(
+        "Escriu per buscar etiquetes...",
+      );
       await user.click(input);
 
       const reactOption = await screen.findByText("React");
@@ -204,7 +224,9 @@ describe("TagInput Component", () => {
         />,
       );
 
-      const input = screen.getByPlaceholderText("Escriu per buscar etiquetes...");
+      const input = screen.getByPlaceholderText(
+        "Escriu per buscar etiquetes...",
+      );
       await user.type(input, "react");
 
       const reactOption = await screen.findByText("React");
@@ -227,7 +249,9 @@ describe("TagInput Component", () => {
         />,
       );
 
-      const input = screen.getByPlaceholderText("Escriu per buscar etiquetes...");
+      const input = screen.getByPlaceholderText(
+        "Escriu per buscar etiquetes...",
+      );
       await user.click(input);
 
       const chips = screen.getAllByText("React");
@@ -270,7 +294,7 @@ describe("TagInput Component", () => {
 
       const removeButtons = screen.getAllByRole("button");
       const reactRemoveButton = removeButtons.find(
-        (button) => button.textContent === "×"
+        (button) => button.textContent === "×",
       );
 
       if (reactRemoveButton) {
@@ -293,7 +317,9 @@ describe("TagInput Component", () => {
         />,
       );
 
-      const input = screen.getByPlaceholderText("Escriu per buscar etiquetes...");
+      const input = screen.getByPlaceholderText(
+        "Escriu per buscar etiquetes...",
+      );
       await user.click(input);
 
       await waitFor(() => {
@@ -314,7 +340,9 @@ describe("TagInput Component", () => {
         />,
       );
 
-      const input = screen.getByPlaceholderText("Escriu per buscar etiquetes...");
+      const input = screen.getByPlaceholderText(
+        "Escriu per buscar etiquetes...",
+      );
       await user.click(input);
 
       await waitFor(() => {
@@ -335,7 +363,9 @@ describe("TagInput Component", () => {
         />,
       );
 
-      const input = screen.getByPlaceholderText("Escriu per buscar etiquetes...");
+      const input = screen.getByPlaceholderText(
+        "Escriu per buscar etiquetes...",
+      );
       await user.click(input);
 
       expect(screen.queryByText("React")).not.toBeInTheDocument();
@@ -358,7 +388,9 @@ describe("TagInput Component", () => {
         </div>,
       );
 
-      const input = screen.getByPlaceholderText("Escriu per buscar etiquetes...");
+      const input = screen.getByPlaceholderText(
+        "Escriu per buscar etiquetes...",
+      );
       await user.click(input);
 
       await waitFor(() => {
@@ -375,7 +407,9 @@ describe("TagInput Component", () => {
 
     it("muestra mensaje cuando todos los tags están seleccionados", async () => {
       const user = userEvent.setup();
-      const allFrontendTags = mockTags.filter((tag) => [1, 2, 3, 4].includes(tag.id));
+      const allFrontendTags = mockTags.filter((tag) =>
+        [1, 2, 3, 4].includes(tag.id),
+      );
 
       render(
         <TagInput
@@ -385,11 +419,15 @@ describe("TagInput Component", () => {
         />,
       );
 
-      const input = screen.getByPlaceholderText("Escriu per buscar etiquetes...");
+      const input = screen.getByPlaceholderText(
+        "Escriu per buscar etiquetes...",
+      );
       await user.click(input);
 
       await waitFor(() => {
-        expect(screen.getByText("Totes les etiquetes ja estan seleccionades")).toBeInTheDocument();
+        expect(
+          screen.getByText("Totes les etiquetes ja estan seleccionades"),
+        ).toBeInTheDocument();
       });
     });
   });

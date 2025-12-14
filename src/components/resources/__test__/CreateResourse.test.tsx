@@ -55,7 +55,9 @@ test("POST includes tag IDs not names", async () => {
   await user.click(screen.getByRole("button", { name: /react/i }));
   await user.click(screen.getByLabelText("Blog"));
 
-  const tagInput = screen.getByPlaceholderText("Escriu per buscar etiquetes...");
+  const tagInput = screen.getByPlaceholderText(
+    "Escriu per buscar etiquetes...",
+  );
   await user.click(tagInput);
 
   await waitFor(async () => {
