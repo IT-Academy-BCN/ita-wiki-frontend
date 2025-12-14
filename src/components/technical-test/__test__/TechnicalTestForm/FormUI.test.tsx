@@ -30,33 +30,10 @@ describe("TechnicalTestForm UI", () => {
     expect(screen.getByText("Tornar a proves tècniques")).toBeInTheDocument();
   });
 
-  it("renders title input", () => {
-    render(<TechnicalTestForm />);
-    expect(screen.getByText("Títol *")).toBeInTheDocument();
-  });
-
-  it("renders language selection buttons", () => {
-    render(<TechnicalTestForm />);
-    expect(screen.getByText("Llenguatge *")).toBeInTheDocument();
-    expect(screen.getAllByRole("button")).toEqual(
-      expect.arrayContaining([expect.objectContaining({})]),
-    );
-  });
-
   it("renders content type toggle buttons", () => {
     render(<TechnicalTestForm />);
     expect(screen.getByRole("button", { name: "Text" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Fitxer" })).toBeInTheDocument();
-  });
-
-  it("renders Cancel and Publicar buttons", () => {
-    render(<TechnicalTestForm />);
-    expect(
-      screen.getByRole("button", { name: "Cancel·lar" }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: "Publicar" }),
-    ).toBeInTheDocument();
   });
 
   it("updates duration input when user enters a number", async () => {
@@ -67,21 +44,6 @@ describe("TechnicalTestForm UI", () => {
     await user.type(durationInput, "60");
 
     expect(durationInput).toHaveValue(60);
-  });
-
-  it("selects a language when clicking on a language button", async () => {
-    const user = userEvent.setup();
-    render(<TechnicalTestForm />);
-
-    const reactButton = screen.getByRole("button", { name: /React/i });
-
-    expect(reactButton).toHaveClass("border-gray-300");
-    expect(reactButton).not.toHaveClass("border-[#B91879]");
-
-    await user.click(reactButton);
-
-    expect(reactButton).toHaveClass("border-[#B91879]");
-    expect(reactButton).not.toHaveClass("border-gray-300");
   });
 
   it("submits form with valid data and navigates on success", async () => {

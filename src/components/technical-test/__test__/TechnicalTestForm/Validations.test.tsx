@@ -145,7 +145,6 @@ describe("TechnicalTestForm Validation", () => {
     const submitButton = screen.getByRole("button", { name: /Publicar/i });
     await user.click(submitButton);
 
-    // Verify form is not submitted when difficulty is missing
     expect(mockCreateTechnicalTest).not.toHaveBeenCalled();
   });
 
