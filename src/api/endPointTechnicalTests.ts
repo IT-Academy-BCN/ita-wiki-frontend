@@ -6,7 +6,7 @@ export const createTechnicalTest = async (formData: FormData) => {
   try {
     const response = await fetch(url, {
       method: "POST",
-      body: formData
+      body: formData,
     });
 
     if (!response.ok) {
@@ -42,7 +42,6 @@ export const fetchTechnicalTests = async () => {
 };
 
 export const fetchTechnicalTestById = async (testId: number) => {
-
   const url = `${API_URL}${END_POINTS.technicaltests.get}/${testId}`;
   try {
     const response = await fetch(url);
