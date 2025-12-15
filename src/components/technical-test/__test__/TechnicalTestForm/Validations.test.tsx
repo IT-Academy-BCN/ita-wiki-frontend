@@ -31,33 +31,12 @@ describe("TechnicalTestForm Validation", () => {
     });
   });
 
-  it("shows validation error when language is not selected", async () => {
-    const user = userEvent.setup();
-    render(<TechnicalTestForm />);
-
-    const titleInput = screen.getAllByRole("textbox")[0];
-    await user.type(titleInput, "Test Title with enough characters");
-
-    const submitButton = screen.getByRole("button", { name: /Publicar/i });
-    await user.click(submitButton);
-
-    await waitFor(() => {
-      const errorMessage = screen.getByText(
-        /Si us plau, selecciona un llenguatge vàlid/i,
-      );
-      expect(errorMessage).toBeInTheDocument();
-    });
-  });
-
   it("shows validation error when duration is empty", async () => {
     const user = userEvent.setup();
     render(<TechnicalTestForm />);
 
     const titleInput = screen.getAllByRole("textbox")[0];
     await user.type(titleInput, "Test Title with enough characters");
-
-    const reactButton = screen.getByRole("button", { name: /React/i });
-    await user.click(reactButton);
 
     const submitButton = screen.getByRole("button", { name: /Publicar/i });
     await user.click(submitButton);
@@ -74,9 +53,6 @@ describe("TechnicalTestForm Validation", () => {
 
     const titleInput = screen.getAllByRole("textbox")[0];
     await user.type(titleInput, "Test Title with enough characters");
-
-    const reactButton = screen.getByRole("button", { name: /React/i });
-    await user.click(reactButton);
 
     const durationInput = screen.getByRole("spinbutton");
     await user.clear(durationInput);
@@ -100,9 +76,6 @@ describe("TechnicalTestForm Validation", () => {
 
     const titleInput = screen.getAllByRole("textbox")[0];
     await user.type(titleInput, "Test Title with enough characters");
-
-    const reactButton = screen.getByRole("button", { name: /React/i });
-    await user.click(reactButton);
 
     const durationInput = screen.getByRole("spinbutton");
     await user.clear(durationInput);
