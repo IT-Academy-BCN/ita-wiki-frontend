@@ -8,7 +8,12 @@ export type Category = (typeof categories)[number];
 export type Theme = (typeof themes)[number] | null;
 export type ResourceType = (typeof resourceTypes)[number];
 
-export type TypUserRole = "student" | "mentor" | "admin" | "superadmin" | "anonymous";
+export type TypUserRole =
+  | "student"
+  | "mentor"
+  | "admin"
+  | "superadmin"
+  | "anonymous";
 
 export type TypChildren = {
   children?: ReactNode;
