@@ -8,6 +8,8 @@ export type Category = (typeof categories)[number];
 export type Theme = (typeof themes)[number] | null;
 export type ResourceType = (typeof resourceTypes)[number];
 
+export type TypUserRole = "student" | "mentor" | "admin" | "superadmin";
+
 export type TypChildren = {
   children?: ReactNode;
 };
@@ -19,7 +21,7 @@ export interface IntUser {
   name: string;
   email: string;
   password: string;
-  role?: string;
+  role?: TypUserRole;
   photoURL?: string;
 }
 
