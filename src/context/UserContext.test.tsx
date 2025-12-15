@@ -7,13 +7,16 @@ const wrapper = ({ children }: { children: React.ReactNode }) => (
   <UserProvider>{children}</UserProvider>
 );
 
+const mockCurrentUser: IntUser = {
+  id: 12345,
+  github_username: "mock_github_username",
+  github_id: 2398498450,
+  name: "Mock Name",
+  email: "mockmail@mockmail.com",
+  password: "FakePassword232435",
+};
+
 describe("UserContext", () => {
-  const mockUser: IntUser = {
-    id: 1,
-    displayName: "Mock User",
-    photoURL: "mock.jpg",
-    role: "guest",
-  };
 
   beforeEach(() => {
     vi.restoreAllMocks();
@@ -30,10 +33,10 @@ describe("UserContext", () => {
     const { result } = renderHook(() => useUserContext(), { wrapper });
 
     act(() => {
-      result.current.setUser(mockUser);
+      result.current.setUser(mockCurrentUser);
     });
 
-    expect(result.current.user).toEqual(mockUser);
+    expect(result.current.user).toEqual(mockCurrentUser);
     expect(result.current.isAuthenticated).toBe(true);
   });
 
@@ -41,17 +44,17 @@ describe("UserContext", () => {
     const { result } = renderHook(() => useUserContext(), { wrapper });
 
     act(() => {
-      result.current.saveUser(mockUser);
+      result.current.saveUser(mockCurrentUser);
     });
 
-    expect(result.current.user).toEqual(mockUser);
+    expect(result.current.user).toEqual(mockCurrentUser);
   });
 
   test("should logout (set user and error to null)", () => {
     const { result } = renderHook(() => useUserContext(), { wrapper });
 
     act(() => {
-      result.current.setUser(mockUser);
+      result.current.setUser(mockCurrentUser);
       result.current.setError("Some error");
     });
 

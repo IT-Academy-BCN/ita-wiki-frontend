@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, afterEach, beforeEach } from "vitest";
 import { getNewUser, login, logout } from "../endpointLogin";
+import { IntUser } from "../../types";
 
 const mockLoginResponse = {
   success: true,
@@ -7,7 +8,7 @@ const mockLoginResponse = {
   message: "Redirect to GitHub",
 };
 
-const mockCurrentUser = {
+const mockCurrentUser: IntUser = {
   id: 12345,
   github_username: "mock_github_username",
   github_id: 2398498450,
