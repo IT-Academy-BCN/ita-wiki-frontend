@@ -55,6 +55,9 @@ describe("useProjectJoin", () => {
 
     act(() => {
       result.current.decisionModal.open("backend", 1);
+    });
+
+    act(() => {
       result.current.decisionModal.accept();
     });
 
@@ -62,6 +65,9 @@ describe("useProjectJoin", () => {
 
     act(() => {
       result.current.decisionModal.open("backend", 1);
+    });
+
+    act(() => {
       result.current.decisionModal.reject();
     });
 
