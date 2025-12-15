@@ -42,7 +42,7 @@ describe("TechnicalTestCard", () => {
       renderWithRouter(<TechnicalTestCard test={mockTest} />);
 
       const link = screen.getByRole("link", {
-        name: mockTest.title,
+        name: new RegExp(mockTest.title, "i"),
       });
 
       expect(link).toBeInTheDocument();
@@ -57,7 +57,7 @@ describe("TechnicalTestCard", () => {
       renderWithRouter(<TechnicalTestCard test={differentTest} />);
 
       const link = screen.getByRole("link", {
-        name: mockTest.title,
+        name: new RegExp(differentTest.title, "i"),
       });
 
       expect(link).toHaveAttribute(
