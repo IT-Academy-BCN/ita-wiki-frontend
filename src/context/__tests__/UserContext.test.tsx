@@ -1,8 +1,8 @@
 import { renderHook, act, waitFor } from "@testing-library/react";
 import { describe, expect, test, vi, beforeEach } from "vitest";
-import { UserProvider, useUserContext } from "../context/UserContext";
-import { IntUser } from "../types";
-import * as endpointLogin from "../api/endpointLogin";
+import { UserProvider, useUserContext } from "../UserContext";
+import { IntUser } from "../../types";
+import * as endpointLogin from "../../api/endpointLogin";
 
 const wrapper = ({ children }: { children: React.ReactNode }) => (
   <UserProvider>{children}</UserProvider>
