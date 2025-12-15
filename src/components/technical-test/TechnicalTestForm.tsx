@@ -65,10 +65,10 @@ export const TechnicalTestForm = () => {
               className="sm:w-1/2 p-2 border border-[#B91879] rounded-lg bg-white"
             >
               <option value="">Selecciona una dificultat</option>
-              <option value="Easy">Fàcil</option>
-              <option value="Medium">Mitjà</option>
-              <option value="Hard">Difícil</option>
-              <option value="Expert">Expert</option>
+              <option value="easy">Fàcil</option>
+              <option value="medium">Mitjà</option>
+              <option value="hard">Difícil</option>
+              <option value="expert">Expert</option>
             </select>
             {errors.difficulty && (
               <div className="py-4">
