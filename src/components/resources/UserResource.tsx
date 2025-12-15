@@ -17,9 +17,7 @@ export const UserResource: FC<TypChildren & UserResourceProps> = ({
         height={28}
         className="rounded-full w-[28px] h-[28px]"
       />
-      <h3 className="text-[#808080] font-bold text-[12px]">
-        {user.name}
-      </h3>
+      <h3 className="text-[#808080] font-bold text-[12px]">{user.name}</h3>
       {children}
     </div>
   );
