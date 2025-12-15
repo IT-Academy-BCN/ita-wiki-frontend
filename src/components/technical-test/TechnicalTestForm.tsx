@@ -3,8 +3,10 @@ import PdfUploadComponent from "../atoms/PdfUploadComponent";
 import Container from "../ui/Container";
 import TagInput from "../forms/TagInput";
 import FormHeader from "../forms/FormHeader";
+import LanguageSelectorInput from "../forms/LanguageSelectorInput";
 import TitleInput from "../forms/TitleInput";
 import { useTechnicalTestForm } from "../../hooks/useTechnicalTestForm";
+import { asideContentForTechnicalTest } from "../Layout/aside/asideContent";
 
 export const TechnicalTestForm = () => {
   const { form, onSubmit, handleCancel } = useTechnicalTestForm();
@@ -38,6 +40,12 @@ export const TechnicalTestForm = () => {
             register={register}
             errors={errors}
             currentLength={titleValue?.length || 0}
+          />
+
+          <LanguageSelectorInput
+            control={control}
+            errors={errors}
+            languages={asideContentForTechnicalTest}
           />
 
           <div className="flex flex-col px-10 mt-8">
