@@ -21,28 +21,28 @@ describe("useProjectJoin", () => {
     const { result } = renderHook(() => useProjectJoin(projectId));
 
     act(() => {
-      result.current.handleOpenModal({
+      result.current.joinModal.open({
         area: "frontend",
         index: 0,
         role: "Frontend Developer",
       });
     });
 
-    expect(result.current.joinModalOpen).toBe(true);
+    expect(result.current.joinModal.isOpen).toBe(true);
 
     await act(async () => {
-      await result.current.handleConfirmJoin();
+      await result.current.joinModal.confirm();
     });
 
-    expect(result.current.joinModalOpen).toBe(false);
-    expect(result.current.isSlotPending("frontend", 0)).toBe(true);
+    expect(result.current.joinModal.isOpen).toBe(false);
+    expect(result.current.slots.isPending("frontend", 0)).toBe(true);
   });
 
   it("accepts and rejects a pending contributor", async () => {
     const { result } = renderHook(() => useProjectJoin(projectId));
 
     act(() => {
-      result.current.handleOpenModal({
+      result.current.joinModal.open({
         area: "backend",
         index: 1,
         role: "Backend Developer",
@@ -50,27 +50,21 @@ describe("useProjectJoin", () => {
     });
 
     await act(async () => {
-      await result.current.handleConfirmJoin();
+      await result.current.joinModal.confirm();
     });
 
     act(() => {
-      result.current.handleOpenDecisionModal("backend", 1);
+      result.current.decisionModal.open("backend", 1);
+      result.current.decisionModal.accept();
     });
+
+    expect(result.current.slots.isAccepted("backend", 1)).toBe(true);
 
     act(() => {
-      result.current.handleAcceptContributor();
+      result.current.decisionModal.open("backend", 1);
+      result.current.decisionModal.reject();
     });
 
-    expect(result.current.isSlotAccepted("backend", 1)).toBe(true);
-
-    act(() => {
-      result.current.handleOpenDecisionModal("backend", 1);
-    });
-
-    act(() => {
-      result.current.handleRejectContributor();
-    });
-
-    expect(result.current.isSlotPending("backend", 1)).toBe(false);
+    expect(result.current.slots.isPending("backend", 1)).toBe(false);
   });
 });

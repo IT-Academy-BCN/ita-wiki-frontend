@@ -9,21 +9,7 @@ import { Link } from "react-router";
 import { useProjectJoin } from "./hooks/useProjectJoin";
 
 function ProjectCard({ project }: ProjectCardProps) {
-  const {
-    joinModalOpen,
-    decisionModalOpen,
-    selectedSlot,
-    isSubmitting,
-    handleOpenModal,
-    handleConfirmJoin,
-    isSlotPending,
-    isSlotAccepted,
-    handleOpenDecisionModal,
-    handleAcceptContributor,
-    handleRejectContributor,
-    setJoinModalOpen,
-    setDecisionModalOpen,
-  } = useProjectJoin(project.id);
+  const { slots, joinModal, decisionModal } = useProjectJoin(project.id);
 
   const availableFrontend =
     project.frontend.positions - project.frontend.participants.length;
@@ -75,15 +61,15 @@ function ProjectCard({ project }: ProjectCardProps) {
           ))}
           {[...Array(availableFrontend)].map((_, i) => {
             const index = project.frontend.participants.length + i;
-            const pending = isSlotPending("frontend", index);
-            const accepted = isSlotAccepted("frontend", index);
+            const pending = slots.isPending("frontend", index);
+            const accepted = slots.isAccepted("frontend", index);
 
             if (pending) {
               return (
                 <figure
                   key={`front-pending-${index}`}
                   className="flex flex-col items-center"
-                  onClick={() => handleOpenDecisionModal("frontend", index)}
+                  onClick={() => decisionModal.open("frontend", index)}
                 >
                   <div
                     className={`w-12 h-12 rounded-full border-2 cursor-pointer overflow-hidden flex items-center justify-center ${accepted ? "border-transparent" : "border-orange-500"}`}
@@ -105,7 +91,7 @@ function ProjectCard({ project }: ProjectCardProps) {
               <ProjectButton
                 key={`front-${index}`}
                 onClick={() =>
-                  handleOpenModal({
+                  joinModal.open({
                     area: "frontend",
                     index,
                     role: "Frontend Developer",
@@ -132,15 +118,15 @@ function ProjectCard({ project }: ProjectCardProps) {
           ))}
           {[...Array(availableBackend)].map((_, i) => {
             const index = project.backend.participants.length + i;
-            const pending = isSlotPending("backend", index);
-            const accepted = isSlotAccepted("backend", index);
+            const pending = slots.isPending("backend", index);
+            const accepted = slots.isAccepted("backend", index);
 
             if (pending) {
               return (
                 <figure
                   key={`back-pending-${index}`}
                   className="flex flex-col items-center"
-                  onClick={() => handleOpenDecisionModal("backend", index)}
+                  onClick={() => decisionModal.open("backend", index)}
                 >
                   <div
                     className={`w-12 h-12 rounded-full cursor-pointer border-2 overflow-hidden flex items-center justify-center ${accepted ? "border-transparent" : "border-orange-500"}`}
@@ -162,7 +148,7 @@ function ProjectCard({ project }: ProjectCardProps) {
               <ProjectButton
                 key={`back-${index}`}
                 onClick={() =>
-                  handleOpenModal({
+                  joinModal.open({
                     area: "backend",
                     index,
                     role: "Backend Developer",
@@ -184,31 +170,33 @@ function ProjectCard({ project }: ProjectCardProps) {
         />
       </div>
       <GenericModal
-        isOpen={joinModalOpen}
-        onClose={() => setJoinModalOpen(false)}
+        isOpen={joinModal.isOpen}
+        onClose={joinModal.close}
         title="Unir-te al projecte"
         showPrimaryButton
-        primaryButtonText={isSubmitting ? "Enviant..." : "Confirmar"}
-        primaryButtonAction={isSubmitting ? undefined : handleConfirmJoin}
+        primaryButtonText={joinModal.isSubmitting ? "Enviant..." : "Confirmar"}
+        primaryButtonAction={
+          joinModal.isSubmitting ? undefined : joinModal.confirm
+        }
         showSecondaryButton
         secondaryButtonText="Cancel·lar"
-        secondaryButtonAction={() => setJoinModalOpen(false)}
+        secondaryButtonAction={joinModal.close}
       >
         <p>
-          Vols unir-te com a {selectedSlot?.role ?? "participant"} al projecte "
-          {project.title}"?
+          Vols unir-te com a {joinModal.selectedSlot?.role ?? "participant"} al
+          projecte "{project.title}"?
         </p>
       </GenericModal>
       <GenericModal
-        isOpen={decisionModalOpen}
-        onClose={() => setDecisionModalOpen(false)}
+        isOpen={decisionModal.isOpen}
+        onClose={decisionModal.close}
         title="Gestionar contribuidor"
         showPrimaryButton
         primaryButtonText="Acceptar"
-        primaryButtonAction={handleAcceptContributor}
+        primaryButtonAction={decisionModal.accept}
         showSecondaryButton
         secondaryButtonText="Rebutjar"
-        secondaryButtonAction={handleRejectContributor}
+        secondaryButtonAction={decisionModal.reject}
       >
         <p>
           Vols acceptar o rebutjar aquest contribuidor pendent al projecte "

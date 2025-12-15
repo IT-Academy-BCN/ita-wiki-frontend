@@ -107,20 +107,26 @@ export function useProjectJoin(projectId: number) {
   };
 
   return {
-    pendingSlots,
-    joinModalOpen,
-    decisionModalOpen,
-    selectedSlot,
-    isSubmitting,
-    handleOpenModal,
-    handleConfirmJoin,
-    isSlotPending,
-    isSlotAccepted,
-    getSlotStatus,
-    handleOpenDecisionModal,
-    handleAcceptContributor,
-    handleRejectContributor,
-    setJoinModalOpen,
-    setDecisionModalOpen,
+    slots: {
+      pendingSlots,
+      isPending: isSlotPending,
+      isAccepted: isSlotAccepted,
+      getStatus: getSlotStatus,
+    },
+    joinModal: {
+      isOpen: joinModalOpen,
+      open: handleOpenModal,
+      close: () => setJoinModalOpen(false),
+      confirm: handleConfirmJoin,
+      isSubmitting,
+      selectedSlot,
+    },
+    decisionModal: {
+      isOpen: decisionModalOpen,
+      open: handleOpenDecisionModal,
+      close: () => setDecisionModalOpen(false),
+      accept: handleAcceptContributor,
+      reject: handleRejectContributor,
+    },
   };
 }
