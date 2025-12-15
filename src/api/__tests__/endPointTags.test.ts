@@ -22,6 +22,19 @@ describe("getTags", () => {
     vi.restoreAllMocks();
   });
 
+  it("returns tags when API returns a plain array", async () => {
+    vi.spyOn(global, "fetch").mockResolvedValueOnce({
+      ok: true,
+      status: 200,
+      statusText: "OK",
+      json: async () => mockTags,
+    } as unknown as Response);
+
+    const result = await getTags();
+
+    expect(result).toEqual(mockTags);
+  });
+
   it("returns tags when response is ok and data is an array", async () => {
     const mockJson = { data: mockTags };
 
