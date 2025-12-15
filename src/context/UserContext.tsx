@@ -12,7 +12,7 @@ interface UserContextType {
   user: IntUser | null;
   isAuthenticated: boolean;
   setUser: (user: IntUser | null) => void;
-  signOut: () => void;
+  signOut: () => Promise<void>;
   signIn: () => Promise<void>;
   saveUser: (user: IntUser) => void;
   error: string | null;
