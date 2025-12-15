@@ -4,7 +4,6 @@ import Container from "../ui/Container";
 import TagInput from "../forms/TagInput";
 import FormHeader from "../forms/FormHeader";
 import TitleInput from "../forms/TitleInput";
-import DescriptionTextarea from "../forms/DescriptionTextarea";
 import { useTechnicalTestForm } from "../../hooks/useTechnicalTestForm";
 
 export const TechnicalTestForm = () => {
@@ -18,7 +17,7 @@ export const TechnicalTestForm = () => {
     formState: { errors },
   } = form;
 
-  const [titleValue, descriptionValue, contentType, language] = watch([
+  const [titleValue, contentType, language] = watch([
     "title",
     "description",
     "contentType",
@@ -120,11 +119,7 @@ export const TechnicalTestForm = () => {
           </div>
 
           {contentType === "text" ? (
-            <DescriptionTextarea
-              register={register}
-              errors={errors}
-              currentLength={descriptionValue?.length || 0}
-            />
+            <>Add a Component to TextArea</>
           ) : (
             <div className="my-4 px-10">
               <Controller
