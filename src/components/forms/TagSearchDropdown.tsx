@@ -10,8 +10,8 @@ interface TagSearchDropdownProps {
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus: () => void;
   onSelectTag: (tag: Tag) => void;
-  inputRef: React.RefObject<HTMLInputElement>;
-  dropdownRef: React.RefObject<HTMLDivElement>;
+  inputRef: React.RefObject<HTMLInputElement | null>;
+  dropdownRef: React.RefObject<HTMLDivElement | null>;
 }
 export const TagSearchDropdown = ({
   searchTerm,

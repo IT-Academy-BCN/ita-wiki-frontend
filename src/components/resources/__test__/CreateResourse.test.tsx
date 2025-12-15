@@ -71,6 +71,7 @@ test("POST includes tag IDs not names", async () => {
   await waitFor(() => {
     expect(createResource).toHaveBeenCalled();
     const payload = (createResource as Mock).mock.calls[0][0];
+
     expect(payload.tags).toEqual(["23"]);
   });
 });
