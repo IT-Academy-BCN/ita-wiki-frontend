@@ -1,5 +1,4 @@
-import { useNavigate } from "react-router";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { fetchTechnicalTestById } from "../../api/endPointTechnicalTests";
 import CalendarIcon from "../../assets/Calendar.svg";
