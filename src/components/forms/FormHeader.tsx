@@ -1,4 +1,5 @@
 import { ArrowLeftIcon } from "lucide-react";
+import ButtonComponent from "../atoms/ButtonComponent";
 
 interface FormHeaderProps {
   onCancel: () => void;
@@ -17,26 +18,22 @@ const FormHeader = ({
     <>
       <div className="flex sm:flex-row flex-col justify-between px-4 sm:px-10">
         <div>
-          <a className="text-[#B91879] cursor-pointer" onClick={onCancel}>
-            <ArrowLeftIcon className="inline text-[#B91879] mb-2 me-1" />
+          <button
+            className="text-[#B91879] cursor-pointer mb-2 text-sm"
+            onClick={onCancel}
+            type="button"
+          >
+            <ArrowLeftIcon className="inline text-[#B91879] me-1" size={16} />
             {textBack}
-          </a>
+          </button>
           <h2 className="text-2xl font-semibold">{title}</h2>
         </div>
 
         <div className="flex items-center justify-end mt-4 sm:mt-0 gap-4">
-          <button
-            onClick={onCancel}
-            className="px-4 py-2 border border-gray-400 rounded-lg w-1/2 h-fit hover:shadow-md cursor-pointer"
-          >
+          <ButtonComponent onClick={onCancel} variant="secondary">
             Cancel·lar
-          </button>
-          <button
-            onClick={onPublish}
-            className="px-4 py-2 bg-primary text-white rounded-lg w-1/2 h-fit hover:shadow-md cursor-pointer"
-          >
-            Publicar
-          </button>
+          </ButtonComponent>
+          <ButtonComponent onClick={onPublish}>Publicar</ButtonComponent>
         </div>
       </div>
       <div className="border-t border-gray-300 my-8"></div>
