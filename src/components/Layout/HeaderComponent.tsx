@@ -15,6 +15,7 @@ import { AddUsersModal } from "../resources/AddUserModal";
 import { getUserRole } from "../../api/userApi";
 import { TermsAndConditionsModal } from "../Modal/TermsAndConditionsModal";
 import RoleDropdownComponent from "./header/RoleDropdownComponent";
+import { TypUserRole } from "../../types";
 
 const HeaderComponent = () => {
   const { user, signIn, signOut } = useUserContext();
@@ -92,7 +93,7 @@ const HeaderComponent = () => {
     };
   }, [showChangeRoleDropdown, devMode]);
 
-  const handleRoleChange = async (newRole: string) => {
+  const handleRoleChange = async (newRole: TypUserRole) => {
     const success = await updateUserRole(newRole);
     if (success) {
       setShowChangeRoleDropdown(false);
@@ -108,7 +109,7 @@ const HeaderComponent = () => {
   const openTermsModal = () => setIsTermsModalOpen(true);
   const closeTermsModal = () => setIsTermsModalOpen(false);
 
-  const [userRole, setUserRole] = useState<string | null>(null);
+  const [userRole, setUserRole] = useState<TypUserRole | null>(null);
 
   useEffect(() => {
     if (user && user.id) {

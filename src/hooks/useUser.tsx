@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IntUser } from "../types";
+import { IntUser, TypUserRole } from "../types";
 import { useUserContext } from "../context/UserContext";
 import { getUserRole } from "../api/userApi";
 
