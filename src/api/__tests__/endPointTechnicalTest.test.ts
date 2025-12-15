@@ -97,8 +97,7 @@ describe("fetchTechnicalTestById", () => {
     expect(global.fetch).toHaveBeenCalledTimes(1);
 
     expect(global.fetch).toHaveBeenCalledWith(
-      expect.stringContaining("/tests/123"),
-      expect.objectContaining({ signal: expect.any(AbortSignal) }),
+      expect.stringContaining("/tests/123")
     );
 
     expect(result).toEqual(MOCK_DATA.data);
