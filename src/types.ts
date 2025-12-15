@@ -16,7 +16,7 @@ export type TypChildren = {
 
 export interface IntUser {
   id: number;
-  github_username: string | null;
+  github_user_name: string | null;
   github_id: number;
   name: string;
   email: string;

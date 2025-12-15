@@ -39,9 +39,9 @@ export const getNewUser = async (token: string) => {
 
   if (!response.ok) throw new Error(`Error ${response.status}`);
 
-  const data: IntUser = await response.json();
+  const data: { success: boolean; user: IntUser } = await response.json();
 
-  return data;
+  return data.user;
 };
 
 export const logout = async (token: string) => {

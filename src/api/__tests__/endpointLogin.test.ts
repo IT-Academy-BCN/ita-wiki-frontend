@@ -10,7 +10,7 @@ const mockLoginResponse = {
 
 const mockCurrentUser: IntUser = {
   id: 12345,
-  github_username: "mock_github_username",
+  github_user_name: "mock_github_username",
   github_id: 2398498450,
   name: "Mock Name",
   email: "mockmail@mockmail.com",
@@ -66,7 +66,7 @@ describe("get current user data", () => {
       ok: true,
       status: 200,
       statusText: "OK",
-      json: async () => mockCurrentUser,
+      json: async () => ({ success: true, user: mockCurrentUser }),
     } as Response);
 
     const result = await getNewUser(mockToken);

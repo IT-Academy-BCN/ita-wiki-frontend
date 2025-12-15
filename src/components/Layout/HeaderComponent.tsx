@@ -18,6 +18,8 @@ import RoleDropdownComponent from "./header/RoleDropdownComponent";
 
 const HeaderComponent = () => {
   const { user, signIn, signOut } = useUserContext();
+
+  console.log(user)
   const { isChanging, updateUserRole } = useChangeUserRole();
   const navigate = useNavigate();
   const location = useLocation();
@@ -216,7 +218,7 @@ const HeaderComponent = () => {
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setShowDropdown((prev) => !prev)}
-              title={user.name || ""}
+              title={user.github_user_name || ""}
               className="h-[41px] px-4 flex items-center gap-1 rounded-lg hover:bg-white border border-transparent hover:border-gray-300 transition cursor-pointer"
             >
               <img
@@ -235,7 +237,10 @@ const HeaderComponent = () => {
             {showDropdown && (
               <div className="absolute right-0 mt-2 bg-white border border-gray-300 rounded-xl shadow-lg z-50 px-2 py-2 flex flex-col gap-2">
                 {/*Username*/}
-                <DropdownButtonComponent title={user.name} disabled={true} />
+                <DropdownButtonComponent 
+                  title={user.github_user_name || user.name} 
+                  disabled={true} 
+                />
                 <hr className="h-px -mx-2 bg-gray-300 border-0" />
                 {/*Role*/}
                 {devMode ? (
