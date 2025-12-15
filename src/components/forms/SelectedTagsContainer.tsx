@@ -21,14 +21,14 @@ export const SelectedTagsContainer = ({
           {tags.map((tag) => (
             <div
               key={tag.id}
-              className="flex items-center gap-1 bg-gray-200 text-gray-700 px-3 py-1 rounded-lg text-sm"
+              className="flex items-center gap-1 bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-sm border border-black"
             >
               <span>{formatText(tag.name)}</span>
               <UiButton
                 variant="ghost"
                 size="sm"
                 onClick={() => onRemove(tag.id)}
-                className="!p-0 !px-1 hover:text-red-600 font-bold"
+                className="!p-0 !px-1 hover:text-red-600 font-bold text-lg"
                 aria-label={`Eliminar ${tag.name}`}
                 type="button"
               >
