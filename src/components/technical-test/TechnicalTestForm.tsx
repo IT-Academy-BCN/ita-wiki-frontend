@@ -1,3 +1,4 @@
+import { Tag } from "../../types";
 import { useState } from "react";
 import { asideContentForTechnicalTest } from "../Layout/aside/asideContent";
 import { createTechnicalTest } from "../../api/endPointTechnicalTests";
@@ -10,7 +11,7 @@ import { toast } from "sonner";
 import Container from "../ui/Container";
 import { useForm } from "react-hook-form";
 import FieldExercise from "../forms/FieldExercise";
-
+import TagInput from "../forms/TagInput";
 type ExerciseItem = {
   name: string;
 };
@@ -35,6 +36,11 @@ export const TechnicalTestForm = () => {
   const [content, setContent] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const navigate = useNavigate();
+  const [selectedTags, setselectedTags] = useState<Tag[]>([]);
+
+  const handleTagChange = (tags: Tag[]) => {
+    setselectedTags(tags);
+  };
 
   const validateForm = () => {
     if (!title.trim()) {
@@ -202,13 +208,7 @@ export const TechnicalTestForm = () => {
         <label className="block my-4 px-10 mb-8 font-medium">
           Contingut de la prova
         </label>
-        <div
-          className="flex gap-2 mx-10 mb-10
-      border-2 border-gray-500
-      shadow-sm w-fit
-      rounded-full p-1
-      "
-        >
+        <div className="flex gap-2 mx-10 mb-10 border-2 border-gray-500 shadow-sm w-fit rounded-full p-1 ">
           <button
             className={`px-8 py-2 rounded-full cursor-pointer ${
               contentType === "text" ? "bg-[#B91879] text-white" : "bg-white"
@@ -257,6 +257,14 @@ export const TechnicalTestForm = () => {
       <div className="flex flex-col px-10 my-8">
         <label className="block mb-2 mt-8 font-medium">Exercicis *</label>
         <FieldExercise control={control} />
+      </div>
+
+      <div className="flex flex-col px-10 mb-6">
+        <TagInput
+          selectedTags={selectedTags}
+          setselectedTags={handleTagChange}
+          selectedCategory=""
+        />
       </div>
     </Container>
   );
