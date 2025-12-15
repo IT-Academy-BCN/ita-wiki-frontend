@@ -22,12 +22,6 @@ vi.mock("sonner", () => ({
 }));
 
 describe("TechnicalTestForm UI", () => {
-  it("renders heading and back link", () => {
-    render(<TechnicalTestForm />);
-    expect(screen.getByText("Nova prova tècnica")).toBeInTheDocument();
-    expect(screen.getByText("Tornar a proves tècniques")).toBeInTheDocument();
-  });
-
   it("renders content type toggle buttons", () => {
     render(<TechnicalTestForm />);
     expect(screen.getByRole("button", { name: "Text" })).toBeInTheDocument();

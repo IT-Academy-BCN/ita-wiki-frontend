@@ -2,12 +2,11 @@ import { Controller } from "react-hook-form";
 import PdfUploadComponent from "../atoms/PdfUploadComponent";
 import Container from "../ui/Container";
 import TagInput from "../forms/TagInput";
-import FormHeader from "../forms/FormHeader";
 import TitleInput from "../forms/TitleInput";
 import { useTechnicalTestForm } from "../../hooks/useTechnicalTestForm";
 
 export const TechnicalTestForm = () => {
-  const { form, onSubmit, handleCancel } = useTechnicalTestForm();
+  const { form, onSubmit } = useTechnicalTestForm();
 
   const {
     register,
@@ -27,13 +26,6 @@ export const TechnicalTestForm = () => {
   return (
     <Container className="!p-0">
       <div className="py-10">
-        <FormHeader
-          title="Nova prova tècnica"
-          textBack="Tornar a proves tècniques"
-          onCancel={handleCancel}
-          onPublish={handleSubmit(onSubmit)}
-        />
-
         <form onSubmit={handleSubmit(onSubmit)}>
           <TitleInput
             register={register}
