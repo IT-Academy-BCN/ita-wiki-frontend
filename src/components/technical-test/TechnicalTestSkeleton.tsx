@@ -1,6 +1,6 @@
 const CardSkeleton = () => {
   return (
-    <li className="flex flex-col w-full py-5 px-4 rounded-2xl shadow-xs bg-gray-100">
+    <li className="flex flex-col w-full py-5 px-4 ring ring-gray-900/5 rounded-2xl shadow-xs bg-gray-100">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between animate-pulse">
         <div className="flex flex-col sm:flex-row gap-1">
           <div className="">
