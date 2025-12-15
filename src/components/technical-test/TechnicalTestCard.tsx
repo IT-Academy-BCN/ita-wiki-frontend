@@ -46,43 +46,43 @@ const TechnicalTestCard = ({ test }: TechnicalTestCardProps) => {
   const levelIcon = getLevelIcon(test.title);
 
   return (
-    <li className="flex flex-col w-full py-4 px-4 rounded-2xl shadow-xs border border-[#7E7E7E]">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-col sm:flex-row gap-1">
-          <div>
-            <img src={levelIcon} alt="Test level" className="mt-1" />
-          </div>
-          <div className="flex flex-col gap-1">
-            <h3>
-              <Link to={`/resources/technical-test/${test.id}`}>
-                <span className="text-lg font-bold text-black hover:text-primary transition-colors duration-300">
+    <Link to={`/resources/technical-test/${test.id}`}>
+      <li className="flex flex-col w-full py-4 px-4 rounded-2xl shadow-xs border border-[#7E7E7E] hover:bg-gray-100 transition-colors duration-100">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col sm:flex-row gap-1">
+            <div>
+              <img src={levelIcon} alt="Test level" className="mt-1" />
+            </div>
+            <div className="flex flex-col gap-1">
+              <h3>
+                <span className="text-lg font-bold text-black">
                   {test.title}
                 </span>
-              </Link>
-            </h3>
-            <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-sm text-gray-500 mt-2 sm:mt-2">
-              <span className="flex items-center gap-1">
-                <Clock size={16} />
-                <span>30 min</span>
-              </span>
-              <span className="flex items-center gap-1">
-                <Heart size={16} />
-                <span>{likeCount}</span>
-              </span>
-              <span className="flex items-center gap-1">
-                <img src={XnixCalendar} alt="XnixCalendar" />
-                <span>{formattedDate}</span>
-              </span>
+              </h3>
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-sm text-gray-500 mt-2 sm:mt-2">
+                <span className="flex items-center gap-1">
+                  <Clock size={16} />
+                  <span>30 min</span>
+                </span>
+                <span className="flex items-center gap-1">
+                  <Heart size={16} />
+                  <span>{likeCount}</span>
+                </span>
+                <span className="flex items-center gap-1">
+                  <img src={XnixCalendar} alt="XnixCalendar" />
+                  <span>{formattedDate}</span>
+                </span>
+              </div>
             </div>
           </div>
+          {IconComponent && (
+            <div className="flex items-center justify-start sm:justify-center w-10 h-10 mt-2 sm:mt-0">
+              <IconComponent />
+            </div>
+          )}
         </div>
-        {IconComponent && (
-          <div className="flex items-center justify-start sm:justify-center w-10 h-10 mt-2 sm:mt-0">
-            <IconComponent />
-          </div>
-        )}
-      </div>
-    </li>
+      </li>
+    </Link>
   );
 };
 
