@@ -8,6 +8,43 @@ vi.mock("../../../../api/endPointJoinProject", () => ({
 
 describe("useProjectJoin", () => {
   const projectId = 1;
+  type UseProjectJoinHookResult = {
+    current: ReturnType<typeof useProjectJoin>;
+  };
+
+  const joinAsBackend = async (result: UseProjectJoinHookResult) => {
+    act(() => {
+      result.current.joinModal.open({
+        area: "backend",
+        index: 1,
+        role: "Backend Developer",
+      });
+    });
+
+    await act(async () => {
+      await result.current.joinModal.confirm();
+    });
+  };
+
+  const acceptBackendContributor = (result: UseProjectJoinHookResult) => {
+    act(() => {
+      result.current.decisionModal.open("backend", 1);
+    });
+
+    act(() => {
+      result.current.decisionModal.accept();
+    });
+  };
+
+  const rejectBackendContributor = (result: UseProjectJoinHookResult) => {
+    act(() => {
+      result.current.decisionModal.open("backend", 1);
+    });
+
+    act(() => {
+      result.current.decisionModal.reject();
+    });
+  };
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -40,37 +77,11 @@ describe("useProjectJoin", () => {
 
   it("accepts and rejects a pending contributor", async () => {
     const { result } = renderHook(() => useProjectJoin(projectId));
-
-    act(() => {
-      result.current.joinModal.open({
-        area: "backend",
-        index: 1,
-        role: "Backend Developer",
-      });
-    });
-
-    await act(async () => {
-      await result.current.joinModal.confirm();
-    });
-
-    act(() => {
-      result.current.decisionModal.open("backend", 1);
-    });
-
-    act(() => {
-      result.current.decisionModal.accept();
-    });
-
+    await joinAsBackend(result);
+    acceptBackendContributor(result);
     expect(result.current.slots.isAccepted("backend", 1)).toBe(true);
 
-    act(() => {
-      result.current.decisionModal.open("backend", 1);
-    });
-
-    act(() => {
-      result.current.decisionModal.reject();
-    });
-
+    rejectBackendContributor(result);
     expect(result.current.slots.isPending("backend", 1)).toBe(false);
   });
 });
