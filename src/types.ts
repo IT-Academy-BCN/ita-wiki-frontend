@@ -20,6 +20,7 @@ export interface IntUser {
   email: string;
   password: string;
   role?: string;
+  photoURL?: string;
 }
 
 export interface IntResource {
