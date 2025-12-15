@@ -7,6 +7,7 @@ import FormHeader from "../forms/FormHeader";
 import TitleInput from "../forms/TitleInput";
 import DescriptionTextarea from "../forms/DescriptionTextarea";
 import { useTechnicalTestForm } from "../../hooks/useTechnicalTestForm";
+import { asideContentForTechnicalTest } from "../Layout/aside/asideContent";
 
 export const TechnicalTestForm = () => {
   const { form, onSubmit, handleCancel } = useTechnicalTestForm();
@@ -43,7 +44,11 @@ export const TechnicalTestForm = () => {
             currentLength={titleValue?.length || 0}
           />
 
-          <LanguageSelectorInput control={control} errors={errors} />
+          <LanguageSelectorInput
+            control={control}
+            errors={errors}
+            languages={asideContentForTechnicalTest}
+          />
 
           <div className="flex flex-col px-10 mt-8">
             <label className="block mb-2 font-medium">Durada (minuts) *</label>

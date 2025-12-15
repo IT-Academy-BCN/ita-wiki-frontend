@@ -1,13 +1,20 @@
 import { Control, Controller, FieldErrors } from "react-hook-form";
-import { asideContentForTechnicalTest } from "../Layout/aside/asideContent";
 import type { TechnicalTestFormData } from "../../types/TechnicalTest";
+import { FC, SVGProps } from "react";
+
+type SvgIcon = FC<SVGProps<SVGSVGElement>>;
 
 interface LanguageSelectorProps {
   control: Control<TechnicalTestFormData>;
   errors: FieldErrors<TechnicalTestFormData>;
+  languages: { icon: SvgIcon; label: string }[];
 }
 
-const LanguageSelectorInput = ({ control, errors }: LanguageSelectorProps) => {
+const LanguageSelectorInput = ({
+  control,
+  errors,
+  languages,
+}: LanguageSelectorProps) => {
   return (
     <div className="px-10">
       <label className="block font-medium mb-2">Llenguatge *</label>
@@ -16,7 +23,7 @@ const LanguageSelectorInput = ({ control, errors }: LanguageSelectorProps) => {
         control={control}
         render={({ field }) => (
           <div className="flex flex-wrap gap-3 mb-4">
-            {asideContentForTechnicalTest.map((cat) => {
+            {languages.map((cat) => {
               const IconComponent = cat.icon;
               return (
                 <button
@@ -25,7 +32,7 @@ const LanguageSelectorInput = ({ control, errors }: LanguageSelectorProps) => {
                   onClick={() => field.onChange(cat.label)}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg border-2 hover:shadow-md cursor-pointer ${
                     field.value === cat.label
-                      ? "border-3 border-[#B91879] bg-white"
+                      ? "border-2 border-[#B91879] bg-white"
                       : "border-gray-300 bg-white"
                   }`}
                 >

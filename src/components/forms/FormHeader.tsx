@@ -21,7 +21,7 @@ const FormHeader = ({
             <ArrowLeftIcon className="inline text-[#B91879] mb-2 me-1" />
             {textBack}
           </a>
-          <h2 className="text-2xl font-semibold mb-">{title}</h2>
+          <h2 className="text-2xl font-semibold">{title}</h2>
         </div>
 
         <div className="flex items-center justify-end mt-4 sm:mt-0 gap-4">

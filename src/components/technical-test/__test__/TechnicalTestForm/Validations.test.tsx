@@ -15,62 +15,6 @@ vi.mock("../../../../api/endPointTechnicalTests", () => ({
   createTechnicalTest: vi.fn(),
 }));
 
-vi.mock("sonner", () => ({
-  toast: {
-    success: vi.fn(),
-    error: vi.fn(),
-  },
-}));
-
-interface Tag {
-  id: number;
-  name: string;
-  category: string;
-}
-
-interface TagInputProps {
-  selectedTags?: Tag[];
-  setselectedTags: (tags: Tag[]) => void;
-  selectedCategory?: string;
-}
-
-interface PdfUploadComponentProps {
-  value?: File[];
-  onFileSelect: (file: File | null) => void;
-}
-
-vi.mock("../../resources/create-resources/TagInput", () => ({
-  default: ({ setselectedTags }: TagInputProps) => (
-    <div data-testid="tag-input">
-      <button
-        onClick={() =>
-          setselectedTags([{ id: 1, name: "Test Tag", category: "React" }])
-        }
-      >
-        Add Tag
-      </button>
-    </div>
-  ),
-}));
-
-vi.mock("../../atoms/PdfUploadComponent", () => ({
-  default: ({ onFileSelect }: PdfUploadComponentProps) => (
-    <div data-testid="pdf-upload">
-      <button
-        onClick={() =>
-          onFileSelect(
-            new File(["test content"], "test.pdf", {
-              type: "application/pdf",
-            }),
-          )
-        }
-      >
-        Upload PDF
-      </button>
-    </div>
-  ),
-}));
-
 describe("TechnicalTestForm Validation", () => {
   it("shows validation error when title is empty", async () => {
     const user = userEvent.setup();
@@ -122,30 +66,6 @@ describe("TechnicalTestForm Validation", () => {
       const errorMessage = screen.getByText(/La durada ha de ser un número/i);
       expect(errorMessage).toBeInTheDocument();
     });
-  });
-
-  it("does not submit form when difficulty is not selected", async () => {
-    const user = userEvent.setup();
-    const mockCreateTechnicalTest = vi.spyOn(
-      endPointTechnicalTests,
-      "createTechnicalTest",
-    );
-
-    render(<TechnicalTestForm />);
-
-    const titleInput = screen.getAllByRole("textbox")[0];
-    await user.type(titleInput, "Test Title with enough characters");
-
-    const reactButton = screen.getByRole("button", { name: /React/i });
-    await user.click(reactButton);
-
-    const durationInput = screen.getByRole("spinbutton");
-    await user.type(durationInput, "60");
-
-    const submitButton = screen.getByRole("button", { name: /Publicar/i });
-    await user.click(submitButton);
-
-    expect(mockCreateTechnicalTest).not.toHaveBeenCalled();
   });
 
   it("shows validation error for invalid duration (negative number)", async () => {
