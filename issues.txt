@@ -1,0 +1,25 @@
+ISSUES FOUND DURING GITHUB OAUTH IMPLEMENTATION
+================================================
+
+1. UserResource.tsx - Outdated IntUser properties
+   - Location: src/components/resources/UserResource.tsx
+   - Issue: Component uses deprecated properties `user.photoURL` and `user.displayName`
+   - New properties should be: `user.name` (instead of displayName)
+   - Note: GitHub OAuth doesn't provide photoURL - needs alternative solution
+   - Status: Component is NOT currently used in production (only in tests)
+   - Action needed: Either update to new IntUser structure or remove if obsolete
+
+2. HeaderComponent.tsx - Component too large, needs refactoring
+   - Location: src/components/Layout/HeaderComponent.tsx
+   - Issue: Component is excessively large with too much logic and responsibilities
+   - Problems:
+     * Too much state management (11+ useState hooks)
+     * Complex business logic mixed with presentation
+     * Very long return statement (300+ lines)
+     * Multiple responsibilities: auth, modals, dropdowns, permissions
+   - Suggested refactors:
+     * Extract custom hooks: useHeaderModals, useHeaderDropdowns, useUserPermissions
+     * Extract utility functions: handleRoleChange, openModal/closeModal logic
+     * Split into smaller components: UserDropdown, LanguageSelector, AddUserButton
+     * Separate concerns: move modal logic to context or custom hooks
+   - Priority: Medium (affects maintainability and testability)
