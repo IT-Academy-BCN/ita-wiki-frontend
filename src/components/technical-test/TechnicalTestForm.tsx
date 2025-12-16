@@ -6,7 +6,7 @@ import FormHeader from "../forms/FormHeader";
 import LanguageSelectorInput from "../forms/LanguageSelectorInput";
 import TitleInput from "../forms/TitleInput";
 import { useTechnicalTestForm } from "../../hooks/useTechnicalTestForm";
-import { asideContentForTechnicalTest } from "../Layout/aside/asideContent";
+import { contentForTechnicalTest } from "./languageLabelsContent";
 
 export const TechnicalTestForm = () => {
   const { form, onSubmit, handleCancel } = useTechnicalTestForm();
@@ -45,7 +45,7 @@ export const TechnicalTestForm = () => {
           <LanguageSelectorInput
             control={control}
             errors={errors}
-            languages={asideContentForTechnicalTest}
+            languages={contentForTechnicalTest}
           />
 
           <div className="flex flex-col px-10 mt-8">
