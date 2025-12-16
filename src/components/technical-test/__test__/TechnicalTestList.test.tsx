@@ -4,7 +4,7 @@ import { MemoryRouter } from "react-router";
 import { vi } from "vitest";
 import TechnicalTestList from "../TechnicalTestList";
 
-vi.mock("../../../hooks/useTechnicalTests", () => ({
+vi.mock("../../../hooks/useTechnicalTestList", () => ({
   default: () => ({
     technicalTests: [
       {
