@@ -16,7 +16,7 @@ export const TechnicalTestForm = () => {
   const [difficultyLevel, setDifficultyLevel] = useState<
     "easy" | "medium" | "hard" | "expert"
   >("easy");
-  const [contentType, setContentType] = useState("text"); // 'text' o 'file'
+  const [contentType, setContentType] = useState("text");
   const [content, setContent] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [exercises, setExercises] = useState(["", "", "", ""]);
@@ -63,6 +63,8 @@ export const TechnicalTestForm = () => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("language", selectedLanguage);
+
+    formData.append("difficulty", difficultyLevel);
 
     if (contentType === "text") {
       formData.append("description", content);
