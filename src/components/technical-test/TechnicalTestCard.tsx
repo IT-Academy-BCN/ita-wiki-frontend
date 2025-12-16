@@ -32,7 +32,7 @@ const TechnicalTestCard = ({ test }: TechnicalTestCardProps) => {
 
   return (
     <Link to={`/resources/technical-test/${test.id}`}>
-      <li className="flex flex-col w-full py-4 px-4 rounded-2xl shadow-xs border border-[#7E7E7E] hover:bg-gray-100 transition-colors duration-100">
+      <li className="flex flex-col w-full py-5.5 px-4 rounded-2xl shadow-xs border border-[#7E7E7E] hover:bg-gray-100 transition-colors duration-100">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col sm:flex-row gap-1">
             <div>
