@@ -2,7 +2,7 @@ import { describe, test, expect } from "vitest";
 import {
   contentTechsFrontCodeConnect,
   contentTechsBackCodeConnect,
-} from "../languageLabelsContent";
+} from "../techsLabelsContent";
 
 const frontIconLabelMap = [
   { label: "React", iconName: "react_vector" },
