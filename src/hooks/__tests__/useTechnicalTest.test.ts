@@ -19,7 +19,7 @@ describe("useTechnicalTests Hook", () => {
     mockFetchTechnicalTests.mockClear();
   });
 
-  it("hauria de carregar les dades correctament (Success)", async () => {
+  it("should load technical tests correctly (Success)", async () => {
     const mockData = [{ id: 1, title: "React Test" }];
 
     mockFetchTechnicalTests.mockResolvedValue(mockData);
@@ -34,7 +34,7 @@ describe("useTechnicalTests Hook", () => {
     expect(result.current.error).toBeNull();
   });
 
-  it("hauria de capturar l'error si l'API falla", async () => {
+  it("should capture error if API fails", async () => {
     const errorMessage = "Error 500";
     mockFetchTechnicalTests.mockRejectedValue(new Error(errorMessage));
 
@@ -49,7 +49,7 @@ describe("useTechnicalTests Hook", () => {
     expect(result.current.technicalTests).toEqual([]);
   });
 
-  it("hauria de donar error si l'API retorna null (No data received)", async () => {
+  it("should give error if API returns null (No data received)", async () => {
     // PREPARE:
     mockFetchTechnicalTests.mockResolvedValue(null);
 
