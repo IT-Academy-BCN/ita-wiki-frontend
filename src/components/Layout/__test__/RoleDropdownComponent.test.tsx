@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
 import RoleDropdownComponent from "../header/RoleDropdownComponent";
 import { TypUserRole } from "../../../types";
