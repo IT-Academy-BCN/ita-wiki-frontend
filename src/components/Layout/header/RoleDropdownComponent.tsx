@@ -1,9 +1,10 @@
 import { FC } from "react";
+import { TypUserRole } from "../../../types";
 
 interface RoleDropdownComponentProps {
-  userRole: string | null;
+  userRole: TypUserRole | null;
   isChanging: boolean;
-  onRoleChange: (role: string) => Promise<void>;
+  onRoleChange: (role: TypUserRole) => Promise<void>;
 }
 
 const RoleDropdownComponent: FC<RoleDropdownComponentProps> = ({
@@ -11,7 +12,12 @@ const RoleDropdownComponent: FC<RoleDropdownComponentProps> = ({
   isChanging,
   onRoleChange,
 }) => {
-  const availableRoles = ["student", "mentor", "admin", "superadmin"]; //TO DO GET roles backend
+  const availableRoles: TypUserRole[] = [
+    "student",
+    "mentor",
+    "admin",
+    "superadmin",
+  ]; //TO DO GET roles backend
   return (
     <div className="absolute mt-1 w-36 bg-white border border-gray-200 rounded-md shadow-lg z-50 py-1">
       <p className="text-xs text-gray-500 px-3 py-1 italic">Cambiar a:</p>
