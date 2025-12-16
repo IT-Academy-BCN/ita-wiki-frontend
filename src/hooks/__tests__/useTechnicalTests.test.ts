@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
-import useTechnicalTestList from "../useTechnicalTestList";
+import useTechnicalTests from "../useTechnicalTests";
 
 const { mockFetchTechnicalTests } = vi.hoisted(() => {
   return {
@@ -24,7 +24,7 @@ describe("useTechnicalTests Hook", () => {
 
     mockFetchTechnicalTests.mockResolvedValue(mockData);
 
-    const { result } = renderHook(() => useTechnicalTestList());
+    const { result } = renderHook(() => useTechnicalTests());
 
     await waitFor(() => {
       expect(result.current.isLoading).toBe(false);
@@ -38,7 +38,7 @@ describe("useTechnicalTests Hook", () => {
     const errorMessage = "Error 500";
     mockFetchTechnicalTests.mockRejectedValue(new Error(errorMessage));
 
-    const { result } = renderHook(() => useTechnicalTestList());
+    const { result } = renderHook(() => useTechnicalTests());
 
     await waitFor(() => {
       expect(result.current.isLoading).toBe(false);
@@ -50,9 +50,10 @@ describe("useTechnicalTests Hook", () => {
   });
 
   it("should give error if API returns null (No data received)", async () => {
+    // PREPARE:
     mockFetchTechnicalTests.mockResolvedValue(null);
 
-    const { result } = renderHook(() => useTechnicalTestList());
+    const { result } = renderHook(() => useTechnicalTests());
 
     await waitFor(() => {
       expect(result.current.isLoading).toBe(false);
