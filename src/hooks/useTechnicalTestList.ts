@@ -11,7 +11,7 @@ const useTechnicalTestList = () => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const data: TechnicalTest[] = await fetchTechnicalTests();
+        const data = await fetchTechnicalTests();
         if (!data) throw new Error("No data received");
         setTechnicalTests(data);
       } catch (err: unknown) {

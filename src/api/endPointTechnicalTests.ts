@@ -35,7 +35,7 @@ export const fetchTechnicalTests = async () => {
       throw new Error("Failed to fetch technical tests");
     }
     const data = await response.json();
-    return data.data;
+    return Array.isArray(data) ? data : data.data;
   } catch (error: unknown) {
     console.error(error);
   }
@@ -49,7 +49,7 @@ export const fetchTechnicalTestById = async (testId: number) => {
       throw new Error("Failed to fetch technical tests");
     }
     const data = await response.json();
-    return data.data;
+    return Array.isArray(data) ? data : data.data;
   } catch (error: unknown) {
     console.error(error);
   }

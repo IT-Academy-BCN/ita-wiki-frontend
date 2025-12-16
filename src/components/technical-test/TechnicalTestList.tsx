@@ -79,8 +79,6 @@ const TechnicalTestList: FC<TechnicalTestListProps> = ({ filters }) => {
         (difficultyLabel !== null &&
           appliedFilters.difficulties.includes(difficultyLabel));
 
-      console.log(matchesLanguage, matchesYear, matchesDifficulty);
-
       return matchesLanguage && matchesYear && matchesDifficulty;
     },
   );
