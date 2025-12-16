@@ -102,9 +102,6 @@ describe("useTechnicalTestForm", () => {
         );
         expect(mockNavigate).toHaveBeenCalledWith(
           "/resources/technical-test/all-tech-tests",
-          {
-            state: { successMessage: "Prueba técnica publicada con éxito" },
-          },
         );
       });
     });
