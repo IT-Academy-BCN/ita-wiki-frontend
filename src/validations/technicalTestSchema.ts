@@ -44,7 +44,7 @@ export const technicalTestSchema = z.object({
     .positive({ message: "La durada ha de ser major que 0" })
     .int({ message: "La durada ha de ser un número enter" }),
 
-  difficulty: z.enum(["Easy", "Medium", "Hard", "Expert"], {
+  difficulty: z.enum(["easy", "medium", "hard", "expert"], {
     required_error: "Si us plau, selecciona una dificultat vàlida.",
   }),
 
