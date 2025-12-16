@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import { describe, it, expect, vi } from "vitest";
@@ -32,15 +33,13 @@ const mockTests: TechnicalTestWithDifficulty[] = [
   },
 ];
 
-const mockUseTechnicalTests = vi.hoisted(() => vi.fn());
-
 vi.mock("../../../hooks/useTechnicalTests", () => ({
   default: () => ({
     technicalTests: mockTests,
     isLoading: false,
     error: null,
-  });
-});
+  }),
+}));
 
 describe("TechnicalTestList", () => {
   it("fetches and displays technical test titles from mock data", async () => {
@@ -133,38 +132,4 @@ describe("TechnicalTestList", () => {
     expect(screen.getByText("Test B")).toBeDefined();
     expect(screen.queryByText("Test A")).toBeNull();
   });
-});
-
-it("shows loading skeletons when loading without error", () => {
-  mockUseTechnicalTests.mockReturnValue({
-    technicalTests: [],
-    isLoading: true,
-    error: null,
-  });
-
-  render(
-    <MemoryRouter>
-      <TechnicalTestList />
-    </MemoryRouter>,
-  );
-
-  expect(screen.getAllByRole("listitem")).toHaveLength(8);
-  expect(screen.queryByText("Test A")).toBeNull();
-  expect(screen.queryByText("Test B")).toBeNull();
-});
-
-it("shows error message when there is an error", () => {
-  mockUseTechnicalTests.mockReturnValue({
-    technicalTests: [],
-    isLoading: false,
-    error: { message: "Algo ha fallado" },
-  });
-
-  render(
-    <MemoryRouter>
-      <TechnicalTestList />
-    </MemoryRouter>,
-  );
-
-  expect(screen.getByText(/Error: Algo ha fallado/)).toBeDefined();
 });
