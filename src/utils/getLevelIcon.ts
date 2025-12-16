@@ -1,6 +1,6 @@
-import testLevel1 from "../../assets/testsLevel.svg";
-import testLevel2 from "../../assets/testsLevel2.svg";
-import testLevel3 from "../../assets/testsLevel3.svg";
+import testLevel1 from "../assets/testsLevel.svg";
+import testLevel2 from "../assets/testsLevel2.svg";
+import testLevel3 from "../assets/testsLevel3.svg";
 
 export const getLevelIcon = (title: string) => {
   const hash = Array.from(title).reduce(
