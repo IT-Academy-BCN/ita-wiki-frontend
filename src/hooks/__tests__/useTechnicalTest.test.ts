@@ -35,7 +35,6 @@ describe("useTechnicalTests Hook", () => {
   });
 
   it("hauria de capturar l'error si l'API falla", async () => {
-
     const errorMessage = "Error 500";
     mockFetchTechnicalTests.mockRejectedValue(new Error(errorMessage));
 
