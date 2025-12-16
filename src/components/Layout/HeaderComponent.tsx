@@ -221,7 +221,7 @@ const HeaderComponent = () => {
               className="h-[41px] px-4 flex items-center gap-1 rounded-lg hover:bg-white border border-transparent hover:border-gray-300 transition cursor-pointer"
             >
               <img
-                //TO DO user todavía no tiene .photoUrl
+                //TODO: user todavía no tiene .photoUrl
                 src={undefined}
                 alt="avatar"
                 className="w-8 h-8 rounded-full"
