@@ -18,8 +18,8 @@ const mockTests: TechnicalTest[] = [
     duration: 60,
     exercises: [],
     state: "published",
-  }, {
-  
+  },
+  {
     id: 2,
     title: "Test B",
     language: "TypeScript",
@@ -31,7 +31,7 @@ const mockTests: TechnicalTest[] = [
     duration: 120,
     exercises: [],
     state: "published",
-  }
+  },
 ];
 
 vi.mock("../../../hooks/useTechnicalTestList", () => ({
