@@ -47,7 +47,7 @@ describe("useTechnicalTestPage Hook", () => {
 
   it("should handle error when API fails", async () => {
     mockFetchTechnicalTestById.mockRejectedValue(new Error("Error API"));
-    
+
     const spyConsole = vi.spyOn(console, "error").mockImplementation(() => {});
 
     const { result } = renderHook(() => useTechnicalTestPage("1"));
@@ -57,7 +57,7 @@ describe("useTechnicalTestPage Hook", () => {
     });
 
     expect(result.current.technicalTest).toBeNull();
-    
+
     spyConsole.mockRestore();
   });
 });

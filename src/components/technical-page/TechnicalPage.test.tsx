@@ -58,9 +58,12 @@ describe("TechnicalPage Component", () => {
     render(
       <MemoryRouter initialEntries={["/resources/technical-test/11"]}>
         <Routes>
-          <Route path="/resources/technical-test/:projectId" element={<TechnicalPage />} />
+          <Route
+            path="/resources/technical-test/:projectId"
+            element={<TechnicalPage />}
+          />
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     expect(screen.getByText("Carregant...")).toBeInTheDocument();
@@ -75,9 +78,12 @@ describe("TechnicalPage Component", () => {
     render(
       <MemoryRouter initialEntries={["/resources/technical-test/11"]}>
         <Routes>
-          <Route path="/resources/technical-test/:projectId" element={<TechnicalPage />} />
+          <Route
+            path="/resources/technical-test/:projectId"
+            element={<TechnicalPage />}
+          />
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     expect(screen.getByTestId("mock-page-title")).toBeInTheDocument();
@@ -97,14 +103,19 @@ describe("TechnicalPage Component", () => {
     render(
       <MemoryRouter initialEntries={["/resources/technical-test/11"]}>
         <Routes>
-          <Route path="/resources/technical-test/:projectId" element={<TechnicalPage />} />
+          <Route
+            path="/resources/technical-test/:projectId"
+            element={<TechnicalPage />}
+          />
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     const backLink = screen.getByText("Tornar a Proves Tècniques");
     await user.click(backLink);
 
-    expect(mockNavigate).toHaveBeenCalledWith("/resources/technical-test/all-tech-tests");
+    expect(mockNavigate).toHaveBeenCalledWith(
+      "/resources/technical-test/all-tech-tests",
+    );
   });
 });
