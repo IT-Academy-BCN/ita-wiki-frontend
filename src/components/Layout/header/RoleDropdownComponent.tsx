@@ -5,12 +5,14 @@ interface RoleDropdownComponentProps {
   userRole: TypUserRole | null;
   isChanging: boolean;
   onRoleChange: (role: TypUserRole) => Promise<void>;
+  disableAll?: boolean;
 }
 
 const RoleDropdownComponent: FC<RoleDropdownComponentProps> = ({
   userRole,
   isChanging,
   onRoleChange,
+  disableAll = false,
 }) => {
   const availableRoles: TypUserRole[] = [
     "student",
@@ -24,11 +26,11 @@ const RoleDropdownComponent: FC<RoleDropdownComponentProps> = ({
       {availableRoles.map((role) => (
         <button
           key={role}
-          disabled={isChanging}
+          disabled={isChanging || disableAll}
           onClick={() => onRoleChange(role)}
           className={`w-full text-left px-4 py-2 text-sm ${
             userRole === role ? "bg-gray-100 font-bold" : "hover:bg-gray-100"
-          } cursor-pointer transition-colors`}
+          } ${disableAll ? "cursor-not-allowed opacity-50" : "cursor-pointer"} transition-colors`}
         >
           {role}
         </button>

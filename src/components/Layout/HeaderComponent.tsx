@@ -240,31 +240,28 @@ const HeaderComponent = () => {
                 {/*Username*/}
                 <DropdownButtonComponent
                   title={user.github_user_name || user.name}
-                  disabled={true}
+                  disabled={false}
                 />
                 <hr className="h-px -mx-2 bg-gray-300 border-0" />
                 {/*Role*/}
-                {devMode ? (
-                  <div className="relative" ref={roleDropdownRef}>
-                    <DropdownButtonComponent
-                      title={userRole}
-                      onClick={() =>
-                        setShowChangeRoleDropdown(!showChangeRoleDropdown)
-                      }
-                      disabled={false}
-                      icon={arrowDown}
+                <div className="relative" ref={roleDropdownRef}>
+                  <DropdownButtonComponent
+                    title={userRole}
+                    onClick={() =>
+                      setShowChangeRoleDropdown(!showChangeRoleDropdown)
+                    }
+                    disabled={false}
+                    icon={arrowDown}
+                  />
+                  {showChangeRoleDropdown && (
+                    <RoleDropdownComponent
+                      userRole={userRole}
+                      isChanging={isChanging}
+                      onRoleChange={handleRoleChange}
+                      disableAll={true}
                     />
-                    {showChangeRoleDropdown && (
-                      <RoleDropdownComponent
-                        userRole={userRole}
-                        isChanging={isChanging}
-                        onRoleChange={handleRoleChange}
-                      />
-                    )}
-                  </div>
-                ) : (
-                  <DropdownButtonComponent title={userRole} disabled={true} />
-                )}
+                  )}
+                </div>
                 <hr className="h-px -mx-2 bg-gray-300 border-0" />
                 {/*Cerrar sesión*/}
                 <DropdownButtonComponent

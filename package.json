@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "test:coverage": "npm test -- --coverage",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "format": "prettier --write ."
