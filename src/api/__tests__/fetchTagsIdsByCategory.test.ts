@@ -1,8 +1,8 @@
-import { vi, describe, it, expect, beforeEach } from "vitest";
+import { vi, describe, it, expect, beforeEach, type Mock } from "vitest";
 import { fetchTagsIdsByCategory } from "../endPointTagsIdsByCategory";
 
 const globalAny = globalThis as unknown as {
-  fetch: vi.Mock;
+  fetch: Mock;
 };
 
 describe("fetchTagsIdsByCategory", () => {
