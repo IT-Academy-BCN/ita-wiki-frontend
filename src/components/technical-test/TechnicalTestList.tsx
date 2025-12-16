@@ -92,15 +92,9 @@ const TechnicalTestList: FC<TechnicalTestListProps> = ({ filters }) => {
   );
 
   return (
-<<<<<<< hotfix/technical-resources-layout
     <div className=" w-full flex flex-col">
       <div className="flex justify-start md:justify-between items-center lg:items-start mb-9.5 flex-wrap gap-4">
         <h2 className="text-[26px] text-black font-bold">Proves tècniques</h2>
-=======
-    <div className="w-full flex flex-col sm:m-4">
-      <div className="flex justify-start md:justify-between items-center mb-8 flex-wrap gap-4">
-        <h2 className="text-2xl font-bold">Proves tècniques</h2>
->>>>>>> main
         <div>
           <ButtonComponent
             variant="primary"
