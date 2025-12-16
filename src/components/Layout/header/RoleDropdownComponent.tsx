@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { TypUserRole } from "../../../types";
 
 interface RoleDropdownComponentProps {
@@ -8,12 +7,12 @@ interface RoleDropdownComponentProps {
   disableAll?: boolean;
 }
 
-const RoleDropdownComponent: FC<RoleDropdownComponentProps> = ({
+const RoleDropdownComponent = ({
   userRole,
   isChanging,
   onRoleChange,
   disableAll = false,
-}) => {
+}: RoleDropdownComponentProps) => {
   const availableRoles: TypUserRole[] = [
     "student",
     "mentor",
