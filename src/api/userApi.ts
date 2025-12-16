@@ -1,6 +1,8 @@
+import { TypUserRole } from "../types";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
-export const getUserRole = async (githubId: number): Promise<string> => {
+export const getUserRole = async (githubId: number): Promise<TypUserRole> => {
   try {
     const response = await fetch(`${API_URL}login`, {
       method: "POST",
@@ -12,10 +14,10 @@ export const getUserRole = async (githubId: number): Promise<string> => {
 
     //TO-DO: poner AbortController()
 
-    if (!response.ok) return "anonymous"; // provisional fix since the BE doesnt retourn 'anonymous'
+    if (!response.ok) return "anonymous" as TypUserRole; // provisional fix since the BE doesnt retourn 'anonymous'
     // (B.E currently return 'null' if user has no role in the DB)
     const data = await response.json();
-    return data.role?.role;
+    return data.role?.role as TypUserRole;
   } catch (error: unknown) {
     if (error instanceof Error) {
       throw new Error(

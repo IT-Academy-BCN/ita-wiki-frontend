@@ -2,12 +2,13 @@ import { useState } from "react";
 import { useUserContext } from "../context/UserContext";
 import { changeRole } from "../api/endPointChangeRole";
 import { toast } from "sonner";
+import { TypUserRole } from "../types";
 
 export function useChangeUserRole() {
   const { user, saveUser } = useUserContext();
   const [isChanging, setIsChanging] = useState<boolean>(false);
 
-  const updateUserRole = async (newRole: string) => {
+  const updateUserRole = async (newRole: TypUserRole) => {
     if (!user || !user.id) return false;
     setIsChanging(true);
 
