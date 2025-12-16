@@ -15,9 +15,12 @@ import { AddUsersModal } from "../resources/AddUserModal";
 import { getUserRole } from "../../api/userApi";
 import { TermsAndConditionsModal } from "../Modal/TermsAndConditionsModal";
 import RoleDropdownComponent from "./header/RoleDropdownComponent";
+import { TypUserRole } from "../../types";
 
 const HeaderComponent = () => {
   const { user, signIn, signOut } = useUserContext();
+
+  console.log(user);
   const { isChanging, updateUserRole } = useChangeUserRole();
   const navigate = useNavigate();
   const location = useLocation();
@@ -90,7 +93,7 @@ const HeaderComponent = () => {
     };
   }, [showChangeRoleDropdown, devMode]);
 
-  const handleRoleChange = async (newRole: string) => {
+  const handleRoleChange = async (newRole: TypUserRole) => {
     const success = await updateUserRole(newRole);
     if (success) {
       setShowChangeRoleDropdown(false);
@@ -106,7 +109,7 @@ const HeaderComponent = () => {
   const openTermsModal = () => setIsTermsModalOpen(true);
   const closeTermsModal = () => setIsTermsModalOpen(false);
 
-  const [userRole, setUserRole] = useState<string | null>(null);
+  const [userRole, setUserRole] = useState<TypUserRole | null>(null);
 
   useEffect(() => {
     if (user && user.id) {
@@ -216,11 +219,12 @@ const HeaderComponent = () => {
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setShowDropdown((prev) => !prev)}
-              title={user.displayName || ""}
+              title={user.github_user_name || ""}
               className="h-[41px] px-4 flex items-center gap-1 rounded-lg hover:bg-white border border-transparent hover:border-gray-300 transition cursor-pointer"
             >
               <img
-                src={user.photoURL}
+                //user todavía no tiene .photoUrl
+                src={undefined}
                 alt="avatar"
                 className="w-8 h-8 rounded-full"
               />
@@ -235,7 +239,7 @@ const HeaderComponent = () => {
               <div className="absolute right-0 mt-2 bg-white border border-gray-300 rounded-xl shadow-lg z-50 px-2 py-2 flex flex-col gap-2">
                 {/*Username*/}
                 <DropdownButtonComponent
-                  title={user.displayName}
+                  title={user.github_user_name || user.name}
                   disabled={true}
                 />
                 <hr className="h-px -mx-2 bg-gray-300 border-0" />

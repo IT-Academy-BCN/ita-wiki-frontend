@@ -13,6 +13,7 @@ export interface TechnicalTest {
   like_count?: number;
   created_at: string;
   updated_at: string;
+  difficulty?: string;
 }
 
 export type TechnicalTestFormData = z.infer<typeof technicalTestSchema>;

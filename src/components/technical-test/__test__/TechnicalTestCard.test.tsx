@@ -5,8 +5,8 @@ import { BrowserRouter } from "react-router";
 import TechnicalTestCard from "../TechnicalTestCard";
 import { TechnicalTest } from "../../../types/TechnicalTest";
 
-vi.mock("../../Layout/aside/asideContent", () => ({
-  asideContentForTechnicalTest: [
+vi.mock("../languageLabelsContent", () => ({
+  contentForTechnicalTest: [
     {
       icon: () => <svg data-testid="react-icon">React Icon</svg>,
       label: "React",
