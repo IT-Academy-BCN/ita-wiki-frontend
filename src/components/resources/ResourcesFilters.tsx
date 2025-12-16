@@ -150,14 +150,14 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
       className={
         isMobile
           ? "sm:hidden mt-4 p-4 bg-gray-100 rounded-lg w-full"
-          : "hidden sm:block flex-shrink-0 min-w-[256px]"
+          : "hidden sm:block flex-shrink-0 min-w-[240px]"
       }
     >
-      <h2 className="text-[26px] text-[#282828] font-bold mb-8">Filtres</h2>
+      <h2 className="text-[26px] text-black font-bold mb-9">Filtres</h2>
 
       {/* Languages */}
       <div className="mb-6">
-        <h3 className="text-[16px] text-[#282828] font-bold mb-6">
+        <h3 className="text-[16px] text-black font-bold mb-6">
           Llenguatge
         </h3>
         <div className="space-y-2">
@@ -167,7 +167,7 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
 
       {/* Resource Types */}
       <div className="mb-6">
-        <h3 className="text-[16px] text-[#282828] font-bold mb-3">Tipus</h3>
+        <h3 className="text-[16px] text-black font-bold mb-3">Tipus</h3>
         <div className="space-y-2">
           {resourceTypes.map((type) => {
             const isSelected = selectedResourceTypes.includes(type);
@@ -207,7 +207,7 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
                     </svg>
                   )}
                 </div>
-                <span className="text-[14px] text-[#282828]">{type}</span>
+                <span className="text-[14px] text-black">{type}</span>
               </label>
             );
           })}
