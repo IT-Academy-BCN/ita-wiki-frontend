@@ -1,3 +1,6 @@
+import { z } from "zod";
+import { technicalTestSchema } from "../validations/technicalTestSchema";
+
 export interface TechnicalTest {
   id: string;
   title: string;
@@ -11,3 +14,5 @@ export interface TechnicalTest {
   created_at: string;
   updated_at: string;
 }
+
+export type TechnicalTestFormData = z.infer<typeof technicalTestSchema>;
