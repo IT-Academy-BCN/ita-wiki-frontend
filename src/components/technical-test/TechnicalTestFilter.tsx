@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { asideContentForTechnicalTest } from "../Layout/aside/asideContent";
+import { contentForTechnicalTest } from "./languageLabelsContent";
 import FilterGroup from "../ui/FilterGroup";
 
 interface TechnicalTestFilterProps {
