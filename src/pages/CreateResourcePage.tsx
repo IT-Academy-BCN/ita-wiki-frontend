@@ -12,7 +12,7 @@ import { useState, useCallback } from "react";
 import arrowLeft from "../assets/arrow-left.svg";
 import { useNavigate } from "react-router";
 import Container from "../components/ui/Container";
-import { contentResourcesForm } from "../components/ui/shared-ui/languagesLabels";
+import { contentResourcesForm } from "../components/resources/create-resources/languagesLabelsContent";
 import { useResources } from "../context/ResourcesContext";
 
 export default function CreateResourcePage() {
