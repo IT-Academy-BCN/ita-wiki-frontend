@@ -1,6 +1,4 @@
 import { useNavigate, useParams } from "react-router";
-import { useState, useEffect } from "react";
-import { fetchTechnicalTestById } from "../../api/endPointTechnicalTests";
 import CalendarIcon from "../../assets/Calendar.svg";
 import JSIcon from "../../assets/javascript.svg";
 import PageTitle from "../ui/PageTitle";
@@ -8,36 +6,13 @@ import Container from "../ui/Container";
 import { ArrowLeftIcon } from "lucide-react";
 import ButtonComponent from "../atoms/ButtonComponent";
 import UiCheckbox from "../ui/shared-ui/UiCheckbox";
-import type { TechnicalTest } from "../../types/TechnicalTest";
+import useTechnicalTestPage from "../../hooks/useTechnicalTestPage";
 
 const TechnicalPage = () => {
   const navigate = useNavigate();
   const { projectId } = useParams<{ projectId: string }>();
 
-  const [technicalTest, setTechnicalTest] = useState<TechnicalTest | null>(
-    null,
-  );
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        const data: TechnicalTest = await fetchTechnicalTestById(
-          Number(projectId),
-        );
-        if (!data) throw new Error("No data received");
-        setTechnicalTest(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    if (projectId) {
-      fetchData();
-    }
-  }, [projectId]);
+  const { technicalTest, isLoading } = useTechnicalTestPage(projectId || null);
 
   return (
     <>

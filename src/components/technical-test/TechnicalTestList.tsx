@@ -1,4 +1,4 @@
-import useTechnicalTests from "../../hooks/useTechnicalTests";
+import useTechnicalTestList from "../../hooks/useTechnicalTestList";
 import TechnicalTestCard from "./TechnicalTestCard";
 import LoadingImage from "../ui/LoadingImage";
 import { useMinLoading } from "../../hooks/useMinLoading";
@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import ButtonComponent from "../atoms/ButtonComponent";
 
 const TechnicalTestList = () => {
-  const { technicalTests, isLoading, error } = useTechnicalTests();
+  const { technicalTests, isLoading, error } = useTechnicalTestList();
   const showLoader = useMinLoading(isLoading);
   const navigate = useNavigate();
 
