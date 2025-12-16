@@ -5,7 +5,12 @@ import { describe, it, expect, vi } from "vitest";
 import TechnicalTestList from "../TechnicalTestList";
 import { TechnicalTest } from "../../../types/TechnicalTest";
 
-const mockTests: TechnicalTest[] = [
+type TechnicalTestWithDifficulty = TechnicalTest & {
+  difficulty?: string;
+  difficulty_level?: string;
+};
+
+const mockTests: TechnicalTestWithDifficulty[] = [
   {
     id: "1",
     title: "Test A",
@@ -14,6 +19,7 @@ const mockTests: TechnicalTest[] = [
     tags: [],
     created_at: "2025-01-01T00:00:00Z",
     updated_at: "2025-01-01T00:00:00Z",
+    difficulty: "easy",
   },
   {
     id: "2",
@@ -23,6 +29,7 @@ const mockTests: TechnicalTest[] = [
     tags: [],
     created_at: "2024-01-01T00:00:00Z",
     updated_at: "2024-01-01T00:00:00Z",
+    difficulty: "hard",
   },
 ];
 
@@ -73,5 +80,56 @@ describe("TechnicalTestList", () => {
 
     expect(screen.getByText("Test A")).toBeDefined();
     expect(screen.queryByText("Test B")).toBeNull();
+  });
+
+  it("filters by year when filters are provided", () => {
+    render(
+      <MemoryRouter>
+        <TechnicalTestList
+          filters={{
+            languages: [],
+            years: ["2024"],
+            difficulties: [],
+          }}
+        />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText("Test B")).toBeDefined();
+    expect(screen.queryByText("Test A")).toBeNull();
+  });
+
+  it("filters by difficulty (Bàsica -> easy)", () => {
+    render(
+      <MemoryRouter>
+        <TechnicalTestList
+          filters={{
+            languages: [],
+            years: [],
+            difficulties: ["Bàsica"],
+          }}
+        />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText("Test A")).toBeDefined();
+    expect(screen.queryByText("Test B")).toBeNull();
+  });
+
+  it("filters by difficulty (Difícil -> hard)", () => {
+    render(
+      <MemoryRouter>
+        <TechnicalTestList
+          filters={{
+            languages: [],
+            years: [],
+            difficulties: ["Difícil"],
+          }}
+        />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText("Test B")).toBeDefined();
+    expect(screen.queryByText("Test A")).toBeNull();
   });
 });
