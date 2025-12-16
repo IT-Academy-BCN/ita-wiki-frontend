@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { asideContentForTechnicalTest } from "../Layout/aside/asideContent";
+import { contentForTechnicalTest } from "./languageLabelsContent";
 import FilterGroup from "../ui/FilterGroup";
 
 interface TechnicalTestFilterProps {
@@ -27,7 +27,7 @@ export const TechnicalTestFilter: FC<TechnicalTestFilterProps> = ({
 
   const years = ["2025", "2024", "2023"];
   const difficulties = ["Bàsica", "Intermèdia", "Difícil"];
-  const languages = asideContentForTechnicalTest.map((item) => item.label);
+  const languages = contentForTechnicalTest.map((item) => item.label);
 
   const toggleValue = (
     value: string,
