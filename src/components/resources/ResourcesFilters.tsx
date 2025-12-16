@@ -157,9 +157,7 @@ export const ResourcesFilters: FC<ResourcesFiltersProps> = ({
 
       {/* Languages */}
       <div className="mb-6">
-        <h3 className="text-[16px] text-black font-bold mb-6">
-          Llenguatge
-        </h3>
+        <h3 className="text-[16px] text-black font-bold mb-6">Llenguatge</h3>
         <div className="space-y-2">
           {asideContent.map((item, index) => renderCategoryItem(item, index))}
         </div>
