@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach } from "vitest";
 import { BrowserRouter } from "react-router";
 import TechnicalTestCard from "../TechnicalTestCard";
+import { getLevelIcon } from "../../../utils/getLevelIcon";
 import { TechnicalTest } from "../../../types/TechnicalTest";
 
 vi.mock("../../Layout/aside/asideContent", () => ({
@@ -35,6 +36,27 @@ describe("TechnicalTestCard", () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+  });
+
+  describe("Level icon hashing", () => {
+    it("should always return the same icon for the same title", () => {
+      const title = "React Testing Best Practices";
+
+      const firstResult = getLevelIcon(title);
+      const secondResult = getLevelIcon(title);
+
+      expect(firstResult).toBe(secondResult);
+    });
+
+    it("should return different icons for clearly different titles", () => {
+      const titleA = "A";
+      const titleB = "B";
+
+      const resultA = getLevelIcon(titleA);
+      const resultB = getLevelIcon(titleB);
+
+      expect(resultA).not.toBe(resultB);
+    });
   });
 
   describe("Link navigation", () => {
