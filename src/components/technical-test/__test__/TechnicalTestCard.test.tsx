@@ -6,8 +6,8 @@ import TechnicalTestCard from "../TechnicalTestCard";
 import { getLevelIcon } from "../../../utils/getLevelIcon";
 import { TechnicalTest } from "../../../types/TechnicalTest";
 
-vi.mock("../../Layout/aside/asideContent", () => ({
-  asideContentForTechnicalTest: [
+vi.mock("../languageLabelsContent", () => ({
+  contentForTechnicalTest: [
     {
       icon: () => <svg data-testid="react-icon">React Icon</svg>,
       label: "React",
