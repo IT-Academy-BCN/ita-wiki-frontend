@@ -79,7 +79,7 @@ export const ResourcesList: FC<ResourcesListProps> = ({
 
       {/* Resources List */}
       {visibleResources.length === 0 ? (
-        <div className="flex flex-col gap-2 py-8">
+        <div className="flex flex-col gap-4 py-8">
           <div className="text-center py-8 text-gray-500">
             {categoryFilteredResources.length === 0
               ? "No hi ha recursos disponibles per a aquesta categoria."
@@ -87,7 +87,7 @@ export const ResourcesList: FC<ResourcesListProps> = ({
           </div>
         </div>
       ) : (
-        <ul className="flex flex-col gap-2 py-8">
+        <ul className="flex flex-col gap-4 py-4">
           {visibleResources.map((resource: IntResource) => (
             <ResourceCard
               key={resource.id}
