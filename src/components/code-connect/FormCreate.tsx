@@ -2,7 +2,7 @@ import { useState, FormEvent } from "react";
 import {
   contentTechsFrontCodeConnect,
   contentTechsBackCodeConnect,
-} from "./languageLabelsContent";
+} from "./techsLabelsContent";
 import { IntCodeConnect } from "../../types";
 import { createCodeConnect } from "../../api/endPointCodeConnect";
 import { formatDocumentIcons } from "../../icons/formatDocumentIconsArray";
