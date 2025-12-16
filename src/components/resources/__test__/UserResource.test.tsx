@@ -1,11 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import { UserResource } from "../UserResource";
 import { IntUser } from "../../../types";
-const userMoock = {
+
+const userMoock: IntUser = {
   id: 1245678,
-  displayName: "Usuario uno",
+  github_username: "usuario_uno",
+  github_id: 9876543210,
+  name: "Usuario uno",
+  email: "usuario@example.com",
+  password: "mockPassword123",
   photoURL: "http/asdadasd.jpg",
-} as IntUser;
+};
 
 describe("UserResource Component", () => {
   it("The component must have the initial styles", () => {
