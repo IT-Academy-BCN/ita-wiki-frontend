@@ -25,7 +25,7 @@ describe("createTechnicalTest", () => {
     vi.restoreAllMocks();
   });
 
-  it("debe hacer POST al endpoint correcto y retornar respuesta exitosa", async () => {
+  it("should POST to the correct endpoint and return a success response", async () => {
     const mockResponseData = { message: "Guardado exitoso" };
 
     //@ts-expect-error: mocking FormData for test
@@ -47,7 +47,7 @@ describe("createTechnicalTest", () => {
     expect(result).toEqual(mockResponseData);
   });
 
-  it("debe lanzar error si la respuesta no es ok", async () => {
+  it("should throw an error if the response is not ok", async () => {
     // @ts-expect-error instead of using fetch.mockResolvedValueOnce, we use fetch.mockRejectedValueOnce
     fetch.mockResolvedValueOnce({
       ok: false,
@@ -86,7 +86,7 @@ describe("fetchTechnicalTestById", () => {
     global.fetch = vi.fn();
   });
 
-  it("hauria de retornar les dades quan la resposta és correcta (ok)", async () => {
+  it("should return the data when the response is correct (ok)", async () => {
     (global.fetch as Mock).mockResolvedValue({
       ok: true,
       json: async () => MOCK_DATA,
@@ -103,7 +103,7 @@ describe("fetchTechnicalTestById", () => {
     expect(result).toEqual(MOCK_DATA.data);
   });
 
-  it("hauria de llançar un error i fer console.error quan la resposta no és ok", async () => {
+  it("should throw an error and call console.error when the response is not ok", async () => {
     const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
 
     (global.fetch as Mock).mockResolvedValue({
@@ -124,7 +124,7 @@ describe("fetchTechnicalTestById", () => {
     consoleSpy.mockRestore();
   });
 
-  it("hauria de gestionar excepcions de xarxa (ex: servidor caigut)", async () => {
+  it("should handle network errors (e.g., server down)", async () => {
     const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
 
     (global.fetch as Mock).mockRejectedValue(new Error("Network Error"));
