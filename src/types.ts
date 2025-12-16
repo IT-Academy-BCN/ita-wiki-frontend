@@ -8,16 +8,26 @@ export type Category = (typeof categories)[number];
 export type Theme = (typeof themes)[number] | null;
 export type ResourceType = (typeof resourceTypes)[number];
 
+export type TypUserRole =
+  | "student"
+  | "mentor"
+  | "admin"
+  | "superadmin"
+  | "anonymous";
+
 export type TypChildren = {
   children?: ReactNode;
 };
 
 export interface IntUser {
   id: number;
-  displayName: string | null;
-  photoURL: string | undefined;
-  role?: string;
-  github_id?: number;
+  github_user_name: string | null;
+  github_id: number;
+  name: string;
+  email: string;
+  password: string;
+  role?: TypUserRole;
+  photoURL?: string;
 }
 
 export interface IntResource {
