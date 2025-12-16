@@ -1,15 +1,24 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 import { IntUser } from "../types";
+import { login, getNewUser, logout } from "../api/endpointLogin";
 
 interface UserContextType {
   user: IntUser | null;
   isAuthenticated: boolean;
   setUser: (user: IntUser | null) => void;
-  signOut: () => void;
+  signOut: () => Promise<void>;
   signIn: () => Promise<void>;
   saveUser: (user: IntUser) => void;
   error: string | null;
   setError: (error: string | null) => void;
+  loading: boolean;
+  setIsLoading: (loading: boolean) => void;
 }
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -19,16 +28,58 @@ export const UserContext = createContext<UserContextType | undefined>(
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<IntUser | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setIsLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    const initializeAuth = async () => {
+      // El token de la URL ya fue capturado en main.tsx
+      // Solo necesitamos verificar si existe en localStorage
+      const tokenFromStorage = localStorage.getItem("auth_token");
+
+      if (tokenFromStorage) {
+        try {
+          const userData = await getNewUser(tokenFromStorage);
+          setUser(userData);
+        } catch (e) {
+          localStorage.removeItem("auth_token");
+          setError((e as Error).message);
+        }
+      }
+    };
+
+    initializeAuth();
+  }, []);
 
   const saveUser = (user: IntUser) => {
     setUser(user);
   };
+
   const signIn = async () => {
-    // 2025-11-24
-    // This function is currently empty due to changes being made to the login system.
+    setError(null);
+    setIsLoading(true);
+    try {
+      const redirect = await login();
+
+      if (redirect) {
+        window.location.href = redirect;
+      }
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const signOut = () => {
+  const signOut = async () => {
+    const token = localStorage.getItem("auth_token");
+    if (token) {
+      try {
+        await logout(token);
+      } catch {
+        // Ignorar errores de logout, limpiar sesión de todos modos
+      }
+    }
+    localStorage.removeItem("auth_token");
     setUser(null);
     setError(null);
   };
@@ -46,6 +97,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         isAuthenticated,
         error,
         setError,
+        loading,
+        setIsLoading,
       }}
     >
       {children}
