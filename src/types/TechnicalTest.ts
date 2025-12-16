@@ -2,7 +2,7 @@ import { z } from "zod";
 import { technicalTestSchema } from "../validations/technicalTestSchema";
 
 export interface TechnicalTest {
-  id: string;
+  id: number;
   title: string;
   language: string;
   description: string;

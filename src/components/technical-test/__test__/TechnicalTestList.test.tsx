@@ -5,32 +5,33 @@ import { describe, it, expect, vi } from "vitest";
 import TechnicalTestList from "../TechnicalTestList";
 import { TechnicalTest } from "../../../types/TechnicalTest";
 
-type TechnicalTestWithDifficulty = TechnicalTest & {
-  difficulty?: string;
-  difficulty_level?: string;
-};
-
-const mockTests: TechnicalTestWithDifficulty[] = [
+const mockTests: TechnicalTest[] = [
   {
-    id: "1",
+    id: 1,
     title: "Test A",
     language: "JavaScript",
     description: "Test description A",
     tags: [],
     created_at: "2025-01-01T00:00:00Z",
     updated_at: "2025-01-01T00:00:00Z",
-    difficulty: "easy",
-  },
-  {
-    id: "2",
+    difficulty_level: "easy",
+    duration: 60,
+    exercises: [],
+    state: "published",
+  }, {
+  
+    id: 2,
     title: "Test B",
     language: "TypeScript",
     description: "Test description B",
     tags: [],
     created_at: "2024-01-01T00:00:00Z",
     updated_at: "2024-01-01T00:00:00Z",
-    difficulty: "hard",
-  },
+    difficulty_level: "hard",
+    duration: 120,
+    exercises: [],
+    state: "published",
+  }
 ];
 
 vi.mock("../../../hooks/useTechnicalTestList", () => ({
