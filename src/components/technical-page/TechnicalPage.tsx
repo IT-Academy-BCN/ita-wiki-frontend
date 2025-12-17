@@ -61,7 +61,7 @@ const TechnicalPage = () => {
               </div>
 
               <div className="my-6 flex gap-3">
-                {technicalTest.tags.map((tag) => (
+                {technicalTest.tags?.map((tag) => (
                   <span
                     key={tag}
                     className="inline px-2 py-1 rounded-lg border-2 border-gray-300 bg-white text-sm font-medium"
