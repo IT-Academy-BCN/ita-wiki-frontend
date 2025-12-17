@@ -147,9 +147,9 @@ describe("TechnicalTestList", () => {
   it("shows error message when there is an error", () => {
     // Sobreescrivim el mock només per aquest test
     mockedUseTechnicalTestList.mockReturnValue({
-        technicalTests: [],
-        isLoading: false,
-        error: new Error("Algo ha fallado"),
+      technicalTests: [],
+      isLoading: false,
+      error: new Error("Algo ha fallado"),
     });
 
     render(
