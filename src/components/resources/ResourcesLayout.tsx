@@ -19,14 +19,16 @@ export const ResourcesLayout: FC<ResourcesLayoutProps> = ({
 
   return (
     <Container>
-      <div className="flex flex-col gap-6 py-3 lg:gap-12 xl:gap-20 lg:flex-row">
+      <div className="flex flex-col gap-4 lg:flex-row">
         {/* Desktop Filters */}
         <ResourcesFilters isMobile={false} />
 
         {/* Main Content */}
         <div className="lg:flex-1">
           <div className="flex justify-between items-center">
-            <h2 className="text-[26px] font-bold">Recursos {category || ""}</h2>
+            <h2 className="text-[26px] text-black font-bold">
+              Recursos {category || ""}
+            </h2>
 
             {/* Mobile Filter Button */}
             <FilterButton

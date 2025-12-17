@@ -1,10 +1,10 @@
 import { FC } from "react";
 import useTechnicalTestList from "../../hooks/useTechnicalTestList";
 import TechnicalTestCard from "./TechnicalTestCard";
-import LoadingImage from "../ui/LoadingImage";
 import { useMinLoading } from "../../hooks/useMinLoading";
 import { useNavigate } from "react-router";
 import ButtonComponent from "../atoms/ButtonComponent";
+import TechnicalTestSkeleton from "./TechnicalTestSkeleton";
 import { TechnicalTest } from "../../types/TechnicalTest";
 
 interface TechnicalTestListProps {
@@ -84,9 +84,9 @@ const TechnicalTestList: FC<TechnicalTestListProps> = ({ filters }) => {
   );
 
   return (
-    <div className="w-full flex flex-col sm:m-4">
-      <div className="flex justify-start md:justify-between items-center mb-8 flex-wrap gap-4">
-        <h2 className="text-2xl font-bold">Proves tècniques</h2>
+    <div className=" w-full flex flex-col">
+      <div className="flex justify-start md:justify-between items-center lg:items-start mb-9.5 flex-wrap gap-4">
+        <h2 className="text-[26px] text-black font-bold">Proves tècniques</h2>
         <div>
           <ButtonComponent
             variant="primary"
@@ -96,9 +96,13 @@ const TechnicalTestList: FC<TechnicalTestListProps> = ({ filters }) => {
           </ButtonComponent>
         </div>
       </div>
-
-      {showLoader && <LoadingImage text="Carregant proves tècniques..." />}
-
+      {showLoader && !error && (
+        <ul className="flex flex-col gap-4">
+          {Array.from({ length: 8 }).map((_, index) => (
+            <TechnicalTestSkeleton key={index} />
+          ))}
+        </ul>
+      )}
       {error && <p className="m-4 text-red-500">Error: {error.message}</p>}
 
       {!showLoader && !error && (

@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { asideContentForTechnicalTest } from "../Layout/aside/asideContent";
+import { contentForTechnicalTest } from "./languageLabelsContent";
 import FilterGroup from "../ui/FilterGroup";
 
 interface TechnicalTestFilterProps {
@@ -27,7 +27,7 @@ export const TechnicalTestFilter: FC<TechnicalTestFilterProps> = ({
 
   const years = ["2025", "2024", "2023"];
   const difficulties = ["Bàsica", "Intermèdia", "Difícil"];
-  const languages = asideContentForTechnicalTest.map((item) => item.label);
+  const languages = contentForTechnicalTest.map((item) => item.label);
 
   const toggleValue = (
     value: string,
@@ -92,8 +92,8 @@ export const TechnicalTestFilter: FC<TechnicalTestFilterProps> = ({
   }, []);
 
   return (
-    <div className="md:w-1/3 w-full pt-4">
-      <h2 className="text-[26px] text-[#282828] font-bold mb-8">Filtres</h2>
+    <div className="min-w-[256px] hidden sm:block flex-shrink-0">
+      <h2 className="text-[26px] text-black font-bold mb-9">Filtres</h2>
 
       <FilterGroup
         title="Llenguatge"

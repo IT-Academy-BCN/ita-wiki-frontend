@@ -3,10 +3,11 @@ import { render, screen } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach } from "vitest";
 import { BrowserRouter } from "react-router";
 import TechnicalTestCard from "../TechnicalTestCard";
+import { getLevelIcon } from "../../../utils/getLevelIcon";
 import { TechnicalTest } from "../../../types/TechnicalTest";
 
-vi.mock("../../Layout/aside/asideContent", () => ({
-  asideContentForTechnicalTest: [
+vi.mock("../languageLabelsContent", () => ({
+  contentForTechnicalTest: [
     {
       icon: () => <svg data-testid="react-icon">React Icon</svg>,
       label: "React",
@@ -37,12 +38,33 @@ describe("TechnicalTestCard", () => {
     vi.clearAllMocks();
   });
 
+  describe("Level icon hashing", () => {
+    it("should always return the same icon for the same title", () => {
+      const title = "React Testing Best Practices";
+
+      const firstResult = getLevelIcon(title);
+      const secondResult = getLevelIcon(title);
+
+      expect(firstResult).toBe(secondResult);
+    });
+
+    it("should return different icons for clearly different titles", () => {
+      const titleA = "A";
+      const titleB = "B";
+
+      const resultA = getLevelIcon(titleA);
+      const resultB = getLevelIcon(titleB);
+
+      expect(resultA).not.toBe(resultB);
+    });
+  });
+
   describe("Link navigation", () => {
     it("should render a link with the correct URL to the technical test detail page", () => {
       renderWithRouter(<TechnicalTestCard test={mockTest} />);
 
       const link = screen.getByRole("link", {
-        name: mockTest.title,
+        name: new RegExp(mockTest.title, "i"),
       });
 
       expect(link).toBeInTheDocument();
@@ -57,7 +79,7 @@ describe("TechnicalTestCard", () => {
       renderWithRouter(<TechnicalTestCard test={differentTest} />);
 
       const link = screen.getByRole("link", {
-        name: mockTest.title,
+        name: new RegExp(differentTest.title, "i"),
       });
 
       expect(link).toHaveAttribute(
