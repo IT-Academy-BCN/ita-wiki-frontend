@@ -20,7 +20,6 @@ import { TypUserRole } from "../../types";
 const HeaderComponent = () => {
   const { user, signIn, signOut } = useUserContext();
 
-  console.log(user);
   const { isChanging, updateUserRole } = useChangeUserRole();
   const navigate = useNavigate();
   const location = useLocation();
