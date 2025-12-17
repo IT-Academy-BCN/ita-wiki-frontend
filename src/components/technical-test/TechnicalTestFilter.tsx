@@ -13,17 +13,11 @@ interface TechnicalTestFilterProps {
 export const TechnicalTestFilter: FC<TechnicalTestFilterProps> = ({
   onFiltersChange,
 }) => {
-  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([
-    "JavaScript",
-    "Java",
-  ]);
-  const [selectedYears, setSelectedYears] = useState<string[]>([
-    "2025",
-    "2024",
-  ]);
-  const [selectedDifficulties, setSelectedDifficulties] = useState<string[]>([
-    "Bàsica",
-  ]);
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
+  const [selectedYears, setSelectedYears] = useState<string[]>([]);
+  const [selectedDifficulties, setSelectedDifficulties] = useState<string[]>(
+    [],
+  );
 
   const years = ["2025", "2024", "2023"];
   const difficulties = ["Bàsica", "Intermèdia", "Difícil"];
