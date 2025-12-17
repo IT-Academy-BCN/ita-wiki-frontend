@@ -1,15 +1,12 @@
 import { API_URL, END_POINTS } from "../config";
 
 export const createTechnicalTest = async (formData: FormData) => {
-  const controller = new AbortController();
-  const signal = controller.signal;
   const url = `${API_URL}${END_POINTS.technicaltests.create}`;
 
   try {
     const response = await fetch(url, {
       method: "POST",
       body: formData,
-      signal,
     });
 
     if (!response.ok) {
@@ -31,15 +28,28 @@ export const createTechnicalTest = async (formData: FormData) => {
 };
 
 export const fetchTechnicalTests = async () => {
-  const controller = new AbortController();
-  const signal = controller.signal;
   const url = `${API_URL}${END_POINTS.technicaltests.get}`;
   try {
-    const response = await fetch(url, { signal });
+    const response = await fetch(url);
     if (!response.ok) {
       throw new Error("Failed to fetch technical tests");
     }
     const data = await response.json();
+    return Array.isArray(data) ? data : data.data;
+  } catch (error: unknown) {
+    console.error(error);
+  }
+};
+
+export const fetchTechnicalTestById = async (testId: number) => {
+  const url = `${API_URL}${END_POINTS.technicaltests.get}/${testId}`;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Failed to fetch technical tests");
+    }
+    const data = await response.json();
+    return Array.isArray(data) ? data : data.data;
     return Array.isArray(data) ? data : data.data;
   } catch (error: unknown) {
     console.error(error);

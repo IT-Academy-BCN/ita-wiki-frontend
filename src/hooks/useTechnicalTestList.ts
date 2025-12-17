@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchTechnicalTests } from "../api/endPointTechnicalTests";
 import { TechnicalTest } from "../types/TechnicalTest";
 
-const useTechnicalTests = () => {
+const useTechnicalTestList = () => {
   const [technicalTests, setTechnicalTests] = useState<TechnicalTest[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -30,4 +30,4 @@ const useTechnicalTests = () => {
   return { technicalTests, isLoading, error };
 };
 
-export default useTechnicalTests;
+export default useTechnicalTestList;
