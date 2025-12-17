@@ -2,9 +2,10 @@ import { Controller } from "react-hook-form";
 import PdfUploadComponent from "../atoms/PdfUploadComponent";
 import Container from "../ui/Container";
 import TagInput from "../forms/TagInput";
-import FormHeader from "../forms/FormHeader";
 import LanguageSelectorInput from "../forms/LanguageSelectorInput";
+import FormHeader from "../forms/FormHeader";
 import TitleInput from "../forms/TitleInput";
+import DescriptionTextarea from "../forms/DescriptionTextarea";
 import { useTechnicalTestForm } from "../../hooks/useTechnicalTestForm";
 import { contentForTechnicalTest } from "./languageLabelsContent";
 
@@ -19,7 +20,7 @@ export const TechnicalTestForm = () => {
     formState: { errors },
   } = form;
 
-  const [titleValue, contentType, language] = watch([
+  const [titleValue, descriptionValue, contentType, language] = watch([
     "title",
     "description",
     "contentType",
@@ -35,6 +36,7 @@ export const TechnicalTestForm = () => {
           onCancel={handleCancel}
           onPublish={handleSubmit(onSubmit)}
         />
+
         <form onSubmit={handleSubmit(onSubmit)}>
           <TitleInput
             register={register}
@@ -126,7 +128,11 @@ export const TechnicalTestForm = () => {
           </div>
 
           {contentType === "text" ? (
-            <>Add a Component to TextArea</>
+            <DescriptionTextarea
+              register={register}
+              errors={errors}
+              currentLength={descriptionValue?.length || 0}
+            />
           ) : (
             <div className="my-4 px-10">
               <Controller
