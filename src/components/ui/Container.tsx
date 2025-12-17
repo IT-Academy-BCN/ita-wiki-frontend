@@ -10,7 +10,7 @@ const Container = ({
   return (
     <div className="h-full flex flex-col">
       <div
-        className={`${className} flex-1 bg-white rounded-xl mb-6 mx-6 py-8 px-15`}
+        className={`${className} flex-1 bg-white rounded-xl p-6 mb-6 mx-6 sm:py-12 md:px-10 xl:px-16`}
       >
         {children}
       </div>
