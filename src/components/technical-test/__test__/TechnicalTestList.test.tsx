@@ -1,9 +1,11 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest"; // Afegeix beforeEach
 import TechnicalTestList from "../TechnicalTestList";
 import { TechnicalTest } from "../../../types/TechnicalTest";
+// 1. IMPORTA EL HOOK REAL
+import useTechnicalTestList from "../../../hooks/useTechnicalTestList";
 
 const mockTests: TechnicalTest[] = [
   {
@@ -34,15 +36,22 @@ const mockTests: TechnicalTest[] = [
   },
 ];
 
-vi.mock("../../../hooks/useTechnicalTestList", () => ({
-  default: () => ({
-    technicalTests: mockTests,
-    isLoading: false,
-    error: null,
-  }),
-}));
+// 2. MOCKEJA EL MÒDUL (sense la factory function, només el path)
+vi.mock("../../../hooks/useTechnicalTestList");
+
+// 3. CREA LA REFERÈNCIA AL MOCK
+const mockedUseTechnicalTestList = vi.mocked(useTechnicalTestList);
 
 describe("TechnicalTestList", () => {
+  // 4. CONFIGURA EL VALOR PER DEFECTE ABANS DE CADA TEST
+  beforeEach(() => {
+    mockedUseTechnicalTestList.mockReturnValue({
+      technicalTests: mockTests,
+      isLoading: false,
+      error: null,
+    });
+  });
+
   it("fetches and displays technical test titles from mock data", async () => {
     render(
       <MemoryRouter>
@@ -132,5 +141,23 @@ describe("TechnicalTestList", () => {
 
     expect(screen.getByText("Test B")).toBeDefined();
     expect(screen.queryByText("Test A")).toBeNull();
+  });
+
+  // 5. ARA AQUEST TEST JA FUNCIONA CORRECTAMENT
+  it("shows error message when there is an error", () => {
+    // Sobreescrivim el mock només per aquest test
+    mockedUseTechnicalTestList.mockReturnValue({
+        technicalTests: [],
+        isLoading: false,
+        error: new Error("Algo ha fallado"),
+    });
+
+    render(
+      <MemoryRouter>
+        <TechnicalTestList />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText(/Error: Algo ha fallado/)).toBeDefined();
   });
 });
