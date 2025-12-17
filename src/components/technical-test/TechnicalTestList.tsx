@@ -1,10 +1,10 @@
 import { FC } from "react";
 import useTechnicalTests from "../../hooks/useTechnicalTests";
 import TechnicalTestCard from "./TechnicalTestCard";
-import LoadingImage from "../ui/LoadingImage";
 import { useMinLoading } from "../../hooks/useMinLoading";
 import { useNavigate } from "react-router";
 import ButtonComponent from "../atoms/ButtonComponent";
+import TechnicalTestSkeleton from "./TechnicalTestSkeleton";
 import { TechnicalTest } from "../../types/TechnicalTest";
 
 interface TechnicalTestListProps {
@@ -104,9 +104,13 @@ const TechnicalTestList: FC<TechnicalTestListProps> = ({ filters }) => {
           </ButtonComponent>
         </div>
       </div>
-
-      {showLoader && <LoadingImage text="Carregant proves tècniques..." />}
-
+      {showLoader && !error && (
+        <ul className="flex flex-col gap-4">
+          {Array.from({ length: 8 }).map((_, index) => (
+            <TechnicalTestSkeleton key={index} />
+          ))}
+        </ul>
+      )}
       {error && <p className="m-4 text-red-500">Error: {error.message}</p>}
 
       {!showLoader && !error && (
