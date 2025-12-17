@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
-import useTechnicalTests from "../useTechnicalTests";
+import useTechnicalTestList from "../useTechnicalTestList";
 
 const { mockFetchTechnicalTests } = vi.hoisted(() => {
   return {
@@ -24,7 +24,7 @@ describe("useTechnicalTests Hook", () => {
 
     mockFetchTechnicalTests.mockResolvedValue(mockData);
 
-    const { result } = renderHook(() => useTechnicalTests());
+    const { result } = renderHook(() => useTechnicalTestList());
 
     await waitFor(() => {
       expect(result.current.isLoading).toBe(false);
@@ -38,7 +38,7 @@ describe("useTechnicalTests Hook", () => {
     const errorMessage = "Error 500";
     mockFetchTechnicalTests.mockRejectedValue(new Error(errorMessage));
 
-    const { result } = renderHook(() => useTechnicalTests());
+    const { result } = renderHook(() => useTechnicalTestList());
 
     await waitFor(() => {
       expect(result.current.isLoading).toBe(false);
@@ -53,7 +53,7 @@ describe("useTechnicalTests Hook", () => {
     // PREPARE:
     mockFetchTechnicalTests.mockResolvedValue(null);
 
-    const { result } = renderHook(() => useTechnicalTests());
+    const { result } = renderHook(() => useTechnicalTestList());
 
     await waitFor(() => {
       expect(result.current.isLoading).toBe(false);

@@ -2,7 +2,7 @@ import { z } from "zod";
 import { technicalTestSchema } from "../validations/technicalTestSchema";
 
 export interface TechnicalTest {
-  id: string;
+  id: number;
   title: string;
   language: string;
   description: string;
@@ -13,7 +13,10 @@ export interface TechnicalTest {
   like_count?: number;
   created_at: string;
   updated_at: string;
-  difficulty?: string;
+  difficulty_level: string | null;
+  duration: number | null;
+  exercises: Array<string>;
+  state: string;
 }
 
 export type TechnicalTestFormData = z.infer<typeof technicalTestSchema>;

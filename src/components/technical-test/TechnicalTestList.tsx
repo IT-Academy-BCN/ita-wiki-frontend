@@ -1,5 +1,5 @@
 import { FC } from "react";
-import useTechnicalTests from "../../hooks/useTechnicalTests";
+import useTechnicalTestList from "../../hooks/useTechnicalTestList";
 import TechnicalTestCard from "./TechnicalTestCard";
 import { useMinLoading } from "../../hooks/useMinLoading";
 import { useNavigate } from "react-router";
@@ -15,11 +15,6 @@ interface TechnicalTestListProps {
   };
 }
 
-type TechnicalTestWithDifficulty = TechnicalTest & {
-  difficulty?: string;
-  difficulty_level?: string;
-};
-
 type DifficultyLabel = "Bàsica" | "Intermèdia" | "Difícil";
 
 const normalize = (value: string) =>
@@ -29,7 +24,7 @@ const normalize = (value: string) =>
     .toLowerCase()
     .trim();
 
-const mapDifficultyToLabel = (raw?: string): DifficultyLabel | null => {
+const mapDifficultyToLabel = (raw?: string | null): DifficultyLabel | null => {
   if (!raw) return null;
 
   const v = normalize(raw);
@@ -46,7 +41,7 @@ const mapDifficultyToLabel = (raw?: string): DifficultyLabel | null => {
 };
 
 const TechnicalTestList: FC<TechnicalTestListProps> = ({ filters }) => {
-  const { technicalTests, isLoading, error } = useTechnicalTests();
+  const { technicalTests, isLoading, error } = useTechnicalTestList();
   const showLoader = useMinLoading(isLoading);
   const navigate = useNavigate();
 
@@ -56,11 +51,8 @@ const TechnicalTestList: FC<TechnicalTestListProps> = ({ filters }) => {
     difficulties: [],
   };
 
-  const testsWithDifficulty: TechnicalTestWithDifficulty[] =
-    technicalTests ?? [];
-
-  const filteredTechnicalTests = testsWithDifficulty.filter(
-    (test: TechnicalTestWithDifficulty) => {
+  const filteredTechnicalTests = technicalTests?.filter(
+    (test: TechnicalTest) => {
       const testLanguage = test.language ?? "";
 
       let testYear = "";
@@ -71,7 +63,7 @@ const TechnicalTestList: FC<TechnicalTestListProps> = ({ filters }) => {
         }
       }
 
-      const rawDifficulty = test.difficulty ?? test.difficulty_level;
+      const rawDifficulty = test.difficulty_level;
       const difficultyLabel = mapDifficultyToLabel(rawDifficulty);
 
       const matchesLanguage =
